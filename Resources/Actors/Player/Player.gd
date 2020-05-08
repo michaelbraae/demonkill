@@ -1,0 +1,181 @@
+extends KinematicBody2D
+
+
+
+# INTRODUCTION
+# DEVELOPMENT 
+# TWIST
+# CONCLUSION
+var BOLT_SCENE = preload("res://Resources/Projectiles/Bolt/Bolt.tscn")
+
+onready var animatedSprite = $AnimatedSprite
+onready var interactButton = $InteractButton
+onready var interactArea = $InteractArea
+onready var collisionShape = $CollisionShape2D
+onready var healthBar = $HealthBar
+onready var camera2D = $Camera2D
+onready var attackSprite = $AttackBox/AnimatedSprite
+onready var attackBox = $AttackBox
+onready var attackBoxArea2D = $AttackBox/Area2D
+
+const IS_PLAYER = true
+const SPEED = 200
+const HEALTH_MAX = 10
+const HEALTH_MIN = 0
+const DASH_COOLDOWN = 0.7
+const BOLT_COOLDOWN = 2.0
+
+var dash_cooldown_timer
+var bolt_cooldown_timer
+var health_current = HEALTH_MAX
+var speed_actual
+var velocity = Vector2()
+var aim_vector = Vector2()
+
+var possessedNPC
+var possessing = false
+
+var facing_direction = "down"
+
+# sets the aiming deadzones to zero so you can accurately aim
+# movement deadzones should be left at default, they cause fuckiness
+func setDeadzones():
+	InputMap.action_set_deadzone("aim_up", 0.05)
+	InputMap.action_set_deadzone("aim_down", 0.05)
+	InputMap.action_set_deadzone("aim_left", 0.05)
+	InputMap.action_set_deadzone("aim_right", 0.05)
+
+func _ready() -> void:
+	interactButton.hide()
+	dash_cooldown_timer = Timer.new()
+	add_child(dash_cooldown_timer)
+	bolt_cooldown_timer = Timer.new()
+	add_child(bolt_cooldown_timer)
+	setDeadzones()
+
+func togglePossession(parent) -> void:
+	if possessing:
+		set_global_position(possessedNPC.get_global_position())
+		animatedSprite.show()
+		collisionShape.set_disabled(false)
+		possessedNPC = null
+		possessing = false
+		camera2D.make_current()
+	elif parent:
+		animatedSprite.hide()
+		interactButton.hide()
+		collisionShape.set_disabled(true)
+		possessedNPC = parent
+		possessing = true
+		possessedNPC.get_node("Camera2D").make_current()
+
+func handleInteraction() -> void:
+	var overlappingInteractAreas = interactArea.get_overlapping_areas()
+	if overlappingInteractAreas and not possessing:
+		for area in overlappingInteractAreas:
+			var parent = area.get_parent()
+			if parent.get("INTERACTABLE"):
+				interactButton.show()
+			else:
+				interactButton.hide()
+			if Input.is_action_just_pressed("possess") and parent.get("POSSESSABLE"):
+				togglePossession(parent)
+				break
+	else:
+		if Input.is_action_just_pressed("possess") and possessing:
+			togglePossession(false)
+		interactButton.hide()
+
+func getAnimation() -> String:
+	if velocity.y <= -45:
+		animatedSprite.flip_h = false
+		facing_direction = "up"
+		return "walk_up"
+	if velocity.y >= 45:
+		animatedSprite.flip_h = false
+		facing_direction = "down"
+		return "walk_down"
+	if velocity.x >= 45:
+		animatedSprite.flip_h = false
+		facing_direction = "right"
+		return "walk_right"
+	if velocity.x <= -45:
+		animatedSprite.flip_h = true
+		facing_direction = "right"
+		return "walk_right"
+	return "idle_" + facing_direction
+
+func setVelocity() -> void:
+	velocity = Vector2()
+	velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
+		dash_cooldown_timer.start(DASH_COOLDOWN)
+		bolt_cooldown_timer.stop()
+		collisionShape.disabled = true
+		speed_actual = SPEED * 20
+	else:
+		collisionShape.disabled = false
+		speed_actual = SPEED
+	velocity = velocity.normalized() * speed_actual
+
+func fireCrossbow():
+	if bolt_cooldown_timer.is_stopped():
+		bolt_cooldown_timer.start(BOLT_COOLDOWN)
+		var bolt_instance = BOLT_SCENE.instance()
+		get_parent().add_child(bolt_instance)
+		bolt_instance.set_global_position(get_global_position())
+		bolt_instance.setTargetDirection(getAttackDirection())
+
+func meleeAttack():
+	pass
+
+func getAttackDirection() -> Vector2:
+	# should eventually handle mouse aiming
+	aim_vector = Vector2()
+	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
+	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	aim_vector = aim_vector.normalized() * 100
+	if aim_vector:
+		return aim_vector
+	if velocity:
+		return velocity
+	var facing_vector = Vector2()
+	match facing_direction:
+		"up":
+			facing_vector.y = -100
+		"down":
+			facing_vector.y = 100
+		"right":
+			if animatedSprite.flip_h:
+				facing_vector.x = -100
+			else:
+				facing_vector.x = 100
+	return facing_vector
+
+func hit(damage : int) -> void:
+	health_current = health_current - 1
+	if health_current <= HEALTH_MIN:
+		get_tree().reload_current_scene()
+
+func _process(_delta : float) -> void:
+	print(getAttackDirection())
+#	print(Engine.get_frames_per_second())
+	if dash_cooldown_timer.get_time_left() <= 0.2:
+		dash_cooldown_timer.stop()
+	if bolt_cooldown_timer.get_time_left() <= 0.2:
+		bolt_cooldown_timer.stop()
+	healthBar.play(str(health_current))
+	handleInteraction()
+
+func _physics_process(_delta : float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		meleeAttack()
+	if Input.is_action_just_pressed("fire-crossbow"):
+		fireCrossbow()
+	setVelocity()
+	animatedSprite.play(getAnimation())
+	if possessing:
+		possessedNPC.move_and_slide(velocity)
+	else:
+		move_and_slide(velocity)

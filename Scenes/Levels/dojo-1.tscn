@@ -1,0 +1,158 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Actors/NPC/Melee-Basic/Melee-Basic.tscn" type="PackedScene" id=2]
+
+[node name="root" type="Node2D"]
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="Building-Square" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, -96 )
+
+[node name="Building-Square2" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 64 )
+
+[node name="Building-Square13" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -224, -96 )
+
+[node name="Building-Square14" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -80, -96 )
+
+[node name="Building-Square15" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 64, -96 )
+
+[node name="Building-Square18" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 224, -96 )
+
+[node name="Building-Square17" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 368, -96 )
+
+[node name="Building-Square16" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 512, -96 )
+
+[node name="Building-Square21" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 224, -96 )
+
+[node name="Building-Square20" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 368, -96 )
+
+[node name="Building-Square19" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 512, -96 )
+
+[node name="Building-Square22" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 664, -96 )
+
+[node name="Building-Square32" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -200, 952 )
+
+[node name="Building-Square31" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -56, 952 )
+
+[node name="Building-Square30" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 88, 952 )
+
+[node name="Building-Square29" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 248, 952 )
+
+[node name="Building-Square28" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 392, 952 )
+
+[node name="Building-Square46" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 160, 648 )
+
+[node name="Building-Square45" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 304, 648 )
+
+[node name="Building-Square27" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 536, 952 )
+
+[node name="Building-Square26" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 248, 952 )
+
+[node name="Building-Square25" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 392, 952 )
+
+[node name="Building-Square44" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 160, 648 )
+
+[node name="Building-Square43" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 304, 648 )
+
+[node name="Building-Square24" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 536, 952 )
+
+[node name="Building-Square23" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 688, 952 )
+
+[node name="Building-Square3" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 216 )
+
+[node name="Building-Square4" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 352 )
+
+[node name="Building-Square5" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 480 )
+
+[node name="Building-Square6" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 608 )
+
+[node name="Building-Square35" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 704 )
+
+[node name="Building-Square34" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 832 )
+
+[node name="Building-Square33" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( -368, 960 )
+
+[node name="Building-Square38" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 704 )
+
+[node name="Building-Square37" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 832 )
+
+[node name="Building-Square36" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 960 )
+
+[node name="Building-Square12" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, -96 )
+
+[node name="Building-Square11" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 64 )
+
+[node name="Building-Square10" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 216 )
+
+[node name="Building-Square9" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 352 )
+
+[node name="Building-Square8" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 480 )
+
+[node name="Building-Square40" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 24, 192 )
+
+[node name="Building-Square39" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 24, 320 )
+
+[node name="Building-Square42" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 448, 200 )
+
+[node name="Building-Square41" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 448, 328 )
+
+[node name="Building-Square7" parent="walls" instance=ExtResource( 1 )]
+position = Vector2( 824, 608 )
+
+[node name="Knight" parent="." instance=ExtResource( 2 )]
+position = Vector2( 304, 304 )
+
+[node name="Knight2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 64, 456 )
+
+[node name="Knight3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 576, 496 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 280, 832 )

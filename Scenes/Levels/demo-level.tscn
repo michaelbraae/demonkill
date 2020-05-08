@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Actors/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Actors/NPC/Skele/NonPlayerCharacter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 312, 192, 640, 256, 0, 256, 112, 192, 320, -72, 320, -248, 640, -336, 312, 8, 296, -8, 0, -336, 112, -8, 112, -72, 112, -264, 304.076, -264 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 1 ), PoolIntArray( 4, 1, 0, 7 ), PoolIntArray( 4, 7, 8 ), PoolIntArray( 3, 2, 9, 10 ), PoolIntArray( 11, 4, 8, 10 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 12, 11, 9 ), PoolIntArray( 12, 9, 6, 13 ), PoolIntArray( 13, 6, 5 ) ]
+outlines = [ PoolVector2Array( 0, -336, 0, 256, 640, 256, 640, -336 ), PoolVector2Array( 112, -264, 304.076, -264, 320, -248, 320, -72, 112, -72 ), PoolVector2Array( 112, -8, 296, -8, 312, 8, 312, 192, 112, 192 ) ]
+
+[node name="root" type="Node2D"]
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+visible = false
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 232, -32 )
+
+[node name="Building-Square" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 216, 88 )
+
+[node name="Building-Square3" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 472, 88 )
+
+[node name="Building-Square4" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 472, -168 )
+
+[node name="Building-Square2" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 216, -168 )
+
+[node name="NonPlayerCharacter" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 48, 88 )
