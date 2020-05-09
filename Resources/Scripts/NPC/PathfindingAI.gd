@@ -5,17 +5,17 @@ onready var playerDetectionArea = $PlayerDetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
+# used to stop flip_h flickering
 const PLAYER_POSITION_OFFSET = 25
 
 var path = []
 var path_ind = 0
+var path_blocked = false
 var move_speed = 100
-var move_direction = 0
 var vector_threshold = 0.1
-var player
 var velocity = Vector2()
 
-var path_blocked = false
+var player
 
 func setVectorThreshold(threshold) -> void:
 	vector_threshold = threshold

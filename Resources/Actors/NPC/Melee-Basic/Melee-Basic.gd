@@ -19,11 +19,11 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	attacked = false
 
 func getAnimation() -> String:
-	if velocity.x >= 45:
+	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
 		facing_direction = "right"
 		return "run"
-	if velocity.x <= -45:
+	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
 		facing_direction = "right"
 		return "run"
