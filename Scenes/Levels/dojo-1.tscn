@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Actors/NPC/Melee-Basic/Melee-Basic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Actors/NPC/Caster-Basic/Caster-Basic.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 400, 744, 704, 840, -256, 840, 64, 744, 704, 8, 552, 432, 552, 104, -256, 8, 352, 104, 136, 96, 400, 560, 352, 432, 64, 560, 136, 424, -72, 424, -72, 96 )
@@ -160,3 +161,6 @@ navpoly = SubResource( 1 )
 
 [node name="Knight" parent="Navigation2D" instance=ExtResource( 2 )]
 position = Vector2( 624, 368 )
+
+[node name="Caster-Basic" parent="Navigation2D" instance=ExtResource( 3 )]
+position = Vector2( 120, 792 )

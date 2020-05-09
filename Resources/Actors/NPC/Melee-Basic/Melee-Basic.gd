@@ -31,6 +31,6 @@ func getAnimation() -> String:
 		return "run"
 	return "idle"
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	._physics_process(delta)
 	animatedSprite.play(getAnimation())

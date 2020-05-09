@@ -5,7 +5,7 @@ onready var playerDetectionArea = $PlayerDetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
-# used to stop flip_h flickering
+# used to stop animatedSprite.flip_h flickering
 const PLAYER_POSITION_OFFSET = 25
 
 var path = []
