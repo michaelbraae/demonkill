@@ -159,7 +159,6 @@ func hit(damage : int) -> void:
 		get_tree().reload_current_scene()
 
 func _process(_delta : float) -> void:
-	print(getAttackDirection())
 #	print(Engine.get_frames_per_second())
 	if dash_cooldown_timer.get_time_left() <= 0.2:
 		dash_cooldown_timer.stop()

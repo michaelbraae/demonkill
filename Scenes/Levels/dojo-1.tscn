@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Actors/NPC/Melee-Basic/Melee-Basic.tscn" type="PackedScene" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 400, 744, 704, 840, -256, 840, 64, 744, 704, 8, 552, 432, 552, 104, -256, 8, 352, 104, 136, 96, 400, 560, 352, 432, 64, 560, 136, 424, -72, 424, -72, 96 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 5, 6 ), PoolIntArray( 7, 4, 6, 8, 9 ), PoolIntArray( 5, 1, 0, 10 ), PoolIntArray( 11, 5, 10, 12 ), PoolIntArray( 11, 12, 13, 8 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 3, 2, 7, 14 ), PoolIntArray( 8, 13, 9 ), PoolIntArray( 7, 9, 15 ), PoolIntArray( 7, 15, 14 ), PoolIntArray( 3, 14, 12 ) ]
+outlines = [ PoolVector2Array( -256, 8, -256, 840, 704, 840, 704, 8 ), PoolVector2Array( -72, 424, 136, 424, 136, 96, -72, 96 ), PoolVector2Array( 352, 104, 352, 432, 552, 432, 552, 104 ), PoolVector2Array( 64, 560, 400, 560, 400, 744, 64, 744 ) ]
 
 [node name="root" type="Node2D"]
 
@@ -145,14 +150,13 @@ position = Vector2( 448, 328 )
 [node name="Building-Square7" parent="walls" instance=ExtResource( 1 )]
 position = Vector2( 824, 608 )
 
-[node name="Knight" parent="." instance=ExtResource( 2 )]
-position = Vector2( 304, 304 )
-
-[node name="Knight2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 64, 456 )
-
-[node name="Knight3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 576, 496 )
-
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 280, 832 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Knight" parent="Navigation2D" instance=ExtResource( 2 )]
+position = Vector2( 624, 368 )
