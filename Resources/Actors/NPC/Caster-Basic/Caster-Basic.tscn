@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Actors/NPC/Caster-Basic/Caster-Basic.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Actors/NPC/Caster-Basic/Caster.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Sprites/skele/skele4.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/Sprites/skele/skele2.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Sprites/Sprites/skele/skele3.png" type="Texture" id=4]
@@ -19,11 +19,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 8.9689
 height = 28.8152
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 320.1
 
 [node name="Caster-Basic" type="KinematicBody2D"]
@@ -35,7 +35,7 @@ frames = SubResource( 1 )
 animation = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="CollisionRayCast" type="RayCast2D" parent="."]
 enabled = true
@@ -44,4 +44,4 @@ cast_to = Vector2( 250, 0 )
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
