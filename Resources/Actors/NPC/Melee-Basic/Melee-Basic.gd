@@ -1,18 +1,10 @@
-extends "res://Resources/Scripts/NPC/PathfindingAI.gd"
+extends "res://Resources/Scripts/NPC/PossessableAI.gd"
 
 var attack_started = false
 var attacked = false
 var facing_direction = "down"
-var interactable = false
-var possessable = true 
 
 onready var animatedSprite = $AnimatedSprite
-
-func setInteractable(interactable_value : bool) -> void:
-	interactable = interactable_value
-
-func setPossessable(possessable_value : bool) -> void:
-	possessable = possessable_value
 
 func _on_AnimatedSprite_animation_finished() -> void:
 	attack_started = false

@@ -76,10 +76,7 @@ func setPlayerLocationAsTargetVector() -> void:
 		velocity.y -= 1
 	velocity = velocity.normalized() * move_speed
 
-func _process(_delta : float) -> void:
-	detectPlayer()
-
-func _physics_process(_delta : float) -> void:
+func handleNavigation() -> void:
 	if player:
 		alignRayCastToPlayer()
 		detectBlockers()
@@ -89,3 +86,9 @@ func _physics_process(_delta : float) -> void:
 		else:
 			setPlayerLocationAsTargetVector()
 			move_and_slide(velocity)
+
+func _process(_delta : float) -> void:
+	detectPlayer()
+
+func _physics_process(_delta : float) -> void:
+	handleNavigation()

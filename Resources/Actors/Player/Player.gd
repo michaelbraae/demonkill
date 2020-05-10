@@ -37,7 +37,7 @@ var possessing = false
 
 var facing_direction = "down"
 
-# sets the aiming deadzones to zero so you can accurately aim
+# sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
 func setDeadzones():
 	InputMap.action_set_deadzone("aim_up", 0.05)

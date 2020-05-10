@@ -5,6 +5,14 @@ var target_direction
 var projectile_speed
 var projectile_damage
 
+var target_id
+
+func _ready():
+	initialiseConfig()
+
+func initialiseConfig():
+	setTargetId("IS_ENEMY")
+
 func setTargetDirection(vector2 : Vector2) -> void:
 	target_direction = vector2
 
@@ -17,8 +25,11 @@ func setProjectileDamage(damage = 1):
 func collisionEffect():
 	pass
 
-func getTargetIdentificationString() -> String:
-	return "IS_ENEMY"
+func getTargetId() -> String:
+	return target_id
+
+func setTargetId(id_var) -> void:
+	target_id = id_var
 
 func _physics_process(delta : float) -> void:
 	if target_direction:
@@ -29,7 +40,7 @@ func _physics_process(delta : float) -> void:
 		if collision:
 			collisionEffect()
 			var collider = collision.get_collider()
-			if collider.get(getTargetIdentificationString()):
+			if collider.get(getTargetId()):
 				#collider is not the node that spawned it
 				collider.hit(projectile_damage)
 			queue_free()
