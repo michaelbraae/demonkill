@@ -49,7 +49,7 @@ func getMaxNumberOfAttacks() -> float:
 # when within this range, attack barrage will begin
 func setAttackRange(range_var : float) -> void:
 	attack_range = range_var
-	
+
 func getAttackRange() -> float:
 	return attack_range
 
@@ -78,8 +78,7 @@ func attackThenWait() -> void:
 func attackByRateOfFire() -> void:
 	if rate_of_fire_timer.is_stopped() or rate_of_fire_timer.get_time_left() <= 0.1:
 		if attacks_fired < getMaxNumberOfAttacks():
-			var fire_rate = 1 / getRateOfFire()
-			rate_of_fire_timer.start(fire_rate)
+			rate_of_fire_timer.start(1 / getRateOfFire())
 			attack()
 			attacks_fired += 1
 
@@ -96,18 +95,14 @@ func attack() -> void:
 # handles the decision making 
 func handleNavigation() -> void:
 	if player:
+		alignRayCastToPlayer()
 		detectBlockers()
 		if waiting and not path_blocked:
 			attackThenWait()
+		elif isPlayerInRange() and not path_blocked:
+			attackThenWait()
 		else:
-			detectBlockers()
-			if path_blocked:
-				.handleNavigation()
-			else:
-				if isPlayerInRange():
-					attackThenWait()
-				else:
-					.handleNavigation()
+			.handleNavigation()
 
 func _process(_delta) -> void:
 	if targetting_timer.get_time_left() < 0.1:
