@@ -13,11 +13,13 @@ var targetting_timer
 var target_time
 var rate_of_fire_timer
 
+var waiting = false
+
 func _ready() -> void:
 	initialiseConfig()
 
 func initialiseConfig() -> void:
-	setTargetTime(1)
+	setTargetTime(3)
 	targetting_timer = Timer.new()
 	add_child(targetting_timer)
 	rate_of_fire_timer = Timer.new()
@@ -59,6 +61,12 @@ func isPlayerInRange() -> bool:
 		return true
 	return false
 
+func attackThenWait() -> void:
+	waiting = true
+	attackByRateOfFire()
+	if targetting_timer.is_stopped() or targetting_timer.get_time_left() < 0.1:
+		targetting_timer.start(getTargetTime())
+
 func attackByRateOfFire() -> void:
 	if rate_of_fire_timer.is_stopped() or rate_of_fire_timer.get_time_left() <= 0.1:
 		if attacks_fired < getMaxNumberOfAttacks():
@@ -77,17 +85,20 @@ func attack() -> void:
 	)
 
 func handleNavigation() -> void:
-	if player and not attacking:
-		detectBlockers()
-		if path_blocked:
-			.handleNavigation()
+	if player:
+		if waiting:
+			attackThenWait()
 		else:
-			if isPlayerInRange() and targetting_timer.is_stopped():
-				attackByRateOfFire()
-			else:
+			detectBlockers()
+			if path_blocked:
 				.handleNavigation()
+			else:
+				if isPlayerInRange():
+					attackThenWait()
+				else:
+					.handleNavigation()
 
 func _process(_delta):
-	if targetting_timer.get_time_left() < 0.2:
-		targetting_timer.stop()
-		attacking = false
+	if targetting_timer.get_time_left() < 0.1:
+		waiting = false
+		attacks_fired = 0
