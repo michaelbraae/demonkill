@@ -75,9 +75,9 @@ animations = [ {
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "idle_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
@@ -95,9 +95,9 @@ animations = [ {
 "name": "walk_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "idle_up",
+"name": "walk_down",
 "speed": 5.0
 } ]
 
@@ -124,19 +124,19 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
+"frames": [ ExtResource( 48 ) ],
 "loop": true,
-"name": "5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 56 ) ],
-"loop": true,
-"name": "8",
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 52 ) ],
+"loop": true,
+"name": "6",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 54 ) ],
@@ -149,14 +149,14 @@ animations = [ {
 "name": "4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 48 ) ],
+"frames": [ ExtResource( 56 ) ],
 "loop": true,
-"name": "2",
+"name": "8",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 52 ) ],
+"frames": [ ExtResource( 51 ) ],
 "loop": true,
-"name": "6",
+"name": "5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 47 ) ],
@@ -193,7 +193,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
-frame = 1
+frame = 5
 speed_scale = 2.0
 playing = true
 

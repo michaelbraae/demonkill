@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var sprite = $Sprite
+
 var target_direction
 
 var projectile_speed
@@ -8,13 +10,17 @@ var projectile_damage
 var target_id
 
 func _ready():
+	sprite.hide()
 	initialiseConfig()
 
 func initialiseConfig():
-	setTargetId("IS_ENEMY")
+	pass
 
 func setTargetDirection(target_direction_vector : Vector2) -> void:
 	target_direction = target_direction_vector
+
+func getTargetDirection() -> Vector2:
+	return target_direction
 
 func setProjectileSpeed(speed = 1):
 	projectile_speed = speed
@@ -32,10 +38,13 @@ func setTargetId(id_var) -> void:
 	target_id = id_var
 
 func _physics_process(delta : float) -> void:
-	if target_direction:
-		rotation = target_direction.angle()
+	var projectile_vector = getTargetDirection()
+	if projectile_vector:
+		rotation = projectile_vector.angle()
+		# hide the projectile until we rotate it
+		sprite.show()
 		var collision = move_and_collide(
-			target_direction.normalized() * projectile_speed
+			projectile_vector.normalized() * projectile_speed
 		)
 		if collision:
 			collisionEffect()
