@@ -75,9 +75,9 @@ animations = [ {
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "walk_up",
+"name": "walk_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
@@ -85,19 +85,19 @@ animations = [ {
 "name": "walk_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "walk_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
 "loop": true,
 "name": "idle_up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "idle_down",
 "speed": 5.0
 } ]
 
@@ -119,19 +119,24 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 52 ) ],
+"frames": [ ExtResource( 46 ) ],
 "loop": true,
-"name": "6",
+"name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 48 ) ],
+"frames": [ ExtResource( 51 ) ],
 "loop": true,
-"name": "2",
+"name": "5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 56 ) ],
 "loop": true,
 "name": "8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 54 ) ],
@@ -144,29 +149,24 @@ animations = [ {
 "name": "4",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 52 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 47 ) ],
 "loop": true,
 "name": "10",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
-"loop": true,
-"name": "5",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 55 ) ],
 "loop": true,
 "name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 49 ) ],
-"loop": true,
-"name": "1",
 "speed": 5.0
 } ]
 
@@ -193,7 +193,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
-frame = 5
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -233,11 +233,12 @@ animation = "0"
 playing = true
 
 [node name="AttackBox" type="Node2D" parent="."]
+visible = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackBox"]
 frames = SubResource( 6 )
 animation = "attack_right"
-frame = 2
+frame = 3
 speed_scale = 3.0
 playing = true
 
@@ -245,3 +246,12 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox/Area2D"]
 shape = SubResource( 7 )
+
+[node name="FPSCounter" type="Label" parent="."]
+margin_left = 207.013
+margin_top = -177.876
+margin_right = 247.013
+margin_bottom = -163.876
+__meta__ = {
+"_edit_use_anchors_": false
+}

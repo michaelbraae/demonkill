@@ -34,7 +34,10 @@ func detectPlayer() -> void:
 				setPlayer(area.get_parent())
 
 func alignRayCastToPlayer() -> void:
-	collisionRayCast.rotation = get_angle_to(player.get_global_position())
+	collisionRayCast.rotation = getAngleToPlayer()
+
+func getAngleToPlayer() -> float:
+	return get_angle_to(player.get_global_position())
 
 func detectBlockers():
 	var collider = collisionRayCast.get_collider()

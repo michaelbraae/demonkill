@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-
-
 # INTRODUCTION
 # DEVELOPMENT 
 # TWIST
@@ -17,6 +15,7 @@ onready var camera2D = $Camera2D
 onready var attackSprite = $AttackBox/AnimatedSprite
 onready var attackBox = $AttackBox
 onready var attackBoxArea2D = $AttackBox/Area2D
+onready var fpsCounter = $FPSCounter
 
 const IS_PLAYER = true
 const SPEED = 200
@@ -124,6 +123,7 @@ func fireCrossbow():
 		bolt_cooldown_timer.start(BOLT_COOLDOWN)
 		var bolt_instance = BOLT_SCENE.instance()
 		get_parent().add_child(bolt_instance)
+		bolt_instance.setTargetId("IS_ENEMY")
 		bolt_instance.set_global_position(get_global_position())
 		bolt_instance.setTargetDirection(getAttackDirection())
 
@@ -154,11 +154,12 @@ func getAttackDirection() -> Vector2:
 	return facing_vector
 
 func hit(damage : int) -> void:
-	health_current = health_current - 1
+	health_current = health_current - damage
 	if health_current <= HEALTH_MIN:
 		get_tree().reload_current_scene()
 
 func _process(_delta : float) -> void:
+	fpsCounter.set_text(str(Engine.get_frames_per_second()))
 #	print(Engine.get_frames_per_second())
 	if dash_cooldown_timer.get_time_left() <= 0.2:
 		dash_cooldown_timer.stop()
