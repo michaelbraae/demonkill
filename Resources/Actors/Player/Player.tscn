@@ -193,6 +193,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -237,7 +238,7 @@ visible = false
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackBox"]
 frames = SubResource( 6 )
 animation = "attack_right"
-frame = 1
+frame = 3
 speed_scale = 3.0
 playing = true
 

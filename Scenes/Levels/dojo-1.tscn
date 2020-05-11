@@ -3,8 +3,6 @@
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Actors/NPC/Caster/Caster.tscn" type="PackedScene" id=3]
 
-
-
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 400, 744, 728, 856, -272, 856, 64, 744, 544, 424, 544, 104, 728, 0, -272, 0, 352, 104, 120, 96, 400, 552, 352, 424, 64, 552, 120, 416, -72, 416, -72, 96 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 1 ), PoolIntArray( 7, 6, 5, 8, 9 ), PoolIntArray( 4, 1, 0, 10 ), PoolIntArray( 11, 4, 10, 12 ), PoolIntArray( 11, 12, 13, 8 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 3, 2, 7, 14 ), PoolIntArray( 8, 13, 9 ), PoolIntArray( 7, 9, 15 ), PoolIntArray( 7, 15, 14 ), PoolIntArray( 3, 14, 12 ) ]
@@ -161,4 +159,4 @@ position = Vector2( 280, 832 )
 navpoly = SubResource( 1 )
 
 [node name="Caster-Basic" parent="Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( 120, 792 )
+position = Vector2( -160, 680 )
