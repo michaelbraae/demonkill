@@ -41,7 +41,7 @@ func _physics_process(delta : float) -> void:
 	var projectile_vector = getTargetDirection()
 	if projectile_vector:
 		rotation = projectile_vector.angle()
-		# hide the projectile until we rotate it
+		# hide the sprite until after it's rotated
 		sprite.show()
 		var collision = move_and_collide(
 			projectile_vector.normalized() * projectile_speed
