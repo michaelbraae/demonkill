@@ -9,6 +9,7 @@ var attack_range
 var attacking = false
 var attacks_fired = 0
 
+# wait time before moving again
 var targetting_timer
 var target_time
 var rate_of_fire_timer
@@ -19,15 +20,15 @@ func _ready() -> void:
 	initialiseConfig()
 
 func initialiseConfig() -> void:
-	setTargetTime(3)
+	setTargetTime(2)
 	targetting_timer = Timer.new()
 	add_child(targetting_timer)
 	rate_of_fire_timer = Timer.new()
 	add_child(rate_of_fire_timer)
-	setAttackRange(250)
+	setAttackRange(350)
 	setMoveSpeed(200)
-	setRateOfFire(3)
-	setMaxNumberOfAttacks(2)
+	setRateOfFire(2)
+	setMaxNumberOfAttacks(3)
 
 func setRateOfFire(rof : float) -> void:
 	rate_of_fire = rof
@@ -86,7 +87,8 @@ func attack() -> void:
 
 func handleNavigation() -> void:
 	if player:
-		if waiting:
+		detectBlockers()
+		if waiting and not path_blocked:
 			attackThenWait()
 		else:
 			detectBlockers()

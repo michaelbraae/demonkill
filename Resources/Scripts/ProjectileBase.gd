@@ -35,7 +35,8 @@ func _physics_process(delta : float) -> void:
 	if target_direction:
 		rotation = target_direction.angle()
 		var collision = move_and_collide(
-			(target_direction * delta) * projectile_speed
+			target_direction.normalized() * projectile_speed
+#			(target_direction * delta) * projectile_speed
 		)
 		if collision:
 			collisionEffect()

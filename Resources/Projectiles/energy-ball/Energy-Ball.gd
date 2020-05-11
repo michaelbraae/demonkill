@@ -1,6 +1,6 @@
 extends "res://Resources/Scripts/ProjectileBase.gd"
 
 func initialiseConfig():
-	setProjectileSpeed(3)
+	setProjectileSpeed(10)
 #	setProjectileDamage(10)
 	setProjectileDamage(0)
