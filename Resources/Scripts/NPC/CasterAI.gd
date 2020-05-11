@@ -93,7 +93,7 @@ func attack() -> void:
 		player.get_global_position() - get_global_position()
 	)
 
-# handles the decision making
+# handles the decision making 
 func handleNavigation() -> void:
 	if player:
 		detectBlockers()
