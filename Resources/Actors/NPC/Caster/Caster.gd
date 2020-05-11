@@ -2,7 +2,7 @@ extends "res://Resources/Scripts/NPC/PossessableAI.gd"
 
 var ENERGY_BALL_SCENE = preload("res://Resources/Projectiles/Energy-Ball/Energy-Ball.tscn")
 
-var attacks_per_second
+var rate_of_fire
 var number_of_attacks
 
 var attack_range
@@ -20,13 +20,14 @@ func initialiseConfig() -> void:
 	add_child(targetting_timer)
 	setAttackRange(200)
 	setMoveSpeed(200)
-	setAttacksPerSecond(3)
+	setRateOfFire(3)
 
-func setAttacksPerSecond(aps : float) -> void:
-	attacks_per_second = aps
+# interval between attacks
+func setRateOfFire(rof : float) -> void:
+	rate_of_fire = rof
 
-func getAttacksPerSecond() -> float:
-	return attacks_per_second
+func getRateOfFire() -> float:
+	return rate_of_fire
 
 func setNumberOfAttacks(noa : float) -> void:
 	number_of_attacks = noa
@@ -53,6 +54,14 @@ func isPlayerInRange() -> bool:
 	if distance_to_player <= getAttackRange():
 		return true
 	return false
+
+func attackBarrage() -> void:
+	targetting_timer.start(getTargetTime())
+	attacking = true
+	# divide time_left by rate of fire
+	# each time that passes fire the thing
+	# reset the timer
+	pass
 
 func attack() -> void:
 	targetting_timer.start(getTargetTime())
