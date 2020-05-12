@@ -2,7 +2,7 @@ extends "res://Resources/Scripts/NPC/CasterAI.gd"
 
 func initialiseConfig() -> void:
 	.initialiseConfig()
-	setWaitTime(2)
+	setAfterAttackWait(2)
 	setAttackRange(350)
 	setMoveSpeed(200)
 	setRateOfFire(2)

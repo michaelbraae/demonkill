@@ -11,10 +11,12 @@ var attacks_fired = 0
 
 # wait time before moving again
 var targetting_timer
-var wait_time
+var before_attack_wait
+var after_attack_wait
 var rate_of_fire_timer
 
-var waiting = false
+var before_attack_waiting = false
+var after_attack_waiting = false
 
 func _ready() -> void:
 	setProjectileScene()
@@ -53,12 +55,21 @@ func setAttackRange(range_var : float) -> void:
 func getAttackRange() -> float:
 	return attack_range
 
-# the time to wait after the barrage before repositioning
-func setWaitTime(wait_time_var : float) -> void:
-	wait_time = wait_time_var
+# the time to wait before the barrage before repositioning
+#	could be considered the "time to aim"
+func setBeforeAttackWait(b_a_w) -> void:
+	before_attack_wait = b_a_w
 
-func getWaitTime() -> float:
-	return wait_time
+func getBeforeAttackWait() -> float:
+	return before_attack_wait
+
+# the time to wait after the barrage before repositioning
+#	could be considered the "time to reload"
+func setAfterAttackWait(a_a_w) -> void:
+	after_attack_wait = a_a_w
+
+func getAfterAttackWait() -> float:
+	return after_attack_wait
 
 # true if the player is in the attack range
 func isPlayerInRange() -> bool:
@@ -70,10 +81,10 @@ func isPlayerInRange() -> bool:
 	return false
 
 func attackThenWait() -> void:
-	waiting = true
+	after_attack_waiting = true
 	attackByRateOfFire()
 	if targetting_timer.is_stopped() or targetting_timer.get_time_left() < 0.1:
-		targetting_timer.start(getWaitTime())
+		targetting_timer.start(getAfterAttackWait())
 
 func attackByRateOfFire() -> void:
 	if rate_of_fire_timer.is_stopped() or rate_of_fire_timer.get_time_left() <= 0.1:
@@ -97,7 +108,7 @@ func handleNavigation() -> void:
 	if player:
 		alignRayCastToPlayer()
 		detectBlockers()
-		if waiting and not path_blocked:
+		if after_attack_waiting and not path_blocked:
 			attackThenWait()
 		elif isPlayerInRange() and not path_blocked:
 			attackThenWait()
@@ -106,5 +117,5 @@ func handleNavigation() -> void:
 
 func _process(_delta) -> void:
 	if targetting_timer.get_time_left() < 0.1:
-		waiting = false
+		after_attack_waiting = false
 		attacks_fired = 0

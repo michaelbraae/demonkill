@@ -12,7 +12,7 @@ var path = []
 var path_ind = 0
 var path_blocked = false
 var move_speed = 100
-var vector_threshold = 0.1
+var vector_threshold = 0.05
 var velocity = Vector2()
 
 var player
