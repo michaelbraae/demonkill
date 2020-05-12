@@ -54,7 +54,6 @@ func attackByRateOfFire() -> void:
 			attack()
 			attacks_fired += 1
 		else:
-			print('reload')
 			attacks_fired = 0
 
 func attack() -> void:
@@ -71,6 +70,7 @@ func handleNavigation() -> void:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked:
+			state = PRE_ATTACK
 			attackByRateOfFire()
 		else:
 			.handleNavigation()

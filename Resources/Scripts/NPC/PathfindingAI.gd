@@ -1,11 +1,11 @@
-extends KinematicBody2D
+extends "res://Resources/Scripts/NPC/BaseAI.gd"
 
 # dependencies, i know it's not clean. be nice :D
 onready var playerDetectionArea = $PlayerDetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
-# used to stop animatedSprite.flip_h flickering
+# used to stop animatedSprite.flip_h flickering when Y axis is aligned
 const PLAYER_POSITION_OFFSET = 25
 
 var path = []
@@ -84,9 +84,11 @@ func handleNavigation() -> void:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if path_blocked:
+			state = NAVIGATING
 			setNavigationPoint(player.get_global_position())
 			moveToNavigationPoint()
 		else:
+			state = FOLLOWING_PLAYER
 			setPlayerLocationAsTargetVector()
 			move_and_slide(velocity)
 
