@@ -74,7 +74,7 @@ func handlePostAnimState() -> void:
 			if (
 				getCurrentAttackInSequence() > 1
 				and not isPlayerInRange()
-				or	getCurrentAttackInSequence() > getAttacksInSequence()
+				or getCurrentAttackInSequence() > getAttacksInSequence()
 			):
 				state = POST_ATTACK
 				setCurrentAttackInSequence(1)

@@ -6,6 +6,7 @@ const HIT_FRAMES = [3, 4, 5]
 
 func initialiseConfig():
 	setAttacksInSequence(2)
+	setMoveSpeed(200)
 
 func isPlayerInRange() -> bool:
 	var overlapping_areas = attackRange.get_overlapping_areas()

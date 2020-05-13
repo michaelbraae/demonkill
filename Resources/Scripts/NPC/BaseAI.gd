@@ -1,8 +1,5 @@
 extends KinematicBody2D
 
-# All core functionality regarding states
-#	and their transitions should go here if possible
-
 var state
 onready var animatedSprite = $AnimatedSprite
 
