@@ -24,4 +24,3 @@ func perAttackAction() -> void:
 	):
 		has_attack_landed = true
 		player.damage(BASIC_ATTACK_DAMAGE)
-		
