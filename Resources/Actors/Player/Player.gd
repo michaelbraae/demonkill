@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 # INTRODUCTION
-# DEVELOPMENT 
+# DEVELOPMENT
 # TWIST
 # CONCLUSION
 var BOLT_SCENE = preload("res://Resources/Projectiles/Bolt/Bolt.tscn")

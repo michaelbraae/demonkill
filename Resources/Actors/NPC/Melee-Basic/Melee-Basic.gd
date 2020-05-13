@@ -1,28 +1,11 @@
-extends "res://Resources/Scripts/NPC/PossessableAI.gd"
+extends "res://Resources/Scripts/NPC/AttackerAI.gd"
 
-var attack_started = false
-var attacked = false
-var facing_direction = "down"
+onready var attackRange = $AttackRange
 
-onready var animatedSprite = $AnimatedSprite
-
-func _on_AnimatedSprite_animation_finished() -> void:
-	attack_started = false
-	attacked = false
-
-func getAnimation() -> String:
-	if velocity.x >= 0.1:
-		animatedSprite.flip_h = false
-		facing_direction = "right"
-		return "run"
-	if velocity.x <= -0.1:
-		animatedSprite.flip_h = true
-		facing_direction = "right"
-		return "run"
-	if velocity.y != 0:
-		return "run"
-	return "idle"
-
-func _physics_process(delta : float) -> void:
-	._physics_process(delta)
-	animatedSprite.play(getAnimation())
+func isPlayerInRange() -> bool:
+	var overlapping_areas = attackRange.get_overlapping_areas()
+	if overlapping_areas:
+		for area in overlapping_areas:
+			if area.get_parent().get("IS_PLAYER"):
+				return true
+	return false

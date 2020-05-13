@@ -4,6 +4,7 @@ extends KinematicBody2D
 #	and their transitions should go here if possible
 
 var state
+onready var animatedSprite = $AnimatedSprite
 
 # STATES:
 enum {
@@ -18,3 +19,9 @@ enum {
 	PRE_DEATH,
 	DEATH,
 }
+
+func _on_AnimatedSprite_animation_finished() -> void:
+	handlePostAnimState()
+
+func handlePostAnimState() -> void:
+	pass

@@ -1,4 +1,4 @@
-extends "res://Resources/Scripts/NPC/PossessableAI.gd"
+extends "res://Resources/Scripts/NPC/AttackerAI.gd"
 
 var PROJECTILE_SCENE
 
@@ -51,12 +51,12 @@ func attackByRateOfFire() -> void:
 	if rate_of_fire_timer.is_stopped() or rate_of_fire_timer.get_time_left() <= 0.1:
 		if attacks_fired < getMaxNumberOfAttacks():
 			rate_of_fire_timer.start(1 / getRateOfFire())
-			attack()
+			fireProjectile()
 			attacks_fired += 1
 		else:
 			attacks_fired = 0
 
-func attack() -> void:
+func fireProjectile() -> void:
 	var projectile_instance = PROJECTILE_SCENE.instance()
 	get_parent().get_parent().add_child(projectile_instance)
 	projectile_instance.setTargetId("IS_PLAYER")
@@ -70,7 +70,6 @@ func handleNavigation() -> void:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked:
-			state = PRE_ATTACK
 			attackByRateOfFire()
 		else:
 			.handleNavigation()

@@ -1,6 +1,5 @@
 extends "res://Resources/Scripts/NPC/PathfindingAI.gd"
 
-onready var animatedSprite = $AnimatedSprite
 
 func getAnimation() -> String:
 	if velocity.x >= 0.1:
