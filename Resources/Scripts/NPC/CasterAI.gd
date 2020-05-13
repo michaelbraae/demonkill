@@ -63,11 +63,11 @@ func fireProjectile() -> void:
 		player.get_global_position() - get_global_position()
 	)
 
-func handleNavigation() -> void:
+func runDecisionTree() -> void:
 	if player:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked:
 			attackByRateOfFire()
 		else:
-			.handleNavigation()
+			.runDecisionTree()

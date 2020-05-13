@@ -47,15 +47,14 @@ func getAttackAnimation():
 		POST_ATTACK:
 			return "post_attack"
 
-func handleNavigation():
-	print(getStateString())
+func runDecisionTree():
 	if player:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked or attack_started:
 			setPreAttack()
 		else:
-			.handleNavigation()
+			.runDecisionTree()
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
