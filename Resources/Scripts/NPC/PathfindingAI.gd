@@ -91,6 +91,8 @@ func handleNavigation() -> void:
 			state = FOLLOWING_PLAYER
 			setPlayerLocationAsTargetVector()
 			move_and_slide(velocity)
+	else:
+		state = IDLE
 
 func _process(_delta : float) -> void:
 	detectPlayer()

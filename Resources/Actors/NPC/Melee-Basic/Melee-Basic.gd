@@ -2,6 +2,9 @@ extends "res://Resources/Scripts/NPC/AttackerAI.gd"
 
 onready var attackRange = $AttackRange
 
+func initialiseConfig():
+	setAttacksInSequence(2)
+
 func isPlayerInRange() -> bool:
 	var overlapping_areas = attackRange.get_overlapping_areas()
 	if overlapping_areas:

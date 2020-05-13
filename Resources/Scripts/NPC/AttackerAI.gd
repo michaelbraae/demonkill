@@ -1,7 +1,7 @@
 extends "res://Resources/Scripts/NPC/PossessableAI.gd"
 
 var attacks_in_sequence
-var current_attack_in_sequence
+var current_attack_in_sequence = 1
 
 func setAttacksInSequence(a_i_s) -> void:
 	attacks_in_sequence = a_i_s
@@ -25,14 +25,12 @@ func getAnimation() -> String:
 		return getAttackAnimation()
 	return "idle"
 
-func getNavigationAnimation():
+func getNavigationAnimation() -> String:
 	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
 	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
 	return "run"
-
-
 
 func setPreAttack() -> void:
 	if not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
@@ -48,20 +46,27 @@ func getAttackAnimation():
 			return "post_attack"
 
 func handleNavigation():
+	print(getStateString())
 	if player:
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked:
-			pass
+			setPreAttack()
 		else:
 			.handleNavigation()
+	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
 	match state:
 		PRE_ATTACK:
 			state = ATTACKING
 		ATTACKING:
-			state = POST_ATTACK
-		
-	
-# while the AI is attacking, we should check it's state. 
+			setCurrentAttackInSequence(getCurrentAttackInSequence() + 1)
+			if getCurrentAttackInSequence() > 1 and not isPlayerInRange():
+				state = POST_ATTACK
+				setCurrentAttackInSequence(1)
+			if getCurrentAttackInSequence() > getAttacksInSequence():
+				state = POST_ATTACK
+				setCurrentAttackInSequence(1)
+		POST_ATTACK:
+			state = IDLE

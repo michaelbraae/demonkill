@@ -37,7 +37,7 @@ func getTargetId() -> String:
 func setTargetId(id_var) -> void:
 	target_id = id_var
 
-func _physics_process(delta : float) -> void:
+func _physics_process(_delta : float) -> void:
 	var projectile_vector = getTargetDirection()
 	if projectile_vector:
 		rotation = projectile_vector.angle()
