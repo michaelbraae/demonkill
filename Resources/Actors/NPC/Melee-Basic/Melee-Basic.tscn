@@ -44,14 +44,14 @@ animations = [ {
 "name": "attack_1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ), ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 23 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "pre_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 20 ) ],
@@ -85,7 +85,6 @@ script = ExtResource( 15 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "attack_2"
-frame = 1
 speed_scale = 2.0
 playing = true
 

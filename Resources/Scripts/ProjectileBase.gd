@@ -50,7 +50,7 @@ func _physics_process(_delta : float) -> void:
 			collisionEffect()
 			var collider = collision.get_collider()
 			if collider.get(getTargetId()):
-				collider.hit(projectile_damage)
+				collider.damage(projectile_damage)
 			queue_free()
 	else:
 		queue_free()

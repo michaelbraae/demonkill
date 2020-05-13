@@ -3,6 +3,7 @@ extends "res://Resources/Scripts/NPC/PossessableAI.gd"
 var attacks_in_sequence
 var current_attack_in_sequence = 1
 var attack_started = false
+var has_attack_landed = false
 
 func setAttacksInSequence(a_i_s) -> void:
 	attacks_in_sequence = a_i_s
@@ -38,6 +39,9 @@ func setPreAttack() -> void:
 		attack_started = true
 		state = PRE_ATTACK
 
+func perAttackAction() -> void:
+	pass
+
 func getAttackAnimation():
 	match state:
 		PRE_ATTACK:
@@ -53,6 +57,8 @@ func runDecisionTree():
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked or attack_started:
 			setPreAttack()
+			if state == ATTACKING:
+				perAttackAction()
 		else:
 			.runDecisionTree()
 	animatedSprite.play(getAnimation())
@@ -62,12 +68,14 @@ func handlePostAnimState() -> void:
 		PRE_ATTACK:
 			state = ATTACKING
 		ATTACKING:
+			has_attack_landed = false
 			attack_started = false
 			setCurrentAttackInSequence(getCurrentAttackInSequence() + 1)
-			if getCurrentAttackInSequence() > 1 and not isPlayerInRange():
-				state = POST_ATTACK
-				setCurrentAttackInSequence(1)
-			if getCurrentAttackInSequence() > getAttacksInSequence():
+			if (
+				getCurrentAttackInSequence() > 1
+				and not isPlayerInRange()
+				or	getCurrentAttackInSequence() > getAttacksInSequence()
+			):
 				state = POST_ATTACK
 				setCurrentAttackInSequence(1)
 		POST_ATTACK:

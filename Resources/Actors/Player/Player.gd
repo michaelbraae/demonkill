@@ -153,7 +153,7 @@ func getAttackDirection() -> Vector2:
 				facing_vector.x = 100
 	return facing_vector
 
-func hit(damage : int) -> void:
+func damage(damage : int) -> void:
 	health_current = health_current - damage
 	if health_current <= HEALTH_MIN:
 		get_tree().reload_current_scene()
