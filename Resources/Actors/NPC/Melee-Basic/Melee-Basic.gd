@@ -19,8 +19,8 @@ func isPlayerInRange() -> bool:
 func perAttackAction() -> void:
 	if (
 		isPlayerInRange()
-		and not has_attack_landed
+		and not getHasAttackLanded()
 		and HIT_FRAMES.has(animatedSprite.get_frame())
 	):
-		has_attack_landed = true
-		player.damage(BASIC_ATTACK_DAMAGE)
+		setHasAttackLanded(true)
+		getPlayer().damage(BASIC_ATTACK_DAMAGE)

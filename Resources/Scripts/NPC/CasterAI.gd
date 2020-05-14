@@ -63,7 +63,7 @@ func fireProjectile() -> void:
 	)
 
 func runDecisionTree() -> void:
-	if player:
+	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
 		if isPlayerInRange() and not path_blocked:
