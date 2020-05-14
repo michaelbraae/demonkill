@@ -10,7 +10,6 @@ var attacks_fired = 0
 
 var rate_of_fire_timer
 
-
 func initialiseConfig() -> void:
 	setProjectileScene()
 	rate_of_fire_timer = Timer.new()

@@ -4,14 +4,15 @@ var attacks_in_sequence
 var current_attack_in_sequence = 1
 var attack_started = false
 var has_attack_landed = false
+var repeat_attacks = false
 
-func setAttacksInSequence(a_i_s) -> void:
+func setAttacksInSequence(a_i_s : int) -> void:
 	attacks_in_sequence = a_i_s
 
 func getAttacksInSequence() -> int:
 	return attacks_in_sequence
 
-func setCurrentAttackInSequence(current_a_i_s) -> void:
+func setCurrentAttackInSequence(current_a_i_s : int) -> void:
 	current_attack_in_sequence = current_a_i_s
 
 func getCurrentAttackInSequence() -> int:
@@ -35,15 +36,15 @@ func getNavigationAnimation() -> String:
 	return "run"
 
 func setPreAttack() -> void:
-	if not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
+	if not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
 		attack_started = true
-		state = PRE_ATTACK
+		setState(PRE_ATTACK)
 
 func perAttackAction() -> void:
 	pass
 
 func getAttackAnimation():
-	match state:
+	match getState():
 		PRE_ATTACK:
 			return "pre_attack"
 		ATTACKING:
@@ -51,22 +52,22 @@ func getAttackAnimation():
 		POST_ATTACK:
 			return "post_attack"
 
-func runDecisionTree():
-	if player:
+func runDecisionTree() -> void:
+	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
-		if isPlayerInRange() and not path_blocked or attack_started:
+		if isPlayerInRange() and not getPathBlocked() or attack_started:
 			setPreAttack()
-			if state == ATTACKING:
+			if getState() == ATTACKING:
 				perAttackAction()
 		else:
 			.runDecisionTree()
 	animatedSprite.play(getAnimation())
-
+ 
 func handlePostAnimState() -> void:
-	match state:
+	match getState():
 		PRE_ATTACK:
-			state = ATTACKING
+			setState(ATTACKING)
 		ATTACKING:
 			has_attack_landed = false
 			attack_started = false
@@ -76,7 +77,7 @@ func handlePostAnimState() -> void:
 				and not isPlayerInRange()
 				or getCurrentAttackInSequence() > getAttacksInSequence()
 			):
-				state = POST_ATTACK
+				setState(POST_ATTACK)
 				setCurrentAttackInSequence(1)
 		POST_ATTACK:
-			state = IDLE
+			setState(IDLE)

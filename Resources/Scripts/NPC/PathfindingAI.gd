@@ -17,14 +17,35 @@ var velocity = Vector2()
 
 var player
 
-func setVectorThreshold(threshold) -> void:
+func setPathBlocked(blocked_var : bool) -> void:
+	path_blocked = blocked_var
+
+func getPathBlocked() -> bool:
+	return path_blocked
+
+func setMoveSpeed(speed : float) -> void:
+	move_speed = speed
+
+func getMoveSpeed() -> float:
+	return move_speed
+
+func setVectorThreshold(threshold : float) -> void:
 	vector_threshold = threshold
 
-func setMoveSpeed(speed) -> void:
-	move_speed = speed
+func getVectorThreshold() -> float:
+	return vector_threshold
+
+func setVelocity(velocity_arg : Vector2) -> void:
+	velocity = velocity_arg
+
+func getVelocity() -> Vector2:
+	return velocity
 
 func setPlayer(player_var : KinematicBody2D) -> void:
 	player = player_var
+
+func getPlayer() -> KinematicBody2D:
+	return player
 
 func detectPlayer() -> void:
 	var playerDetectionOverlaps = playerDetectionArea.get_overlapping_areas()
@@ -42,10 +63,10 @@ func getAngleToPlayer() -> float:
 func detectBlockers():
 	var collider = collisionRayCast.get_collider()
 	if collider is StaticBody2D:
-		if not path_blocked:
-			path_blocked = true
+		if not getPathBlocked():
+			setPathBlocked(true)
 	else:
-		path_blocked = false
+		setPathBlocked(false)
 
 func setNavigationPoint(target_position : Vector2) -> void:
 	var closest_nav_point = navigation_mesh.get_closest_point(
@@ -60,14 +81,14 @@ func setNavigationPoint(target_position : Vector2) -> void:
 func moveToNavigationPoint() -> void:
 	if path_ind < path.size():
 		var move_vec = (path[path_ind] - global_transform.origin)
-		if move_vec.length() < vector_threshold:
+		if move_vec.length() < getVectorThreshold():
 			path_ind += 1
 		else:
-			move_and_slide(move_vec.normalized() * move_speed)
+			move_and_slide(move_vec.normalized() * getMoveSpeed())
 
 func setPlayerLocationAsTargetVector() -> void:
-	velocity = Vector2()
-	var player_position = player.get_global_position()
+	setVelocity(Vector2())
+	var player_position = getPlayer().get_global_position()
 	var ai_position = get_global_position()
 	if player_position.x > ai_position.x:
 		velocity.x += 1
@@ -77,22 +98,22 @@ func setPlayerLocationAsTargetVector() -> void:
 		velocity.y += 1
 	if player_position.y - PLAYER_POSITION_OFFSET < ai_position.y:
 		velocity.y -= 1
-	velocity = velocity.normalized() * move_speed
+	setVelocity(getVelocity().normalized() * getMoveSpeed())
 
 func runDecisionTree() -> void:
-	if player:
+	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
-		if path_blocked:
-			state = NAVIGATING
+		if getPathBlocked():
+			setState(NAVIGATING)
 			setNavigationPoint(player.get_global_position())
 			moveToNavigationPoint()
 		else:
-			state = FOLLOWING_PLAYER
+			setState(FOLLOWING_PLAYER)
 			setPlayerLocationAsTargetVector()
-			move_and_slide(velocity)
+			move_and_slide(getVelocity())
 	else:
-		state = IDLE
+		setState(IDLE)
 
 func _process(_delta : float) -> void:
 	detectPlayer()
