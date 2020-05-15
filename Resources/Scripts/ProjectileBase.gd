@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name ProjectileBase
+
 onready var sprite = $Sprite
 
 var target_direction

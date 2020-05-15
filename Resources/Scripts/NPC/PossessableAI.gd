@@ -1,4 +1,6 @@
-extends "res://Resources/Scripts/NPC/PathfindingAI.gd"
+extends PathfindingAI
+
+class_name PossessableAI
 
 var interactable = false
 var possessable = false 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Actors/NPC/Melee-Basic/Melee-Basic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Actors/NPC/Knight/Knight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Actors/NPC/Caster/Caster.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -22,7 +22,7 @@ navpoly = SubResource( 1 )
 position = Vector2( -160, 680 )
 
 [node name="Knight" parent="Environment/Navigation2D" instance=ExtResource( 2 )]
-position = Vector2( 632, 472 )
+position = Vector2( 616, 544 )
 
 [node name="walls" type="YSort" parent="Environment"]
 

@@ -1,4 +1,6 @@
-extends "res://Resources/Scripts/NPC/BaseAI.gd"
+extends BaseAI
+
+class_name PathfindingAI
 
 # dependencies, i know it's not clean. be nice :D
 onready var playerDetectionArea = $PlayerDetectionArea

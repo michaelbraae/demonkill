@@ -8,9 +8,44 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "PossessableAI",
+"class": "AttackerAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/AttackerAI.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BaseAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/BaseAI.gd"
+}, {
+"base": "AttackerAI",
+"class": "CasterAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/CasterAI.gd"
+}, {
+"base": "BaseAI",
+"class": "PathfindingAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/PathfindingAI.gd"
+}, {
+"base": "PathfindingAI",
+"class": "PossessableAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/PossessableAI.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "ProjectileBase",
+"language": "GDScript",
+"path": "res://Resources/Scripts/ProjectileBase.gd"
+} ]
 _global_script_class_icons={
-
+"AttackerAI": "",
+"BaseAI": "",
+"CasterAI": "",
+"PathfindingAI": "",
+"PossessableAI": "",
+"ProjectileBase": ""
 }
 
 [application]

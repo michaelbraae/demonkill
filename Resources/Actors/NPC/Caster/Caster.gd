@@ -1,11 +1,12 @@
-extends "res://Resources/Scripts/NPC/CasterAI.gd"
+extends CasterAI
 
 func initialiseConfig() -> void:
 	.initialiseConfig()
 	setAttackRange(350)
-	setMoveSpeed(200)
-	setRateOfFire(2)
-	setMaxNumberOfAttacks(3)
+	setMoveSpeed(180)
+	setAttacksInSequence(5)
+	setRepeatAttacks(true)
+	setCompleteAttackSequence(true)
 
 func setProjectileScene() -> void:
 	PROJECTILE_SCENE = preload("res://Resources/Projectiles/Energy-Ball/Energy-Ball.tscn")

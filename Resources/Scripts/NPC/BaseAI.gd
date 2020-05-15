@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name BaseAI
+
 var state
 onready var animatedSprite = $AnimatedSprite
 
