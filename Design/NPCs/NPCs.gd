@@ -1,3 +1,7 @@
+# GENERIC DAEMONS
+#	Fireball Imp
+#	
+
 # Possession Boss - Rogue Lord
 #	The boss will switch between his minions as you fight him
 #		In order to beat him, you need to keep track of which enemy is possessed

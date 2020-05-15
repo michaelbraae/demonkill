@@ -5,9 +5,9 @@
 [ext_resource path="res://Resources/Actors/NPC/Caster/Caster.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 416, 760, 728, 856, -272, 856, 48, 760, 544, 424, 544, 104, 728, 0, -272, 0, 352, 104, 120, 96, 416, 536, 352, 424, 48, 536, 120, 416, -72, 416, -72, 96 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 1 ), PoolIntArray( 7, 6, 5, 8, 9 ), PoolIntArray( 4, 1, 0, 10 ), PoolIntArray( 11, 4, 10, 12 ), PoolIntArray( 11, 12, 13, 8 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 3, 2, 7, 14 ), PoolIntArray( 8, 13, 9 ), PoolIntArray( 7, 9, 15 ), PoolIntArray( 7, 15, 14 ), PoolIntArray( 3, 14, 12 ) ]
-outlines = [ PoolVector2Array( -272, 0, -272, 856, 728, 856, 728, 0 ), PoolVector2Array( -72, 416, 120, 416, 120, 96, -72, 96 ), PoolVector2Array( 352, 104, 352, 424, 544, 424, 544, 104 ), PoolVector2Array( 48, 536, 416, 536, 416, 760, 48, 760 ) ]
+vertices = PoolVector2Array( 416, 760, 728, 856, -272, 856, 48, 760, 728, 0, 560, 440, 560, 88, -272, 0, 336, 88, 136, 80, 416, 536, 336, 440, 48, 536, 136, 432, -88, 432, -88, 80 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 5, 6 ), PoolIntArray( 7, 4, 6, 8, 9 ), PoolIntArray( 5, 1, 0, 10 ), PoolIntArray( 11, 5, 10, 12 ), PoolIntArray( 13, 11, 12, 14 ), PoolIntArray( 3, 2, 7, 14 ), PoolIntArray( 8, 11, 13, 9 ), PoolIntArray( 7, 9, 15 ), PoolIntArray( 7, 15, 14 ), PoolIntArray( 3, 14, 12 ) ]
+outlines = [ PoolVector2Array( -272, 0, -272, 856, 728, 856, 728, 0 ), PoolVector2Array( -88, 432, 136, 432, 136, 80, -88, 80 ), PoolVector2Array( 336, 88, 336, 440, 560, 440, 560, 88 ), PoolVector2Array( 48, 536, 416, 536, 416, 760, 48, 760 ) ]
 
 [node name="root" type="Node2D"]
 
