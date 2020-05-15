@@ -9,10 +9,12 @@
 # They use formations and defensive strategies to make the players life difficult
 # The underlings will follow the captains "commands" and protect him 
 
+#	Daemon Knight - Captain - Greatsword only
 #	Daemon Knight - Sword and Shield - Defensive
 #	Daemon Knight - Mace - Reckless
 #	Daemon Knight - Archer - Aggressive Ranged
-#	Daemon Knight - Captain - Greatsword only
+
+# Cultists - Another group similar to knights
 
 # Projectile Weapon Daemons ? Hitscan or fast projectiles?
 #	Gunslinger Daemon - 2 Pistols
@@ -27,7 +29,6 @@
 #	Eyeball - Lazer beam
 #	Elemental Daemon
 #	Mesmer Daemon - Uses Illusions
-
 
 # BOSSES AND THEIR UNIQUE DAEMONS
 
