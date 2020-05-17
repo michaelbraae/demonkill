@@ -3,18 +3,20 @@
 # Straight from hell
 #	Fireball Imp
 #	Claws Imp   -- Imps share models
-
+#	Suicide Imp -- Detonates within certain proximity of player
 
 # Knights fight together in groups.
 # They use formations and defensive strategies to make the players life difficult
 # The underlings will follow the captains "commands" and protect him 
 
 #	Daemon Knight - Captain - Greatsword only
-#	Daemon Knight - Sword and Shield - Defensive
-#	Daemon Knight - Mace - Reckless
+#	Daemon Knight - Sword and Shield 
+#	Daemon Knight - Grenadier - throws bombs when you attack the captain
 #	Daemon Knight - Archer - Aggressive Ranged
 
 # Cultists - Another group similar to knights
+# 	Cultist Captain
+#	Cultist Bretheren - Basic Caster
 
 # Projectile Weapon Daemons ? Hitscan or fast projectiles?
 #	Gunslinger Daemon - 2 Pistols
@@ -48,7 +50,7 @@
 # Daemon Chemist
 #	Throws a fuck load of grenades
 #	BOSS
-#	Rat mutants - Melee and pounce - Can use tunnels
+#	Rat mutants - Melee and pounce - Can use tunnels - Can potentially burrow
 
 # Cannibal Librarian
 #	Daemon Students - Can locate secret doors in bookshelfs
@@ -59,3 +61,5 @@
 
 # Squid Lord - In the university lake
 #	Optional Boss - No minions
+
+# Your own father - What a cunt
