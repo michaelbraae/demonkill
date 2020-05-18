@@ -233,12 +233,11 @@ animation = "0"
 playing = true
 
 [node name="AttackBox" type="Node2D" parent="."]
-visible = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackBox"]
 frames = SubResource( 6 )
 animation = "attack_right"
-frame = 4
+frame = 3
 speed_scale = 3.0
 playing = true
 
