@@ -1,16 +1,38 @@
 extends AttackerAI
 
+# declare some variables for the attack positions
+# up, down, left, right
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# they cant really be constants
+# because different npcs will have different ranges..
 
+# so i guess i have no choice but to have getters and setters .. sigh
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var attack_up
+var attack_down
+var attack_left
+var attack_right
 
+func setAttackUp(attack_up_var : Vector2) -> void:
+	attack_up = attack_up_var
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func getAttackUp() -> Vector2:
+	return attack_up
+
+func setAttackDown(attack_down_var : Vector2) -> void:
+	attack_down = attack_down_var
+
+func getAttackDown() -> Vector2:
+	return attack_down
+
+func setAttackLeft(attack_left_var) -> void:
+	attack_left = attack_left_var
+
+func getAttackLeft() -> Vector2:
+	return attack_left
+
+func setAttackRight(attack_right_var : Vector2) -> void:
+	attack_right = attack_right_var
+
+func getAttackRight() -> Vector2:
+	return attack_right
