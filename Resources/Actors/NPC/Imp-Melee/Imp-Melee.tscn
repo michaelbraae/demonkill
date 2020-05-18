@@ -76,7 +76,7 @@ position = Vector2( -2.38419e-07, 0 )
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -103,7 +103,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackNode"]
 frames = SubResource( 4 )
 animation = "active"
-frame = 2
+frame = 5
 speed_scale = 3.0
 playing = true
 
