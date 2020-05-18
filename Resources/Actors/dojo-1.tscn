@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Actors/NPC/Caster/Caster.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=2]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 416, 760, 728, 856, -272, 856, 48, 760, 728, 0, 560, 440, 560, 88, -272, 0, 336, 88, 136, 80, 416, 536, 336, 440, 48, 536, 136, 432, -88, 432, -88, 80 )
@@ -11,50 +9,16 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 5, 6 ), PoolIntArra
 outlines = [ PoolVector2Array( -272, 0, -272, 856, 728, 856, 728, 0 ), PoolVector2Array( -88, 432, 136, 432, 136, 80, -88, 80 ), PoolVector2Array( 336, 88, 336, 440, 560, 440, 560, 88 ), PoolVector2Array( 48, 536, 416, 536, 416, 760, 48, 760 ) ]
 
 [node name="root" type="Node2D"]
-position = Vector2( 68.2378, 0.897888 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 500.315, 698.139 )
-scale = Vector2( 1.9359, 1.9359 )
-texture = ExtResource( 2 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( -25.9729, 697.889 )
-scale = Vector2( 1.9359, 1.9359 )
-texture = ExtResource( 2 )
-
-[node name="Sprite4" type="Sprite" parent="."]
-position = Vector2( 500.231, 171.517 )
-scale = Vector2( 1.9359, 1.9359 )
-texture = ExtResource( 2 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( -26.0571, 171.267 )
-scale = Vector2( 1.9359, 1.9359 )
-texture = ExtResource( 2 )
 
 [node name="Environment" type="YSort" parent="."]
 
 [node name="Navigation2D" type="Navigation2D" parent="Environment"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Environment/Navigation2D"]
-position = Vector2( -17.1023, 8 )
 navpoly = SubResource( 1 )
 
-[node name="Caster-Basic" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( -160, 680 )
-
-[node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 408, 776 )
-
-[node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 576, 680 )
-
-[node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 472, 568 )
-
-[node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 608, 488 )
+[node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 2 )]
+position = Vector2( 360, 792 )
 
 [node name="walls" type="YSort" parent="Environment"]
 

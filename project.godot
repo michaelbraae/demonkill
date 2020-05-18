@@ -145,4 +145,5 @@ fire-crossbow={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.294118, 0.294118, 0.294118, 1 )
 environment/default_environment="res://default_env.tres"
