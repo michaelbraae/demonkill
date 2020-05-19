@@ -31,14 +31,14 @@ animations = [ {
 "name": "post_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pre_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
@@ -76,16 +76,14 @@ position = Vector2( -2.38419e-07, 0 )
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 4
+frame = 3
 speed_scale = 2.0
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource( 3 )
@@ -95,7 +93,7 @@ enabled = true
 cast_to = Vector2( 250, 0 )
 
 [node name="AttackNode" type="Node2D" parent="."]
-position = Vector2( 30, 0 )
+rotation = -1.57725
 __meta__ = {
 "_edit_group_": true
 }
@@ -104,7 +102,7 @@ __meta__ = {
 frames = SubResource( 4 )
 animation = "active"
 frame = 5
-speed_scale = 3.0
+speed_scale = 4.0
 playing = true
 
 [node name="Area2D" type="Area2D" parent="AttackNode"]

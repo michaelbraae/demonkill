@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/CasterAI.gd"
 }, {
+"base": "AttackerAI",
+"class": "MeleeAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/MeleeAI.gd"
+}, {
 "base": "BaseAI",
 "class": "PathfindingAI",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "AttackerAI": "",
 "BaseAI": "",
 "CasterAI": "",
+"MeleeAI": "",
 "PathfindingAI": "",
 "PossessableAI": "",
 "ProjectileBase": ""

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Actors/NPC/Caster/Caster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -41,20 +40,8 @@ texture = ExtResource( 2 )
 position = Vector2( -17.1023, 8 )
 navpoly = SubResource( 1 )
 
-[node name="Caster-Basic" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( -160, 680 )
-
 [node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
 position = Vector2( 408, 776 )
-
-[node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 576, 680 )
-
-[node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 472, 568 )
-
-[node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 608, 488 )
 
 [node name="walls" type="YSort" parent="Environment"]
 
