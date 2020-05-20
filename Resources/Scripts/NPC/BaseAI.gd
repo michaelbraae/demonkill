@@ -16,8 +16,9 @@ enum {
 	ATTACKING,
 	POST_ATTACK,
 	TAKING_DAMAGE,
+	STUNNED,
 	PRE_DEATH,
-	DEATH,
+	DEAD,
 }
 
 func setState(newState : int) -> void:
@@ -35,6 +36,8 @@ func getStateString() -> String:
 			state_string = "WANDERING"
 		NAVIGATING:
 			state_string = "NAVIGATING"
+		DASHING:
+			state_string = "DASHING"
 		FOLLOWING_PLAYER:
 			state_string = "FOLLOWING_PLAYER"
 		PRE_ATTACK:
@@ -45,10 +48,12 @@ func getStateString() -> String:
 			state_string = "POST_ATTACK"
 		TAKING_DAMAGE:
 			state_string = "TAKING_DAMAGE"
+		STUNNED:
+			state_string = "STUNNED"
 		PRE_DEATH:
 			state_string = "PRE_DEATH"
-		DEATH:
-			state_string = "DEATH"
+		DEAD:
+			state_string = "DEAD"
 	return state_string
 
 func _ready():

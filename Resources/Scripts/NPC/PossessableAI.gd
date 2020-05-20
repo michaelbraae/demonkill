@@ -2,8 +2,8 @@ extends PathfindingAI
 
 class_name PossessableAI
 
-var interactable = false
-var possessable = false 
+var interactable
+var possessable 
 
 func setInteractable(interactable_value : bool) -> void:
 	interactable = interactable_value
@@ -16,3 +16,5 @@ func setPossessable(possessable_value : bool) -> void:
 
 func getPossessable() -> bool:
 	return possessable
+
+# when possesed the players inputs are applied to the possesed AI
