@@ -3,11 +3,13 @@ extends BaseAI
 class_name PathfindingAI
 
 # dependencies, i know it's not clean. be nice :D
+# Any new AI must have these nodes as children to use this script
 onready var playerDetectionArea = $PlayerDetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
-# used to stop animatedSprite.flip_h flickering when Y axis is aligned
+# used to stop the animatedSprite flipping when Y axis is aligned
+# Without this the sprite will flicker back and forth
 const PLAYER_POSITION_OFFSET = 25
 
 var path = []
@@ -116,6 +118,8 @@ func runDecisionTree() -> void:
 			move_and_slide(getVelocity())
 	else:
 		setState(IDLE)
+		# they AI should follow a path in this situation
+		# or potentially idle
 
 func _process(_delta : float) -> void:
 	detectPlayer()
