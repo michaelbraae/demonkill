@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PossessableAI",
+"base": "PathfindingAI",
 "class": "AttackerAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/AttackerAI.gd"

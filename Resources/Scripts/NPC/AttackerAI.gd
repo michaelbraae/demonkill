@@ -1,4 +1,4 @@
-extends PossessableAI
+extends PathfindingAI
 
 class_name AttackerAI
 

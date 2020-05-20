@@ -17,4 +17,5 @@ func setPossessable(possessable_value : bool) -> void:
 func getPossessable() -> bool:
 	return possessable
 
-# when possesed the players inputs are applied to the possesed AI
+# when possesed, the players inputs are applied to the possesed AI
+ 
