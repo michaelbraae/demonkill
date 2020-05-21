@@ -1,3 +1,4 @@
+extends KinematicBody
 # Abilities and how they work
 
 # A new class -> Ability
@@ -8,3 +9,12 @@
 # should have an associated animation
 # should have associated metrics, damage, range etc
 # should be instanced similar to how projectiles work
+
+var ability_name
+var has_telegraph
+
+onready var telegraphNode = $TelegraphNode
+onready var animatedSprite = $AnimatedSprite
+
+func setAbilityName(name_string : String) -> void:
+	ability_name = name_string
