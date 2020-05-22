@@ -41,6 +41,7 @@ func setTargetId(id_var) -> void:
 
 func _physics_process(_delta : float) -> void:
 	var projectile_vector = getTargetDirection()
+	print("projectile_vector", projectile_vector)
 	if projectile_vector:
 		rotation = projectile_vector.angle()
 		# hide the sprite until after it's rotated

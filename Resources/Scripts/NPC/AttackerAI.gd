@@ -125,7 +125,6 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	print(str(animatedSprite.get_animation()))
 	match getState():
 		PRE_ATTACK:
 			setState(ATTACKING)
@@ -137,5 +136,4 @@ func handlePostAnimState() -> void:
 				setState(POST_ATTACK)
 				setCurrentAttackInSequence(1)
 		POST_ATTACK:
-			# we aren't going into post_attack if the player moves out of range
 			setState(IDLE)
