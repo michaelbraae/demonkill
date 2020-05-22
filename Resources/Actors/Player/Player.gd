@@ -18,7 +18,7 @@ onready var attackBoxArea2D = $AttackBox/Area2D
 onready var fpsCounter = $FPSCounter
 
 const IS_PLAYER = true
-const SPEED = 200
+const SPEED = 150
 const HEALTH_MAX = 10
 const HEALTH_MIN = 0
 const DASH_COOLDOWN = 0.7

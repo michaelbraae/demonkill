@@ -29,3 +29,9 @@ func setAbilityName(name_string : String) -> void:
 
 func getAbilityName() -> String:
 	return ability_name
+
+func setTargetVector(target_vector_arg : Vector2) -> void:
+	target_vector = target_vector_arg
+
+func getTargetVector() -> Vector2:
+	return target_vector

@@ -11,6 +11,13 @@ var attack_down_position
 var attack_left_position
 var attack_right_position
 
+func _ready():
+	hideAttackSpriteAndInactive()
+
+func hideAttackSpriteAndInactive() -> void:
+	attackSprite.play("inactive")
+	attackSprite.hide()
+
 func setAttackUpPosition(attack_up_var : Vector2) -> void:
 	attack_up_position = attack_up_var
 
@@ -55,13 +62,15 @@ func positionAttackNode(attack_direction : String) -> void:
 func rotateAttackNode(attack_direction : String) -> void:
 	match attack_direction:
 		"up":
-			attackNode.rotation = 90
-			attackSprite.flip_h = false
+			attackNode.rotation = -80
+			attackSprite.flip_h = true
 		"down":
-			attackNode.rotation = -90
-			attackSprite.flip_h = false
+			attackNode.rotation = 80
+			attackSprite.flip_h = true
 		"left":
 			attackSprite.flip_h = true
+			if not animatedSprite.flip_h:
+				animatedSprite.flip_h = true
 			attackNode.rotation = 0
 		"right":
 			attackSprite.flip_h = false
@@ -81,8 +90,12 @@ func getRelativePlayerDirection() -> String:
 	return direction_string
 
 func perAttackAction() -> void:
-	var relative_player_direction = getRelativePlayerDirection()
-	rotateAttackNode(relative_player_direction)
-	positionAttackNode(relative_player_direction)
-	attackSprite.show()
-	
+	if not getHasAttackLanded():
+		var relative_player_direction = getRelativePlayerDirection()
+		rotateAttackNode(relative_player_direction)
+		positionAttackNode(relative_player_direction)
+		attackSprite.show()
+		attackSprite.play("active")
+
+func _on_AttackSprite_animation_finished():
+	hideAttackSpriteAndInactive()
