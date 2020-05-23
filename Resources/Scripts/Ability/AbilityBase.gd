@@ -13,6 +13,12 @@ extends KinematicBody2D
 onready var telegraphNode = $TelegraphNode
 onready var animatedSprite = $AnimatedSprite
 
+enum {
+	BASIC,
+	AOE,
+	HITSCAN,
+	PROJECTILE,
+}
 
 var ability_name
 var has_telegraph

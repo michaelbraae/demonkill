@@ -126,7 +126,7 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	match getState():
-		PRE_ATTACK:
+		PRE_ATTACK: 
 			setState(ATTACKING)
 		ATTACKING:
 			setHasAttackLanded(false)
