@@ -78,22 +78,27 @@ func getAbilityBodyAnimation() -> String:
 func getTelegraphAnimation() -> String:
 	return "active"
 
-func sendProjectileToTarget() -> void:
-	var projectile_vector = getTargetVector()
-	if projectile_vector:
-		rotation = projectile_vector.angle()
-		# hide the sprite until after it's rotated
-		abilitySprite.show()
-		var collision = abilityBody.move_and_collide(
-			projectile_vector.normalized() * getMoveSpeed()
-		)
-		if collision:
-			var collider = collision.get_collider()
-			if collider.get(getTargetId()):
-				collider.damage(getDamage())
-			queue_free()
-	else:
-		queue_free()
+func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
+	abilityBody.set_rotation(projectile_vector.angle())
+	# hide the sprite until after it's rotated
+	abilitySprite.show()
+	var collision = abilityBody.move_and_collide(
+		projectile_vector.normalized() * getMoveSpeed()
+	)
+	# once the ability body reaches the target_vector change state to IMPACT
+	
+	# maybe it would make more sense and be cleaner if 
+	# the telegraph part of the node was doing the damage.
+	# then the abilitybody part would just fly from one point to another.
+	# to give the effect but then I dont have to do too much accurate hacking
+	# Any discrepencies on the accuracy of the flight path can probably be 
+	# made unnotieceable by the impact effect anyway
+	
+#	if collision:
+#		var collider = collision.get_collider()
+#		if collider.get(getTargetId()):
+#			collider.damage(getDamage())
+#		queue_free()
 
 # telegraphedAOEs should be able to stack;
 #	ie: multiple AOEs can be fired at once. and an effect should play.
