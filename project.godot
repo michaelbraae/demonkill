@@ -44,8 +44,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/ProjectileBase.gd"
 }, {
+"base": "Node2D",
+"class": "TelegraogedAOE",
+"language": "GDScript",
+"path": "res://Resources/Abilities/TelegraphedAOE/TelegraphedAOE.gd"
+}, {
 "base": "KinematicBody2D",
-"class": "TelegraphAbility",
+"class": "TelegraphedAOEAbility",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Ability/AbilityBase.gd"
 } ]
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "PathfindingAI": "",
 "PossessableAI": "",
 "ProjectileBase": "",
-"TelegraphAbility": ""
+"TelegraogedAOE": "",
+"TelegraphedAOEAbility": ""
 }
 
 [application]

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 # Abilities and how they work
 
-class_name TelegraphAbility
+class_name TelegraphedAOEAbility
 
 # A new class -> Ability
 # Should be useable by the player and npcs
