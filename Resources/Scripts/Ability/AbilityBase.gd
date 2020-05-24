@@ -1,6 +1,8 @@
 extends KinematicBody2D
 # Abilities and how they work
 
+class_name TelegraphAbility
+
 # A new class -> Ability
 # Should be useable by the player and npcs
 # should be self contained
@@ -10,34 +12,28 @@ extends KinematicBody2D
 # should have associated metrics, damage, range etc
 # should be instanced similar to how projectiles work
 
-onready var telegraphNode = $TelegraphNode
-onready var animatedSprite = $AnimatedSprite
+#enum {
+#	TELEGRAPHING, # The warm up stage of a telegraph ability
+#	IN_FLIGHT, # While the ability is travelling through the air
+#	HIT, # Once the animation is doing damage in an area on hit
+#	AOE_EFFECT, # after the ability has landed, the AOE effect: burning, poison etc
+#}
 
-enum {
-	BASIC,
-	AOE,
-	HITSCAN,
-	PROJECTILE,
-}
-
-var ability_name
-var has_telegraph
+# The relative position where the ability will land
 var target_vector
 
-func getTelegraphNode() -> Node2D:
-	return telegraphNode
-
-func getAnimatedSprite() -> AnimatedSprite:
-	return animatedSprite
-
-func setAbilityName(name_string : String) -> void:
-	ability_name = name_string
-
-func getAbilityName() -> String:
-	return ability_name
-
-func setTargetVector(target_vector_arg : Vector2) -> void:
-	target_vector = target_vector_arg
+func setTargetVector(tele_vector_arg : Vector2) -> void:
+	target_vector = tele_vector_arg
 
 func getTargetVector() -> Vector2:
 	return target_vector
+
+func _on_TelegraphSprite_animation_finished() -> void:
+	pass
+
+
+
+
+
+
+

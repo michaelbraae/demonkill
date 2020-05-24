@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "ProjectileBase",
 "language": "GDScript",
 "path": "res://Resources/Scripts/ProjectileBase.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "TelegraphAbility",
+"language": "GDScript",
+"path": "res://Resources/Scripts/Ability/AbilityBase.gd"
 } ]
 _global_script_class_icons={
 "AttackerAI": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "MeleeAI": "",
 "PathfindingAI": "",
 "PossessableAI": "",
-"ProjectileBase": ""
+"ProjectileBase": "",
+"TelegraphAbility": ""
 }
 
 [application]

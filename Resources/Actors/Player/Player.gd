@@ -4,7 +4,7 @@ extends KinematicBody2D
 # DEVELOPMENT
 # TWIST
 # CONCLUSION
-var BOLT_SCENE = preload("res://Resources/Projectiles/Bolt/Bolt.tscn")
+var BOLT_SCENE = preload("res://Resources/Abilities/Projectiles/Bolt/Bolt.tscn")
 
 onready var animatedSprite = $AnimatedSprite
 onready var interactButton = $InteractButton
