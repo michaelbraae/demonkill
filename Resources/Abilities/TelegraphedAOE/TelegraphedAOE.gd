@@ -2,9 +2,8 @@ extends Node2D
 
 class_name TelegraogedAOE
 
-onready var abilityBody = $AbilityBody
-onready var abilitySprite = $AbilityBody/AnimatedSprite
-onready var telegraphSprite = $TelegraphSprite
+onready var abilityBodySprite = $AbilityBodySprite
+onready var targetLocationSprite = $TargetLocation/AnimatedSprite
 
 var state
 var target_vector
@@ -21,11 +20,11 @@ enum {
 }
 
 func _ready() -> void:
-	hideTelegraphSprite()
+	hideTargetLocationSprite()
 
-func hideTelegraphSprite() -> void:
-	telegraphSprite.hide()
-	telegraphSprite.play("active")
+func hideTargetLocationSprite() -> void:
+	targetLocationSprite.hide()
+	targetLocationSprite.play("active")
 
 func setState(state_var : int) -> void:
 	state = state_var
@@ -57,8 +56,8 @@ func setDamage(damage_var : int) -> void:
 func getDamage() -> int:
 	return damage
 
-func positionTelegraphSprite() -> void:
-	telegraphSprite.set_position(getTargetVector())
+func positionTargetLocationSprite() -> void:
+	targetLocationSprite.set_position(getTargetVector())
 
 func getAbilityBodyAnimation() -> String:
 	var state_animation
@@ -79,10 +78,10 @@ func getTelegraphAnimation() -> String:
 	return "active"
 
 func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
-	abilityBody.set_rotation(projectile_vector.angle())
+	abilityBodySprite.set_rotation(projectile_vector.angle())
 	# hide the sprite until after it's rotated
-	abilitySprite.show()
-	var collision = abilityBody.move_and_collide(
+	abilityBodySprite.show()
+	var collision = abilityBodySprite.move_and_collide(
 		projectile_vector.normalized() * getMoveSpeed()
 	)
 	# once the ability body reaches the target_vector change state to IMPACT
