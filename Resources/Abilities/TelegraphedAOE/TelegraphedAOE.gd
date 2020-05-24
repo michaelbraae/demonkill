@@ -23,4 +23,8 @@ var target_vector
 
 # Once the abilityBody reaches the target vector. Stop playing the telegraph sprite
 
-# 
+# The Area2D should only be hitting the player when it's reached the location
+
+# The on hit animation should then play.
+
+# after that the AOE animation should play if there is one.
