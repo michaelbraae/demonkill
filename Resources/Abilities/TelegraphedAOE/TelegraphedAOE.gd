@@ -104,7 +104,7 @@ func assignAnimation() -> void:
 			targetLocationSprite.play("impact")
 
 func readyToFire() -> bool:
-	return true
+	return false
 
 func damageOverlappingPlayer() -> void:
 	var overlappingAreas = hitBox.get_overlapping_areas()
@@ -113,8 +113,6 @@ func damageOverlappingPlayer() -> void:
 		if area_parent.get("IS_PLAYER"):
 			if not target_hit:
 				target_hit = true
-#				area_parent.damage()
-				# area_parent.hitEffect() ?? or whatever we do for this
 				print("PLAYER HIT!")
 
 func _physics_process(_delta : float) -> void:

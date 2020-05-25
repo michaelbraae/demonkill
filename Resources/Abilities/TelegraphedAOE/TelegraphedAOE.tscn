@@ -59,7 +59,7 @@ shape = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TargetLocation"]
 scale = Vector2( 0.92925, 0.92925 )
 frames = SubResource( 2 )
-animation = "decay"
+animation = "active"
 playing = true
 
 [node name="Area2D" type="Area2D" parent="TargetLocation"]
