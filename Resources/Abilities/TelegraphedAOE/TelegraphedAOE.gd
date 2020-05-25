@@ -11,6 +11,8 @@ onready var targetLocationSprite = $TargetLocation/AnimatedSprite
 onready var targetLocationArea = $TargetLocation/Area2D
 onready var targetLocationCollision = $TargetLocation/Area2D/CollisionShape2D
 
+onready var hitBox = $TargetLocation/HitBox
+
 var state
 var target_vector
 var move_speed
@@ -18,6 +20,7 @@ var target_id
 var damage
 
 var telegraphed = false
+var target_hit = false
 
 enum {
 	IDLE, # When we want the ability to sit in place
@@ -29,7 +32,9 @@ enum {
 
 func _ready() -> void:
 	setState(IDLE)
-	hideTargetLocationSprite()
+	targetLocationCollision.set_disabled(true)
+	targetLocationSprite.hide()
+	targetLocationSprite.play("active")
 
 func setState(state_var : int) -> void:
 	state = state_var
@@ -61,75 +66,78 @@ func setDamage(damage_var : int) -> void:
 func getDamage() -> int:
 	return damage
 
-# so we don't detect collisions before the attack has been telegraphed
-func hideTargetLocationSprite() -> void:
-	targetLocationCollision.set_disabled(true)
-	targetLocationSprite.hide()
-	targetLocationSprite.play("active")
-
-func positionTargetLocationSprite() -> void:
-	targetLocation.set_position(getTargetVector())
-	targetLocationCollision.set_disabled(false)
-
-func getAbilityBodyAnimation() -> String:
-	var state_animation
-	match getState():
-		IDLE:
-			state_animation = "idle"
-		IN_TRANSIT:
-			state_animation = "in_transit"
-		IMPACT:
-			state_animation = "impact"
-		AOE:
-			state_animation = "aoe"
-		DECAY:
-			state_animation = "decay"
-	return state_animation
-
-func getTelegraphAnimation() -> String:
-	return "active"
-
-func telegraphAbility() -> void:
-	positionTargetLocationSprite()
-	targetLocationSprite.show()
+func hasAOE() -> bool:
+	return true
 
 func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 	abilityBodySprite.set_rotation(projectile_vector.angle())
-	# hide the sprite until after it's rotated
 	abilityBodySprite.show()
 	abilityBody.move_and_collide(
 		projectile_vector.normalized() * getMoveSpeed()
 	)
-	if getState() == IN_TRANSIT and hasAbilityBodyReachedTarget():
-		handleImpact()
-
-func handleImpact() -> void:
-	targetLocationSprite.play("impact")
-	setState(IMPACT)
-	abilityBody.queue_free()
-
-func hasAbilityBodyReachedTarget() -> bool:
-	if abilityBodyArea.overlaps_area(targetLocationArea):
-		return true
-	return false
+	if (
+		getState() == IN_TRANSIT
+		and abilityBodyArea.overlaps_area(targetLocationArea)
+	):
+		setState(IMPACT)
+		abilityBody.queue_free()
 
 func _on_TargetLocation_animation_finished():
 	match getState():
 		IMPACT:
+			if hasAOE():
+				setState(AOE)
+			else:
+				setState(DECAY)
+		AOE:
 			setState(DECAY)
 		DECAY:
 			queue_free()
 
+func assignAnimation() -> void:
+	match getState():
+		IDLE:
+			abilityBodySprite.play("active")
+		IN_TRANSIT:
+			targetLocationSprite.play("active")
+		IMPACT:
+			targetLocationSprite.play("impact")
+
+func readyToFire() -> bool:
+	return true
+
+func damageOverlappingPlayer() -> void:
+	var overlappingAreas = hitBox.get_overlapping_areas()
+	for area in overlappingAreas:
+		var area_parent = area.get_parent()
+		if area_parent.get("IS_PLAYER"):
+			if not target_hit:
+				target_hit = true
+#				area_parent.damage()
+				# area_parent.hitEffect() ?? or whatever we do for this
+				print("PLAYER HIT!")
 
 func _physics_process(_delta : float) -> void:
 	match getState():
 		IDLE:
-			setState(IN_TRANSIT)
-			telegraphAbility()
+			if readyToFire():
+				setState(IN_TRANSIT)
+				targetLocation.set_position(getTargetVector())
+				targetLocationCollision.set_disabled(false)
+				targetLocationSprite.show()
 		IN_TRANSIT:
 			sendAbilityBodyToTarget(getTargetVector())
 		IMPACT:
+			damageOverlappingPlayer()
 			pass
+	assignAnimation()
+
+
+
+
+
+
+
 
 # telegraphedAOEs should be able to stack;
 #	ie: multiple AOEs can be fired at once. and an effect should play.
