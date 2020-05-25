@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Sprites/Abilities/Telegraphs/Red-Circle.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Abilities/TelegraphedAOE/TelegraphedAOE.gd" type="Script" id=3]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -21,10 +21,20 @@ animations = [ {
 "loop": true,
 "name": "active",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "decay",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "impact",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 16.0
+radius = 8.0
 
 [node name="TelegraphedAOE" type="Node2D"]
 script = ExtResource( 3 )
@@ -33,7 +43,7 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AbilityBody"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 1 )
+frames = SubResource( 5 )
 animation = "active"
 
 [node name="Area2D" type="Area2D" parent="AbilityBody"]
@@ -46,10 +56,11 @@ shape = SubResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TargetLocation"]
 scale = Vector2( 0.92925, 0.92925 )
 frames = SubResource( 2 )
-animation = "active"
+animation = "decay"
 playing = true
 
 [node name="Area2D" type="Area2D" parent="TargetLocation"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetLocation/Area2D"]
 shape = SubResource( 3 )
+[connection signal="animation_finished" from="TargetLocation/AnimatedSprite" to="." method="_on_TargetLocation_animation_finished"]

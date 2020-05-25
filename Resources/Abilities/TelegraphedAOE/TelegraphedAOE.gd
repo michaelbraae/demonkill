@@ -101,40 +101,35 @@ func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 		projectile_vector.normalized() * getMoveSpeed()
 	)
 	if getState() == IN_TRANSIT and hasAbilityBodyReachedTarget():
-		setState(IMPACT)
-		abilityBody.queue_free()
-	# detect it's at the location
-	# remove the ability body
-	# play the impact animation
-	# then the AOE animation
+		handleImpact()
+
+func handleImpact() -> void:
+	targetLocationSprite.play("impact")
+	setState(IMPACT)
+	abilityBody.queue_free()
 
 func hasAbilityBodyReachedTarget() -> bool:
 	if abilityBodyArea.overlaps_area(targetLocationArea):
 		return true
 	return false
 
-func _physics_process(_delta : float) -> void:
-	# should use state do decide actions
-	if getState() == IDLE:
-		setState(IN_TRANSIT)
-		telegraphAbility()
-	if not getState() == IMPACT:
-		sendAbilityBodyToTarget(getTargetVector())
+func _on_TargetLocation_animation_finished():
+	match getState():
+		IMPACT:
+			setState(DECAY)
+		DECAY:
+			queue_free()
 
-	# once the ability body reaches the target_vector change state to IMPACT
-	
-	# maybe it would make more sense and be cleaner if 
-	# the telegraph part of the node was doing the damage.
-	# then the abilitybody part would just fly from one point to another.
-	# to give the effect but then I dont have to do too much accurate hacking
-	# Any discrepencies on the accuracy of the flight path can probably be 
-	# made unnotieceable by the impact effect anyway
-	
-#	if collision:
-#		var collider = collision.get_collider()
-#		if collider.get(getTargetId()):
-#			collider.damage(getDamage())
-#		queue_free()
+
+func _physics_process(_delta : float) -> void:
+	match getState():
+		IDLE:
+			setState(IN_TRANSIT)
+			telegraphAbility()
+		IN_TRANSIT:
+			sendAbilityBodyToTarget(getTargetVector())
+		IMPACT:
+			pass
 
 # telegraphedAOEs should be able to stack;
 #	ie: multiple AOEs can be fired at once. and an effect should play.
@@ -163,3 +158,4 @@ func _physics_process(_delta : float) -> void:
 # The on hit animation should then play.
 
 # after that the AOE animation should play if there is one.
+
