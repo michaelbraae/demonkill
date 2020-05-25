@@ -23,16 +23,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 1 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "attack",
@@ -41,6 +31,16 @@ animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "post_attack",
 "speed": 5.0
 } ]
 
@@ -63,6 +63,7 @@ speed_scale = 2.0
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 2 )
 
 [node name="CollisionRayCast" type="RayCast2D" parent="."]
@@ -70,6 +71,7 @@ enabled = true
 cast_to = Vector2( 250, 0 )
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource( 3 )

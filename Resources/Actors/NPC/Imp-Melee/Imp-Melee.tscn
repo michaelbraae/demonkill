@@ -26,16 +26,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "attack",
@@ -44,6 +34,16 @@ animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "post_attack",
 "speed": 5.0
 } ]
 
@@ -80,6 +80,7 @@ rotation = 0.00808018
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -93,6 +94,7 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="CollisionRayCast" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 250, 0 )
 
@@ -106,7 +108,6 @@ position = Vector2( 0, -1.13687e-13 )
 scale = Vector2( 1.95455, 1.95455 )
 frames = SubResource( 4 )
 animation = "active"
-frame = 1
 speed_scale = 4.0
 playing = true
 

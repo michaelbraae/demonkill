@@ -24,7 +24,8 @@ func perAttackAction() -> void:
 		var projectile_instance = PROJECTILE_SCENE.instance()
 		get_parent().get_parent().add_child(projectile_instance)
 		projectile_instance.setTargetId("IS_PLAYER")
+		projectile_instance.setMoveSpeed(1)
 		projectile_instance.set_global_position(get_global_position())
-		projectile_instance.setTargetDirection(
+		projectile_instance.setTargetVector(
 			player.get_global_position() - get_global_position()
 		)

@@ -2,8 +2,14 @@ extends Node2D
 
 class_name TelegraogedAOE
 
-onready var abilityBodySprite = $AbilityBodySprite
+onready var abilityBody = $AbilityBody
+onready var abilityBodySprite = $AbilityBody/AnimatedSprite
+onready var abilityBodyArea = $AbilityBody/Area2D
+
+onready var targetLocation = $TargetLocation
 onready var targetLocationSprite = $TargetLocation/AnimatedSprite
+onready var targetLocationArea = $TargetLocation/Area2D
+onready var targetLocationCollision = $TargetLocation/Area2D/CollisionShape2D
 
 var state
 var target_vector
@@ -11,20 +17,19 @@ var move_speed
 var target_id
 var damage
 
+var telegraphed = false
+
 enum {
 	IDLE, # When we want the ability to sit in place
-	IN_TRANSIT, # When the ability is in flight
+	IN_TRANSIT, # When the ability is in flight - the telegraph should appear?
 	IMPACT, # Reached it's destination and playing appropriate animation 
 	AOE, # After landing
 	DECAY, # when the AOE is disappearing
 }
 
 func _ready() -> void:
+	setState(IDLE)
 	hideTargetLocationSprite()
-
-func hideTargetLocationSprite() -> void:
-	targetLocationSprite.hide()
-	targetLocationSprite.play("active")
 
 func setState(state_var : int) -> void:
 	state = state_var
@@ -38,10 +43,10 @@ func setTargetVector(target_vector_arg : Vector2) -> void:
 func getTargetVector() -> Vector2:
 	return target_vector
 
-func setMoveSpeed(move_speed_var : int) -> void:
+func setMoveSpeed(move_speed_var : float) -> void:
 	move_speed = move_speed_var
 
-func getMoveSpeed() -> int:
+func getMoveSpeed() -> float:
 	return move_speed
 
 func setTargetId(id_var : String) -> void:
@@ -56,8 +61,15 @@ func setDamage(damage_var : int) -> void:
 func getDamage() -> int:
 	return damage
 
+# so we don't detect collisions before the attack has been telegraphed
+func hideTargetLocationSprite() -> void:
+	targetLocationCollision.set_disabled(true)
+	targetLocationSprite.hide()
+	targetLocationSprite.play("active")
+
 func positionTargetLocationSprite() -> void:
-	targetLocationSprite.set_position(getTargetVector())
+	targetLocation.set_position(getTargetVector())
+	targetLocationCollision.set_disabled(false)
 
 func getAbilityBodyAnimation() -> String:
 	var state_animation
@@ -77,13 +89,38 @@ func getAbilityBodyAnimation() -> String:
 func getTelegraphAnimation() -> String:
 	return "active"
 
+func telegraphAbility() -> void:
+	positionTargetLocationSprite()
+	targetLocationSprite.show()
+
 func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 	abilityBodySprite.set_rotation(projectile_vector.angle())
 	# hide the sprite until after it's rotated
 	abilityBodySprite.show()
-	var collision = abilityBodySprite.move_and_collide(
+	abilityBody.move_and_collide(
 		projectile_vector.normalized() * getMoveSpeed()
 	)
+	if getState() == IN_TRANSIT and hasAbilityBodyReachedTarget():
+		setState(IMPACT)
+		abilityBody.queue_free()
+	# detect it's at the location
+	# remove the ability body
+	# play the impact animation
+	# then the AOE animation
+
+func hasAbilityBodyReachedTarget() -> bool:
+	if abilityBodyArea.overlaps_area(targetLocationArea):
+		return true
+	return false
+
+func _physics_process(_delta : float) -> void:
+	# should use state do decide actions
+	if getState() == IDLE:
+		setState(IN_TRANSIT)
+		telegraphAbility()
+	if not getState() == IMPACT:
+		sendAbilityBodyToTarget(getTargetVector())
+
 	# once the ability body reaches the target_vector change state to IMPACT
 	
 	# maybe it would make more sense and be cleaner if 
