@@ -65,6 +65,7 @@ playing = true
 [node name="Area2D" type="Area2D" parent="TargetLocation"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetLocation/Area2D"]
+visible = false
 shape = SubResource( 3 )
 
 [node name="HitBox" type="Area2D" parent="TargetLocation"]
