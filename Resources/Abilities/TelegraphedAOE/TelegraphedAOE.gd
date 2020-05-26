@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name TelegraogedAOE
+class_name TelegraphedAOE
 
 onready var abilityBody = $AbilityBody
 onready var abilityBodySprite = $AbilityBody/AnimatedSprite
@@ -94,7 +94,7 @@ func _on_TargetLocation_animation_finished():
 		DECAY:
 			queue_free()
 
-func assignAnimation() -> void:
+func playAnimationFromState() -> void:
 	match getState():
 		IDLE:
 			abilityBodySprite.play("active")
@@ -104,7 +104,7 @@ func assignAnimation() -> void:
 			targetLocationSprite.play("impact")
 
 func readyToFire() -> bool:
-	return false
+	return true
 
 func damageOverlappingPlayer() -> void:
 	var overlappingAreas = hitBox.get_overlapping_areas()
@@ -127,17 +127,10 @@ func _physics_process(_delta : float) -> void:
 			sendAbilityBodyToTarget(getTargetVector())
 		IMPACT:
 			damageOverlappingPlayer()
-			pass
-	assignAnimation()
+	playAnimationFromState()
 
 
-
-
-
-
-
-
-# telegraphedAOEs should be able to stack;
+# TelegraphedAOEs should be able to stack;
 #	ie: multiple AOEs can be fired at once. and an effect should play.
 
 # perhaps an AbilityHandler class could control this.

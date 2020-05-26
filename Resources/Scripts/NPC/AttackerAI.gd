@@ -9,6 +9,12 @@ var has_attack_landed = false
 var repeat_attacks = false
 var attack_range
 var complete_attack_sequence = false
+var attack_cooldown
+var attack_cooldown_timer
+
+func _ready():
+	attack_cooldown_timer = Timer.new()
+	add_child(attack_cooldown_timer)
 
 func setAttacksInSequence(a_i_s : int) -> void:
 	attacks_in_sequence = a_i_s
@@ -40,7 +46,7 @@ func setRepeatAttacks(repeats_var : bool) -> void:
 func getRepeatAttacks() -> bool:
 	return repeat_attacks
 
-func setAttackRange(attack_range_var) -> void:
+func setAttackRange(attack_range_var : float) -> void:
 	attack_range = attack_range_var
 
 func getAttackRange() -> float:
@@ -51,6 +57,12 @@ func setCompleteAttackSequence(complete_sequence : bool) -> void:
 
 func getCompleteAttackSequence() -> bool:
 	return complete_attack_sequence
+
+func setAttackCooldown(attack_cooldown_var : float) -> void:
+	attack_cooldown = attack_cooldown_var
+
+func getAttackCooldown() -> float:
+	return attack_cooldown
 
 func isPlayerInRange() -> bool:
 	var distance_to_player = get_global_position().distance_to(

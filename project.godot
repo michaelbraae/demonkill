@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/CasterAI.gd"
 }, {
+"base": "Node2D",
+"class": "CollidingAOE",
+"language": "GDScript",
+"path": "res://Resources/Abilities/CollidingAOE/CollidingAOE.gd"
+}, {
 "base": "AttackerAI",
 "class": "MeleeAI",
 "language": "GDScript",
@@ -45,7 +50,7 @@ _global_script_classes=[ {
 "path": "res://Resources/Scripts/ProjectileBase.gd"
 }, {
 "base": "Node2D",
-"class": "TelegraogedAOE",
+"class": "TelegraphedAOE",
 "language": "GDScript",
 "path": "res://Resources/Abilities/TelegraphedAOE/TelegraphedAOE.gd"
 }, {
@@ -58,11 +63,12 @@ _global_script_class_icons={
 "AttackerAI": "",
 "BaseAI": "",
 "CasterAI": "",
+"CollidingAOE": "",
 "MeleeAI": "",
 "PathfindingAI": "",
 "PossessableAI": "",
 "ProjectileBase": "",
-"TelegraogedAOE": "",
+"TelegraphedAOE": "",
 "TelegraphedAOEAbility": ""
 }
 
