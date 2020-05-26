@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Actors/NPC/Eyeball/Eyeball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 416, 760, 728, 856, -272, 856, 48, 760, 728, 0, 560, 440, 560, 88, -272, 0, 336, 88, 136, 80, 416, 536, 336, 440, 48, 536, 136, 432, -88, 432, -88, 80 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 5, 6 ), PoolIntArray( 7, 4, 6, 8, 9 ), PoolIntArray( 5, 1, 0, 10 ), PoolIntArray( 11, 5, 10, 12 ), PoolIntArray( 13, 11, 12, 14 ), PoolIntArray( 3, 2, 7, 14 ), PoolIntArray( 8, 11, 13, 9 ), PoolIntArray( 7, 9, 15 ), PoolIntArray( 7, 15, 14 ), PoolIntArray( 3, 14, 12 ) ]
-outlines = [ PoolVector2Array( -272, 0, -272, 856, 728, 856, 728, 0 ), PoolVector2Array( -88, 432, 136, 432, 136, 80, -88, 80 ), PoolVector2Array( 336, 88, 336, 440, 560, 440, 560, 88 ), PoolVector2Array( 48, 536, 416, 536, 416, 760, 48, 760 ) ]
+vertices = PoolVector2Array( 135.228, 412.433, 363.048, 410.06, 540.246, 409.479, 396.638, 567.663, 76.1823, 568.919, 398.886, 733.883, 728, 856, -272, 856, 73.6172, 731.697, 728, 0, 539.956, 104.465, -272, 0, 365.372, 104.465, 127.164, 89.344, -86.7949, 414.046, -85.7197, 89.344 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 6, 2, 10 ), PoolIntArray( 11, 9, 10, 12, 13 ), PoolIntArray( 2, 6, 5, 3 ), PoolIntArray( 14, 0, 4 ), PoolIntArray( 1, 0, 13, 12 ), PoolIntArray( 11, 13, 15 ), PoolIntArray( 7, 11, 15, 14 ), PoolIntArray( 8, 7, 14, 4 ) ]
+outlines = [ PoolVector2Array( -272, 0, -272, 856, 728, 856, 728, 0 ), PoolVector2Array( -86.7949, 414.046, 135.228, 412.433, 127.164, 89.344, -85.7197, 89.344 ), PoolVector2Array( 365.372, 104.465, 363.048, 410.06, 540.246, 409.479, 539.956, 104.465 ), PoolVector2Array( 76.1823, 568.919, 396.638, 567.663, 398.886, 733.883, 73.6172, 731.697 ) ]
 
 [node name="root" type="Node2D"]
 position = Vector2( 68.2378, 0.897888 )
@@ -37,11 +38,29 @@ texture = ExtResource( 2 )
 [node name="Navigation2D" type="Navigation2D" parent="Environment"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Environment/Navigation2D"]
-position = Vector2( -17.1023, 8 )
+position = Vector2( -4.2378, 7.10211 )
 navpoly = SubResource( 1 )
 
 [node name="Eyeball" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
 position = Vector2( 525.944, 645.15 )
+
+[node name="Eyeball2" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
+position = Vector2( 428.641, 527.956 )
+
+[node name="Eyeball3" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
+position = Vector2( 528.094, 567.2 )
+
+[node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( -30.452, 39.5562 )
+
+[node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 180.282, 64.2852 )
+
+[node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 197.484, 226.098 )
+
+[node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( -143.883, 136.322 )
 
 [node name="walls" type="YSort" parent="Environment"]
 

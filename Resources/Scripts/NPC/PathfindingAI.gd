@@ -67,8 +67,7 @@ func getAngleToPlayer() -> float:
 func detectBlockers():
 	var collider = collisionRayCast.get_collider()
 	if collider is StaticBody2D:
-		if not getPathBlocked():
-			setPathBlocked(true)
+		setPathBlocked(true)
 	else:
 		setPathBlocked(false)
 
@@ -105,10 +104,12 @@ func setPlayerLocationAsTargetVector() -> void:
 	setVelocity(getVelocity().normalized() * getMoveSpeed())
 
 func runDecisionTree() -> void:
+	print(getStateString())
 	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
 		if getPathBlocked():
+			print("PATH BLOCKED")
 			setState(NAVIGATING)
 			setNavigationPoint(player.get_global_position())
 			moveToNavigationPoint()

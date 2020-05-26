@@ -85,6 +85,11 @@ animations = [ {
 "name": "walk_up",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "walk_right",
@@ -93,11 +98,6 @@ animations = [ {
 "frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
 "loop": true,
 "name": "idle_up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "idle_down",
 "speed": 5.0
 } ]
 
@@ -119,14 +119,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 54 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 50 ) ],
 "loop": true,
 "name": "4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 49 ) ],
-"loop": true,
-"name": "1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -134,9 +134,14 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 52 ) ],
+"frames": [ ExtResource( 55 ) ],
 "loop": true,
-"name": "6",
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 56 ) ],
@@ -149,24 +154,19 @@ animations = [ {
 "name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 54 ) ],
+"frames": [ ExtResource( 52 ) ],
 "loop": true,
-"name": "7",
+"name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "1",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 47 ) ],
 "loop": true,
 "name": "10",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 } ]
 
@@ -193,7 +193,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
-frame = 2
+frame = 6
 speed_scale = 2.0
 playing = true
 
@@ -203,7 +203,6 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.4, 0.4 )
 drag_margin_h_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0

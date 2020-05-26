@@ -51,14 +51,14 @@ radius = 16.0
 radius = 344.093
 
 [node name="Eyeball" type="KinematicBody2D"]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource( 15 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.67647, 1.67647 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 4
+frame = 2
 speed_scale = 2.0
 playing = true
 

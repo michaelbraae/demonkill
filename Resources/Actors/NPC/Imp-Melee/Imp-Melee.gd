@@ -9,6 +9,7 @@ func initialiseConfig():
 	setRepeatAttacks(true)
 	setCompleteAttackSequence(true)
 	setAttackNodeRange(35)
+	setAttackCooldown(0.5)
 
 func perAttackAction() -> void:
 	.perAttackAction()

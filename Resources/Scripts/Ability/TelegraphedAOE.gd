@@ -69,7 +69,7 @@ func getDamage() -> int:
 func hasAOE() -> bool:
 	return true
 
-func impactOnPlayer() -> bool:
+func impactsPlayer() -> bool:
 	return true
 
 func overlapsPlayer() -> bool:
@@ -86,7 +86,7 @@ func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 	abilityBody.move_and_collide(
 		projectile_vector.normalized() * getMoveSpeed()
 	)
-	if impactOnPlayer() and overlapsPlayer():
+	if impactsPlayer() and overlapsPlayer():
 		targetLocation.set_position(abilityBody.get_position())
 	if (
 		getState() == IN_TRANSIT

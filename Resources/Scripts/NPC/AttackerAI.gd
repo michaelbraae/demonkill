@@ -98,8 +98,12 @@ func getAttackAnimation() -> String:
 			return "post_attack"
 	return "idle"
 
-func setPreAttack() -> void:
-	if not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
+func handlePreAttack() -> void:
+	if (
+		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState())
+		and attack_cooldown_timer.is_stopped()
+	):
+		attack_cooldown_timer.start(getAttackCooldown())
 		setAttackStarted(true)
 		setState(PRE_ATTACK)
 
@@ -120,6 +124,8 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
+	if attack_cooldown_timer.get_time_left() < 0.1:
+		attack_cooldown_timer.stop()
 	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
@@ -127,9 +133,9 @@ func runDecisionTree() -> void:
 			isPlayerInRange()
 			and not getPathBlocked()
 			or getAttackStarted()
-			or getState() == POST_ATTACK	
+			or getState() == POST_ATTACK
 		):
-			setPreAttack()
+			handlePreAttack()
 			if getState() == ATTACKING:
 				perAttackAction()
 		else:
@@ -138,7 +144,7 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	match getState():
-		PRE_ATTACK: 
+		PRE_ATTACK:
 			setState(ATTACKING)
 		ATTACKING:
 			setHasAttackLanded(false)
