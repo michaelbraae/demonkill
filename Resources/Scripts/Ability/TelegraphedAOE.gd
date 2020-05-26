@@ -69,12 +69,25 @@ func getDamage() -> int:
 func hasAOE() -> bool:
 	return true
 
+func impactOnPlayer() -> bool:
+	return true
+
+func overlapsPlayer() -> bool:
+	var overlappingAreas = abilityBodyArea.get_overlapping_areas()
+	if overlappingAreas:
+		for area in overlappingAreas:
+			if area.get_parent().get("IS_PLAYER"):
+				return true
+	return false
+
 func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 	abilityBodySprite.set_rotation(projectile_vector.angle())
 	abilityBodySprite.show()
 	abilityBody.move_and_collide(
 		projectile_vector.normalized() * getMoveSpeed()
 	)
+	if impactOnPlayer() and overlapsPlayer():
+		targetLocation.set_position(abilityBody.get_position())
 	if (
 		getState() == IN_TRANSIT
 		and abilityBodyArea.overlaps_area(targetLocationArea)
@@ -113,7 +126,6 @@ func damageOverlappingPlayer() -> void:
 		if area_parent.get("IS_PLAYER"):
 			if not target_hit:
 				target_hit = true
-				print("PLAYER HIT!")
 
 func _physics_process(_delta : float) -> void:
 	match getState():

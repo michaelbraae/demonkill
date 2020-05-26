@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Resources/Sprites/Abilities/Projectiles/energy-ball.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/Abilities/Telegraphs/Red-Circle.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Abilities/TelegraphedAOE/TelegraphedAOE.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Abilities/TelegraphedAOE/TestAOE.gd" type="Script" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -43,6 +43,8 @@ radius = 16.0
 script = ExtResource( 3 )
 
 [node name="AbilityBody" type="KinematicBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AbilityBody"]
 scale = Vector2( 2, 2 )
