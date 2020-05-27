@@ -15,7 +15,7 @@ onready var camera2D = $Camera2D
 onready var attackSprite = $AttackBox/AnimatedSprite
 onready var attackBox = $AttackBox
 onready var attackBoxArea2D = $AttackBox/Area2D
-onready var fpsCounter = $FPSCounter
+onready var fpsCounter = $Camera2D/FPSCounter
 
 const IS_PLAYER = true
 const SPEED = 150
@@ -52,6 +52,14 @@ func setKnockBackVector(knock_vector : Vector2) -> void:
 
 func getKnockBackVector() -> Vector2:
 	return knock_back_vector
+
+func handleKnockBack() -> void:
+	if knock_back_speed_current < 10:
+			knock_back_speed_current = 300
+			setKnockedBack(false)
+	velocity = getKnockBackVector()
+	knock_back_speed_current -= 15
+	velocity = velocity.normalized() * knock_back_speed_current
 
 # sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
@@ -123,25 +131,19 @@ func getAnimation() -> String:
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	if knock_back_speed_current < 10:
-		knock_back_speed_current = 300
-		setKnockedBack(false)
 	if getKnockedBack():
-		velocity = getKnockBackVector()
-		knock_back_speed_current -= 15
-		velocity = velocity.normalized() * knock_back_speed_current
+		handleKnockBack()
 	else:
 		velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 		velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
-		dash_cooldown_timer.start(DASH_COOLDOWN)
-		bolt_cooldown_timer.stop()
-		collisionShape.disabled = true
-		speed_actual = SPEED * 20
-	else:
-		collisionShape.disabled = false
-		speed_actual = SPEED
-	if not getKnockedBack():
+		if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
+			dash_cooldown_timer.start(DASH_COOLDOWN)
+			bolt_cooldown_timer.stop()
+			collisionShape.disabled = true
+			speed_actual = SPEED * 20
+		else:
+			collisionShape.disabled = false
+			speed_actual = SPEED
 		velocity = velocity.normalized() * speed_actual
 
 func fireCrossbow():
@@ -169,14 +171,14 @@ func getAttackDirection() -> Vector2:
 	var facing_vector = Vector2()
 	match facing_direction:
 		"up":
-			facing_vector.y = -100
+			facing_vector.y = -1
 		"down":
-			facing_vector.y = 100
+			facing_vector.y = 1
 		"right":
 			if animatedSprite.flip_h:
-				facing_vector.x = -100
+				facing_vector.x = -1
 			else:
-				facing_vector.x = 100
+				facing_vector.x = 1
 	return facing_vector
 
 func damage(damage : int) -> void:
@@ -198,7 +200,9 @@ func _process(_delta : float) -> void:
 	handleInteraction()
 
 func _physics_process(_delta : float) -> void:
+
 	if Input.is_action_just_pressed("attack"):
+		attackBox.set_rotation(get_angle_to(getAttackDirection()))
 		meleeAttack()
 	if Input.is_action_just_pressed("fire-crossbow"):
 		fireCrossbow()
