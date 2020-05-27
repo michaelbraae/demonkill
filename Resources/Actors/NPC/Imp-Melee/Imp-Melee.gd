@@ -1,25 +1,11 @@
 extends MeleeAI
 
-const BASIC_ATTACK_DAMAGE = 0
-
 func initialiseConfig():
 	setAttacksInSequence(1)
-	setMoveSpeed(130)
+	setMoveSpeed(150)
 	setAttackRange(50)
+	setBasicAttackDamage(0)
 	setRepeatAttacks(true)
 	setCompleteAttackSequence(true)
 	setAttackNodeRange(35)
-	setAttackCooldown(0.5)
-
-func perAttackAction() -> void:
-	.perAttackAction()
-	if (
-		isPlayerInRange()
-		and not getHasAttackLanded()
-	):
-		setAttackStarted(true)
-		setHasAttackLanded(true)
-		getPlayer().damage(BASIC_ATTACK_DAMAGE)
-
-
-
+	setAttackCooldown(1)

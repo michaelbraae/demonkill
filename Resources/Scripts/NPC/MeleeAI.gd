@@ -6,6 +6,7 @@ onready var attackNode = $AttackNode
 onready var attackBox = $AttackNode/Area2D
 onready var attackSprite = $AttackNode/AnimatedSprite
 
+var basic_attack_damage
 var attack_up_position
 var attack_down_position
 var attack_left_position
@@ -17,6 +18,12 @@ func _ready():
 func hideAttackSpriteAndInactive() -> void:
 	attackSprite.play("inactive")
 	attackSprite.hide()
+
+func setBasicAttackDamage(damage_var: int) -> void:
+	basic_attack_damage = damage_var
+
+func getBasicAttackDamage() -> int:
+	return basic_attack_damage
 
 func setAttackUpPosition(attack_up_var : Vector2) -> void:
 	attack_up_position = attack_up_var
@@ -96,6 +103,10 @@ func perAttackAction() -> void:
 		positionAttackNode(relative_player_direction)
 		attackSprite.show()
 		attackSprite.play("active")
+		if isPlayerInRange():
+			setAttackStarted(true)
+			setHasAttackLanded(true)
+			getPlayer().damage(getBasicAttackDamage())
 
 func _on_AttackSprite_animation_finished():
 	hideAttackSpriteAndInactive()
