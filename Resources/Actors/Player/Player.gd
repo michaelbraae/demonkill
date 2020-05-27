@@ -156,6 +156,8 @@ func fireCrossbow():
 		bolt_instance.setTargetDirection(getAttackDirection())
 
 func meleeAttack():
+	# should be able to switch between two frames and move forward slightly
+	# the player animation can be consistent but the effect can change
 	pass
 
 func getAttackDirection() -> Vector2:
@@ -163,7 +165,7 @@ func getAttackDirection() -> Vector2:
 	aim_vector = Vector2()
 	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
-	aim_vector = aim_vector.normalized() * 100
+	aim_vector = aim_vector.normalized()
 	if aim_vector:
 		return aim_vector
 	if velocity:
@@ -179,7 +181,7 @@ func getAttackDirection() -> Vector2:
 				facing_vector.x = -1
 			else:
 				facing_vector.x = 1
-	return facing_vector
+	return facing_vector.normalized()
 
 func damage(damage : int) -> void:
 	health_current = health_current - damage
@@ -200,9 +202,8 @@ func _process(_delta : float) -> void:
 	handleInteraction()
 
 func _physics_process(_delta : float) -> void:
-
 	if Input.is_action_just_pressed("attack"):
-		attackBox.set_rotation(get_angle_to(getAttackDirection()))
+		attackBox.look_at(to_global(getAttackDirection()))
 		meleeAttack()
 	if Input.is_action_just_pressed("fire-crossbow"):
 		fireCrossbow()

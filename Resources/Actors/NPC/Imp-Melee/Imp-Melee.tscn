@@ -26,9 +26,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "attack",
+"name": "pre_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
@@ -36,14 +36,14 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "post_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "attack",
 "speed": 5.0
 } ]
 
@@ -80,7 +80,6 @@ rotation = 0.00808018
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -107,7 +106,7 @@ position = Vector2( 0, -1.13687e-13 )
 scale = Vector2( 1.95455, 1.95455 )
 frames = SubResource( 4 )
 animation = "active"
-frame = 1
+frame = 2
 speed_scale = 4.0
 playing = true
 
