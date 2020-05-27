@@ -31,10 +31,27 @@ var speed_actual
 var velocity = Vector2()
 var aim_vector = Vector2()
 
+var knocked_back = false
+var knock_back_vector
+const KNOCK_BACK_SPEED = 300
+var knock_back_speed_current = KNOCK_BACK_SPEED
+
 var possessedNPC
 var possessing = false
 
 var facing_direction = "down"
+
+func setKnockedBack(is_knocked_back : bool) -> void:
+	knocked_back = is_knocked_back
+
+func getKnockedBack() -> bool:
+	return knocked_back
+
+func setKnockBackVector(knock_vector : Vector2) -> void:
+	knock_back_vector = knock_vector
+
+func getKnockBackVector() -> Vector2:
+	return knock_back_vector
 
 # sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
@@ -106,8 +123,16 @@ func getAnimation() -> String:
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	if knock_back_speed_current < 10:
+		knock_back_speed_current = 300
+		setKnockedBack(false)
+	if getKnockedBack():
+		velocity = getKnockBackVector()
+		knock_back_speed_current -= 15
+		velocity = velocity.normalized() * knock_back_speed_current
+	else:
+		velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
 		dash_cooldown_timer.start(DASH_COOLDOWN)
 		bolt_cooldown_timer.stop()
@@ -116,7 +141,8 @@ func setVelocity() -> void:
 	else:
 		collisionShape.disabled = false
 		speed_actual = SPEED
-	velocity = velocity.normalized() * speed_actual
+	if not getKnockedBack():
+		velocity = velocity.normalized() * speed_actual
 
 func fireCrossbow():
 	if bolt_cooldown_timer.is_stopped():
@@ -158,9 +184,12 @@ func damage(damage : int) -> void:
 	if health_current <= HEALTH_MIN:
 		get_tree().reload_current_scene()
 
+func knockBack(hit_direction : float) -> void:
+	setKnockedBack(true)
+	setKnockBackVector(Vector2(cos(hit_direction), sin(hit_direction)))
+
 func _process(_delta : float) -> void:
 	fpsCounter.set_text(str(Engine.get_frames_per_second()))
-#	print(Engine.get_frames_per_second())
 	if dash_cooldown_timer.get_time_left() <= 0.2:
 		dash_cooldown_timer.stop()
 	if bolt_cooldown_timer.get_time_left() <= 0.2:

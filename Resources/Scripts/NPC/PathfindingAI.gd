@@ -104,12 +104,10 @@ func setPlayerLocationAsTargetVector() -> void:
 	setVelocity(getVelocity().normalized() * getMoveSpeed())
 
 func runDecisionTree() -> void:
-	print(getStateString())
 	if getPlayer():
 		alignRayCastToPlayer()
 		detectBlockers()
 		if getPathBlocked():
-			print("PATH BLOCKED")
 			setState(NAVIGATING)
 			setNavigationPoint(player.get_global_position())
 			moveToNavigationPoint()

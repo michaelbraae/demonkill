@@ -119,39 +119,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 54 ) ],
-"loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 50 ) ],
-"loop": true,
-"name": "4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 56 ) ],
 "loop": true,
 "name": "8",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
+"frames": [ ExtResource( 50 ) ],
 "loop": true,
-"name": "5",
+"name": "4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 52 ) ],
@@ -164,22 +139,47 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 47 ) ],
 "loop": true,
 "name": "10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 46 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 55 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 51 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 54 ) ],
+"loop": true,
+"name": "7",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 64 ) ],
-"loop": true,
-"name": "attack_right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 58 ), ExtResource( 67 ), ExtResource( 59 ), ExtResource( 62 ), ExtResource( 61 ), ExtResource( 63 ) ],
 "loop": true,
 "name": "attack_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 64 ) ],
+"loop": true,
+"name": "attack_right",
 "speed": 5.0
 } ]
 
@@ -193,7 +193,6 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
-frame = 6
 speed_scale = 2.0
 playing = true
 
@@ -203,6 +202,7 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.4, 0.4 )
 drag_margin_h_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -236,7 +236,7 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackBox"]
 frames = SubResource( 6 )
 animation = "attack_right"
-frame = 4
+frame = 1
 speed_scale = 3.0
 playing = true
 

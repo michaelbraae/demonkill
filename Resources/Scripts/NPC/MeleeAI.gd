@@ -107,6 +107,7 @@ func perAttackAction() -> void:
 			setAttackStarted(true)
 			setHasAttackLanded(true)
 			getPlayer().damage(getBasicAttackDamage())
+			getPlayer().knockBack(getAngleToPlayer())
 
 func _on_AttackSprite_animation_finished():
 	hideAttackSpriteAndInactive()
