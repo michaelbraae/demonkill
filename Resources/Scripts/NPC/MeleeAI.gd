@@ -86,6 +86,7 @@ func rotateAttackNode(attack_direction : String) -> void:
 func getRelativePlayerDirection() -> String:
 	var angle_to_player = getAngleToPlayer()
 	var direction_string
+	# use rad2deg() here to more cleanly calculate these boundaries
 	if angle_to_player < 0.5 and angle_to_player > -0.5:
 		direction_string = "right"
 	if angle_to_player < -0.5 and angle_to_player > -2.5:

@@ -247,6 +247,7 @@ playing = true
 position = Vector2( 30.364, 0 )
 frames = SubResource( 6 )
 animation = "attack_right"
+frame = 1
 speed_scale = 3.0
 playing = true
 
