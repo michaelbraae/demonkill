@@ -3,10 +3,14 @@ extends KinematicBody2D
 var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
 var knockback_handler
 
+var input_handler_script = preload("res://Resources/Scripts/Helpers/Input/InputHandler.gd")
+var input_handler
+
 # INTRODUCTION
 # DEVELOPMENT
 # TWIST
 # CONCLUSION
+
 var BOLT_SCENE = preload("res://Resources/Abilities/Projectiles/Bolt/Bolt.tscn")
 
 onready var animatedSprite = $AnimatedSprite
@@ -42,14 +46,17 @@ var facing_direction = "down"
 
 func _ready() -> void:
 	attackSprite.hide()
-	attackSprite.stop()
+	
 	knockback_handler = knockback_handler_script.new()
+	input_handler = input_handler_script.new()
+	
 	interactButton.hide()
 	dash_cooldown_timer = Timer.new()
 	add_child(dash_cooldown_timer)
 	bolt_cooldown_timer = Timer.new()
 	add_child(bolt_cooldown_timer)
-	setDeadzones()
+	# TODO: make sure the deadzones still get set from the inputhandler
+	input_handler.setDeadzones()
 
 func damage(damage : int) -> void:
 	health_current = health_current - damage
@@ -69,11 +76,11 @@ func knockBack(
 
 # sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
-func setDeadzones():
-	InputMap.action_set_deadzone("aim_up", 0.05)
-	InputMap.action_set_deadzone("aim_down", 0.05)
-	InputMap.action_set_deadzone("aim_left", 0.05)
-	InputMap.action_set_deadzone("aim_right", 0.05)
+#func setDeadzones():
+#	InputMap.action_set_deadzone("aim_up", 0.05)
+#	InputMap.action_set_deadzone("aim_down", 0.05)
+#	InputMap.action_set_deadzone("aim_left", 0.05)
+#	InputMap.action_set_deadzone("aim_right", 0.05)
 
 func togglePossession(parent) -> void:
 	if possessing:
@@ -127,8 +134,6 @@ func getAnimation() -> String:
 		return "walk_right"
 	return "idle_" + facing_direction
 
-
-
 func fireCrossbow():
 	if bolt_cooldown_timer.is_stopped():
 		bolt_cooldown_timer.start(BOLT_COOLDOWN)
@@ -140,8 +145,15 @@ func fireCrossbow():
 
 func meleeAttack():
 	attackBox.look_at(to_global(getAttackDirection()))
-	attackSprite.play("active")
+	attackSprite.play("melee_basic")
 	attackSprite.show()
+	var overlappingAreas = attackBoxArea2D.get_overlapping_areas()
+	if overlappingAreas:
+		for area in overlappingAreas:
+			var area_parent = area.get_parent()
+			if area_parent.get("IS_ENEMY"):
+				area_parent.damage(0)
+				area_parent.knockBack(get_angle_to(area_parent.get_global_position()), 300, 15)
 	# should be able to switch between two frames and move forward slightly
 	# for different melee attacks:
 	#	the player animation can be consistent but the effect can change
@@ -207,8 +219,6 @@ func _physics_process(_delta : float) -> void:
 	else:
 		move_and_slide(velocity)
 
-
 func _on_AttackSprite_animation_finished():
 	attackSprite.stop()
 	attackSprite.hide()
-	pass # Replace with function body.

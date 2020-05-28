@@ -4,6 +4,8 @@ class_name BaseAI
 
 var state
 
+const IS_ENEMY = true
+
 onready var animatedSprite = $AnimatedSprite
 
 # STATES:

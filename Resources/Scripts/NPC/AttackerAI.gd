@@ -2,6 +2,9 @@ extends PathfindingAI
 
 class_name AttackerAI
 
+var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
+var knockback_handler
+
 var attacks_in_sequence
 var current_attack_in_sequence = 1
 var attack_started = false
@@ -12,7 +15,10 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
+var health = 0
+
 func _ready():
+	knockback_handler = knockback_handler_script.new()
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 
@@ -63,6 +69,22 @@ func setAttackCooldown(attack_cooldown_var : float) -> void:
 
 func getAttackCooldown() -> float:
 	return attack_cooldown
+
+func damage(damage : int) -> void:
+	health = health - damage
+	if health < 0:
+		queue_free()
+
+func knockBack(
+	hit_direction : float,
+	knock_back_speed : int,
+	knock_back_decay : int
+) -> void:
+	knockback_handler.knockBack(
+		hit_direction,
+		knock_back_speed,
+		knock_back_decay
+	)
 
 func isPlayerInRange() -> bool:
 	var distance_to_player = get_global_position().distance_to(
@@ -124,22 +146,25 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
-	if attack_cooldown_timer.get_time_left() < 0.1:
-		attack_cooldown_timer.stop()
-	if getPlayer():
-		alignRayCastToPlayer()
-		detectBlockers()
-		if (
-			isPlayerInRange()
-			and not getPathBlocked()
-			or getAttackStarted()
-			or getState() == POST_ATTACK
-		):
-			handlePreAttack()
-			if getState() == ATTACKING:
-				perAttackAction()
-		else:
-			.runDecisionTree()
+	if knockback_handler.getKnockedBack():
+		move_and_slide(knockback_handler.getKnockBackProcessVector())
+	else:
+		if attack_cooldown_timer.get_time_left() < 0.1:
+			attack_cooldown_timer.stop()
+		if getPlayer():
+			alignRayCastToPlayer()
+			detectBlockers()
+			if (
+				isPlayerInRange()
+				and not getPathBlocked()
+				or getAttackStarted()
+				or getState() == POST_ATTACK
+			):
+				handlePreAttack()
+				if getState() == ATTACKING:
+					perAttackAction()
+			else:
+				.runDecisionTree()
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
