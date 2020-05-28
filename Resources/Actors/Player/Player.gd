@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
+var knockback_handler
+
 # INTRODUCTION
 # DEVELOPMENT
 # TWIST
@@ -31,35 +34,28 @@ var speed_actual
 var velocity = Vector2()
 var aim_vector = Vector2()
 
-var knocked_back = false
-var knock_back_vector
-const KNOCK_BACK_SPEED = 300
-var knock_back_speed_current = KNOCK_BACK_SPEED
-
 var possessedNPC
 var possessing = false
 
 var facing_direction = "down"
 
-func setKnockedBack(is_knocked_back : bool) -> void:
-	knocked_back = is_knocked_back
 
-func getKnockedBack() -> bool:
-	return knocked_back
+func _ready() -> void:
+	knockback_handler = knockback_handler_script.new()
+	interactButton.hide()
+	dash_cooldown_timer = Timer.new()
+	add_child(dash_cooldown_timer)
+	bolt_cooldown_timer = Timer.new()
+	add_child(bolt_cooldown_timer)
+	setDeadzones()
 
-func setKnockBackVector(knock_vector : Vector2) -> void:
-	knock_back_vector = knock_vector
+func damage(damage : int) -> void:
+	health_current = health_current - damage
+	if health_current <= HEALTH_MIN:
+		get_tree().reload_current_scene()
 
-func getKnockBackVector() -> Vector2:
-	return knock_back_vector
-
-func handleKnockBack() -> void:
-	if knock_back_speed_current < 10:
-			knock_back_speed_current = 300
-			setKnockedBack(false)
-	velocity = getKnockBackVector()
-	knock_back_speed_current -= 15
-	velocity = velocity.normalized() * knock_back_speed_current
+func knockBack(hit_direction : float) -> void:
+	knockback_handler.knockBack(hit_direction)
 
 # sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
@@ -69,13 +65,7 @@ func setDeadzones():
 	InputMap.action_set_deadzone("aim_left", 0.05)
 	InputMap.action_set_deadzone("aim_right", 0.05)
 
-func _ready() -> void:
-	interactButton.hide()
-	dash_cooldown_timer = Timer.new()
-	add_child(dash_cooldown_timer)
-	bolt_cooldown_timer = Timer.new()
-	add_child(bolt_cooldown_timer)
-	setDeadzones()
+
 
 func togglePossession(parent) -> void:
 	if possessing:
@@ -131,8 +121,8 @@ func getAnimation() -> String:
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	if getKnockedBack():
-		handleKnockBack()
+	if knockback_handler.getKnockedBack():
+		velocity = knockback_handler.getKnockBackProcessVector()
 	else:
 		velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 		velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -183,15 +173,6 @@ func getAttackDirection() -> Vector2:
 			else:
 				facing_vector.x = 1
 	return facing_vector.normalized()
-
-func damage(damage : int) -> void:
-	health_current = health_current - damage
-	if health_current <= HEALTH_MIN:
-		get_tree().reload_current_scene()
-
-func knockBack(hit_direction : float) -> void:
-	setKnockedBack(true)
-	setKnockBackVector(Vector2(cos(hit_direction), sin(hit_direction)))
 
 func _process(_delta : float) -> void:
 	fpsCounter.set_text(str(Engine.get_frames_per_second()))

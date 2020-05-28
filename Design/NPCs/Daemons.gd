@@ -15,6 +15,7 @@
 #	Demon Knight - Archer - Aggressive Ranged
 
 # Cultist Summoner - Summons Basic Demons (IMPs)
+# Cultist Protector - Shields other enemies
 
 # Projectile Weapon Daemons ? Hitscan or fast projectiles?
 #	Gunslinger Demon - 2 Pistols

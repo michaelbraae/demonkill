@@ -107,6 +107,10 @@ func perAttackAction() -> void:
 		if isPlayerInRange():
 			setAttackStarted(true)
 			setHasAttackLanded(true)
+			var angle_to_player = get_angle_to(
+				getPlayer().get_global_position()
+			)
+			getPlayer().knockBack(angle_to_player)
 			getPlayer().damage(getBasicAttackDamage())
 			getPlayer().knockBack(getAngleToPlayer())
 
