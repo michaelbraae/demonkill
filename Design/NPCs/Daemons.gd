@@ -14,9 +14,7 @@
 #	Demon Knight - Grenadier - throws bombs when you attack the captain
 #	Demon Knight - Archer - Aggressive Ranged
 
-# Cultists - Another group similar to knights
-# 	Cultist Captain
-#	Cultist Bretheren - Basic Caster
+# Cultist Summoner - Summons Basic Demons (IMPs)
 
 # Projectile Weapon Daemons ? Hitscan or fast projectiles?
 #	Gunslinger Demon - 2 Pistols

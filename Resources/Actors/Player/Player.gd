@@ -156,9 +156,10 @@ func fireCrossbow():
 		bolt_instance.setTargetDirection(getAttackDirection())
 
 func meleeAttack():
+	attackBox.look_at(to_global(getAttackDirection()))
 	# should be able to switch between two frames and move forward slightly
-	# the player animation can be consistent but the effect can change
-	pass
+	# for different melee attacks:
+	#	the player animation can be consistent but the effect can change
 
 func getAttackDirection() -> Vector2:
 	# should eventually handle mouse aiming
@@ -194,16 +195,15 @@ func knockBack(hit_direction : float) -> void:
 
 func _process(_delta : float) -> void:
 	fpsCounter.set_text(str(Engine.get_frames_per_second()))
-	if dash_cooldown_timer.get_time_left() <= 0.2:
+	if dash_cooldown_timer.get_time_left() <= 0.1:
 		dash_cooldown_timer.stop()
-	if bolt_cooldown_timer.get_time_left() <= 0.2:
+	if bolt_cooldown_timer.get_time_left() <= 0.1:
 		bolt_cooldown_timer.stop()
 	healthBar.play(str(health_current))
 	handleInteraction()
 
 func _physics_process(_delta : float) -> void:
 	if Input.is_action_just_pressed("attack"):
-		attackBox.look_at(to_global(getAttackDirection()))
 		meleeAttack()
 	if Input.is_action_just_pressed("fire-crossbow"):
 		fireCrossbow()

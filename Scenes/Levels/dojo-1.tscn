@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Actors/NPC/Eyeball/Eyeball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -41,20 +40,8 @@ texture = ExtResource( 2 )
 position = Vector2( -8.3429, 5.74377 )
 navpoly = SubResource( 1 )
 
-[node name="Eyeball" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( 525.944, 645.15 )
-
-[node name="Eyeball2" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( 428.641, 527.956 )
-
-[node name="Eyeball3" parent="Environment/Navigation2D" instance=ExtResource( 3 )]
-position = Vector2( 528.094, 567.2 )
-
 [node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
 position = Vector2( 13.5436, 670.758 )
-
-[node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( -72.9171, 594.926 )
 
 [node name="walls" type="YSort" parent="Environment"]
 
