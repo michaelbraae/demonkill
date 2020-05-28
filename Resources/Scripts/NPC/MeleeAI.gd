@@ -110,9 +110,8 @@ func perAttackAction() -> void:
 			var angle_to_player = get_angle_to(
 				getPlayer().get_global_position()
 			)
-			getPlayer().knockBack(angle_to_player)
 			getPlayer().damage(getBasicAttackDamage())
-			getPlayer().knockBack(getAngleToPlayer())
+			getPlayer().knockBack(getAngleToPlayer(), 300, 15)
 
 func _on_AttackSprite_animation_finished():
 	hideAttackSpriteAndInactive()

@@ -54,8 +54,16 @@ func damage(damage : int) -> void:
 	if health_current <= HEALTH_MIN:
 		get_tree().reload_current_scene()
 
-func knockBack(hit_direction : float) -> void:
-	knockback_handler.knockBack(hit_direction)
+func knockBack(
+	hit_direction : float,
+	knock_back_speed : int,
+	knock_back_decay : int
+) -> void:
+	knockback_handler.knockBack(
+		hit_direction,
+		knock_back_speed,
+		knock_back_decay
+	)
 
 # sets the aiming deadzones so you can accurately aim
 # movement deadzones should be left at default, they cause fuckiness
@@ -64,8 +72,6 @@ func setDeadzones():
 	InputMap.action_set_deadzone("aim_down", 0.05)
 	InputMap.action_set_deadzone("aim_left", 0.05)
 	InputMap.action_set_deadzone("aim_right", 0.05)
-
-
 
 func togglePossession(parent) -> void:
 	if possessing:
