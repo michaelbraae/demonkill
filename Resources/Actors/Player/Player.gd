@@ -15,7 +15,7 @@ onready var interactArea = $InteractArea
 onready var collisionShape = $CollisionShape2D
 onready var healthBar = $HealthBar
 onready var camera2D = $Camera2D
-onready var attackSprite = $AttackBox/AnimatedSprite
+onready var attackSprite = $AttackBox/AttackSprite
 onready var attackBox = $AttackBox
 onready var attackBoxArea2D = $AttackBox/Area2D
 onready var fpsCounter = $Camera2D/FPSCounter
@@ -41,6 +41,8 @@ var facing_direction = "down"
 
 
 func _ready() -> void:
+	attackSprite.hide()
+	attackSprite.stop()
 	knockback_handler = knockback_handler_script.new()
 	interactButton.hide()
 	dash_cooldown_timer = Timer.new()
@@ -125,22 +127,7 @@ func getAnimation() -> String:
 		return "walk_right"
 	return "idle_" + facing_direction
 
-func setVelocity() -> void:
-	velocity = Vector2()
-	if knockback_handler.getKnockedBack():
-		velocity = knockback_handler.getKnockBackProcessVector()
-	else:
-		velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-		velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-		if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
-			dash_cooldown_timer.start(DASH_COOLDOWN)
-			bolt_cooldown_timer.stop()
-			collisionShape.disabled = true
-			speed_actual = SPEED * 20
-		else:
-			collisionShape.disabled = false
-			speed_actual = SPEED
-		velocity = velocity.normalized() * speed_actual
+
 
 func fireCrossbow():
 	if bolt_cooldown_timer.is_stopped():
@@ -153,6 +140,8 @@ func fireCrossbow():
 
 func meleeAttack():
 	attackBox.look_at(to_global(getAttackDirection()))
+	attackSprite.play("active")
+	attackSprite.show()
 	# should be able to switch between two frames and move forward slightly
 	# for different melee attacks:
 	#	the player animation can be consistent but the effect can change
@@ -180,6 +169,23 @@ func getAttackDirection() -> Vector2:
 				facing_vector.x = 1
 	return facing_vector.normalized()
 
+func setVelocity() -> void:
+	velocity = Vector2()
+	if knockback_handler.getKnockedBack():
+		velocity = knockback_handler.getKnockBackProcessVector()
+	else:
+		velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
+			dash_cooldown_timer.start(DASH_COOLDOWN)
+			bolt_cooldown_timer.stop()
+			collisionShape.set_disabled(true)
+			speed_actual = SPEED * 20
+		else:
+			collisionShape.set_disabled(false)
+			speed_actual = SPEED
+		velocity = velocity.normalized() * speed_actual
+
 func _process(_delta : float) -> void:
 	fpsCounter.set_text(str(Engine.get_frames_per_second()))
 	if dash_cooldown_timer.get_time_left() <= 0.1:
@@ -200,3 +206,9 @@ func _physics_process(_delta : float) -> void:
 		possessedNPC.move_and_slide(velocity)
 	else:
 		move_and_slide(velocity)
+
+
+func _on_AttackSprite_animation_finished():
+	attackSprite.stop()
+	attackSprite.hide()
+	pass # Replace with function body.
