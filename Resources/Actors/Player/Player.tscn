@@ -173,6 +173,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=7]
+radius = 21.8843
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 17 )
@@ -182,6 +183,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
+frame = 5
 speed_scale = 2.0
 playing = true
 
@@ -232,10 +234,13 @@ playing = true
 [node name="AttackBox" type="Node2D" parent="."]
 
 [node name="AttackSprite" type="AnimatedSprite" parent="AttackBox"]
-position = Vector2( 30.364, 0 )
+position = Vector2( 33.332, 0 )
+scale = Vector2( 1.69582, 1.49054 )
 frames = SubResource( 6 )
 animation = "melee_basic"
+frame = 3
 speed_scale = 5.0
+playing = true
 
 [node name="Area2D" type="Area2D" parent="AttackBox"]
 position = Vector2( 30.364, 0 )

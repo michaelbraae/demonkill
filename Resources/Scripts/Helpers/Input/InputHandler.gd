@@ -1,4 +1,7 @@
 extends Node
+
+var using_mouse = true
+
 #
 #var aim_vector
 #var velocity
@@ -10,6 +13,13 @@ func setDeadzones():
 	InputMap.action_set_deadzone("aim_down", 0.05)
 	InputMap.action_set_deadzone("aim_left", 0.05)
 	InputMap.action_set_deadzone("aim_right", 0.05)
+
+func mouseLogic() -> void:
+	if using_mouse:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 #
 #func getAttackDirection() -> Vector2:
 #	# should eventually handle mouse aiming

@@ -43,13 +43,15 @@ var possessing = false
 
 var facing_direction = "down"
 
+var using_mouse = true
 
 func _ready() -> void:
 	attackSprite.hide()
 	
 	knockback_handler = knockback_handler_script.new()
 	input_handler = input_handler_script.new()
-	
+	input_handler.setDeadzones()
+	input_handler.mouseLogic()
 	interactButton.hide()
 	dash_cooldown_timer = Timer.new()
 	add_child(dash_cooldown_timer)
@@ -73,14 +75,6 @@ func knockBack(
 		knock_back_speed,
 		knock_back_decay
 	)
-
-# sets the aiming deadzones so you can accurately aim
-# movement deadzones should be left at default, they cause fuckiness
-#func setDeadzones():
-#	InputMap.action_set_deadzone("aim_up", 0.05)
-#	InputMap.action_set_deadzone("aim_down", 0.05)
-#	InputMap.action_set_deadzone("aim_left", 0.05)
-#	InputMap.action_set_deadzone("aim_right", 0.05)
 
 func togglePossession(parent) -> void:
 	if possessing:
@@ -151,7 +145,7 @@ func meleeAttack():
 	if overlappingAreas:
 		for area in overlappingAreas:
 			var area_parent = area.get_parent()
-			if area_parent.get("IS_ENEMY"):
+			if area.get_name() == "HitBox" and area_parent.get("IS_ENEMY"):
 				area_parent.damage(0)
 				area_parent.knockBack(get_angle_to(area_parent.get_global_position()), 300, 15)
 	# should be able to switch between two frames and move forward slightly
@@ -159,7 +153,8 @@ func meleeAttack():
 	#	the player animation can be consistent but the effect can change
 
 func getAttackDirection() -> Vector2:
-	# should eventually handle mouse aiming
+	if input_handler.using_mouse:
+		return Vector2(get_local_mouse_position().normalized())
 	aim_vector = Vector2()
 	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")

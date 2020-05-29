@@ -99,6 +99,8 @@ func getAnimation() -> String:
 		return getNavigationAnimation()
 	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
 		return getAttackAnimation()
+	if getState() == KNOCKED_BACK:
+		pass
 	return "idle"
 
 func getNavigationAnimation() -> String:
@@ -147,6 +149,8 @@ func readyForPostAttack() -> bool:
 
 func runDecisionTree() -> void:
 	if knockback_handler.getKnockedBack():
+		setAttackStarted(false)
+		setState(KNOCKED_BACK)
 		move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
 		if attack_cooldown_timer.get_time_left() < 0.1:
@@ -169,6 +173,8 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	match getState():
+		KNOCKED_BACK:
+			setState(IDLE)
 		PRE_ATTACK:
 			setState(ATTACKING)
 		ATTACKING:
