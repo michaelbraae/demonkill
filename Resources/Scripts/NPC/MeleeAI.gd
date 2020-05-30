@@ -69,19 +69,21 @@ func positionAttackNode(attack_direction : String) -> void:
 func rotateAttackNode(attack_direction : String) -> void:
 	match attack_direction:
 		"up":
-			attackNode.rotation = -80
-			attackSprite.flip_h = true
+			attackNode.set_rotation(270)
+#			attackNode.rotation = 270
+#			attackSprite.flip_h = true
 		"down":
-			attackNode.rotation = 80
-			attackSprite.flip_h = true
+			attackNode.set_rotation(90)
+#			attackNode.rotation = 90
+#			attackSprite.flip_h = true
 		"left":
-			attackSprite.flip_h = true
-			if not animatedSprite.flip_h:
-				animatedSprite.flip_h = true
-			attackNode.rotation = 0
+#			attackSprite.flip_h = true
+#			if not animatedSprite.flip_h:
+#				animatedSprite.flip_h = true
+			attackNode.set_rotation(180)
 		"right":
-			attackSprite.flip_h = false
-			attackNode.rotation = 0
+#			attackSprite.flip_h = false
+			attackNode.set_rotation(0)
 
 func getRelativePlayerDirection() -> String:
 	var angle_to_player = rad2deg(getAngleToPlayer())
@@ -100,7 +102,7 @@ func perAttackAction() -> void:
 	if not getHasAttackLanded():
 		var relative_player_direction = getRelativePlayerDirection()
 		rotateAttackNode(relative_player_direction)
-		positionAttackNode(relative_player_direction)
+#		positionAttackNode(relative_player_direction)
 		attackSprite.show()
 		attackSprite.play("active")
 		if isPlayerInRange():
