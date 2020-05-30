@@ -26,9 +26,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "run",
+"name": "pre_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
@@ -36,14 +36,14 @@ animations = [ {
 "name": "post_attack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "pre_attack",
 "speed": 5.0
 } ]
 
