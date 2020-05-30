@@ -122,14 +122,16 @@ func getAttackAnimation() -> String:
 			return "post_attack"
 	return "idle"
 
-func handlePreAttack() -> void:
-	if (
+func readyForPreAttack() -> bool:
+	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState())
-		and attack_cooldown_timer.is_stopped()
-	):
-		attack_cooldown_timer.start(getAttackCooldown())
-		setAttackStarted(true)
-		setState(PRE_ATTACK)
+		and attack_cooldown_timer.is_stopped()	
+	)
+
+func handlePreAttack() -> void:
+	attack_cooldown_timer.start(getAttackCooldown())
+	setAttackStarted(true)
+	setState(PRE_ATTACK)
 
 func perAttackAction() -> void:
 	pass
@@ -164,7 +166,8 @@ func runDecisionTree() -> void:
 				or getAttackStarted()
 				or getState() == POST_ATTACK
 			):
-				handlePreAttack()
+				if readyForPreAttack():
+					handlePreAttack()
 				if getState() == ATTACKING:
 					perAttackAction()
 			else:

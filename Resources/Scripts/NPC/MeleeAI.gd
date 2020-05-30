@@ -36,12 +36,26 @@ func rotateMeleeAttackNode() -> void:
 	elif angle_to_player < 45 and angle_to_player > -45:
 		attackNode.look_at(to_global(Vector2.RIGHT))
 
+func detectPlayerHit() -> bool:
+	var overlappingAreas = attackBox.get_overlapping_areas()
+	if overlappingAreas:
+		for area in overlappingAreas:
+			if (
+				area.get_name() == "HitBox"
+				and area.get_parent().get("IS_PLAYER")
+			):
+				return true
+	return false
+
+func handlePreAttack() -> void:	
+	rotateMeleeAttackNode()
+	.handlePreAttack()
+
 func perAttackAction() -> void:
 	if not getHasAttackLanded():
-		rotateMeleeAttackNode()
 		attackSprite.show()
 		attackSprite.play("active")
-		if isPlayerInRange():
+		if detectPlayerHit():
 			setAttackStarted(true)
 			setHasAttackLanded(true)
 			getPlayer().damage(getBasicAttackDamage())
