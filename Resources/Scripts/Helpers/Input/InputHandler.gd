@@ -1,6 +1,6 @@
 extends Node
 
-var using_mouse = false
+var using_mouse = true
 
 #
 #var aim_vector

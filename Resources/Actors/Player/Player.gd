@@ -43,8 +43,6 @@ var possessing = false
 
 var facing_direction = "down"
 
-var using_mouse = true
-
 func _ready() -> void:
 	attackSprite.hide()
 	

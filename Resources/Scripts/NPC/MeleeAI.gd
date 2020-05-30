@@ -25,84 +25,20 @@ func setBasicAttackDamage(damage_var: int) -> void:
 func getBasicAttackDamage() -> int:
 	return basic_attack_damage
 
-func setAttackUpPosition(attack_up_var : Vector2) -> void:
-	attack_up_position = attack_up_var
-
-func getAttackUpPosition() -> Vector2:
-	return attack_up_position
-
-func setAttackDownPosition(attack_down_var : Vector2) -> void:
-	attack_down_position = attack_down_var
-
-func getAttackDownPosition() -> Vector2:
-	return attack_down_position
-
-func setAttackLeftPosition(attack_left_var) -> void:
-	attack_left_position = attack_left_var
-
-func getAttackLeftPosition() -> Vector2:
-	return attack_left_position
-
-func setAttackRightPosition(attack_right_var : Vector2) -> void:
-	attack_right_position = attack_right_var
-
-func getAttackRightPosition() -> Vector2:
-	return attack_right_position
-
-func setAttackNodeRange(attack_range : int) -> void:
-	setAttackUpPosition(Vector2(0, -attack_range))
-	setAttackDownPosition(Vector2(0, attack_range))
-	setAttackLeftPosition(Vector2(-attack_range, 0))
-	setAttackRightPosition(Vector2(attack_range, 0))
-
-func positionAttackNode(attack_direction : String) -> void:
-	match attack_direction:
-		"up":
-			attackNode.set_position(getAttackUpPosition())
-		"down":
-			attackNode.set_position(getAttackDownPosition())
-		"left":
-			attackNode.set_position(getAttackLeftPosition())
-		"right":
-			attackNode.set_position(getAttackRightPosition())
-
-func rotateAttackNode(attack_direction : String) -> void:
-	match attack_direction:
-		"up":
-			attackNode.set_rotation(270)
-#			attackNode.rotation = 270
-#			attackSprite.flip_h = true
-		"down":
-			attackNode.set_rotation(90)
-#			attackNode.rotation = 90
-#			attackSprite.flip_h = true
-		"left":
-#			attackSprite.flip_h = true
-#			if not animatedSprite.flip_h:
-#				animatedSprite.flip_h = true
-			attackNode.set_rotation(180)
-		"right":
-#			attackSprite.flip_h = false
-			attackNode.set_rotation(0)
-
-func getRelativePlayerDirection() -> String:
+func rotateMeleeAttackNode() -> void:
 	var angle_to_player = rad2deg(getAngleToPlayer())
-	var direction_string
-	if angle_to_player < 45 and angle_to_player > -45:
-		direction_string = "right"
-	elif angle_to_player < -45 and angle_to_player > -135:
-		direction_string = "up"
-	elif angle_to_player > 135 or angle_to_player < -135:
-		direction_string = "left"
+	if angle_to_player < -45 and angle_to_player > -135:
+		attackNode.look_at(to_global(Vector2.UP))
 	elif angle_to_player > 45 and angle_to_player < 135:
-		direction_string = "down"
-	return direction_string
+		attackNode.look_at(to_global(Vector2.DOWN))
+	elif angle_to_player > 135 or angle_to_player < -135:
+		attackNode.look_at(to_global(Vector2.LEFT))
+	elif angle_to_player < 45 and angle_to_player > -45:
+		attackNode.look_at(to_global(Vector2.RIGHT))
 
 func perAttackAction() -> void:
 	if not getHasAttackLanded():
-		var relative_player_direction = getRelativePlayerDirection()
-		rotateAttackNode(relative_player_direction)
-#		positionAttackNode(relative_player_direction)
+		rotateMeleeAttackNode()
 		attackSprite.show()
 		attackSprite.play("active")
 		if isPlayerInRange():
