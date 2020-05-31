@@ -79,7 +79,7 @@ radius = 32.0
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 16.0
-height = 28.0
+height = 16.0
 
 [node name="Imp-Melee" type="KinematicBody2D"]
 collision_mask = 3
@@ -91,6 +91,7 @@ rotation = 0.00808018
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -98,7 +99,6 @@ playing = true
 shape = SubResource( 2 )
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource( 3 )
@@ -118,7 +118,6 @@ rotation = 1.5708
 scale = Vector2( 1.18368, 1.74377 )
 frames = SubResource( 4 )
 animation = "active"
-frame = 2
 speed_scale = 4.0
 playing = true
 
@@ -129,9 +128,9 @@ gravity_vec = Vector2( 0, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackNode/Area2D"]
 shape = SubResource( 5 )
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="EnemyHitBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
 shape = SubResource( 6 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="animation_finished" from="AttackNode/AnimatedSprite" to="." method="_on_AttackSprite_animation_finished"]

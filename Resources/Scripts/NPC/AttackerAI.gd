@@ -125,7 +125,7 @@ func getAttackAnimation() -> String:
 func readyForPreAttack() -> bool:
 	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState())
-		and attack_cooldown_timer.is_stopped()	
+		and attack_cooldown_timer.is_stopped()
 	)
 
 func handlePreAttack() -> void:

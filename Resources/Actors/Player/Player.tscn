@@ -72,19 +72,14 @@ animations = [ {
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "walk_right",
+"name": "walk_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 43 ) ],
 "loop": true,
 "name": "walk_up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "walk_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
@@ -95,6 +90,11 @@ animations = [ {
 "frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk_right",
 "speed": 5.0
 } ]
 
@@ -116,19 +116,9 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 47 ) ],
-"loop": true,
-"name": "10",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 55 ) ],
@@ -146,6 +136,16 @@ animations = [ {
 "name": "8",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 51 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 47 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 48 ) ],
 "loop": true,
 "name": "2",
@@ -161,27 +161,27 @@ animations = [ {
 "name": "7",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
+"frames": [ ExtResource( 46 ) ],
 "loop": true,
-"name": "5",
+"name": "0",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 64 ) ],
-"loop": true,
-"name": "melee_old",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 59 ), ExtResource( 45 ), ExtResource( 58 ) ],
 "loop": true,
 "name": "melee_basic",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 64 ) ],
+"loop": true,
+"name": "melee_old",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 27.0336
+radius = 27.7944
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 17 )
@@ -191,7 +191,7 @@ position = Vector2( 0.743736, -1.48747 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "walk_up"
-frame = 1
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -216,6 +216,7 @@ __meta__ = {
 }
 
 [node name="InteractButton" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0, -25 )
 scale = Vector2( 0.05, 0.05 )
