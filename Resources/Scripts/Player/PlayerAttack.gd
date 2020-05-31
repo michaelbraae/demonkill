@@ -12,6 +12,7 @@ func _on_AttackSprite_animation_finished():
 	attackSprite.hide()
 
 func positionAttackNode() -> void:
+	attacking = true
 	attackBox.look_at(to_global(getAttackDirection()))
 	attackSprite.play("melee_basic")
 	attackSprite.show()
