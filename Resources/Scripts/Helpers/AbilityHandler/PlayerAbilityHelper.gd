@@ -6,10 +6,6 @@ var ability_cool_down_timer
 var ABILITY_COOL_DOWN = 2.0
 
 func fireProjectile(global_position : Vector2, attack_direction : Vector2) -> void:
-	print(
-		"ability_cool_down_timer.get_time_left() -> ",
-		ability_cool_down_timer.get_time_left()
-	)
 	if ability_cool_down_timer.is_stopped():
 		ability_cool_down_timer.start(ABILITY_COOL_DOWN)
 		var bolt_instance = BOLT_SCENE.instance()

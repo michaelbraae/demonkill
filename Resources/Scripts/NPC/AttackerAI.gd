@@ -209,6 +209,5 @@ func handlePostAnimState() -> void:
 			queue_free()
 
 func _process(delta):
-	print("health: ", health)
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
