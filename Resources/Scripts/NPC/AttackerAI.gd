@@ -100,7 +100,7 @@ func getAnimation() -> String:
 	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
 		return getAttackAnimation()
 	if getState() == KNOCKED_BACK:
-		pass
+		return "take_hit"
 	return "idle"
 
 func getNavigationAnimation() -> String:

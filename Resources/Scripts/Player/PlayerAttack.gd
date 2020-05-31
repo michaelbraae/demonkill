@@ -22,7 +22,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 		for area in overlappingAreas:
 			if area.get_name() == "EnemyHitBox":
 				var area_parent = area.get_parent()
-				area_parent.damage(0)
+				area_parent.damage(3)
 				area_parent.knockBack(
 					get_angle_to(area_parent.get_global_position()),
 					200,
