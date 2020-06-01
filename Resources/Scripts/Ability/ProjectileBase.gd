@@ -30,6 +30,9 @@ func setProjectileSpeed(speed = 1):
 func setProjectileDamage(damage = 1):
 	projectile_damage = damage
 
+func getProjectileDamage() -> int:
+	return projectile_damage
+
 func collisionEffect():
 	pass
 
@@ -41,17 +44,15 @@ func setTargetId(id_var) -> void:
 
 func _physics_process(_delta : float) -> void:
 	var projectile_vector = getTargetDirection()
-	if projectile_vector:
-		rotation = projectile_vector.angle()
-		sprite.show()
-		var collision = move_and_collide(
-			projectile_vector.normalized() * projectile_speed
-		)
-		if collision:
-			collisionEffect()
-			var collider = collision.get_collider()
-			if collider.get(getTargetId()):
-				collider.damage(projectile_damage)
-			queue_free()
-	else:
+	rotation = projectile_vector.angle()
+	sprite.show()
+	var collision = move_and_collide(
+		projectile_vector.normalized() * projectile_speed
+	)
+	if collision:
+		collisionEffect()
+		var collider = collision.get_collider()
+		if collider.get(getTargetId()):
+			collider.damage(getProjectileDamage())
+			collider.knockBack(projectile_vector.angle(), 150, 15)
 		queue_free()

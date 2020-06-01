@@ -5,8 +5,25 @@ class_name PlayerAnimation
 func getAnimation() -> String:
 #	print(rad2deg(getAttackDirection().angle()))
 	var aiming_angle = rad2deg(getAttackDirection().angle())
+	print("aiming_angle", aiming_angle)
+	var facing_direction
 	if aiming_angle < -30 and aiming_angle > -150:
-		return "walk_up"
+		move_child($PumpShotgun, 0)
+		animatedSprite.flip_h = false
+		facing_direction = "up"
+	elif aiming_angle >= -30 and aiming_angle < 30:
+		move_child($PumpShotgun, 1)
+		animatedSprite.flip_h = false
+		facing_direction = "right"
+	elif aiming_angle >= 30 and aiming_angle <= 150:
+		move_child($PumpShotgun, 1)
+		animatedSprite.flip_h = false
+		facing_direction = "down"
+	elif aiming_angle > 150 or aiming_angle < -150:
+		move_child($PumpShotgun, 1)
+		animatedSprite.flip_h = true
+		facing_direction = "right"
+	return "walk_" + facing_direction
 #	var aiming_angle = get_angle_to(get_global_mouse_position())
 	if velocity.y <= -45:
 		animatedSprite.flip_h = false

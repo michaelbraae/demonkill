@@ -36,12 +36,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "idle_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "idle_down",
+"name": "walk_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
@@ -78,29 +78,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 49 ) ],
+"frames": [ ExtResource( 48 ) ],
 "loop": true,
-"name": "1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 51 ) ],
-"loop": true,
-"name": "5",
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 54 ) ],
 "loop": true,
 "name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 56 ) ],
@@ -113,14 +98,29 @@ animations = [ {
 "name": "10",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 50 ) ],
 "loop": true,
 "name": "4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 51 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 46 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 55 ) ],
+"loop": true,
+"name": "9",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 52 ) ],
@@ -151,11 +151,11 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.606689, 0.606689 )
 frames = SubResource( 1 )
-animation = "idle_right"
+animation = "idle_down"
 speed_scale = 2.0
 playing = true
 
-[node name="Pump-Shotgun" parent="." instance=ExtResource( 61 )]
+[node name="PumpShotgun" parent="." instance=ExtResource( 61 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.597988, 6.38688 )
@@ -163,7 +163,7 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.5, 0.5 )
 drag_margin_h_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -213,7 +213,7 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
-frame = 1
+frame = 2
 speed_scale = 3.0
 playing = true
 

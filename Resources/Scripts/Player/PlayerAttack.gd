@@ -6,6 +6,8 @@ var attacking = false
 
 var melee_node_moved = false
 
+onready var pump_shotgun = $PumpShotgun
+
 func _on_AttackSprite_animation_finished():
 	attacking = false
 	attackSprite.stop()
@@ -31,6 +33,8 @@ func damageAndKnockBackOverlappingAreas() -> void:
 				)
 
 func _physics_process(_delta : float) -> void:
+	if Input.is_action_just_pressed("fire_weapon"):
+		pump_shotgun.fire(getAttackDirection())
 	if Input.is_action_just_pressed("attack") or melee_node_moved:
 		if not melee_node_moved:
 			melee_node_moved = true
@@ -38,9 +42,6 @@ func _physics_process(_delta : float) -> void:
 		else:
 			damageAndKnockBackOverlappingAreas()
 			melee_node_moved = false
-	if Input.is_action_just_pressed("fire-crossbow"):
-#		fireCrossbow()
-		pass
 	if attacking:
 		velocity = getAttackDirection() * 50
 	else:

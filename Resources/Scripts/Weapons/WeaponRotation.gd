@@ -1,8 +1,20 @@
 extends Node2D
 
 onready var sprite = $Sprite
+onready var muzzle = $Muzzle
 
 class_name WeaponRotation
+
+const MUZZLE_RIGHT = Vector2(17, -2.5)
+const MUZZLE_LEFT = Vector2(-9, -2.5)
+
+func flipLeft() -> void:
+	sprite.flip_v = true
+	muzzle.set_position(MUZZLE_LEFT)
+	
+func flipRight() -> void:
+	sprite.flip_v = false
+	muzzle.set_position(MUZZLE_RIGHT)
 
 func rotateWeapon() -> void:
 	sprite.look_at(to_global(get_local_mouse_position()))
@@ -10,37 +22,36 @@ func rotateWeapon() -> void:
 func positionWeapon() -> void:
 	var weapon_aim_angle = rad2deg(get_angle_to(get_global_mouse_position()))
 	if weapon_aim_angle > 15 and weapon_aim_angle < 55:
-		sprite.flip_v = false
+		flipRight()
 		set_position(Vector2(-3, 0))
-#		print("DOWN RIGHT")
+		# down right
 	if weapon_aim_angle >= 55 and weapon_aim_angle < 90:
-		sprite.flip_v = false
+		flipRight()
 		set_position(Vector2(-3, 0))
-#		print("DOWN DOWN RIGHT")
+		# down down right
 	elif weapon_aim_angle <= 15 and weapon_aim_angle >= 0:
-#		set_position(Vector2(0, -10))
-		sprite.flip_v = false
-#		print("RIGHT")
+		flipRight()
+		# right
 	elif weapon_aim_angle < 0 and weapon_aim_angle > -90:
-		sprite.flip_v = false
+		flipRight()
 		set_position(Vector2(0, -5))
-#		print("UP RIGHT")
+		# up right
 	elif weapon_aim_angle <= -90 and weapon_aim_angle > -180:
-		sprite.flip_v = true
+		flipLeft()
 		set_position(Vector2(-10, -5))
-#		print("UP LEFT")
-#		55 -> 90 90 -> 115
+		# up left
 	elif weapon_aim_angle <= 180 and weapon_aim_angle >= 135: #165
-		sprite.flip_v = true
+		flipLeft()
 		set_position(Vector2(-10, 0))
-#		print("LEFT")
+		# left
 	elif weapon_aim_angle > 115 and weapon_aim_angle < 135:
-		sprite.flip_v = true
-#		print("DOWN LEFT")
+		flipLeft()
 		set_position(Vector2(-10, 0))
+		# down left
 	elif weapon_aim_angle >= 90 and weapon_aim_angle <= 115:
-		pass
-#		print("DOWN DOWN LEFT")
+		flipLeft()
+		set_position(Vector2(-10, 0))
+#		down down left
 
 func _physics_process(_delta):
 	rotateWeapon()
