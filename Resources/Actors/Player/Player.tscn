@@ -1,48 +1,9 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down7.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down1.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right4.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right7.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down2.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down3.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down8.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right2.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right8.png" type="Texture" id=9]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right3.png" type="Texture" id=10]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down5.png" type="Texture" id=11]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right5.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down4.png" type="Texture" id=13]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right6.png" type="Texture" id=14]
-[ext_resource path="res://Resources/Sprites/Hero/walk/down/walk-down6.png" type="Texture" id=15]
-[ext_resource path="res://Resources/Sprites/Hero/walk/right/walk-right1.png" type="Texture" id=16]
 [ext_resource path="res://Resources/Actors/Player/Player.gd" type="Script" id=17]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up5.png" type="Texture" id=18]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right1.png" type="Texture" id=19]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up1.png" type="Texture" id=20]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up5.png" type="Texture" id=21]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up4.png" type="Texture" id=22]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up6.png" type="Texture" id=23]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down6.png" type="Texture" id=24]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right3.png" type="Texture" id=25]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right4.png" type="Texture" id=26]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right6.png" type="Texture" id=27]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up2.png" type="Texture" id=28]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up6.png" type="Texture" id=29]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right2.png" type="Texture" id=30]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up2.png" type="Texture" id=31]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down3.png" type="Texture" id=32]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down4.png" type="Texture" id=33]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down5.png" type="Texture" id=34]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up3.png" type="Texture" id=35]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down1.png" type="Texture" id=36]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up3.png" type="Texture" id=37]
-[ext_resource path="res://Resources/Sprites/Hero/idle/down/idle-down2.png" type="Texture" id=38]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up4.png" type="Texture" id=39]
-[ext_resource path="res://Resources/Sprites/Hero/idle/right/idle-right5.png" type="Texture" id=40]
-[ext_resource path="res://Resources/Sprites/Hero/idle/up/idle-up1.png" type="Texture" id=41]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up7.png" type="Texture" id=42]
-[ext_resource path="res://Resources/Sprites/Hero/walk/up/walk-up8.png" type="Texture" id=43]
+[ext_resource path="res://Resources/Sprites/Hero/FINAL/idle/idle-up.png" type="Texture" id=18]
+[ext_resource path="res://Resources/Sprites/Hero/FINAL/idle/idle-right.png" type="Texture" id=19]
+[ext_resource path="res://Resources/Sprites/Hero/FINAL/idle/idle-down.png" type="Texture" id=24]
 [ext_resource path="res://icon.png" type="Texture" id=44]
 [ext_resource path="res://Resources/Sprites/Abilities/Melee/melee-2.png" type="Texture" id=45]
 [ext_resource path="res://Resources/Sprites/Misc/Health/0.png" type="Texture" id=46]
@@ -68,34 +29,34 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 19 ), ExtResource( 30 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 40 ), ExtResource( 27 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 4 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "walk_right",
+"name": "walk_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 36 ), ExtResource( 38 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 41 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 29 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "idle_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "walk_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 1 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "walk_right",
 "speed": 5.0
 } ]
 
@@ -117,24 +78,24 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 51 ) ],
 "loop": true,
 "name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 54 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 55 ) ],
+"loop": true,
+"name": "9",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -147,24 +108,24 @@ animations = [ {
 "name": "8",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 50 ) ],
-"loop": true,
-"name": "4",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 47 ) ],
 "loop": true,
 "name": "10",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 50 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 52 ) ],
 "loop": true,
 "name": "6",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 54 ) ],
-"loop": true,
-"name": "7",
 "speed": 5.0
 } ]
 
@@ -188,13 +149,13 @@ radius = 19.0821
 script = ExtResource( 17 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0.743736, -1.48747 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 0.606689, 0.606689 )
 frames = SubResource( 1 )
-animation = "walk_up"
-frame = 2
+animation = "idle_right"
 speed_scale = 2.0
 playing = true
+
+[node name="Pump-Shotgun" parent="." instance=ExtResource( 61 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.597988, 6.38688 )
@@ -224,18 +185,21 @@ scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 44 )
 
 [node name="InteractArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource( 3 )
 
 [node name="HitBox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0.494781, -0.593735 )
 shape = SubResource( 4 )
 
 [node name="HealthBar" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -24 )
+visible = false
+position = Vector2( 0.721947, -42.7707 )
 scale = Vector2( 2.41012, 2.41012 )
 frames = SubResource( 5 )
 animation = "0"
@@ -249,6 +213,7 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
+frame = 1
 speed_scale = 3.0
 playing = true
 
@@ -259,6 +224,4 @@ position = Vector2( 30.364, 0 )
 position = Vector2( -2.02636, -2.28531 )
 rotation = 1.5708
 shape = SubResource( 7 )
-
-[node name="Pump-Shotgun" parent="." instance=ExtResource( 61 )]
 [connection signal="animation_finished" from="AttackBox/AttackSprite" to="." method="_on_AttackSprite_animation_finished"]
