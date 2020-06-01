@@ -14,6 +14,10 @@
 #	Demon Knight - Grenadier - throws bombs when you attack the captain
 #	Demon Knight - Archer - Aggressive Ranged
 
+# Demon Botanist
+#	Plants things in the ground, then waters them
+#	The plants are completely bad ass
+
 # Cultist Summoner - Summons Basic Demons (IMPs)
 # Cultist Protector - Shields other enemies
 
