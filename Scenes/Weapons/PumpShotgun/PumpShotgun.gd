@@ -1,6 +1,10 @@
-extends WeaponRotation
+extends RotatingWeapon
 
 var ENERGY_BALL_SCENE = preload("res://Resources/Abilities/Projectiles/Energy-Ball/Energy-Ball.tscn")
+
+const MAGAZINE_SIZE = 5
+
+const shots_left = MAGAZINE_SIZE
 
 func fire(attack_direction : Vector2) -> void:
 	var bullet_instance = ENERGY_BALL_SCENE.instance()

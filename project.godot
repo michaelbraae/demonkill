@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerAnimation.gd"
 }, {
-"base": "PlayerAnimation",
+"base": "PlayerWeapon",
 "class": "PlayerAttack",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerAttack.gd"
@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Actors/Player/Player.gd"
 }, {
+"base": "PlayerAnimation",
+"class": "PlayerWeapon",
+"language": "GDScript",
+"path": "res://Resources/Scripts/Player/PlayerWeapon.gd"
+}, {
 "base": "PathfindingAI",
 "class": "PossessableAI",
 "language": "GDScript",
@@ -70,14 +75,14 @@ _global_script_classes=[ {
 "path": "res://Resources/Scripts/Ability/ProjectileBase.gd"
 }, {
 "base": "Node2D",
+"class": "RotatingWeapon",
+"language": "GDScript",
+"path": "res://Resources/Scripts/Weapons/RotatingWeapon.gd"
+}, {
+"base": "Node2D",
 "class": "TelegraphedAOE",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Ability/TelegraphedAOE.gd"
-}, {
-"base": "Node2D",
-"class": "WeaponRotation",
-"language": "GDScript",
-"path": "res://Resources/Scripts/Weapons/WeaponRotation.gd"
 } ]
 _global_script_class_icons={
 "AttackerAI": "",
@@ -90,10 +95,11 @@ _global_script_class_icons={
 "PlayerBase": "",
 "PlayerNavigation": "",
 "PlayerScript": "",
+"PlayerWeapon": "",
 "PossessableAI": "",
 "ProjectileBase": "",
-"TelegraphedAOE": "",
-"WeaponRotation": ""
+"RotatingWeapon": "",
+"TelegraphedAOE": ""
 }
 
 [application]

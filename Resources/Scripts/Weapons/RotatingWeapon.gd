@@ -3,7 +3,7 @@ extends Node2D
 onready var sprite = $Sprite
 onready var muzzle = $Muzzle
 
-class_name WeaponRotation
+class_name RotatingWeapon
 
 const MUZZLE_RIGHT = Vector2(17, -2.5)
 const MUZZLE_LEFT = Vector2(-9, -2.5)

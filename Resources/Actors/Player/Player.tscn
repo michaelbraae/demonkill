@@ -34,7 +34,7 @@
 [ext_resource path="res://Resources/Sprites/Abilities/Melee/melee-3.png" type="Texture" id=58]
 [ext_resource path="res://Resources/Sprites/Abilities/Melee/melee-1.png" type="Texture" id=59]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right4.png" type="Texture" id=60]
-[ext_resource path="res://Scenes/Weapons/Pump-Shotgun/Pump-Shotgun.tscn" type="PackedScene" id=61]
+[ext_resource path="res://Scenes/Weapons/PumpShotgun/PumpShotgun.tscn" type="PackedScene" id=61]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right6.png" type="Texture" id=64]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right2.png" type="Texture" id=65]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right1.png" type="Texture" id=66]
@@ -175,7 +175,7 @@ script = ExtResource( 17 )
 scale = Vector2( 0.606689, 0.606689 )
 frames = SubResource( 1 )
 animation = "walk_down"
-frame = 5
+frame = 3
 speed_scale = 2.0
 playing = true
 
