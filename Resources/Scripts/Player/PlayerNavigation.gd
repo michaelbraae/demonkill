@@ -6,7 +6,7 @@ var velocity = Vector2()
 
 var dash_cooldown_timer
 var bolt_cooldown_timer
-const SPEED = 150
+const SPEED = 180
 var speed_actual
 
 const DASH_COOLDOWN = 0.7
