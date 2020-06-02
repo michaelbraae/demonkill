@@ -34,6 +34,10 @@ func getAnimation() -> String:
 		animatedSprite.flip_h = true
 		facing_direction = "right"
 
+	if facing_direction == "up_right":
+		animatedSprite.set_speed_scale(1.5)
+	else:
+		animatedSprite.set_speed_scale(2)
 	var move_direction
 	if velocity.y <= -45:
 		move_direction = "up"
