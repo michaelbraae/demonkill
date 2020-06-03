@@ -4,12 +4,6 @@ class_name PlayerWeapon
 
 var PUMP_SHOTGUN_SCENE = preload("res://Scenes/Weapons/PumpShotgun/PumpShotgun.tscn")
 
-var available_weapons = {
-	"pumpShotgun": {
-		"available": true,
-	}
-}
-
 # should be from PlayerState
 var current_weapon
 
