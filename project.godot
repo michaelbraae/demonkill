@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerAnimation.gd"
 }, {
-"base": "PlayerWeapon",
+"base": "PlayerAnimation",
 "class": "PlayerAttack",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerAttack.gd"
@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Actors/Player/Player.gd"
 }, {
-"base": "PlayerAnimation",
+"base": "PlayerNavigation",
 "class": "PlayerWeapon",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerWeapon.gd"

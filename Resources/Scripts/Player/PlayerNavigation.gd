@@ -27,7 +27,6 @@ func _ready():
 	input_handler = input_handler_script.new()
 	input_handler.setDeadzones()
 	input_handler.mouseLogic()
-	input_handler.setDeadzones()
 	dash_cooldown_timer = Timer.new()
 	add_child(dash_cooldown_timer)
 	bolt_cooldown_timer = Timer.new()

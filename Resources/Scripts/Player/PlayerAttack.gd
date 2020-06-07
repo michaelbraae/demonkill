@@ -1,4 +1,4 @@
-extends PlayerWeapon
+extends PlayerAnimation
 
 class_name PlayerAttack
 

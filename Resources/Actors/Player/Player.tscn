@@ -38,11 +38,12 @@
 [ext_resource path="res://Resources/Sprites/Abilities/Melee/melee-3.png" type="Texture" id=58]
 [ext_resource path="res://Resources/Sprites/Abilities/Melee/melee-1.png" type="Texture" id=59]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right4.png" type="Texture" id=60]
-[ext_resource path="res://Scenes/Weapons/PumpShotgun/PumpShotgun.tscn" type="PackedScene" id=61]
+[ext_resource path="res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn" type="PackedScene" id=61]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right6.png" type="Texture" id=64]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right2.png" type="Texture" id=65]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right1.png" type="Texture" id=66]
 [ext_resource path="res://Resources/Sprites/Misc/swipe/right/swipe-right5.png" type="Texture" id=68]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

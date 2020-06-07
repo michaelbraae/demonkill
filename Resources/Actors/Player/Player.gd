@@ -2,6 +2,10 @@ extends PlayerAttack
 
 class_name PlayerScript
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+
 ##func togglePossession(parent) -> void:
 ##	if possessing:
 ##		set_global_position(possessedNPC.get_global_position())

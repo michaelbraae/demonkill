@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name PlayerBase
 
+onready var PlayerState = get_node("/root/PlayerState")
+
 var possessing = false
 
 onready var animatedSprite = $AnimatedSprite

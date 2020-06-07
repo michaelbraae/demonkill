@@ -1,15 +1,16 @@
-extends PlayerAnimation
+extends PlayerNavigation
 
 class_name PlayerWeapon
 
-var PUMP_SHOTGUN_SCENE = preload("res://Scenes/Weapons/PumpShotgun/PumpShotgun.tscn")
+# = preload("res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn")
 
 # should be from PlayerState
 var current_weapon
-
-# should be from PlayerState
 var weapon_equipped
-
+func _ready():
+	var current_weapon_config = PlayerState.getCurrentWeaponConfig()
+	var weapon_scene = load(current_weapon_config["path"])
+# should be from PlayerState
 
 
 # should handle the currently equipped weapon
@@ -20,6 +21,7 @@ var weapon_equipped
 
 # shooting the weapon should equip it.
 
-# this can be empty - nothing equipped
+# this can be empty - nothing equipped?
+# maybe two hands? floating
 
 # if unequipped, the weapon should rest on the players back
