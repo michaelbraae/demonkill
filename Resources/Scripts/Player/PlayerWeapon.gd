@@ -10,6 +10,10 @@ var weapon_equipped
 func _ready():
 	var current_weapon_config = PlayerState.getCurrentWeaponConfig()
 	var weapon_scene = load(current_weapon_config["path"])
+	current_weapon = weapon_scene.instance()
+	current_weapon.set_name("CurrentWeapon")
+	add_child(current_weapon)
+#	print(current_weapon_config["path"])
 # should be from PlayerState
 
 

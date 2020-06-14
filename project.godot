@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/PathfindingAI.gd"
 }, {
-"base": "PlayerNavigation",
+"base": "PlayerWeapon",
 "class": "PlayerAnimation",
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerAnimation.gd"

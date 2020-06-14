@@ -6,7 +6,9 @@ var attacking = false
 
 var melee_node_moved = false
 
-onready var pump_shotgun = $PumpShotgun
+#onready var pump_shotgun = $PumpShotgun
+
+var pump_shotgun = current_weapon
 
 func _on_AttackSprite_animation_finished():
 	attacking = false
@@ -34,7 +36,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 
 func _physics_process(_delta : float) -> void:
 	if Input.is_action_just_pressed("fire_weapon"):
-		pump_shotgun.fire(getAttackDirection())
+		current_weapon.fire(getAttackDirection())
 	if Input.is_action_just_pressed("attack") or melee_node_moved:
 		if not melee_node_moved:
 			melee_node_moved = true
