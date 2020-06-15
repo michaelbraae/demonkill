@@ -32,8 +32,9 @@ func damageAndKnockBackOverlappingAreas() -> void:
 
 func _physics_process(_delta : float) -> void:
 	if Input.is_action_just_pressed("fire_weapon"):
-		current_weapon.fire(getAttackDirection())
+		fireCurrentWeapon()
 	if Input.is_action_just_pressed("attack") or melee_node_moved:
+		current_weapon.setState(current_weapon.UNEQUIPPED)
 		if not melee_node_moved:
 			melee_node_moved = true
 			positionAttackNode()

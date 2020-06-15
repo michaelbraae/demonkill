@@ -14,8 +14,8 @@ var weapon_at_slot = {
 	8: WeaponList.getPumpShotgun(),
 }
 
-func getWeaponAtSlot(slot_number) -> Dictionary:
-	return weapon_at_slot[slot_number]
+func getWeaponAtSlot(slot) -> Dictionary:
+	return weapon_at_slot[slot]
 
 func _ready():
 	WeaponList = weapon_list_script.instance()
