@@ -6,10 +6,6 @@ var attacking = false
 
 var melee_node_moved = false
 
-#onready var pump_shotgun = $PumpShotgun
-
-var pump_shotgun = current_weapon
-
 func _on_AttackSprite_animation_finished():
 	attacking = false
 	attackSprite.stop()

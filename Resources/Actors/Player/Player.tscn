@@ -237,7 +237,6 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
-frame = 1
 speed_scale = 3.0
 playing = true
 

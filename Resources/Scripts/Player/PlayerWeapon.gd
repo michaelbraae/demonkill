@@ -2,22 +2,39 @@ extends PlayerNavigation
 
 class_name PlayerWeapon
 
-# = preload("res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn")
+var weapon_slots_script = load("res://Resources/State/WeaponSlots.gd")
+var WeaponSlots
 
-# should be from PlayerState
 var current_weapon
 var weapon_equipped
+
 func _ready():
-	var current_weapon_config = PlayerState.getCurrentWeaponConfig()
+	var current_weapon_config = PlayerState.getCurrentWeapon()
 	var weapon_scene = load(current_weapon_config["path"])
 	current_weapon = weapon_scene.instance()
 	current_weapon.set_name("CurrentWeapon")
 	add_child(current_weapon)
-#	print(current_weapon_config["path"])
-# should be from PlayerState
 
+func changeWeapon(NewWeapon : Dictionary) -> void:
+	PlayerState.changeWeapon(NewWeapon)
 
-# should handle the currently equipped weapon
+func _process(_delta):
+	if Input.is_action_just_pressed("weapon_slot_1"):
+		changeWeapon(WeaponSlots.getWeaponSlot(1))
+	if Input.is_action_just_pressed("weapon_slot_2"):
+		changeWeapon(WeaponSlots.getWeaponSlot(2))
+	if Input.is_action_just_pressed("weapon_slot_3"):
+		changeWeapon(WeaponSlots.getWeaponSlot(3))
+	if Input.is_action_just_pressed("weapon_slot_4"):
+		changeWeapon(WeaponSlots.getWeaponSlot(4))
+	if Input.is_action_just_pressed("weapon_slot_2"):
+		changeWeapon(WeaponSlots.getWeaponSlot(5))
+	if Input.is_action_just_pressed("weapon_slot_2"):
+		changeWeapon(WeaponSlots.getWeaponSlot(6))
+	if Input.is_action_just_pressed("weapon_slot_2"):
+		changeWeapon(WeaponSlots.getWeaponSlot(7))
+	if Input.is_action_just_pressed("weapon_slot_2"):
+		changeWeapon(WeaponSlots.getWeaponSlot(8))
 
 # if it's equipped, it should rotate as usual
 
