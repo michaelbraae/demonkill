@@ -77,9 +77,14 @@ func getAttackCooldown() -> float:
 func getDamageCooldown() -> float:
 	return 0.5
 
-func damage(damage : int) -> void:
-	if damage_cooldown_timer.is_stopped():
-		damage_cooldown_timer.start(getDamageCooldown())
+func damage(damage : int, use_cooldown : bool) -> void:
+	if use_cooldown:
+		if damage_cooldown_timer.is_stopped():
+			damage_cooldown_timer.start(getDamageCooldown())
+			health = health - damage
+			if health < 0:
+				setState(PRE_DEATH)
+	else:
 		health = health - damage
 		if health < 0:
 			setState(PRE_DEATH)

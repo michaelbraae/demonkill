@@ -55,24 +55,9 @@ animations = [ {
 "name": "idle_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "walk_up",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "idle_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 20 ), ExtResource( 14 ), ExtResource( 15 ) ],
@@ -82,7 +67,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
 "name": "walk_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "idle_down",
 "speed": 5.0
 } ]
 
@@ -104,19 +104,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 47 ) ],
+"frames": [ ExtResource( 51 ) ],
 "loop": true,
-"name": "10",
+"name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 54 ) ],
+"frames": [ ExtResource( 56 ) ],
 "loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
+"name": "8",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 55 ) ],
@@ -124,14 +119,24 @@ animations = [ {
 "name": "9",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
+"frames": [ ExtResource( 54 ) ],
 "loop": true,
-"name": "5",
+"name": "7",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 52 ) ],
 "loop": true,
 "name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 47 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -142,11 +147,6 @@ animations = [ {
 "frames": [ ExtResource( 50 ) ],
 "loop": true,
 "name": "4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 56 ) ],
-"loop": true,
-"name": "8",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 49 ) ],
@@ -172,6 +172,8 @@ animations = [ {
 radius = 19.0821
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 17 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

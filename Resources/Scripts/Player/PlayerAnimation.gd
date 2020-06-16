@@ -47,4 +47,3 @@ func getAnimation() -> String:
 	else:
 		angle_of_focus = round(rad2deg(velocity.angle()))
 	return getAnimationFromAngleOfFocus(angle_of_focus)
-	

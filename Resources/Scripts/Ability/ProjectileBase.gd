@@ -53,6 +53,6 @@ func _physics_process(_delta : float) -> void:
 		collisionEffect()
 		var collider = collision.get_collider()
 		if collider.get(getTargetId()):
-			collider.damage(getProjectileDamage())
+			collider.damage(getProjectileDamage(), false)
 			collider.knockBack(projectile_vector.angle(), 150, 15)
 		queue_free()
