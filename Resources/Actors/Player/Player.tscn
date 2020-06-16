@@ -187,16 +187,16 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.7, 0.7 )
+zoom = Vector2( 0.6, 0.6 )
 drag_margin_h_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="FPSCounter" type="Label" parent="Camera2D"]
-margin_left = 147.737
-margin_top = -105.955
-margin_right = 187.737
-margin_bottom = -91.9546
+margin_left = 256.056
+margin_top = -170.015
+margin_right = 296.056
+margin_bottom = -156.014
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -237,7 +237,7 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
-frame = 2
+frame = 1
 speed_scale = 3.0
 playing = true
 

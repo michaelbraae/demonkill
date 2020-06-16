@@ -2,9 +2,7 @@ extends PlayerWeapon
 
 class_name PlayerAnimation
 
-func getAnimation() -> String: 
-	var is_weapon_equipped = current_weapon.isEquipped()
-	var aiming_angle = round(rad2deg(getAttackDirection().angle()))
+func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 	var high_angle_node_position
 	var low_angle_node_position
 	if current_weapon.isEquipped():
@@ -13,47 +11,40 @@ func getAnimation() -> String:
 	else:
 		high_angle_node_position = 1
 		low_angle_node_position = 0
-	if aiming_angle < -30 and aiming_angle > -150:
+	
+	if angle_of_focus < -30 and angle_of_focus > -150:
 		move_child(current_weapon, high_angle_node_position)
 		animatedSprite.flip_h = false
 		facing_direction = "up"
-	if aiming_angle < -30 and aiming_angle > -70:
+	elif angle_of_focus < -30 and angle_of_focus > -70:
 		move_child(current_weapon, high_angle_node_position)
 		animatedSprite.flip_h = false
 		facing_direction = "up_right"
-	if aiming_angle < -120 and aiming_angle > -150:
+	elif angle_of_focus < -120 and angle_of_focus > -150:
 		move_child(current_weapon, high_angle_node_position)
 		animatedSprite.flip_h = true
 		facing_direction = "up_right"
-	elif aiming_angle >= -30 and aiming_angle < 30:
+	elif angle_of_focus >= -30 and angle_of_focus < 30:
 		move_child(current_weapon, low_angle_node_position)
 		animatedSprite.flip_h = false
 		facing_direction = "right"
-	elif aiming_angle >= 30 and aiming_angle <= 150:
+	elif angle_of_focus >= 30 and angle_of_focus <= 150:
 		move_child(current_weapon, low_angle_node_position)
 		animatedSprite.flip_h = false
 		facing_direction = "down"
-	elif aiming_angle > 150 or aiming_angle < -150:
+	elif angle_of_focus > 150 or angle_of_focus < -150:
 		move_child(current_weapon, low_angle_node_position)
 		animatedSprite.flip_h = true
 		facing_direction = "right"
-	
-	# should also account for moving backward
-	
-	if facing_direction == "up_right":
-		animatedSprite.set_speed_scale(1.5)
-	else:
-		animatedSprite.set_speed_scale(2)
-	
-#	var move_direction
-#	if velocity.y <= -45:
-#		move_direction = "up"
-#	elif velocity.y >= 45:
-#		move_direction = "down"
-#	elif velocity.x >= 45:
-#		move_direction = "right"
-#	elif velocity.x <= -45:
-#		move_direction = "left"
 	if velocity:
 		return "walk_" + facing_direction
 	return "idle_" + facing_direction
+
+func getAnimation() -> String:
+	var angle_of_focus
+	if current_weapon.isEquipped():
+		angle_of_focus = round(rad2deg(getAttackDirection().angle()))
+	else:
+		angle_of_focus = round(rad2deg(velocity.angle()))
+	return getAnimationFromAngleOfFocus(angle_of_focus)
+	
