@@ -32,7 +32,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "stunned",
 "speed": 5.0
@@ -107,7 +107,7 @@ rotation = 0.00808018
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "stunned"
-frame = 3
+frame = 7
 speed_scale = 2.0
 playing = true
 

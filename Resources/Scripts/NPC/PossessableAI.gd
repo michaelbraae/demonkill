@@ -2,26 +2,15 @@ extends PathfindingAI
 
 class_name PossessableAI
 
-var interactable
-var possessable 
+onready var bite_button = $BiteButton
 
-var bite_button = $BiteButton
-
-func setInteractable(interactable_value : bool) -> void:
-	interactable = interactable_value
-
-func getInteractable() -> bool:
-	return interactable
-
-func setPossessable(possessable_value : bool) -> void:
-	possessable = possessable_value
-
-func getPossessable() -> bool:
-	return possessable
+func _ready():
+	bite_button.hide()
 
 func _process(delta):
-	if getState() == STUNNED:
-		pass
+	pass
+#	if getState() == STUNNED:
+#		bite_button.show()
 
 # when possesed, the players inputs are applied to the possesed AI
  

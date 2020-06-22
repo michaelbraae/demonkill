@@ -23,6 +23,7 @@ enum {
 	STUNNED,
 	PRE_DEATH,
 	DEAD,
+	POSSESSED,
 }
 
 func setState(newState : int) -> void:

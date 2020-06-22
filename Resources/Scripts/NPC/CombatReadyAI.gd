@@ -33,6 +33,7 @@ var attack_cooldown_timer
 
 # time in seconds (float) before the AI can damage the player
 # to prevent damage ticks stacking each swing
+var damage_cooldown = 0.5
 var damage_cooldown_timer
 
 # starting health
@@ -107,8 +108,11 @@ func setAttackCooldown(attack_cooldown_var : float) -> void:
 func getAttackCooldown() -> float:
 	return attack_cooldown
 
+func setDamageCooldown(cooldown : float) -> void:
+	damage_cooldown = cooldown
+
 func getDamageCooldown() -> float:
-	return 0.5
+	return damage_cooldown
 
 func damage(damage : int, use_cooldown : bool) -> void:
 	if use_cooldown:
@@ -122,10 +126,6 @@ func damage(damage : int, use_cooldown : bool) -> void:
 			setState(PRE_DEATH)
 		else:
 			setState(STUNNED)
-
-func stun() -> void:
-	setState(STUNNED)
-	stun_duration_timer.start(getStunDuration())
 
 func knockBack(
 	hit_direction : float,
@@ -210,7 +210,7 @@ func readyForPostAttack() -> bool:
 
 func runDecisionTree() -> void:
 	if getState() == STUNNED:
-		pass
+		knockback_handler.setKnockedBack(false)
 	elif getState() == PRE_DEATH:
 		pass
 	elif knockback_handler.getKnockedBack():
