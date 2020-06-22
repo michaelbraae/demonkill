@@ -1,4 +1,4 @@
-extends AttackerAI
+extends CombatReadyAI
 
 const BASIC_ATTACK_DAMAGE = 3
 const HIT_FRAMES = [3, 4, 5]

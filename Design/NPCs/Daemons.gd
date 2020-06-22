@@ -9,22 +9,25 @@
 # They use formations and defensive strategies to make the players life difficult
 # The underlings will follow the captains "commands" and protect him 
 
-#	Demon Knight - Captain - Greatsword only
-#	Demon Knight - Sword and Shield 
-#	Demon Knight - Grenadier - throws bombs when you attack the captain
+#	Demon Knight - Captain - Greatsword only - defensive
+#	Demon Knight - Sword and Shield - Aggressive melee
 #	Demon Knight - Archer - Aggressive Ranged
 
 # Demon Botanist
 #	Plants things in the ground, then waters them
 #	The plants are completely bad ass
+#	you need to kill them before they grow
 
-# Cultist Summoner - Summons Basic Demons (IMPs)
-# Cultist Protector - Shields other enemies
+# Cultists - play a support role, often accompanying large groups
+# 	Cultist Summoner
+#		Summons Demons, based on their animation, you can tell which
+# 	Cultist Protector - Shields other enemies
 
-# Projectile Weapon Daemons ? Hitscan or fast projectiles?
+# Projectile Weapon Demons ? Hitscan or fast projectiles?
 #	Gunslinger Demon - 2 Pistols
 #	Gatling Demon - Minigun
 #	Grenadier Demon
+#	Sniper Demon
 
 # Hybrid Demons
 #	Chimera - Dog, Cat, Bird
@@ -36,7 +39,6 @@
 #	Mesmer Demon - Uses Illusions
 
 # BOSSES AND THEIR UNIQUE DEMONS
-
 
 # Possession Boss - Rogue Lord
 #	The boss will switch between his minions as you fight him
@@ -63,6 +65,7 @@
 #	Skeletons - Shambling
 
 # Squid Lord - In the university lake
-#	Optional Boss - No minions
+#	Optional Boss - No minions?
+#	Squidlings
 
 # PC's Dad

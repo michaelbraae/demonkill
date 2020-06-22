@@ -5,6 +5,8 @@ class_name PossessableAI
 var interactable
 var possessable 
 
+var bite_button = $BiteButton
+
 func setInteractable(interactable_value : bool) -> void:
 	interactable = interactable_value
 
@@ -16,6 +18,10 @@ func setPossessable(possessable_value : bool) -> void:
 
 func getPossessable() -> bool:
 	return possessable
+
+func _process(delta):
+	if getState() == STUNNED:
+		pass
 
 # when possesed, the players inputs are applied to the possesed AI
  

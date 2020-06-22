@@ -1,4 +1,4 @@
-extends AttackerAI
+extends CombatReadyAI
 
 class_name CasterAI
 

@@ -1,8 +1,9 @@
 extends BaseAI
 
+# remember to check the collision layer and mask
+#	as well as signals to ensure proper function
 class_name PathfindingAI
 
-# dependencies, i know it's not clean. be nice :D
 # Any new AI must have these nodes as children to use this script
 onready var playerDetectionArea = $PlayerDetectionArea
 onready var collisionRayCast = $CollisionRayCast

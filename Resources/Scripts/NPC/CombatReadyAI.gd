@@ -1,30 +1,63 @@
 extends PathfindingAI
 
-class_name AttackerAI
+class_name CombatReadyAI
 
 var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
 var knockback_handler
 
+var stun_damage_threshold = 3
+var stun_duration_timer
+var stun_duration = 3
+
+# number of attacks to run before moving to POST_ATTACK
 var attacks_in_sequence
 var current_attack_in_sequence = 1
+
+# used to ensure the attack_sequence is completed
 var attack_started = false
 var has_attack_landed = false
+
+# if each "attacks_in_sequence" uses the same "attack" animation
 var repeat_attacks = false
+
+# units between player and self before considered in range
 var attack_range
+
+# determines if the AI should complete the entire sequence,
+# before moving to POST_ATTACK
 var complete_attack_sequence = false
+
+# time in seconds (float) before the AI can attack again
 var attack_cooldown
 var attack_cooldown_timer
 
+# time in seconds (float) before the AI can damage the player
+# to prevent damage ticks stacking each swing
 var damage_cooldown_timer
 
+# starting health
 var health = 10
 
 func _ready():
 	knockback_handler = knockback_handler_script.new()
+	stun_duration_timer = Timer.new()
+	add_child(stun_duration_timer)
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
+
+func setStunDamageThreshold(s_d_t : int) -> void:
+	stun_damage_threshold = s_d_t
+
+func getStunDamageThreshold() -> int:
+	return stun_damage_threshold
+
+func setStunDuration(duration : int) -> void:
+	stun_duration = duration
+
+func getStunDuration() -> int:
+	return stun_duration
 
 func setAttacksInSequence(a_i_s : int) -> void:
 	attacks_in_sequence = a_i_s
@@ -82,12 +115,17 @@ func damage(damage : int, use_cooldown : bool) -> void:
 		if damage_cooldown_timer.is_stopped():
 			damage_cooldown_timer.start(getDamageCooldown())
 			health = health - damage
-			if health < 0:
-				setState(PRE_DEATH)
 	else:
 		health = health - damage
+	if health <= getStunDamageThreshold():
 		if health < 0:
 			setState(PRE_DEATH)
+		else:
+			setState(STUNNED)
+
+func stun() -> void:
+	setState(STUNNED)
+	stun_duration_timer.start(getStunDuration())
 
 func knockBack(
 	hit_direction : float,
@@ -118,6 +156,8 @@ func getAnimation() -> String:
 		return getAttackAnimation()
 	if getState() == KNOCKED_BACK:
 		return "take_hit"
+	if getState() == STUNNED:
+		return "stunned"
 	if getState() == PRE_DEATH:
 		return "take_hit"
 	return "idle"
@@ -169,7 +209,9 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
-	if getState() == PRE_DEATH:
+	if getState() == STUNNED:
+		pass
+	elif getState() == PRE_DEATH:
 		pass
 	elif knockback_handler.getKnockedBack():
 		setAttackStarted(false)
@@ -210,9 +252,13 @@ func handlePostAnimState() -> void:
 				setCurrentAttackInSequence(1)
 		POST_ATTACK:
 			setState(IDLE)
+		STUNNED:
+			setState(IDLE)
 		PRE_DEATH:
 			queue_free()
 
 func _process(delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
+	if stun_duration_timer.get_time_left() < 0.1:
+		stun_duration_timer.stop()

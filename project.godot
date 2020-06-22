@@ -9,22 +9,22 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PathfindingAI",
-"class": "AttackerAI",
-"language": "GDScript",
-"path": "res://Resources/Scripts/NPC/AttackerAI.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "BaseAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/BaseAI.gd"
 }, {
-"base": "AttackerAI",
+"base": "CombatReadyAI",
 "class": "CasterAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/CasterAI.gd"
 }, {
-"base": "AttackerAI",
+"base": "PathfindingAI",
+"class": "CombatReadyAI",
+"language": "GDScript",
+"path": "res://Resources/Scripts/NPC/CombatReadyAI.gd"
+}, {
+"base": "CombatReadyAI",
 "class": "MeleeAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/MeleeAI.gd"
@@ -33,6 +33,11 @@ _global_script_classes=[ {
 "class": "PathfindingAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/PathfindingAI.gd"
+}, {
+"base": "PlayerPossession",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Resources/Actors/Player/Player.gd"
 }, {
 "base": "PlayerWeapon",
 "class": "PlayerAnimation",
@@ -55,9 +60,9 @@ _global_script_classes=[ {
 "path": "res://Resources/Scripts/Player/PlayerNavigation.gd"
 }, {
 "base": "PlayerAttack",
-"class": "PlayerScript",
+"class": "PlayerPossession",
 "language": "GDScript",
-"path": "res://Resources/Actors/Player/Player.gd"
+"path": "res://Resources/Scripts/Player/PlayerPossession.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerWeapon",
@@ -85,16 +90,17 @@ _global_script_classes=[ {
 "path": "res://Resources/Scripts/Ability/TelegraphedAOE.gd"
 } ]
 _global_script_class_icons={
-"AttackerAI": "",
 "BaseAI": "",
 "CasterAI": "",
+"CombatReadyAI": "",
 "MeleeAI": "",
 "PathfindingAI": "",
+"Player": "",
 "PlayerAnimation": "",
 "PlayerAttack": "",
 "PlayerBase": "",
 "PlayerNavigation": "",
-"PlayerScript": "",
+"PlayerPossession": "",
 "PlayerWeapon": "",
 "PossessableAI": "",
 "ProjectileBase": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Resources/Sprites/Hero/FINAL/idle/idle-up-right.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/Hero/FINAL/run/up/run-up5.png" type="Texture" id=2]
@@ -50,14 +50,14 @@ animations = [ {
 "name": "idle_up_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "idle_up",
+"name": "walk_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "idle_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 20 ), ExtResource( 14 ), ExtResource( 15 ) ],
@@ -65,14 +65,14 @@ animations = [ {
 "name": "walk_up_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
-"name": "idle_right",
+"name": "idle_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "walk_right",
+"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
@@ -80,9 +80,9 @@ animations = [ {
 "name": "walk_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "idle_down",
+"name": "walk_down",
 "speed": 5.0
 } ]
 
@@ -104,39 +104,9 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ) ],
-"loop": true,
-"name": "5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 56 ) ],
-"loop": true,
-"name": "8",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 55 ) ],
 "loop": true,
 "name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 54 ) ],
-"loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 52 ) ],
-"loop": true,
-"name": "6",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 47 ) ],
-"loop": true,
-"name": "10",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -144,9 +114,39 @@ animations = [ {
 "name": "0",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 52 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 54 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 56 ) ],
+"loop": true,
+"name": "8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 50 ) ],
 "loop": true,
 "name": "4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 51 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 47 ) ],
+"loop": true,
+"name": "10",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 49 ) ],
@@ -157,19 +157,22 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 59 ), ExtResource( 45 ), ExtResource( 58 ) ],
-"loop": true,
-"name": "melee_basic",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 64 ) ],
 "loop": true,
 "name": "melee_old",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 59 ), ExtResource( 45 ), ExtResource( 58 ) ],
+"loop": true,
+"name": "melee_basic",
 "speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 19.0821
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 43.2871
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
@@ -239,7 +242,7 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
-frame = 1
+frame = 2
 speed_scale = 3.0
 playing = true
 
@@ -250,4 +253,9 @@ position = Vector2( 30.364, 0 )
 position = Vector2( -2.02636, -2.28531 )
 rotation = 1.5708
 shape = SubResource( 7 )
+
+[node name="BiteRangeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteRangeArea"]
+shape = SubResource( 8 )
 [connection signal="animation_finished" from="AttackBox/AttackSprite" to="." method="_on_AttackSprite_animation_finished"]

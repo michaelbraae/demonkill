@@ -1,34 +1,18 @@
 # LEVEL 1 - LIBRARY
 
-# Prologue:
-
-# Backstory - Not shown to player
-	# Your father and his assistant were trying to break 
-	# the curse on the vampire race
-	# for some reason (missing mcguffin?), the curse backfired on your father who became
-	# infected with an active strain
-	# your father's assistant tried to convince
-	# your father that he could beat the virus
-	# father knew that he would not survive
-	#	(but he did and he's a big fucking demon)
-	# so before he "died", he resurrected you from your tomb
-	# your father's assistant felt guilt for underestimating the disease
-	# he lies to the player about his true past.
-	# he claims he awoke you and brought you back to bring balance to the world
-	
-	# your father's assistant; a human, member of an ancient noble house
-	# that always remained loyal to their vampire overlords. 
-
 # Overview
 #	1. Prologue
 #	2. Exposure to outside world
-#	3. Possession boss -> library first -> gas boss
-#	4. gain gas power for access to second area of library and 
+#	3. Library
+#		- Possession boss
+#		- Library first
+#		- Gas boss
+#	4. Gain gas power for access to second area of library and 
 #		option to return to the mansion
-#	5a. Second are of library
+#	5a. Second area of library
 #			- fight more demons
 #			- get a new weapon
-#			- fight large room encounter
+#			- fight large demon room encounter
 #	5b. Return to Mansion
 #			- Encounter your father finish major story quest
 #	6. Return to outside world
@@ -57,6 +41,19 @@
 #
 #		Through the door is a room with a few easy to deal with demons
 #		You finish them with basic attacks
+#
+#		You leave down through the hall and arrive at a four way intersection
+#		Two of the doors say "Does not open from this side"
+#		One door leads up to the Cellar
+#
+#		CELLAR
+#		
+#		You arrive at the top of the stairs and enter
+#		a small cellar with one or two enemies
+#
+#		This leads to a larger cellar room with a pentagram in blood painted
+#		painted on the floor in the middle of the room
+#		There are a few demons scattered around
 #
 #		The next room has one enemy, when you hit him he will be stunned
 #		and the game will pause.
