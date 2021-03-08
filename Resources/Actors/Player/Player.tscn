@@ -104,16 +104,6 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 52 ) ],
 "loop": true,
 "name": "6",
@@ -152,6 +142,16 @@ animations = [ {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 55 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 46 ) ],
+"loop": true,
+"name": "0",
 "speed": 5.0
 } ]
 
@@ -242,7 +242,6 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 6 )
 animation = "melee_basic"
-frame = 2
 speed_scale = 3.0
 playing = true
 
@@ -254,8 +253,8 @@ position = Vector2( -2.02636, -2.28531 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
-[node name="BiteRangeArea" type="Area2D" parent="."]
+[node name="BiteBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteRangeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteBox"]
 shape = SubResource( 8 )
 [connection signal="animation_finished" from="AttackBox/AttackSprite" to="." method="_on_AttackSprite_animation_finished"]

@@ -209,6 +209,8 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
+	if getState() == POSSESSED:
+		pass
 	if getState() == STUNNED:
 		knockback_handler.setKnockedBack(false)
 	elif getState() == PRE_DEATH:

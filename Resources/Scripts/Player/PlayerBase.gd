@@ -38,7 +38,7 @@ enum {
 	ATTACKING,
 	ROLLING,
 	DAMAGED,
-	
+	POSSESSING,
 }
 
 # interactHandler logic needs to be rebuilt

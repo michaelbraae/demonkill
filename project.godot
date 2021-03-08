@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/CombatReadyAI.gd"
 }, {
-"base": "CombatReadyAI",
+"base": "PossessableAI",
 "class": "MeleeAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/MeleeAI.gd"
@@ -69,7 +69,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/Player/PlayerWeapon.gd"
 }, {
-"base": "PathfindingAI",
+"base": "CombatReadyAI",
 "class": "PossessableAI",
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/PossessableAI.gd"
@@ -215,6 +215,11 @@ weapon_slot_1={
 weapon_slot_2={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+bite={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
 

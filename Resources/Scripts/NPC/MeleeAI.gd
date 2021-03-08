@@ -1,4 +1,4 @@
-extends CombatReadyAI
+extends PossessableAI
 
 class_name MeleeAI
 

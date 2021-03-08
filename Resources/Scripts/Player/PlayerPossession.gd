@@ -18,6 +18,7 @@ func bite() -> void:
 			if area.get_name() == "BiteBox":
 				var parent = area.get_parent()
 				if parent.getState() == parent.STUNNED:
+					setState(POSSESSING)
 					parent.setState(parent.POSSESSED)
 					setPossessedNPC(area.get_parent())
 
