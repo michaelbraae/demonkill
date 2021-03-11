@@ -18,14 +18,43 @@ func bite() -> void:
 			if area.get_name() == "BiteBox":
 				var parent = area.get_parent()
 				if parent.getState() == parent.STUNNED:
-					setState(POSSESSING)
-					parent.setState(parent.POSSESSED)
-					setPossessedNPC(area.get_parent())
+					possess(parent)
+
+func possess(npc) -> void:
+	setState(POSSESSING)
+	removeWeapon()
+	animatedSprite.hide()
+	npc.setState(npc.POSSESSED)
+	npc.npc_camera.make_current()
+	setPossessedNPC(npc)
 
 func _process(delta):
 	if Input.is_action_just_pressed("bite"):
-		bite()
-# handles logic around possession
+		if getState() == POSSESSING:
+			var npc = getPossessedNPC()
+			setPossessedNPC(null)
+			setState(IDLE)
+			camera2D.make_current()
+			animatedSprite.show()
+			readyWeaponInstance()
+			npc.queue_free()
+		else:
+			bite()
+
+func handlePlayerAction() -> void:
+	if getState() == POSSESSING:
+		setVelocity()
+		getPossessedNPC().setVelocity(velocity)
+	else:
+		.handlePlayerAction()
+
+#func _physics_process(_delta : float):
+#	if getState() == POSSESSING:
+#		getPossessedNPC().move_and_slide(velocity)
+#		pass
+#	else:
+#	._physics_process(_delta)
+## handles logic around possession
 
 # Several factors should go into the players ability to possess an npc
 

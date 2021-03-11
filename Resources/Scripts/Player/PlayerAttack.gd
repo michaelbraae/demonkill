@@ -51,6 +51,9 @@ func meleeAttack():
 				melee_node_moved = false
 
 func _physics_process(_delta : float) -> void:
+	handlePlayerAction()
+
+func handlePlayerAction() -> void:
 	if Input.is_action_just_pressed("fire_weapon"):
 		fireCurrentWeapon()
 	if Input.is_action_just_pressed("melee_attack") or melee_node_moved:
@@ -60,8 +63,4 @@ func _physics_process(_delta : float) -> void:
 	else:
 		setVelocity()
 	animatedSprite.play(getAnimation())
-	if possessing:
-		pass
-#		possessedNPC.move_and_slide(velocity)
-	else:
-		move_and_slide(velocity)
+	move_and_slide(velocity)

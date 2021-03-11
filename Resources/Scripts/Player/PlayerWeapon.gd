@@ -26,6 +26,10 @@ func readyWeaponInstance() -> void:
 	current_weapon.set_name("CurrentWeapon")
 	add_child(current_weapon)
 
+func removeWeapon() -> void:
+	if current_weapon:
+		current_weapon.queue_free()
+
 func changeWeapon(NewWeapon : Dictionary) -> void:
 	PlayerState.changeWeapon(NewWeapon)
 	current_weapon_config = PlayerState.getCurrentWeapon()

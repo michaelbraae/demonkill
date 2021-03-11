@@ -150,7 +150,7 @@ func isPlayerInRange() -> bool:
 	return false
 
 func getAnimation() -> String:
-	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(getState()):
+	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING, POSSESSED].has(getState()):
 		return getNavigationAnimation()
 	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
 		return getAttackAnimation()
@@ -210,8 +210,8 @@ func readyForPostAttack() -> bool:
 
 func runDecisionTree() -> void:
 	if getState() == POSSESSED:
-		pass
-	if getState() == STUNNED:
+		move_and_slide(velocity)
+	elif getState() == STUNNED:
 		knockback_handler.setKnockedBack(false)
 	elif getState() == PRE_DEATH:
 		pass
@@ -240,24 +240,25 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	match getState():
-		KNOCKED_BACK:
-			setState(IDLE)
-		PRE_ATTACK:
-			setState(ATTACKING)
-		ATTACKING:
-			setHasAttackLanded(false)
-			setCurrentAttackInSequence(getCurrentAttackInSequence() + 1)
-			if readyForPostAttack():
-				setAttackStarted(false)
-				setState(POST_ATTACK)
-				setCurrentAttackInSequence(1)
-		POST_ATTACK:
-			setState(IDLE)
-		STUNNED:
-			setState(IDLE)
-		PRE_DEATH:
-			queue_free()
+	if getState() != POSSESSED:
+		match getState():
+			KNOCKED_BACK:
+				setState(IDLE)
+			PRE_ATTACK:
+				setState(ATTACKING)
+			ATTACKING:
+				setHasAttackLanded(false)
+				setCurrentAttackInSequence(getCurrentAttackInSequence() + 1)
+				if readyForPostAttack():
+					setAttackStarted(false)
+					setState(POST_ATTACK)
+					setCurrentAttackInSequence(1)
+			POST_ATTACK:
+				setState(IDLE)
+			STUNNED:
+				setState(IDLE)
+			PRE_DEATH:
+				queue_free()
 
 func _process(delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
