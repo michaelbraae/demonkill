@@ -6,6 +6,9 @@ var state
 
 const IS_ENEMY = true
 
+onready var GameState = get_node("/root/GameState")
+onready var PossessionState = get_node("/root/PossessionState")
+onready var InputHandler = get_node("/root/InputHandler")
 onready var animatedSprite = $AnimatedSprite
 
 # STATES:

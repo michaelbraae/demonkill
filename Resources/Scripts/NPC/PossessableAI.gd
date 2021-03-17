@@ -9,7 +9,9 @@ func _ready():
 	bite_button.hide()
 
 func _process(delta):
-	if getState() == STUNNED:
+	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
+		bite_button.hide()
+	elif getState() == STUNNED:
 		bite_button.show()
 	else:
 		bite_button.hide()

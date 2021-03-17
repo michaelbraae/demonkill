@@ -46,4 +46,3 @@ func getPreviousWeapon() -> Dictionary:
 func changeWeapon(NewWeapon : Dictionary) -> void:
 	setPreviousWeapon(getCurrentWeapon())
 	setCurrentWeapon(NewWeapon)
-

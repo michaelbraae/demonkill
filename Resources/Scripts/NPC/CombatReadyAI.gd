@@ -150,7 +150,9 @@ func isPlayerInRange() -> bool:
 	return false
 
 func getAnimation() -> String:
-	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING, POSSESSED].has(getState()):
+	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
+		return getNavigationAnimation()
+	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(getState()):
 		return getNavigationAnimation()
 	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
 		return getAttackAnimation()
@@ -165,9 +167,13 @@ func getAnimation() -> String:
 func getNavigationAnimation() -> String:
 	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
+		return "run"
 	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
-	return "run"
+		return "run"
+	if velocity.y <= -0.1 or velocity.y >= 0.1:
+		return "run"
+	return "idle"
 
 func getAttackAnimation() -> String:
 	match getState():
@@ -209,7 +215,8 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
-	if getState() == POSSESSED:
+	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
+		velocity = InputHandler.getVelocity()
 		move_and_slide(velocity)
 	elif getState() == STUNNED:
 		knockback_handler.setKnockedBack(false)
@@ -240,7 +247,7 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	if getState() != POSSESSED:
+	if GameState.state != GameState.CONTROLLING_NPC:
 		match getState():
 			KNOCKED_BACK:
 				setState(IDLE)

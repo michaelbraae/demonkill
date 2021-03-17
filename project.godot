@@ -118,6 +118,9 @@ config/icon="res://icon.png"
 
 LevelManager="*res://Scenes/LevelManager/LevelManager.gd"
 PlayerState="*res://Resources/State/PlayerState.gd"
+GameState="*res://Resources/State/GameState.gd"
+PossessionState="*res://Resources/State/PossessionState.gd"
+InputHandler="*res://Resources/State/InputHandler.gd"
 
 [display]
 
