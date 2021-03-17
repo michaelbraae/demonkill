@@ -42,8 +42,6 @@ enum {
 	POSSESSING,
 }
 
-# interactHandler logic needs to be rebuilt
-
 func _ready() -> void:
 	attackSprite.hide()
 

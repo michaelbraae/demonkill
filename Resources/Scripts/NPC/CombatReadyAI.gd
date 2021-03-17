@@ -37,6 +37,7 @@ var damage_cooldown = 0.5
 var damage_cooldown_timer
 
 # starting health
+const MAX_HEALTH = 10
 var health = 10
 
 func _ready():
@@ -114,14 +115,16 @@ func setDamageCooldown(cooldown : float) -> void:
 func getDamageCooldown() -> float:
 	return damage_cooldown
 
-func damage(damage : int, use_cooldown : bool) -> void:
+func damage(damage : int, use_cooldown : bool = false) -> void:
 	if use_cooldown:
 		if damage_cooldown_timer.is_stopped():
 			damage_cooldown_timer.start(getDamageCooldown())
 			health = health - damage
 	else:
 		health = health - damage
-	if health <= getStunDamageThreshold():
+	if isPossessed() and health <= 0:
+		PossessionState.handlePossessionDeath(get_global_position())
+	elif health <= getStunDamageThreshold():
 		if health < 0:
 			setState(PRE_DEATH)
 		else:
@@ -150,7 +153,7 @@ func isTargetInRange() -> bool:
 	return false
 
 func getAnimation() -> String:
-	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
+	if isPossessed():
 		return getNavigationAnimation()
 	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(getState()):
 		return getNavigationAnimation()
@@ -215,8 +218,11 @@ func readyForPostAttack() -> bool:
 	return false
 
 func runDecisionTree() -> void:
-	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
-		velocity = InputHandler.getVelocity()
+	if isPossessed():
+		if knockback_handler.getKnockedBack():
+			velocity = knockback_handler.getKnockBackProcessVector()
+		else:
+			velocity = InputHandler.getVelocity()
 		move_and_slide(velocity)
 	elif getState() == STUNNED:
 		knockback_handler.setKnockedBack(false)
@@ -247,7 +253,7 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	if GameState.state != GameState.CONTROLLING_NPC:
+	if PossessionState.possessedNPC != self:
 		match getState():
 			KNOCKED_BACK:
 				setState(IDLE)
@@ -268,6 +274,8 @@ func handlePostAnimState() -> void:
 				queue_free()
 
 func _process(delta):
+	if PossessionState.possessedNPC == self:
+		print('health:', health)
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
 	if stun_duration_timer.get_time_left() < 0.1:

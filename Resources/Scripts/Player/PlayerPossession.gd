@@ -25,19 +25,14 @@ func possess(npc) -> void:
 	GameState.state = GameState.CONTROLLING_NPC
 	npc.npc_camera.make_current()
 	npc.bite_button.hide()
+	npc.health = npc.MAX_HEALTH
 	PossessionState.possessedNPC = npc
 	self.queue_free()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("bite"):
 		bite()
 
 func handlePlayerAction() -> void:
 	if GameState.state == GameState.CONTROLLING_PLAYER:
 		.handlePlayerAction()
-	#elif GameState.
-	#if getState() == POSSESSING:
-	#	setVelocity()
-	#	getPossessedNPC().setVelocity(velocity)
-	#else:
-	#	.handlePlayerAction()

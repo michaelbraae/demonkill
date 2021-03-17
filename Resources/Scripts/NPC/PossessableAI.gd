@@ -9,7 +9,7 @@ func _ready():
 	bite_button.hide()
 
 func _process(delta):
-	if GameState.state == GameState.CONTROLLING_NPC && PossessionState.possessedNPC == self:
+	if isPossessed():
 		bite_button.hide()
 	elif getState() == STUNNED:
 		bite_button.show()
@@ -17,9 +17,6 @@ func _process(delta):
 		bite_button.hide()
 
 func handlePostAnimState() -> void:
-	if getState() == POSSESSED:
-		pass
-	else:
-		.handlePostAnimState()
+	.handlePostAnimState()
 # when possesed, the players inputs are applied to the possesed AI
  

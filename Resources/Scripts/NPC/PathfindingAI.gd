@@ -5,14 +5,13 @@ extends BaseAI
 class_name PathfindingAI
 
 # Any new AI must have these nodes as children to use this script
-onready var playerDetectionArea = $PlayerDetectionArea
 onready var detectionArea = $DetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
 # used to stop the animatedSprite flipping when Y axis is aligned
 # Without this the sprite will flicker back and forth
-const PLAYER_POSITION_OFFSET = 25
+const TARGET_POSITION_OFFSET = 2
 
 var path = []
 var path_ind = 0
@@ -61,7 +60,7 @@ func detectTarget() -> void:
 		for area in detectionOverlaps:
 			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent().get("IS_PLAYER"):
 				setTarget(area.get_parent())
-			elif GameState.state == GameState.CONTROLLING_NPC and area.get_parent() == PossessionState.possessedNPC:
+			elif nodeIsPossessed(area.get_parent()):
 				setTarget(PossessionState.possessedNPC)
 
 func alignRayCastToPlayer() -> void:
@@ -101,11 +100,11 @@ func setTargetLocationAsTargetVector() -> void:
 	var ai_position = get_global_position()
 	if target_position.x > ai_position.x:
 		velocity.x += 1
-	if target_position.x + PLAYER_POSITION_OFFSET < ai_position.x:
+	if target_position.x + TARGET_POSITION_OFFSET < ai_position.x:
 		velocity.x -= 1
-	if target_position.y + PLAYER_POSITION_OFFSET > ai_position.y:
+	if target_position.y + TARGET_POSITION_OFFSET > ai_position.y:
 		velocity.y += 1
-	if target_position.y - PLAYER_POSITION_OFFSET < ai_position.y:
+	if target_position.y - TARGET_POSITION_OFFSET < ai_position.y:
 		velocity.y -= 1
 	setVelocity(getVelocity().normalized() * getMoveSpeed())
 

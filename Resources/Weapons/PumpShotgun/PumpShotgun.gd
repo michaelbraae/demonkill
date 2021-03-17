@@ -22,7 +22,6 @@ func instantiateProjectiles(attack_direction : Vector2) -> void:
 	for random_trajectory in getRandomTrajectories(attack_direction):
 		var bullet_instance = ENERGY_BALL_SCENE.instance()
 		get_parent().add_child(bullet_instance)
-		print(get_parent().get_parent().get_name())
 		bullet_instance.setTargetId("IS_ENEMY")
 		bullet_instance.set_position(muzzle.get_position())
 		bullet_instance.setTargetDirection(random_trajectory)
