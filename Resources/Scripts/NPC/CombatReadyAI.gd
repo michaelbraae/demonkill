@@ -141,11 +141,11 @@ func knockBack(
 func readyForDamage() -> bool:
 	return true
 
-func isPlayerInRange() -> bool:
-	var distance_to_player = get_global_position().distance_to(
-		getPlayer().get_global_position()
+func isTargetInRange() -> bool:
+	var distance_to_target = get_global_position().distance_to(
+		getTarget().get_global_position()
 	)
-	if distance_to_player <= getAttackRange():
+	if distance_to_target <= getAttackRange():
 		return true
 	return false
 
@@ -208,7 +208,7 @@ func readyForPostAttack() -> bool:
 	else:
 		if (
 			getCurrentAttackInSequence() > 1
-			and not isPlayerInRange()
+			and not isTargetInRange()
 			or getCurrentAttackInSequence() > getAttacksInSequence()
 		):
 			return true
@@ -229,11 +229,11 @@ func runDecisionTree() -> void:
 	else:
 		if attack_cooldown_timer.get_time_left() < 0.1:
 			attack_cooldown_timer.stop()
-		if getPlayer():
+		if getTarget():
 			alignRayCastToPlayer()
 			detectBlockers()
 			if (
-				isPlayerInRange()
+				isTargetInRange()
 				and not getPathBlocked()
 				or getAttackStarted()
 				or getState() == POST_ATTACK

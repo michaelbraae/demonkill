@@ -6,6 +6,7 @@ class_name PathfindingAI
 
 # Any new AI must have these nodes as children to use this script
 onready var playerDetectionArea = $PlayerDetectionArea
+onready var detectionArea = $DetectionArea
 onready var collisionRayCast = $CollisionRayCast
 onready var navigation_mesh = get_parent()
 
@@ -21,6 +22,8 @@ var vector_threshold = 0.05
 var velocity = Vector2()
 
 var player
+
+var target_actor
 
 func setPathBlocked(blocked_var : bool) -> void:
 	path_blocked = blocked_var
@@ -46,24 +49,26 @@ func setVelocity(velocity_arg : Vector2) -> void:
 func getVelocity() -> Vector2:
 	return velocity
 
-func setPlayer(player_var : KinematicBody2D) -> void:
-	player = player_var
+func setTarget(target_var : KinematicBody2D) -> void:
+	target_actor = target_var
 
-func getPlayer() -> KinematicBody2D:
-	return player
+func getTarget() -> KinematicBody2D:
+	return target_actor
 
-func detectPlayer() -> void:
-	var playerDetectionOverlaps = playerDetectionArea.get_overlapping_areas()
-	if playerDetectionOverlaps:
-		for area in playerDetectionOverlaps:
-			if area.get_parent().get("IS_PLAYER"):
-				setPlayer(area.get_parent())
+func detectTarget() -> void:
+	var detectionOverlaps = detectionArea.get_overlapping_areas()
+	if detectionOverlaps:
+		for area in detectionOverlaps:
+			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent().get("IS_PLAYER"):
+				setTarget(area.get_parent())
+			elif GameState.state == GameState.CONTROLLING_NPC and area.get_parent() == PossessionState.possessedNPC:
+				setTarget(PossessionState.possessedNPC)
 
 func alignRayCastToPlayer() -> void:
-	collisionRayCast.rotation = getAngleToPlayer()
+	collisionRayCast.rotation = getAngleToTarget()
 
-func getAngleToPlayer() -> float:
-	return get_angle_to(player.get_global_position())
+func getAngleToTarget() -> float:
+	return get_angle_to(getTarget().get_global_position())
 
 func detectBlockers():
 	var collider = collisionRayCast.get_collider()
@@ -90,39 +95,37 @@ func moveToNavigationPoint() -> void:
 		else:
 			move_and_slide(move_vec.normalized() * getMoveSpeed())
 
-func setPlayerLocationAsTargetVector() -> void:
+func setTargetLocationAsTargetVector() -> void:
 	setVelocity(Vector2())
-	var player_position = getPlayer().get_global_position()
+	var target_position = getTarget().get_global_position()
 	var ai_position = get_global_position()
-	if player_position.x > ai_position.x:
+	if target_position.x > ai_position.x:
 		velocity.x += 1
-	if player_position.x + PLAYER_POSITION_OFFSET < ai_position.x:
+	if target_position.x + PLAYER_POSITION_OFFSET < ai_position.x:
 		velocity.x -= 1
-	if player_position.y + PLAYER_POSITION_OFFSET > ai_position.y:
+	if target_position.y + PLAYER_POSITION_OFFSET > ai_position.y:
 		velocity.y += 1
-	if player_position.y - PLAYER_POSITION_OFFSET < ai_position.y:
+	if target_position.y - PLAYER_POSITION_OFFSET < ai_position.y:
 		velocity.y -= 1
 	setVelocity(getVelocity().normalized() * getMoveSpeed())
 
 func runDecisionTree() -> void:
-	if getPlayer():
+	if getTarget():
 		alignRayCastToPlayer()
 		detectBlockers()
 		if getPathBlocked():
 			setState(NAVIGATING)
-			setNavigationPoint(player.get_global_position())
+			setNavigationPoint(getTarget().get_global_position())
 			moveToNavigationPoint()
 		else:
 			setState(FOLLOWING_PLAYER)
-			setPlayerLocationAsTargetVector()
+			setTargetLocationAsTargetVector()
 			move_and_slide(getVelocity())
 	else:
 		setState(IDLE)
-		# they AI should follow a path in this situation
-		# or potentially idle
 
 func _process(_delta : float) -> void:
-	detectPlayer()
+	detectTarget()
 
 func _physics_process(_delta : float) -> void:
 	runDecisionTree()

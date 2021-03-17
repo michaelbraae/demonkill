@@ -27,5 +27,5 @@ func perAttackAction() -> void:
 		projectile_instance.setMoveSpeed(5)
 		projectile_instance.set_global_position(get_global_position())
 		projectile_instance.setTargetVector(
-			player.get_global_position() - get_global_position()
+			getTarget().get_global_position() - get_global_position()
 		)

@@ -10,9 +10,9 @@ func initialiseConfig():
 
 func perAttackAction() -> void:
 	if (
-		isPlayerInRange()
+		isTargetInRange()
 		and not getHasAttackLanded()
 		and HIT_FRAMES.has(animatedSprite.get_frame())
 	):
 		setHasAttackLanded(true)
-		getPlayer().damage(BASIC_ATTACK_DAMAGE)
+		getTarget().damage(BASIC_ATTACK_DAMAGE)

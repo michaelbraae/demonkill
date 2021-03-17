@@ -26,14 +26,14 @@ func getBasicAttackDamage() -> int:
 	return basic_attack_damage
 
 func rotateMeleeAttackNode() -> void:
-	var angle_to_player = rad2deg(getAngleToPlayer())
-	if angle_to_player < -45 and angle_to_player > -135:
+	var angle_to_target = rad2deg(getAngleToTarget())
+	if angle_to_target < -45 and angle_to_target > -135:
 		attackNode.look_at(to_global(Vector2.UP))
-	elif angle_to_player > 45 and angle_to_player < 135:
+	elif angle_to_target > 45 and angle_to_target < 135:
 		attackNode.look_at(to_global(Vector2.DOWN))
-	elif angle_to_player > 135 or angle_to_player < -135:
+	elif angle_to_target > 135 or angle_to_target < -135:
 		attackNode.look_at(to_global(Vector2.LEFT))
-	elif angle_to_player < 45 and angle_to_player > -45:
+	elif angle_to_target < 45 and angle_to_target > -45:
 		attackNode.look_at(to_global(Vector2.RIGHT))
 
 func playerOverlapsAttackBox() -> bool:
@@ -47,7 +47,7 @@ func playerOverlapsAttackBox() -> bool:
 				return true
 	return false
 
-func handlePreAttack() -> void:	
+func handlePreAttack() -> void:
 	rotateMeleeAttackNode()
 	.handlePreAttack()
 
@@ -58,8 +58,8 @@ func perAttackAction() -> void:
 		if playerOverlapsAttackBox():
 			setAttackStarted(true)
 			setHasAttackLanded(true)
-			getPlayer().damage(getBasicAttackDamage())
-			getPlayer().knockBack(getAngleToPlayer(), 300, 15)
+			getTarget().damage(getBasicAttackDamage())
+			getTarget().knockBack(getAngleToTarget(), 300, 15)
 
 func _on_AttackSprite_animation_finished():
 	hideAttackSpriteAndInactive()
