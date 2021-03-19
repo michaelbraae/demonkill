@@ -154,6 +154,8 @@ func isTargetInRange() -> bool:
 
 func getAnimation() -> String:
 	if isPossessed():
+		if getState() == ATTACKING:
+			return getAttackLoop()
 		return getNavigationAnimation()
 	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(getState()):
 		return getNavigationAnimation()
@@ -177,6 +179,9 @@ func getNavigationAnimation() -> String:
 	if velocity.y <= -0.1 or velocity.y >= 0.1:
 		return "run"
 	return "idle"
+
+func getAttackLoop() -> String:
+	return "attack_loop"
 
 func getAttackAnimation() -> String:
 	match getState():
@@ -217,12 +222,14 @@ func readyForPostAttack() -> bool:
 			return true
 	return false
 
-func runDecisionTree() -> void:
+func runDecisionTree() -> void: 
 	if isPossessed():
 		if knockback_handler.getKnockedBack():
 			velocity = knockback_handler.getKnockBackProcessVector()
+		elif Input.is_action_just_pressed("melee_attack") or getState() == ATTACKING:
+			setState(ATTACKING)
 		else:
-			velocity = InputHandler.getVelocity()
+			velocity = InputHandler.getVelocity(getMoveSpeed())
 		move_and_slide(velocity)
 	elif getState() == STUNNED:
 		knockback_handler.setKnockedBack(false)
@@ -272,10 +279,13 @@ func handlePostAnimState() -> void:
 				setState(IDLE)
 			PRE_DEATH:
 				queue_free()
+	else:
+		match getState():
+			ATTACKING:
+				setState(POSSESSED)
+				setAttackStarted(false)
 
 func _process(delta):
-	if PossessionState.possessedNPC == self:
-		print('health:', health)
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
 	if stun_duration_timer.get_time_left() < 0.1:

@@ -25,6 +25,22 @@ func setBasicAttackDamage(damage_var: int) -> void:
 func getBasicAttackDamage() -> int:
 	return basic_attack_damage
 
+func getAttackLoop() -> String:
+	if not getAttackStarted():
+		velocity = InputHandler.getAttackDirection(self) * 50
+		setAttackStarted(true)
+		if velocity.x >= 0.1:
+			animatedSprite.flip_h = false
+		if velocity.x <= -0.1:
+			animatedSprite.flip_h = true
+		attackNode.look_at(to_global(self.get_local_mouse_position()))
+		attackSprite.show()
+		attackSprite.play("active")
+		if not getHasAttackLanded():
+			setHasAttackLanded(true)
+			damageAndKnockBackOverlappingAreas()
+	return "attack_loop"
+
 func rotateMeleeAttackNode() -> void:
 	var angle_to_target = rad2deg(getAngleToTarget())
 	if angle_to_target < -45 and angle_to_target > -135:
@@ -50,6 +66,19 @@ func targetOverlapsAttackBox() -> bool:
 				return true
 	return false
 
+func damageAndKnockBackOverlappingAreas() -> void:
+	var overlappingAreas = attackBox.get_overlapping_areas()
+	if overlappingAreas:
+		for area in overlappingAreas:
+			if area.get_name() == "EnemyHitBox" and area.get_parent() != self:
+				var area_parent = area.get_parent()
+				area_parent.damage(getBasicAttackDamage(), true)
+				area_parent.knockBack(
+					get_angle_to(area_parent.get_global_position()),
+					200,
+					20
+				)
+
 func handlePreAttack() -> void:
 	rotateMeleeAttackNode()
 	.handlePreAttack()
@@ -65,4 +94,8 @@ func perAttackAction() -> void:
 			getTarget().knockBack(getAngleToTarget(), 300, 15)
 
 func _on_AttackSprite_animation_finished():
+	if nodeIsPossessed(self) and state == ATTACKING:
+		setHasAttackLanded(false)
+#		attackSprite.hide()
+#		attackSprite.play("inactive")
 	hideAttackSpriteAndInactive()

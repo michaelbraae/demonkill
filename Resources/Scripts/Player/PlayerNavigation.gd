@@ -44,18 +44,7 @@ func setVelocity() -> void:
 	if knockback_handler.getKnockedBack():
 		velocity = knockback_handler.getKnockBackProcessVector()
 	else:
-		velocity = InputHandler.getVelocity()
-		#velocity.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-		#velocity.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-		#if Input.is_action_just_pressed("dash") and dash_cooldown_timer.is_stopped():
-		#	dash_cooldown_timer.start(DASH_COOLDOWN)
-		#	bolt_cooldown_timer.stop()
-		#	collisionShape.set_disabled(true)
-		#	speed_actual = SPEED * 20
-		#else:
-		#	collisionShape.set_disabled(false)
-		#	speed_actual = SPEED
-		#velocity = velocity.normalized() * speed_actual
+		velocity = InputHandler.getVelocity(SPEED)
 
 func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:

@@ -44,13 +44,13 @@ navpoly = SubResource( 1 )
 position = Vector2( 195.908, 641.427 )
 
 [node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 551.905, 613.664 )
+position = Vector2( 349.667, 731.677 )
 
 [node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 219.318, 489.988 )
+position = Vector2( -84.8689, 740.033 )
 
 [node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( -141.68, 591.937 )
+position = Vector2( -158.405, 482.654 )
 
 [node name="walls" type="YSort" parent="Environment"]
 
