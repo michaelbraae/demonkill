@@ -9,8 +9,6 @@ onready var InputHandler = get_node("/root/InputHandler")
 var possessing = false
 
 onready var animatedSprite = $AnimatedSprite
-onready var interactButton = $InteractButton
-onready var interactArea = $InteractArea
 onready var collisionShape = $CollisionShape2D
 onready var healthBar = $HealthBar
 onready var camera2D = $Camera2D
@@ -43,6 +41,7 @@ enum {
 }
 
 func _ready() -> void:
+	GameState.prepareHealthGUI()
 	attackSprite.hide()
 
 func damage(damage : int) -> void:

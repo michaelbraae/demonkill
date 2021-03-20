@@ -28,7 +28,7 @@ func instantiateProjectiles(attack_direction : Vector2) -> void:
 
 func getRandomTrajectories(attack_direction : Vector2) -> Array:
 	var trajectories = []
-	for n in range(4):
+	for _n in range(4):
 		trajectories.append(generateRandomTrajectory(attack_direction))
 	return trajectories
 

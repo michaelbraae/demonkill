@@ -26,3 +26,4 @@ func possessNewEntity(possession_range, current_possession) -> void:
 					parent.health = parent.MAX_HEALTH
 					PossessionState.possessedNPC = parent
 					current_possession.queue_free()
+					break
