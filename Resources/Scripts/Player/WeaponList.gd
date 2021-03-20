@@ -10,5 +10,3 @@ const Weapons = {
 
 func getPumpShotgun() -> Dictionary:
 	return Weapons['PumpShotgun']
-
-#func getWeaponFromList() -> Dictionary:

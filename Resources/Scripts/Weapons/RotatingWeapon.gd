@@ -15,16 +15,8 @@ enum {
 const MUZZLE_RIGHT = Vector2(17, -2.5)
 const MUZZLE_LEFT = Vector2(-9, -2.5)
 
-func setState(state_var : int) -> void:
-	state = state_var
-
-func getState() -> int:
-	return state
-
 func isEquipped() -> bool:
-	if getState() == EQUIPPED:
-		return true
-	return false
+	return state == EQUIPPED
 
 func flipLeft() -> void:
 	sprite.flip_v = true
@@ -76,7 +68,7 @@ func positionWeapon() -> void:
 #		down down left
 
 func _physics_process(_delta):
-	match getState():
+	match state:
 		EQUIPPED:
 			rotateWeapon()
 			positionWeapon()

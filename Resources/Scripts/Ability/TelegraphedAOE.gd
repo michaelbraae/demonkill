@@ -31,40 +31,10 @@ enum {
 }
 
 func _ready() -> void:
-	setState(IDLE)
+	state = IDLE
 	targetLocationCollision.set_disabled(true)
 	targetLocationSprite.hide()
 	targetLocationSprite.play("active")
-
-func setState(state_var : int) -> void:
-	state = state_var
-
-func getState() -> int:
-	return state
-
-func setTargetVector(target_vector_arg : Vector2) -> void:
-	target_vector = target_vector_arg
-
-func getTargetVector() -> Vector2:
-	return target_vector
-
-func setMoveSpeed(move_speed_var : float) -> void:
-	move_speed = move_speed_var
-
-func getMoveSpeed() -> float:
-	return move_speed
-
-func setTargetId(id_var : String) -> void:
-	target_id = id_var
-
-func getTargetId() -> String:
-	return target_id
-
-func setDamage(damage_var : int) -> void:
-	damage = damage_var
-
-func getDamage() -> int:
-	return damage
 
 func hasAOE() -> bool:
 	return true
@@ -84,31 +54,31 @@ func sendAbilityBodyToTarget(projectile_vector : Vector2) -> void:
 	abilityBodySprite.set_rotation(projectile_vector.angle())
 	abilityBodySprite.show()
 	abilityBody.move_and_collide(
-		projectile_vector.normalized() * getMoveSpeed()
+		projectile_vector.normalized() * move_speed
 	)
 	if impactsPlayer() and overlapsPlayer():
 		targetLocation.set_position(abilityBody.get_position())
 	if (
-		getState() == IN_TRANSIT
+		state == IN_TRANSIT
 		and abilityBodyArea.overlaps_area(targetLocationArea)
 	):
-		setState(IMPACT)
+		state = IMPACT
 		abilityBody.queue_free()
 
 func _on_TargetLocation_animation_finished():
-	match getState():
+	match state:
 		IMPACT:
 			if hasAOE():
-				setState(AOE)
+				state = AOE
 			else:
-				setState(DECAY)
+				state = DECAY
 		AOE:
-			setState(DECAY)
+			state = DECAY
 		DECAY:
 			queue_free()
 
 func playAnimationFromState() -> void:
-	match getState():
+	match state:
 		IDLE:
 			abilityBodySprite.play("active")
 		IN_TRANSIT:
@@ -128,15 +98,15 @@ func damageOverlappingPlayer() -> void:
 				target_hit = true
 
 func _physics_process(_delta : float) -> void:
-	match getState():
+	match state:
 		IDLE:
 			if readyToFire():
-				setState(IN_TRANSIT)
-				targetLocation.set_position(getTargetVector())
+				state = IN_TRANSIT
+				targetLocation.set_position(target_vector)
 				targetLocationCollision.set_disabled(false)
 				targetLocationSprite.show()
 		IN_TRANSIT:
-			sendAbilityBodyToTarget(getTargetVector())
+			sendAbilityBodyToTarget(target_vector)
 		IMPACT:
 			damageOverlappingPlayer()
 	playAnimationFromState()

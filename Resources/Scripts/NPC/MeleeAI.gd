@@ -19,16 +19,10 @@ func hideAttackSpriteAndInactive() -> void:
 	attackSprite.play("inactive")
 	attackSprite.hide()
 
-func setBasicAttackDamage(damage_var: int) -> void:
-	basic_attack_damage = damage_var
-
-func getBasicAttackDamage() -> int:
-	return basic_attack_damage
-
 func getAttackLoop() -> String:
-	if not getAttackStarted():
+	if not attack_started:
 		velocity = InputHandler.getAttackDirection(self) * 50
-		setAttackStarted(true)
+		attack_started = true
 		if velocity.x >= 0.1:
 			animatedSprite.flip_h = false
 		if velocity.x <= -0.1:
@@ -36,8 +30,8 @@ func getAttackLoop() -> String:
 		attackNode.look_at(to_global(self.get_local_mouse_position()))
 		attackSprite.show()
 		attackSprite.play("active")
-		if not getHasAttackLanded():
-			setHasAttackLanded(true)
+		if not has_attack_landed:
+			has_attack_landed = true
 			damageAndKnockBackOverlappingAreas()
 	return "attack_loop"
 
@@ -72,7 +66,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 		for area in overlappingAreas:
 			if area.get_name() == "EnemyHitBox" and area.get_parent() != self:
 				var area_parent = area.get_parent()
-				area_parent.damage(getBasicAttackDamage(), true)
+				area_parent.damage(basic_attack_damage, true)
 				area_parent.knockBack(
 					get_angle_to(area_parent.get_global_position()),
 					200,
@@ -84,18 +78,16 @@ func handlePreAttack() -> void:
 	.handlePreAttack()
 
 func perAttackAction() -> void:
-	if not getHasAttackLanded():
+	if not has_attack_landed:
 		attackSprite.show()
 		attackSprite.play("active")
 		if targetOverlapsAttackBox():
-			setAttackStarted(true)
-			setHasAttackLanded(true)
-			getTarget().damage(getBasicAttackDamage())
-			getTarget().knockBack(getAngleToTarget(), 300, 15)
+			attack_started = true
+			has_attack_landed = true
+			target_actor.damage(basic_attack_damage)
+			target_actor.knockBack(getAngleToTarget(), 300, 15)
 
 func _on_AttackSprite_animation_finished():
 	if nodeIsPossessed(self) and state == ATTACKING:
-		setHasAttackLanded(false)
-#		attackSprite.hide()
-#		attackSprite.play("inactive")
+		has_attack_landed = false
 	hideAttackSpriteAndInactive()

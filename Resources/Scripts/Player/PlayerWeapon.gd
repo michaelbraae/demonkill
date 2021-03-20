@@ -10,12 +10,12 @@ var current_weapon_config
 var weapon_equipped
 
 func _ready():
-	current_weapon_config = PlayerState.getCurrentWeapon()
+	current_weapon_config = PlayerState.current_weapon
 	readyWeaponInstance()
 
 func fireCurrentWeapon() -> void:
 	if not current_weapon.isEquipped():
-		current_weapon.setState(current_weapon.EQUIPPED)
+		current_weapon.state = current_weapon.EQUIPPED
 	current_weapon.fire(getAttackDirection())
 
 func readyWeaponInstance() -> void:
@@ -32,7 +32,7 @@ func removeWeapon() -> void:
 
 func changeWeapon(NewWeapon : Dictionary) -> void:
 	PlayerState.changeWeapon(NewWeapon)
-	current_weapon_config = PlayerState.getCurrentWeapon()
+	current_weapon_config = PlayerState.current_weapon
 	readyWeaponInstance()
 
 func _process(_delta):

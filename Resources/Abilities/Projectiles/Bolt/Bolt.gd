@@ -1,5 +1,5 @@
 extends ProjectileBase
 
 func initialiseConfig():
-	setProjectileSpeed(10)
-	setProjectileDamage(5)
+	projectile_speed = 10
+	projectile_damage = 5

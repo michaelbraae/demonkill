@@ -40,7 +40,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 				)
 
 func meleeAttack():
-	current_weapon.setState(current_weapon.UNEQUIPPED)
+	current_weapon.state = current_weapon.UNEQUIPPED
 	match melee_attack:
 		MELEE_ATTACKS.BASIC:
 			if not melee_node_moved:

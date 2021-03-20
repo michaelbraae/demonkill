@@ -15,19 +15,6 @@ const PumpShotgun = {
 func _ready():
 	current_weapon = PumpShotgun
 
-func setCurrentWeapon(NewWeapon : Dictionary):
-	current_weapon = NewWeapon
-
-func getCurrentWeapon() -> Dictionary:
-	return current_weapon
-
-func setPreviousWeapon(PreviousWeapon : Dictionary):
-	previous_weapon = PreviousWeapon
-
-func getPreviousWeapon() -> Dictionary:
-	return previous_weapon
-
-# to alternate, changeWeapon(getPreviousWeapon())
-func changeWeapon(NewWeapon : Dictionary) -> void:
-	setPreviousWeapon(getCurrentWeapon())
-	setCurrentWeapon(NewWeapon)
+func changeWeapon(new_weapon : Dictionary) -> void:
+	previous_weapon = current_weapon
+	current_weapon = new_weapon

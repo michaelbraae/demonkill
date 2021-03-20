@@ -35,12 +35,6 @@ enum {
 	POSSESSED,
 }
 
-func setState(newState : int) -> void:
-	state = newState
-
-func getState() -> int:
-	return state
-
 func getStateString() -> String:
 	var state_string = "NO STATE"
 	match state:

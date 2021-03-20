@@ -19,11 +19,10 @@ func possessNewEntity(possession_range, current_possession) -> void:
 		for area in areas:
 			if area.get_name() == "EnemyBiteBox":
 				var parent = area.get_parent()
-				if parent.getState() == parent.STUNNED:
+				if parent.state == parent.STUNNED:
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.npc_camera.make_current()
 					parent.bite_button.hide()
 					parent.health = parent.MAX_HEALTH
 					PossessionState.possessedNPC = parent
 					current_possession.queue_free()
-					break

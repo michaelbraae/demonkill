@@ -1,10 +1,10 @@
 extends MeleeAI
 
 func initialiseConfig():
-	setMoveSpeed(130)
-	setBasicAttackDamage(3)
-	setAttacksInSequence(1)
-	setAttackRange(50)
-	setAttackCooldown(1)
-	setRepeatAttacks(true)
-	setCompleteAttackSequence(true)
+	move_speed = 130
+	attacks_in_sequence = 1
+	repeat_attacks = true
+	basic_attack_damage = 3
+	attack_range = 50
+	attack_cooldown = 1
+	complete_attack_sequence = true

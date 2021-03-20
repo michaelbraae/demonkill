@@ -41,7 +41,7 @@ func knockBack(
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	if knockback_handler.getKnockedBack():
+	if knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
 	else:
 		velocity = InputHandler.getVelocity(SPEED)

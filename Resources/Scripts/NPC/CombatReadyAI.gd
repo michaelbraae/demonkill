@@ -49,86 +49,20 @@ func _ready():
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
-func setStunDamageThreshold(s_d_t : int) -> void:
-	stun_damage_threshold = s_d_t
-
-func getStunDamageThreshold() -> int:
-	return stun_damage_threshold
-
-func setStunDuration(duration : int) -> void:
-	stun_duration = duration
-
-func getStunDuration() -> int:
-	return stun_duration
-
-func setAttacksInSequence(a_i_s : int) -> void:
-	attacks_in_sequence = a_i_s
-
-func getAttacksInSequence() -> int:
-	return attacks_in_sequence
-
-func setCurrentAttackInSequence(current_a_i_s : int) -> void:
-	current_attack_in_sequence = current_a_i_s
-
-func getCurrentAttackInSequence() -> int:
-	return current_attack_in_sequence
-
-func setAttackStarted(attack_started_var : bool) -> void:
-	attack_started = attack_started_var
-
-func getAttackStarted() -> bool:
-	return attack_started
-
-func setHasAttackLanded(landed_var) -> void:
-	has_attack_landed = landed_var
-
-func getHasAttackLanded() -> bool:
-	return has_attack_landed
-
-func setRepeatAttacks(repeats_var : bool) -> void:
-	repeat_attacks = repeats_var
-
-func getRepeatAttacks() -> bool:
-	return repeat_attacks
-
-func setAttackRange(attack_range_var : float) -> void:
-	attack_range = attack_range_var
-
-func getAttackRange() -> float:
-	return attack_range
-
-func setCompleteAttackSequence(complete_sequence : bool) -> void:
-	complete_attack_sequence = complete_sequence
-
-func getCompleteAttackSequence() -> bool:
-	return complete_attack_sequence
-
-func setAttackCooldown(attack_cooldown_var : float) -> void:
-	attack_cooldown = attack_cooldown_var
-
-func getAttackCooldown() -> float:
-	return attack_cooldown
-
-func setDamageCooldown(cooldown : float) -> void:
-	damage_cooldown = cooldown
-
-func getDamageCooldown() -> float:
-	return damage_cooldown
-
 func damage(damage : int, use_cooldown : bool = false) -> void:
 	if use_cooldown:
 		if damage_cooldown_timer.is_stopped():
-			damage_cooldown_timer.start(getDamageCooldown())
+			damage_cooldown_timer.start(damage_cooldown)
 			health = health - damage
 	else:
 		health = health - damage
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
-	elif health <= getStunDamageThreshold():
+	elif health <= stun_damage_threshold:
 		if health < 0:
-			setState(PRE_DEATH)
+			state = PRE_DEATH
 		else:
-			setState(STUNNED)
+			state = STUNNED
 
 func knockBack(
 	hit_direction : float,
@@ -146,26 +80,26 @@ func readyForDamage() -> bool:
 
 func isTargetInRange() -> bool:
 	var distance_to_target = get_global_position().distance_to(
-		getTarget().get_global_position()
+		target_actor.get_global_position()
 	)
-	if distance_to_target <= getAttackRange():
+	if distance_to_target <= attack_range:
 		return true
 	return false
 
 func getAnimation() -> String:
 	if isPossessed():
-		if getState() == ATTACKING:
+		if state == ATTACKING:
 			return getAttackLoop()
 		return getNavigationAnimation()
-	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(getState()):
+	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(state):
 		return getNavigationAnimation()
-	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState()):
+	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
 		return getAttackAnimation()
-	if getState() == KNOCKED_BACK:
+	if state == KNOCKED_BACK:
 		return "take_hit"
-	if getState() == STUNNED:
+	if state == STUNNED:
 		return "stunned"
-	if getState() == PRE_DEATH:
+	if state == PRE_DEATH:
 		return "take_hit"
 	return "idle"
 
@@ -184,76 +118,76 @@ func getAttackLoop() -> String:
 	return "attack_loop"
 
 func getAttackAnimation() -> String:
-	match getState():
+	match state:
 		PRE_ATTACK:
 			return "pre_attack"
 		ATTACKING:
-			if getRepeatAttacks():
+			if repeat_attacks:
 				return "attack"
-			return "attack_" + str(getCurrentAttackInSequence())
+			return "attack_" + str(attacks_in_sequence)
 		POST_ATTACK:
 			return "post_attack"
 	return "idle"
 
 func readyForPreAttack() -> bool:
 	return (
-		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(getState())
+		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
 		and attack_cooldown_timer.is_stopped()
 	)
 
 func handlePreAttack() -> void:
-	attack_cooldown_timer.start(getAttackCooldown())
-	setAttackStarted(true)
-	setState(PRE_ATTACK)
+	attack_cooldown_timer.start(attack_cooldown)
+	attack_started = true
+	state = PRE_ATTACK
 
 func perAttackAction() -> void:
 	pass
 
 func readyForPostAttack() -> bool:
-	if getCompleteAttackSequence():
-		if getCurrentAttackInSequence() > getAttacksInSequence():
+	if complete_attack_sequence:
+		if current_attack_in_sequence > attacks_in_sequence:
 			return true
 	else:
 		if (
-			getCurrentAttackInSequence() > 1
+			current_attack_in_sequence > 1
 			and not isTargetInRange()
-			or getCurrentAttackInSequence() > getAttacksInSequence()
+			or current_attack_in_sequence > attacks_in_sequence
 		):
 			return true
 	return false
 
 func runDecisionTree() -> void: 
 	if isPossessed():
-		if knockback_handler.getKnockedBack():
+		if knockback_handler.knocked_back:
 			velocity = knockback_handler.getKnockBackProcessVector()
-		elif Input.is_action_just_pressed("melee_attack") or getState() == ATTACKING:
-			setState(ATTACKING)
+		elif Input.is_action_just_pressed("melee_attack") or state == ATTACKING:
+			state = ATTACKING
 		else:
-			velocity = InputHandler.getVelocity(getMoveSpeed())
+			velocity = InputHandler.getVelocity(move_speed)
 		move_and_slide(velocity)
-	elif getState() == STUNNED:
-		knockback_handler.setKnockedBack(false)
-	elif getState() == PRE_DEATH:
+	elif state == STUNNED:
+		knockback_handler.knocked_back = false
+	elif state == PRE_DEATH:
 		pass
-	elif knockback_handler.getKnockedBack():
-		setAttackStarted(false)
-		setState(KNOCKED_BACK)
+	elif knockback_handler.knocked_back:
+		attack_started = false
+		state = KNOCKED_BACK
 		move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
 		if attack_cooldown_timer.get_time_left() < 0.1:
 			attack_cooldown_timer.stop()
-		if getTarget():
+		if target_actor:
 			alignRayCastToPlayer()
 			detectBlockers()
 			if (
 				isTargetInRange()
-				and not getPathBlocked()
-				or getAttackStarted()
-				or getState() == POST_ATTACK
+				and not path_blocked
+				or attack_started
+				or state == POST_ATTACK
 			):
 				if readyForPreAttack():
 					handlePreAttack()
-				if getState() == ATTACKING:
+				if state == ATTACKING:
 					perAttackAction()
 			else:
 				.runDecisionTree()
@@ -261,29 +195,29 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	if PossessionState.possessedNPC != self:
-		match getState():
+		match state:
 			KNOCKED_BACK:
-				setState(IDLE)
+				state = IDLE
 			PRE_ATTACK:
-				setState(ATTACKING)
+				state = ATTACKING
 			ATTACKING:
-				setHasAttackLanded(false)
-				setCurrentAttackInSequence(getCurrentAttackInSequence() + 1)
+				has_attack_landed = false
+				current_attack_in_sequence += 1
 				if readyForPostAttack():
-					setAttackStarted(false)
-					setState(POST_ATTACK)
-					setCurrentAttackInSequence(1)
+					attack_started = false
+					state = POST_ATTACK
+					current_attack_in_sequence = 1
 			POST_ATTACK:
-				setState(IDLE)
+				state = IDLE
 			STUNNED:
-				setState(IDLE)
+				state = IDLE
 			PRE_DEATH:
 				queue_free()
 	else:
-		match getState():
+		match state:
 			ATTACKING:
-				setState(POSSESSED)
-				setAttackStarted(false)
+				state = POSSESSED
+				attack_started = false
 
 func _process(delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:

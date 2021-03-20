@@ -7,7 +7,7 @@ onready var sprite = $Sprite
 var target_direction
 
 var projectile_speed
-var projectile_damage
+var projectile_damage = 1
 
 var target_id
 
@@ -18,32 +18,11 @@ func _ready():
 func initialiseConfig():
 	pass
 
-func setTargetDirection(target_direction_vector : Vector2) -> void:
-	target_direction = target_direction_vector
-
-func getTargetDirection() -> Vector2:
-	return target_direction
-
-func setProjectileSpeed(speed = 1):
-	projectile_speed = speed
-
-func setProjectileDamage(damage = 1):
-	projectile_damage = damage
-
-func getProjectileDamage() -> int:
-	return projectile_damage
-
 func collisionEffect():
 	pass
 
-func getTargetId() -> String:
-	return target_id
-
-func setTargetId(id_var) -> void:
-	target_id = id_var
-
 func _physics_process(_delta : float) -> void:
-	var projectile_vector = getTargetDirection()
+	var projectile_vector = target_direction
 	rotation = projectile_vector.angle()
 	sprite.show()
 	var collision = move_and_collide(
@@ -52,7 +31,7 @@ func _physics_process(_delta : float) -> void:
 	if collision:
 		collisionEffect()
 		var collider = collision.get_collider()
-		if collider.get(getTargetId()):
-			collider.damage(getProjectileDamage(), false)
+		if collider.get(target_id):
+			collider.damage(projectile_damage, false)
 			collider.knockBack(projectile_vector.angle(), 150, 15)
 		queue_free()

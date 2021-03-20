@@ -20,12 +20,6 @@ const IS_PLAYER = true
 
 var state
 
-func setState(state_var : int) -> void:
-	state = state_var
-
-func getState() -> int:
-	return state
-
 enum {
 	MOVING,
 	IDLE,
