@@ -1,8 +1,8 @@
 extends Node
 
 var possessedNPC
-const PLAYER_SCENE = preload("res://Resources/Actors/Player/Player.tscn")
-onready var GameState = get_node("/root/GameState")
+const PLAYER_SCENE = preload('res://Resources/Actors/Player/Player.tscn')
+onready var GameState = get_node('/root/GameState')
 
 func handlePossessionDeath(spawn_position) -> void:
 	possessedNPC.queue_free()
@@ -17,7 +17,7 @@ func possessNewEntity(possession_range, current_possession) -> void:
 	var areas = possession_range.get_overlapping_areas()
 	if areas:
 		for area in areas:
-			if area.get_name() == "EnemyBiteBox":
+			if area.get_name() == 'EnemyBiteBox':
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
 					GameState.state = GameState.CONTROLLING_NPC
@@ -26,3 +26,4 @@ func possessNewEntity(possession_range, current_possession) -> void:
 					parent.health = parent.MAX_HEALTH
 					PossessionState.possessedNPC = parent
 					current_possession.queue_free()
+					break

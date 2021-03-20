@@ -11,7 +11,7 @@ func _ready():
 
 func _process(delta):
 	if isPossessed():
-		if Input.is_action_just_pressed("bite"):
+		if Input.is_action_just_pressed('bite'):
 			PossessionState.possessNewEntity(bite_box, self)
 		bite_button.hide()
 	elif state == STUNNED:

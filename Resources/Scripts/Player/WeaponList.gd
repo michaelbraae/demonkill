@@ -1,10 +1,10 @@
 extends Node
 
 const Weapons = {
-	"PumpShotgun": {
-		"name": "PumpShotgun",
-		"path": "res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn",
-		"iconPath" : "",
+	'PumpShotgun': {
+		'name': 'PumpShotgun',
+		'path': 'res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn',
+		'iconPath' : '',
 	},
 }
 

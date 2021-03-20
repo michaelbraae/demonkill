@@ -9,4 +9,4 @@ func initialiseConfig() -> void:
 	complete_attack_sequence = true
 
 func setProjectileScene() -> void:
-	PROJECTILE_SCENE = preload("res://Resources/Projectiles/Energy-Ball/Energy-Ball.tscn")
+	PROJECTILE_SCENE = preload('res://Resources/Projectiles/Energy-Ball/Energy-Ball.tscn')

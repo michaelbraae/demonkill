@@ -6,7 +6,7 @@ onready var attackNode = $AttackNode
 onready var attackBox = $AttackNode/Area2D
 onready var attackSprite = $AttackNode/AnimatedSprite
 
-var basic_attack_damage
+var basic_attack_damage = 1
 var attack_up_position
 var attack_down_position
 var attack_left_position
@@ -16,7 +16,7 @@ func _ready():
 	hideAttackSpriteAndInactive()
 
 func hideAttackSpriteAndInactive() -> void:
-	attackSprite.play("inactive")
+	attackSprite.play('inactive')
 	attackSprite.hide()
 
 func getAttackLoop() -> String:
@@ -29,11 +29,11 @@ func getAttackLoop() -> String:
 			animatedSprite.flip_h = true
 		attackNode.look_at(to_global(self.get_local_mouse_position()))
 		attackSprite.show()
-		attackSprite.play("active")
+		attackSprite.play('active')
 		if not has_attack_landed:
 			has_attack_landed = true
 			damageAndKnockBackOverlappingAreas()
-	return "attack_loop"
+	return 'attack_loop'
 
 func rotateMeleeAttackNode() -> void:
 	var angle_to_target = rad2deg(getAngleToTarget())
@@ -52,11 +52,11 @@ func targetOverlapsAttackBox() -> bool:
 		for area in overlappingAreas:
 			if (
 				GameState.state == GameState.CONTROLLING_PLAYER and
-				area.get_name() == "HitBox"
-				and area.get_parent().get("IS_PLAYER")
+				area.get_name() == 'HitBox'
+				and area.get_parent().get('IS_PLAYER')
 			):
 				return true
-			elif area.get_name() == "EnemyHitBox" and nodeIsPossessed(area.get_parent()):
+			elif area.get_name() == 'EnemyHitBox' and nodeIsPossessed(area.get_parent()):
 				return true
 	return false
 
@@ -64,7 +64,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 	var overlappingAreas = attackBox.get_overlapping_areas()
 	if overlappingAreas:
 		for area in overlappingAreas:
-			if area.get_name() == "EnemyHitBox" and area.get_parent() != self:
+			if area.get_name() == 'EnemyHitBox' and area.get_parent() != self:
 				var area_parent = area.get_parent()
 				area_parent.damage(basic_attack_damage, true)
 				area_parent.knockBack(
@@ -80,7 +80,7 @@ func handlePreAttack() -> void:
 func perAttackAction() -> void:
 	if not has_attack_landed:
 		attackSprite.show()
-		attackSprite.play("active")
+		attackSprite.play('active')
 		if targetOverlapsAttackBox():
 			attack_started = true
 			has_attack_landed = true

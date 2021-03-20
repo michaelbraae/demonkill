@@ -2,7 +2,7 @@ extends Node
 
 var state = MAIN_MENU
 
-onready var healthGUI = load("res://Scenes/GUI/Health/Health.tscn").instance()
+onready var healthGUI = load('res://Scenes/GUI/Health/Health.tscn').instance()
 
 enum {
 	MAIN_MENU,
@@ -12,4 +12,4 @@ enum {
 }
 
 func prepareHealthGUI() -> void:
-	get_tree().get_root().call_deferred("add_child", healthGUI)
+	get_tree().get_root().call_deferred('add_child', healthGUI)

@@ -2,10 +2,10 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
-var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
+var knockback_handler_script = preload('res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd')
 var knockback_handler
 
-var stun_damage_threshold = 3
+var stun_damage_threshold = 1
 var stun_duration_timer
 var stun_duration = 3
 
@@ -17,7 +17,7 @@ var current_attack_in_sequence = 1
 var attack_started = false
 var has_attack_landed = false
 
-# if each "attacks_in_sequence" uses the same "attack" animation
+# if each 'attacks_in_sequence' uses the same 'attack' animation
 var repeat_attacks = false
 
 # units between player and self before considered in range
@@ -37,8 +37,8 @@ var damage_cooldown = 0.5
 var damage_cooldown_timer
 
 # starting health
-const MAX_HEALTH = 10
-var health = 10
+const MAX_HEALTH = 3
+var health = MAX_HEALTH
 
 func _ready():
 	knockback_handler = knockback_handler_script.new()
@@ -96,38 +96,38 @@ func getAnimation() -> String:
 	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
 		return getAttackAnimation()
 	if state == KNOCKED_BACK:
-		return "take_hit"
+		return 'take_hit'
 	if state == STUNNED:
-		return "stunned"
+		return 'stunned'
 	if state == PRE_DEATH:
-		return "take_hit"
-	return "idle"
+		return 'take_hit'
+	return 'idle'
 
 func getNavigationAnimation() -> String:
 	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
-		return "run"
+		return 'run'
 	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
-		return "run"
+		return 'run'
 	if velocity.y <= -0.1 or velocity.y >= 0.1:
-		return "run"
-	return "idle"
+		return 'run'
+	return 'idle'
 
 func getAttackLoop() -> String:
-	return "attack_loop"
+	return 'attack_loop'
 
 func getAttackAnimation() -> String:
 	match state:
 		PRE_ATTACK:
-			return "pre_attack"
+			return 'pre_attack'
 		ATTACKING:
 			if repeat_attacks:
-				return "attack"
-			return "attack_" + str(attacks_in_sequence)
+				return 'attack'
+			return 'attack_' + str(attacks_in_sequence)
 		POST_ATTACK:
-			return "post_attack"
-	return "idle"
+			return 'post_attack'
+	return 'idle'
 
 func readyForPreAttack() -> bool:
 	return (
@@ -160,7 +160,7 @@ func runDecisionTree() -> void:
 	if isPossessed():
 		if knockback_handler.knocked_back:
 			velocity = knockback_handler.getKnockBackProcessVector()
-		elif Input.is_action_just_pressed("melee_attack") or state == ATTACKING:
+		elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
 			state = ATTACKING
 		else:
 			velocity = InputHandler.getVelocity(move_speed)
@@ -210,6 +210,7 @@ func handlePostAnimState() -> void:
 			POST_ATTACK:
 				state = IDLE
 			STUNNED:
+				health += 1
 				state = IDLE
 			PRE_DEATH:
 				queue_free()

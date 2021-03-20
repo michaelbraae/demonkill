@@ -6,9 +6,9 @@ var state
 
 const IS_ENEMY = true
 
-onready var GameState = get_node("/root/GameState")
-onready var PossessionState = get_node("/root/PossessionState")
-onready var InputHandler = get_node("/root/InputHandler")
+onready var GameState = get_node('/root/GameState')
+onready var PossessionState = get_node('/root/PossessionState')
+onready var InputHandler = get_node('/root/InputHandler')
 onready var animatedSprite = $AnimatedSprite
 
 func isPossessed() -> bool:
@@ -36,32 +36,32 @@ enum {
 }
 
 func getStateString() -> String:
-	var state_string = "NO STATE"
+	var state_string = 'NO STATE'
 	match state:
 		IDLE:
-			state_string = "IDLE"
+			state_string = 'IDLE'
 		WANDERING:
-			state_string = "WANDERING"
+			state_string = 'WANDERING'
 		NAVIGATING:
-			state_string = "NAVIGATING"
+			state_string = 'NAVIGATING'
 		DASHING:
-			state_string = "DASHING"
+			state_string = 'DASHING'
 		FOLLOWING_PLAYER:
-			state_string = "FOLLOWING_PLAYER"
+			state_string = 'FOLLOWING_PLAYER'
 		PRE_ATTACK:
-			state_string = "PRE_ATTACK"
+			state_string = 'PRE_ATTACK'
 		ATTACKING:
-			state_string = "ATTACKING"
+			state_string = 'ATTACKING'
 		POST_ATTACK:
-			state_string = "POST_ATTACK"
+			state_string = 'POST_ATTACK'
 		TAKING_DAMAGE:
-			state_string = "TAKING_DAMAGE"
+			state_string = 'TAKING_DAMAGE'
 		STUNNED:
-			state_string = "STUNNED"
+			state_string = 'STUNNED'
 		PRE_DEATH:
-			state_string = "PRE_DEATH"
+			state_string = 'PRE_DEATH'
 		DEAD:
-			state_string = "DEAD"
+			state_string = 'DEAD'
 	return state_string
 
 func _ready():

@@ -7,7 +7,7 @@
 
 # Knights fight together in groups.
 # They use formations and defensive strategies to make the players life difficult
-# The underlings will follow the captains "commands" and protect him 
+# The underlings will follow the captains 'commands' and protect him 
 
 #	Demon Knight - Captain - Greatsword only - defensive
 #	Demon Knight - Sword and Shield - Aggressive melee

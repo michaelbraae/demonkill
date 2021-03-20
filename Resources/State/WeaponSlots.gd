@@ -1,6 +1,6 @@
 extends Node
 
-var weapon_list_script = load("res://Resources/State/WeaponSlots.gd")
+var weapon_list_script = load('res://Resources/State/WeaponSlots.gd')
 var WeaponList
 
 var weapon_at_slot = {

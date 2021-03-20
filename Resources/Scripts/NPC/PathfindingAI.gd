@@ -28,7 +28,7 @@ func detectTarget() -> void:
 	var detectionOverlaps = detectionArea.get_overlapping_areas()
 	if detectionOverlaps:
 		for area in detectionOverlaps:
-			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent().get("IS_PLAYER"):
+			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent().get('IS_PLAYER'):
 				target_actor = area.get_parent()
 			elif nodeIsPossessed(area.get_parent()):
 				target_actor = PossessionState.possessedNPC

@@ -26,7 +26,7 @@
 	# your father that he could beat the virus
 	# father knew that he would not survive
 	#	(but he did and he's a big fucking demon)
-	# so before he "died", he resurrected you from your tomb to finish 
+	# so before he 'died', he resurrected you from your tomb to finish 
 	# his work and break the curse
 	# your father's assistant felt guilty and ashamed for underestimating the curse
 	# he lies to the player about his true past.

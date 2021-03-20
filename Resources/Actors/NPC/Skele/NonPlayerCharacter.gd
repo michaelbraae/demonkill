@@ -10,7 +10,7 @@ const move_speed = 100
 var move_direction = 0
 
 #func _physics_process(delta):
-#	if Input.is_action_just_pressed("click_left"):
+#	if Input.is_action_just_pressed('click_left'):
 #		move_to(Vector2(64, -320))
 #	if path_ind < path.size():
 #		var move_vec = (path[path_ind] - global_transform.origin)

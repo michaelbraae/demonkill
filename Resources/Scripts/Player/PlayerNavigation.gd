@@ -12,17 +12,17 @@ var speed_actual
 const DASH_COOLDOWN = 0.7
 const BOLT_COOLDOWN = 2.0
 
-var knockback_handler_script = preload("res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd")
+var knockback_handler_script = preload('res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd')
 var knockback_handler
 
 var aim_vector = Vector2()
 
-var facing_direction = "down"
+var facing_direction = 'down'
 
 func _ready():
 	knockback_handler = knockback_handler_script.new()
 	InputHandler.setDeadzones()
-	InputHandler.mouseLogic()
+	InputHandler.setMouseMode()
 	dash_cooldown_timer = Timer.new()
 	add_child(dash_cooldown_timer)
 	bolt_cooldown_timer = Timer.new()
@@ -50,8 +50,8 @@ func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:
 		return Vector2(get_local_mouse_position().normalized())
 	aim_vector = Vector2()
-	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
-	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	aim_vector.y = Input.get_action_strength('aim_down') - Input.get_action_strength('aim_up')
+	aim_vector.x = Input.get_action_strength('aim_right') - Input.get_action_strength('aim_left')
 	aim_vector = aim_vector.normalized()
 	if aim_vector:
 		return aim_vector
@@ -59,11 +59,11 @@ func getAttackDirection() -> Vector2:
 		return velocity
 	var facing_vector = Vector2()
 	match facing_direction:
-		"up":
+		'up':
 			facing_vector = Vector2.UP
-		"down":
+		'down':
 			facing_vector = Vector2.DOWN
-		"right":
+		'right':
 			if animatedSprite.flip_h:
 				facing_vector = Vector2.LEFT
 			else:

@@ -43,7 +43,7 @@
 #		You finish them with basic attacks
 #
 #		You leave down through the hall and arrive at a four way intersection
-#		Two of the doors say "Does not open from this side"
+#		Two of the doors say 'Does not open from this side'
 #		One door leads up to the Cellar
 #
 #		CELLAR

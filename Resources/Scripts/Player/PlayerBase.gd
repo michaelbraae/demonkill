@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 class_name PlayerBase
 
-onready var GameState = get_node("/root/GameState")
-onready var PlayerState = get_node("/root/PlayerState")
-onready var InputHandler = get_node("/root/InputHandler")
+onready var GameState = get_node('/root/GameState')
+onready var PlayerState = get_node('/root/PlayerState')
+onready var InputHandler = get_node('/root/InputHandler')
 
 var possessing = false
 

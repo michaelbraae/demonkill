@@ -34,7 +34,7 @@ func _ready() -> void:
 	state = IDLE
 	targetLocationCollision.set_disabled(true)
 	targetLocationSprite.hide()
-	targetLocationSprite.play("active")
+	targetLocationSprite.play('active')
 
 func hasAOE() -> bool:
 	return true
@@ -46,7 +46,7 @@ func overlapsPlayer() -> bool:
 	var overlappingAreas = abilityBodyArea.get_overlapping_areas()
 	if overlappingAreas:
 		for area in overlappingAreas:
-			if area.get_parent().get("IS_PLAYER"):
+			if area.get_parent().get('IS_PLAYER'):
 				return true
 	return false
 
@@ -80,11 +80,11 @@ func _on_TargetLocation_animation_finished():
 func playAnimationFromState() -> void:
 	match state:
 		IDLE:
-			abilityBodySprite.play("active")
+			abilityBodySprite.play('active')
 		IN_TRANSIT:
-			targetLocationSprite.play("active")
+			targetLocationSprite.play('active')
 		IMPACT:
-			targetLocationSprite.play("impact")
+			targetLocationSprite.play('impact')
 
 func readyToFire() -> bool:
 	return true
@@ -93,7 +93,7 @@ func damageOverlappingPlayer() -> void:
 	var overlappingAreas = hitBox.get_overlapping_areas()
 	for area in overlappingAreas:
 		var area_parent = area.get_parent()
-		if area_parent.get("IS_PLAYER"):
+		if area_parent.get('IS_PLAYER'):
 			if not target_hit:
 				target_hit = true
 

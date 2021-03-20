@@ -23,16 +23,16 @@ func _on_AttackSprite_animation_finished():
 func positionAttackNode() -> void:
 	attacking = true
 	attackBox.look_at(to_global(getAttackDirection()))
-	attackSprite.play("melee_basic")
+	attackSprite.play('melee_basic')
 	attackSprite.show()
 
 func damageAndKnockBackOverlappingAreas() -> void:
 	var overlappingAreas = attackBoxArea2D.get_overlapping_areas()
 	if overlappingAreas:
 		for area in overlappingAreas:
-			if area.get_name() == "EnemyHitBox":
+			if area.get_name() == 'EnemyHitBox':
 				var area_parent = area.get_parent()
-				area_parent.damage(3, true)
+				area_parent.damage(1, true)
 				area_parent.knockBack(
 					get_angle_to(area_parent.get_global_position()),
 					200,
@@ -54,9 +54,9 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if Input.is_action_just_pressed("fire_weapon"):
+	if Input.is_action_just_pressed('fire_weapon'):
 		fireCurrentWeapon()
-	if Input.is_action_just_pressed("melee_attack") or melee_node_moved:
+	if Input.is_action_just_pressed('melee_attack') or melee_node_moved:
 		meleeAttack()
 	if attacking:
 		velocity = getAttackDirection() * 50

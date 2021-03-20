@@ -1,16 +1,16 @@
-extends "res://Resources/Scripts/NPC/PathfindingAI.gd"
+extends 'res://Resources/Scripts/NPC/PathfindingAI.gd'
 
 
 func getAnimation() -> String:
 	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
-		return "run"
+		return 'run'
 	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
-		return "run"
+		return 'run'
 	if velocity.y != 0:
-		return "run"
-	return "idle"
+		return 'run'
+	return 'idle'
 
 func _physics_process(delta : float) -> void:
 	._physics_process(delta)
