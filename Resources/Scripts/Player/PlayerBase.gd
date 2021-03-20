@@ -18,11 +18,6 @@ onready var attackBoxArea2D = $AttackBox/Area2D
 
 const IS_PLAYER = true
 
-const HEALTH_MAX = 10
-const HEALTH_MIN = 0
-
-var health_current = HEALTH_MAX
-
 var state
 
 func setState(state_var : int) -> void:
@@ -45,6 +40,6 @@ func _ready() -> void:
 	attackSprite.hide()
 
 func damage(damage : int) -> void:
-	health_current = health_current - damage
-	if health_current <= HEALTH_MIN:
-		get_tree().reload_current_scene()
+	PlayerState.health -= damage
+	if PlayerState.health <= 0:
+		get_tree().quit()

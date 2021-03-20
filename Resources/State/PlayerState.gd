@@ -1,9 +1,10 @@
 extends Node
 
-var state
-
 var current_weapon
 var previous_weapon
+
+var max_health = 10
+var health = max_health
 
 const PumpShotgun = {
 	"name": "PumpShotgun",

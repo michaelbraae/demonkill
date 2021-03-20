@@ -75,4 +75,3 @@ func _process(_delta : float) -> void:
 		dash_cooldown_timer.stop()
 	if bolt_cooldown_timer.get_time_left() <= 0.1:
 		bolt_cooldown_timer.stop()
-	healthBar.play(str(health_current))
