@@ -221,7 +221,7 @@ func handlePostAnimState() -> void:
 				attack_started = false
 				attack_landed = false
 
-func _process(delta):
+func _process(_delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
 	if stun_duration_timer.get_time_left() < 0.1:

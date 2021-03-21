@@ -3,6 +3,7 @@ extends Node
 var possessedNPC
 const PLAYER_SCENE = preload('res://Resources/Actors/Player/Player.tscn')
 onready var GameState = get_node('/root/GameState')
+onready var FeedbackHandler = get_node('/root/FeedbackHandler')
 
 func handlePossessionDeath(spawn_position) -> void:
 	possessedNPC.queue_free()
@@ -20,6 +21,7 @@ func possessNewEntity(possession_range, current_possession) -> void:
 			if area.get_name() == 'EnemyBiteBox':
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
+					FeedbackHandler.warp()
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.npc_camera.make_current()
 					parent.bite_button.hide()

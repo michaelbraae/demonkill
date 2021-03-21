@@ -9,7 +9,7 @@ onready var bite_box = $EnemyBiteBox
 func _ready():
 	bite_button.hide()
 
-func _process(delta):
+func _process(_delta):
 	if isPossessed():
 		if Input.is_action_just_pressed('bite'):
 			PossessionState.possessNewEntity(bite_box, self)

@@ -27,7 +27,7 @@ func positionAttackNode() -> void:
 	attackSprite.show()
 
 func damageAndKnockBackOverlappingAreas() -> void:
-	var overlappingAreas = attackBoxArea2D.get_overlapping_areas()
+	var overlappingAreas = $AttackBox/Area2D.get_overlapping_areas()
 	if overlappingAreas:
 		for area in overlappingAreas:
 			if area.get_name() == 'EnemyHitBox':

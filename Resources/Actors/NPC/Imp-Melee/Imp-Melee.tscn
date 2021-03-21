@@ -112,7 +112,7 @@ rotation = 0.00808018
 scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 3
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -134,7 +134,7 @@ rotation = 1.5708
 scale = Vector2( 1.18368, 1.74377 )
 frames = SubResource( 3 )
 animation = "active"
-frame = 1
+frame = 2
 speed_scale = 4.0
 playing = true
 
