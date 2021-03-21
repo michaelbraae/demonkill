@@ -11,8 +11,8 @@ func initialiseConfig():
 func perAttackAction() -> void:
 	if (
 		isTargetInRange()
-		and not has_attack_landed
+		and not attack_landed
 		and HIT_FRAMES.has(animatedSprite.get_frame())
 	):
-		has_attack_landed = true
+		attack_landed = true
 		target_actor.damage(BASIC_ATTACK_DAMAGE)

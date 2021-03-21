@@ -12,7 +12,7 @@ var speed_actual
 const DASH_COOLDOWN = 0.7
 const BOLT_COOLDOWN = 2.0
 
-var knockback_handler_script = preload('res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd')
+var knockback_handler_script = preload('res://Resources/Scripts/Helpers/KnockBackHandler.gd')
 var knockback_handler
 
 var aim_vector = Vector2()

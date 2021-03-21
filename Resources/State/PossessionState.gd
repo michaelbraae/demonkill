@@ -24,6 +24,8 @@ func possessNewEntity(possession_range, current_possession) -> void:
 					parent.npc_camera.make_current()
 					parent.bite_button.hide()
 					parent.health = parent.MAX_HEALTH
+					parent.attack_started = false
+					parent.attack_landed = false
 					PossessionState.possessedNPC = parent
 					current_possession.queue_free()
 					break

@@ -11,9 +11,9 @@ func setProjectileScene() -> void:
 	pass
 
 func perAttackAction() -> void:
-	if not has_attack_landed:
+	if not attack_landed:
 		attack_started = true
-		has_attack_landed = true
+		attack_landed = true
 		var projectile_instance = PROJECTILE_SCENE.instance()
 		get_parent().get_parent().add_child(projectile_instance)
 		projectile_instance.target_id = 'IS_PLAYER'

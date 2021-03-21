@@ -46,12 +46,12 @@
 animations = [ {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "walk_right",
+"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "idle_right",
+"name": "walk_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
@@ -95,36 +95,6 @@ height = 12.7013
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 55 ) ],
-"loop": true,
-"name": "9",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 46 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 56 ) ],
-"loop": true,
-"name": "8",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 51 ) ],
-"loop": true,
-"name": "5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 47 ) ],
-"loop": true,
-"name": "10",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 49 ) ],
-"loop": true,
-"name": "1",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 52 ) ],
 "loop": true,
 "name": "6",
@@ -148,6 +118,36 @@ animations = [ {
 "frames": [ ExtResource( 53 ) ],
 "loop": true,
 "name": "3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 47 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 49 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 51 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 55 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 46 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 56 ) ],
+"loop": true,
+"name": "8",
 "speed": 5.0
 } ]
 
@@ -210,7 +210,6 @@ animation = "0"
 playing = true
 
 [node name="AttackBox" type="Node2D" parent="."]
-visible = false
 
 [node name="AttackSprite" type="AnimatedSprite" parent="AttackBox"]
 position = Vector2( 33.6401, 0.312408 )
@@ -218,7 +217,7 @@ rotation = 1.57146
 scale = Vector2( 0.860167, 1.50404 )
 frames = SubResource( 5 )
 animation = "melee_basic"
-frame = 1
+frame = 2
 speed_scale = 3.0
 playing = true
 

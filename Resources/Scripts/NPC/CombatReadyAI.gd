@@ -2,7 +2,7 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
-var knockback_handler_script = preload('res://Resources/Scripts/Helpers/Behaviour/KnockBackHandler.gd')
+var knockback_handler_script = preload('res://Resources/Scripts/Helpers/KnockBackHandler.gd')
 var knockback_handler
 
 var stun_damage_threshold = 1
@@ -15,7 +15,7 @@ var current_attack_in_sequence = 1
 
 # used to ensure the attack_sequence is completed
 var attack_started = false
-var has_attack_landed = false
+var attack_landed = false
 
 # if each 'attacks_in_sequence' uses the same 'attack' animation
 var repeat_attacks = false
@@ -201,7 +201,7 @@ func handlePostAnimState() -> void:
 			PRE_ATTACK:
 				state = ATTACKING
 			ATTACKING:
-				has_attack_landed = false
+				attack_landed = false
 				current_attack_in_sequence += 1
 				if readyForPostAttack():
 					attack_started = false
@@ -219,6 +219,7 @@ func handlePostAnimState() -> void:
 			ATTACKING:
 				state = POSSESSED
 				attack_started = false
+				attack_landed = false
 
 func _process(delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
