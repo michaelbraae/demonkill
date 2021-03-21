@@ -9,7 +9,9 @@ const IS_ENEMY = true
 onready var GameState = get_node('/root/GameState')
 onready var PossessionState = get_node('/root/PossessionState')
 onready var InputHandler = get_node('/root/InputHandler')
+
 onready var animatedSprite = $AnimatedSprite
+onready var npc_camera = $Camera2D
 
 func isPossessed() -> bool:
 	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.possessedNPC == self

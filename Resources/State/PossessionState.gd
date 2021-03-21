@@ -6,6 +6,7 @@ onready var GameState = get_node('/root/GameState')
 onready var FeedbackHandler = get_node('/root/FeedbackHandler')
 
 func handlePossessionDeath(spawn_position) -> void:
+	FeedbackHandler.warp()
 	possessedNPC.queue_free()
 	GameState.state = GameState.CONTROLLING_PLAYER
 	var current_scene = get_tree().get_current_scene()

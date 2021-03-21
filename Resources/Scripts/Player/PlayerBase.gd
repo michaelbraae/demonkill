@@ -30,6 +30,7 @@ func _ready() -> void:
 	attackSprite.hide()
 
 func damage(damage : int) -> void:
+	camera2D.shake()
 	PlayerState.health -= damage
 	if PlayerState.health <= 0:
 		get_tree().quit()

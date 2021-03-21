@@ -50,6 +50,7 @@ func _ready():
 	add_child(damage_cooldown_timer)
 
 func damage(damage : int, use_cooldown : bool = false) -> void:
+	npc_camera.shake()
 	if use_cooldown:
 		if damage_cooldown_timer.is_stopped():
 			damage_cooldown_timer.start(damage_cooldown)

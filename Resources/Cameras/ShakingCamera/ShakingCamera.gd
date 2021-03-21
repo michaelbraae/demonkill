@@ -1,24 +1,27 @@
 extends Camera2D
 
-onready var timer : Timer = $Timer
+var shake_amount = 1.5
 
-export var amplitude : = 6.0
-export var duration : = 0.8 setget set_duration
-export(float, EASE) var DAMP_EASING : = 1.0
-export var shake : = false setget set_shake
+var shake_enabled = false
 
-var enabled : = false
+var shake_timer
 
 func _ready():
-	randomize()
-	set_process(false)
-	self.duration = duration
-	#connect_to_shakers()
+	shake_timer = Timer.new()
+	add_child(shake_timer)
 
+func shake() -> void:
+	shake_enabled = true
+	shake_timer.start(0.2)
 
-func set_duration(value : float) -> void:
-	duration = value
-	timer.wait_time = duration
+func _process(delta):
+	if shake_enabled:
+		set_offset(Vector2( \
+			rand_range(-1.0, 1.0) * shake_amount, \
+			rand_range(-1.0, 1.0) * shake_amount \
+		))
 
-func set_shake(value : bool) -> void:
-	pass
+func _physics_process(delta):
+	if shake_timer.get_time_left() < 0.1:
+		shake_enabled = false
+		shake_timer.stop()

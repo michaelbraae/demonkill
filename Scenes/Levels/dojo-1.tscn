@@ -5,9 +5,9 @@
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 545.983, 516.222, 543.789, 399.211, 731.739, 402.136, 728, 856, -272, 856, 357.303, 514.028, 115.967, 397.748, 358.034, 395.554, 113.042, 508.909, -68.3254, 510.371, -262.857, 396.286, -70.5194, 397.017 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 6, 7, 5, 8 ), PoolIntArray( 8, 5, 4, 9 ), PoolIntArray( 9, 4, 10, 11 ) ]
-outlines = [ PoolVector2Array( -262.857, 396.286, -272, 856, 728, 856, 731.739, 402.136, 543.789, 399.211, 545.983, 516.222, 357.303, 514.028, 358.034, 395.554, 115.967, 397.748, 113.042, 508.909, -68.3254, 510.371, -70.5194, 397.017 ) ]
+vertices = PoolVector2Array( 545.983, 516.222, 543.789, 399.211, 731.739, 402.136, 728, 856, 42.7279, 849.949, 357.303, 514.028, 43.6423, 397.331, 358.034, 395.554 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ) ]
+outlines = [ PoolVector2Array( 42.7279, 849.949, 728, 856, 731.739, 402.136, 543.789, 399.211, 545.983, 516.222, 357.303, 514.028, 358.034, 395.554, 43.6423, 397.331 ) ]
 
 [node name="root" type="Node2D"]
 position = Vector2( 68.2378, 0.897888 )
@@ -37,7 +37,7 @@ texture = ExtResource( 2 )
 [node name="Navigation2D" type="Navigation2D" parent="Environment"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Environment/Navigation2D"]
-position = Vector2( -8.3429, 5.74377 )
+position = Vector2( -8.3429, 6.65814 )
 navpoly = SubResource( 1 )
 
 [node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
@@ -46,22 +46,16 @@ position = Vector2( 195.908, 641.427 )
 [node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
 position = Vector2( 349.667, 731.677 )
 
-[node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( -84.8689, 740.033 )
-
 [node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( -158.405, 482.654 )
+position = Vector2( 142.426, 473.51 )
 
 [node name="walls" type="YSort" parent="Environment"]
 
 [node name="Building-Square" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -363.807, 307.939 )
-
-[node name="Building-Square2" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 64 )
+position = Vector2( -55.6604, 338.114 )
 
 [node name="Building-Square13" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -219.807, 307.939 )
+position = Vector2( -49.7321, 317.083 )
 
 [node name="Building-Square14" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( -75.8075, 307.939 )
@@ -91,7 +85,7 @@ position = Vector2( 516.193, 307.939 )
 position = Vector2( 668.193, 307.939 )
 
 [node name="Building-Square32" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -200, 952 )
+position = Vector2( -29.925, 961.144 )
 
 [node name="Building-Square31" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( -56, 952 )
@@ -120,26 +114,20 @@ position = Vector2( 536, 952 )
 [node name="Building-Square23" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 688, 952 )
 
-[node name="Building-Square3" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -374.582, 311.072 )
-
 [node name="Building-Square4" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -374.582, 447.072 )
+position = Vector2( -66.4355, 477.247 )
 
 [node name="Building-Square5" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 480 )
+position = Vector2( -59.8534, 510.175 )
 
 [node name="Building-Square6" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 608 )
+position = Vector2( -59.8534, 638.175 )
 
 [node name="Building-Square35" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 704 )
+position = Vector2( -59.8534, 734.175 )
 
 [node name="Building-Square34" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 832 )
-
-[node name="Building-Square33" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( -368, 960 )
+position = Vector2( -59.8534, 862.175 )
 
 [node name="Building-Square38" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 824, 704 )
@@ -153,9 +141,6 @@ position = Vector2( 824, 960 )
 [node name="Building-Square12" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 828.193, 307.939 )
 
-[node name="Building-Square11" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 64 )
-
 [node name="Building-Square10" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 817.418, 311.072 )
 
@@ -164,9 +149,6 @@ position = Vector2( 817.418, 447.072 )
 
 [node name="Building-Square8" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 824, 480 )
-
-[node name="Building-Square39" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( 13.569, 422 )
 
 [node name="Building-Square41" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 441.418, 423.072 )
