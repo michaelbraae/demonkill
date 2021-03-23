@@ -62,7 +62,7 @@ func moveToNavigationPoint() -> void:
 		if move_vec.length() < vector_threshold:
 			path_ind += 1
 		else:
-			move_and_slide(move_vec.normalized() * move_speed)
+			move_vec = move_and_slide(move_vec.normalized() * move_speed)
 
 func setTargetLocationAsTargetVector() -> void:
 	velocity = Vector2()
@@ -89,7 +89,7 @@ func runDecisionTree() -> void:
 		else:
 			state = FOLLOWING_PLAYER
 			setTargetLocationAsTargetVector()
-			move_and_slide(velocity)
+			velocity = move_and_slide(velocity)
 	else:
 		state = IDLE
 

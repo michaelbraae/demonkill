@@ -165,7 +165,7 @@ func runDecisionTree() -> void:
 			state = ATTACKING
 		else:
 			velocity = InputHandler.getVelocity(move_speed)
-		move_and_slide(velocity)
+		velocity = move_and_slide(velocity)
 	elif state == STUNNED:
 		knockback_handler.knocked_back = false
 	elif state == PRE_DEATH:
@@ -173,7 +173,7 @@ func runDecisionTree() -> void:
 	elif knockback_handler.knocked_back:
 		attack_started = false
 		state = KNOCKED_BACK
-		move_and_slide(knockback_handler.getKnockBackProcessVector())
+		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
 		if attack_cooldown_timer.get_time_left() < 0.1:
 			attack_cooldown_timer.stop()

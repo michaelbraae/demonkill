@@ -43,14 +43,13 @@ func handlePossessionDeath(spawn_position) -> void:
 	bite_box = player_instance.bite_box
 	player_instance.camera2D.make_current()
 
-func possessNewEntity(current_possession) -> void:
+func possessNewEntity(current_possession_var) -> void:
 	var areas = bite_box.get_overlapping_areas()
 	if areas:
 		for area in areas:
 			if area.get_name() == 'EnemyBiteBox':
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
-					#FeedbackHandler.warp()
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.npc_camera.make_current()
 					parent.bite_button.hide()
@@ -60,7 +59,7 @@ func possessNewEntity(current_possession) -> void:
 					possessedNPC = parent
 					bite_box = area
 					InputHandler.current_actor = parent
-					current_possession.queue_free()
+					current_possession_var.queue_free()
 					break
 
 func _physics_process(_delta):

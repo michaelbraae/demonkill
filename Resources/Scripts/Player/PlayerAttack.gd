@@ -64,4 +64,4 @@ func handlePlayerAction() -> void:
 	else:
 		setVelocity()
 	animatedSprite.play(getAnimation())
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
