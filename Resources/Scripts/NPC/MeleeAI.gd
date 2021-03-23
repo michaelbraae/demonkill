@@ -27,7 +27,7 @@ func getAttackLoop() -> String:
 			attack_node_moved = true
 			attackNode.look_at(to_global(self.get_local_mouse_position()))
 		else:
-			velocity = InputHandler.getAttackDirection(self) * 50
+			velocity = InputHandler.getAttackDirection() * 50
 			attack_started = true
 			if velocity.x >= 0.1:
 				animatedSprite.flip_h = false

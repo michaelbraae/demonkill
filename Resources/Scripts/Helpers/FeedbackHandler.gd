@@ -42,8 +42,6 @@ func _physics_process(_delta):
 
 # functions here should be invoked by other scripts causing game juicyness
 
-# screen shake
-
 # frame freeze for a split second to emphasis hits
 
 # canvas layers causing black and white filters

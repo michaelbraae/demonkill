@@ -84,6 +84,11 @@ animations = [ {
 "loop": true,
 "name": "walk_up",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 20 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "dodge_roll",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -179,7 +184,8 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.606689, 0.606689 )
 frames = SubResource( 1 )
-animation = "idle_down"
+animation = "dodge_roll"
+frame = 3
 speed_scale = 2.0
 playing = true
 

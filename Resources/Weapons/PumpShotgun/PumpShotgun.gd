@@ -14,7 +14,6 @@ var can_fire = true
 var spread_rng = RandomNumberGenerator.new()
 
 func fire(attack_direction : Vector2) -> void:
-	print(attack_direction)
 	if can_fire:
 		instantiateProjectiles(attack_direction)
 
