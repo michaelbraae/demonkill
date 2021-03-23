@@ -14,14 +14,14 @@ func shake() -> void:
 	shake_enabled = true
 	shake_timer.start(0.2)
 
-func _process(delta):
+func _process(_delta):
 	if shake_enabled:
 		set_offset(Vector2( \
 			rand_range(-1.0, 1.0) * shake_amount, \
 			rand_range(-1.0, 1.0) * shake_amount \
 		))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if shake_timer.get_time_left() < 0.1:
 		shake_enabled = false
 		shake_timer.stop()

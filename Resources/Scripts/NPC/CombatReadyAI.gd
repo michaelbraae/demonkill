@@ -60,7 +60,7 @@ func damage(damage : int, use_cooldown : bool = false) -> void:
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= stun_damage_threshold:
-		if health < 0:
+		if health < 0 or state == STUNNED:
 			state = PRE_DEATH
 		else:
 			state = STUNNED

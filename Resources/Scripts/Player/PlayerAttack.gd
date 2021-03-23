@@ -27,12 +27,12 @@ func positionAttackNode() -> void:
 	attackSprite.show()
 
 func damageAndKnockBackOverlappingAreas() -> void:
+	camera2D.shake()
 	var overlappingAreas = $AttackBox/Area2D.get_overlapping_areas()
 	if overlappingAreas:
 		for area in overlappingAreas:
 			if area.get_name() == 'EnemyHitBox':
 				var area_parent = area.get_parent()
-				camera2D.shake()
 				area_parent.damage(1, true)
 				area_parent.knockBack(
 					get_angle_to(area_parent.get_global_position()),
