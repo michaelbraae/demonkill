@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/top-wall-chunk.png-d8a8bc23dfdd23f389c151ea84cb4ea4.stex"
+path="res://.import/run.png-c49ad5c672724547e41052f038118b57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/top-wall-chunk.png"
-dest_files=[ "res://.import/top-wall-chunk.png-d8a8bc23dfdd23f389c151ea84cb4ea4.stex" ]
+source_file="res://Resources/Sprites/Sprites/Imp/Caster/run.png"
+dest_files=[ "res://.import/run.png-c49ad5c672724547e41052f038118b57.stex" ]
 
 [params]
 

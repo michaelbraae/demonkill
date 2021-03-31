@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor-corner-shadow.png-37bc516499d37eab2dc8a10ac8cd77ee.stex"
+path="res://.import/attack.png-597f89a498890ea43c33be082f0a5214.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/floor-corner-shadow.png"
-dest_files=[ "res://.import/floor-corner-shadow.png-37bc516499d37eab2dc8a10ac8cd77ee.stex" ]
+source_file="res://Resources/Sprites/Sprites/Imp/Caster/attack.png"
+dest_files=[ "res://.import/attack.png-597f89a498890ea43c33be082f0a5214.stex" ]
 
 [params]
 

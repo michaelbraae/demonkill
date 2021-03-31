@@ -46,8 +46,20 @@ position = Vector2( 195.908, 641.427 )
 [node name="Imp-Melee2" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
 position = Vector2( 349.667, 731.677 )
 
-[node name="Imp-Melee4" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
-position = Vector2( 142.426, 473.51 )
+[node name="Imp-Melee3" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 541.687, 612.807 )
+
+[node name="Imp-Melee5" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 478.595, 680.472 )
+
+[node name="Imp-Melee6" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 348.753, 624.694 )
+
+[node name="Imp-Melee7" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 196.965, 769.167 )
+
+[node name="Imp-Melee8" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
+position = Vector2( 245.428, 702.417 )
 
 [node name="walls" type="YSort" parent="Environment"]
 

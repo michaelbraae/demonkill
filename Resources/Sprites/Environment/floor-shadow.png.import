@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hall-window.png-abd0cdf84015be7ccd0d796b1d9802b4.stex"
+path="res://.import/floor-shadow.png-f692f335f86e0c4e06562bfe6d244b7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/hall-window.png"
-dest_files=[ "res://.import/hall-window.png-abd0cdf84015be7ccd0d796b1d9802b4.stex" ]
+source_file="res://Resources/Sprites/Environment/floor-shadow.png"
+dest_files=[ "res://.import/floor-shadow.png-f692f335f86e0c4e06562bfe6d244b7a.stex" ]
 
 [params]
 

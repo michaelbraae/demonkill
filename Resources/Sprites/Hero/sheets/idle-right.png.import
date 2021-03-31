@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor-shadow.png-83294348bbe3da54cc0050985937bc0f.stex"
+path="res://.import/idle-right.png-8a56150fbd245363008b33066b536633.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/floor-shadow.png"
-dest_files=[ "res://.import/floor-shadow.png-83294348bbe3da54cc0050985937bc0f.stex" ]
+source_file="res://Resources/Sprites/Hero/sheets/idle-right.png"
+dest_files=[ "res://.import/idle-right.png-8a56150fbd245363008b33066b536633.stex" ]
 
 [params]
 

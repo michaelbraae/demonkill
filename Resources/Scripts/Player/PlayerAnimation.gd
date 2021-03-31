@@ -16,14 +16,6 @@ func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 		move_child(current_weapon, high_angle_node_position)
 		animatedSprite.flip_h = false
 		facing_direction = 'up'
-	elif angle_of_focus < -30 and angle_of_focus > -70:
-		move_child(current_weapon, high_angle_node_position)
-		animatedSprite.flip_h = false
-		facing_direction = 'up_right'
-	elif angle_of_focus < -120 and angle_of_focus > -150:
-		move_child(current_weapon, high_angle_node_position)
-		animatedSprite.flip_h = true
-		facing_direction = 'up_right'
 	elif angle_of_focus >= -30 and angle_of_focus < 30:
 		move_child(current_weapon, low_angle_node_position)
 		animatedSprite.flip_h = false
@@ -37,7 +29,7 @@ func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 		animatedSprite.flip_h = true
 		facing_direction = 'right'
 	if velocity:
-		return 'walk_' + facing_direction
+		return 'run_' + facing_direction
 	return 'idle_' + facing_direction
 
 func getAnimation() -> String:
