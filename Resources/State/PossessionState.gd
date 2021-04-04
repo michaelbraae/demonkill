@@ -22,7 +22,14 @@ var bite_started = false
 
 func _ready():
 	possession_timer = Timer.new()
+	possession_timer.connect('timeout', self, 'possession_timer_timeout')
 	add_child(possession_timer)
+
+func possession_timer_timeout():
+	if bite_started:
+		Engine.time_scale = 1
+		InputHandler.mute_inputs = false
+		possessNewEntity(current_possession)
 
 func initiateBite(current_possession_var):
 	InputHandler.mute_inputs = true
@@ -63,10 +70,6 @@ func possessNewEntity(current_possession_var) -> void:
 					break
 
 func _physics_process(_delta):
-	if bite_started and possession_timer.get_time_left() < 0.1:
-		Engine.time_scale = 1
-		InputHandler.mute_inputs = false
-		possessNewEntity(current_possession)
 	if bite_started and Input.is_action_just_released('bite'):
 		InputHandler.mute_inputs = false
 		Engine.time_scale = 1

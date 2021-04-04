@@ -41,7 +41,7 @@ func damageAndKnockBackOverlappingAreas() -> void:
 				)
 
 func meleeAttack():
-	current_weapon.state = current_weapon.UNEQUIPPED
+	#current_weapon.state = current_weapon.UNEQUIPPED
 	match melee_attack:
 		MELEE_ATTACKS.BASIC:
 			if not melee_node_moved:
@@ -55,8 +55,6 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if Input.is_action_just_pressed('fire_weapon'):
-		fireCurrentWeapon()
 	if Input.is_action_just_pressed('melee_attack') or melee_node_moved:
 		meleeAttack()
 	if attacking:

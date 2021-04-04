@@ -33,9 +33,29 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "stunned",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
@@ -47,30 +67,11 @@ animations = [ {
 "loop": true,
 "name": "take_hit",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 16.0
+radius = 11.0097
+height = 7.40317
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -90,15 +91,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 16.4333
+[sub_resource type="CircleShape2D" id=8]
+radius = 15.4701
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 16.0
-height = 16.0
+radius = 11.5585
+height = 7.24638
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 40.0
+radius = 24.2581
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 154.201
@@ -110,10 +111,8 @@ script = ExtResource( 12 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
-scale = Vector2( 1.67045, 1.82093 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -125,17 +124,13 @@ enabled = true
 cast_to = Vector2( 250, 0 )
 
 [node name="AttackNode" type="Node2D" parent="."]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AttackNode"]
-position = Vector2( 35, 0 )
+position = Vector2( 24, 2.50111e-12 )
 rotation = 1.5708
-scale = Vector2( 1.18368, 1.74377 )
+scale = Vector2( 0.632536, 0.632536 )
 frames = SubResource( 3 )
 animation = "active"
-frame = 2
 speed_scale = 4.0
 playing = true
 
@@ -144,8 +139,9 @@ position = Vector2( 35, 0 )
 gravity_vec = Vector2( 0, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackNode/Area2D"]
+position = Vector2( -19, 0 )
 rotation = 1.5708
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 
 [node name="EnemyHitBox" type="Area2D" parent="."]
 
@@ -155,6 +151,7 @@ shape = SubResource( 5 )
 [node name="EnemyBiteBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
+position = Vector2( 0.0783939, 0.078392 )
 shape = SubResource( 6 )
 
 [node name="BiteButton" type="Sprite" parent="."]

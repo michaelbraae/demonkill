@@ -6,7 +6,7 @@ var velocity = Vector2()
 
 var dash_cooldown_timer
 var bolt_cooldown_timer
-const SPEED = 180
+const SPEED = 100
 var speed_actual
 
 const DASH_COOLDOWN = 0.7
@@ -43,6 +43,8 @@ func setVelocity() -> void:
 	velocity = Vector2()
 	if knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
+	elif state == DASH:
+		pass
 	else:
 		velocity = InputHandler.getVelocity(SPEED)
 

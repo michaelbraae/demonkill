@@ -1,7 +1,7 @@
 extends MeleeAI
 
 func initialiseConfig():
-	move_speed = 130
+	move_speed = 80
 	attacks_in_sequence = 1
 	repeat_attacks = true
 	attack_range = 50

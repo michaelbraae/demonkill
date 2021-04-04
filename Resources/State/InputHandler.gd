@@ -14,9 +14,12 @@ const SPEED = 180
 func getVelocity(move_speed) -> Vector2: 
 	if mute_inputs:
 		return Vector2()
+	return getMoveDirection() * move_speed
+
+func getMoveDirection() -> Vector2:
 	velocity.y = Input.get_action_strength('down') - Input.get_action_strength('up')
 	velocity.x = Input.get_action_strength('right') - Input.get_action_strength('left')
-	velocity = velocity.normalized() * move_speed
+	velocity = velocity.normalized()
 	return velocity
 
 func setDeadzones() -> void:

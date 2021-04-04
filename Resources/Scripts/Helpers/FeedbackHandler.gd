@@ -9,6 +9,7 @@ const MEDIUM_SLOW = 0.15
 
 func _ready():
 	slowdown_timer = Timer.new()
+	slowdown_timer.connect('timeout', self, 'slowdown_timeout')
 	add_child(slowdown_timer)
 
 func min_slowdown() -> void:
@@ -29,14 +30,10 @@ func slowdown(time : int = 0.5, scale : int = 0.5) -> void:
 		slowdown_timer.start(time)
 		Engine.time_scale = scale
 
-func _physics_process(_delta):
-	if (
-		not slowdown_timer.is_stopped() and
-		slowdown_timer.get_time_left() < 0.1
-	):
-		slowdown_enabled = false
-		slowdown_timer.stop()
-		Engine.time_scale = 1
+func slowdown_timeout() -> void:
+	slowdown_enabled = false
+	slowdown_timer.stop()
+	Engine.time_scale = 1
 
 # handles game juice or game feel
 
