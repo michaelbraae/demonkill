@@ -24,7 +24,7 @@ enum {
 	IDLE,
 	WANDERING,
 	NAVIGATING,
-	DASHING,
+	DASH,
 	FOLLOWING_PLAYER,
 	PRE_ATTACK,
 	ATTACKING,
@@ -46,8 +46,8 @@ func getStateString() -> String:
 			state_string = 'WANDERING'
 		NAVIGATING:
 			state_string = 'NAVIGATING'
-		DASHING:
-			state_string = 'DASHING'
+		DASH:
+			state_string = 'DASH'
 		FOLLOWING_PLAYER:
 			state_string = 'FOLLOWING_PLAYER'
 		PRE_ATTACK:

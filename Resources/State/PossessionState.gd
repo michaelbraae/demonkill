@@ -16,7 +16,7 @@ var possession_candidate
 
 var possession_timer
 
-var possession_time_threshold = 0.5
+var possession_time_threshold = 0.3
 
 var bite_started = false
 

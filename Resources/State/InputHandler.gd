@@ -14,19 +14,23 @@ const SPEED = 180
 func getVelocity(move_speed) -> Vector2: 
 	if mute_inputs:
 		return Vector2()
-	return getMoveDirection() * move_speed
+	return getMovementVector() * move_speed
 
-func getMoveDirection() -> Vector2:
+func getMovementVector() -> Vector2:
 	velocity.y = Input.get_action_strength('down') - Input.get_action_strength('up')
 	velocity.x = Input.get_action_strength('right') - Input.get_action_strength('left')
 	velocity = velocity.normalized()
 	return velocity
 
 func setDeadzones() -> void:
-	InputMap.action_set_deadzone('aim_up', 0.05)
-	InputMap.action_set_deadzone('aim_down', 0.05)
-	InputMap.action_set_deadzone('aim_left', 0.05)
-	InputMap.action_set_deadzone('aim_right', 0.05)
+	InputMap.action_set_deadzone('aim_up', 0.1)
+	InputMap.action_set_deadzone('aim_down', 0.1)
+	InputMap.action_set_deadzone('aim_left', 0.1)
+	InputMap.action_set_deadzone('aim_right', 0.1)
+	InputMap.action_set_deadzone('up', 0.3)
+	InputMap.action_set_deadzone('down', 0.3)
+	InputMap.action_set_deadzone('left', 0.3)
+	InputMap.action_set_deadzone('right', 0.3)
 
 func setMouseMode() -> void:
 	if using_mouse:

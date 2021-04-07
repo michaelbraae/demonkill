@@ -19,13 +19,27 @@ const IS_PLAYER = true
 var state
 
 enum {
-	MOVING,
 	IDLE,
+	NAVIGATING,
 	ATTACKING,
 	DASH,
-	DAMAGED,
-	POSSESSING,
+	DASH_RECOVERY,
 }
+
+func getStateString() -> String:
+	var state_string = 'NO_STATE'
+	match state:
+		NAVIGATING:
+			state_string = 'NAVIGATING'
+		IDLE:
+			state_string = 'IDLE'
+		ATTACKING:
+			state_string = 'ATTACKING'
+		DASH:
+			state_string = 'DASH'
+		DASH_RECOVERY:
+			state_string = 'DASH_RECOVERY'
+	return state_string
 
 func _ready() -> void:
 	InputHandler.current_actor = self

@@ -1,4 +1,4 @@
-extends PlayerAttack
+extends PlayerAction
 
 class_name PlayerPossession
 

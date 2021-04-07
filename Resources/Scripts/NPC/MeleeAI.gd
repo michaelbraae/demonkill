@@ -25,7 +25,13 @@ func getAttackLoop() -> String:
 	if not attack_started:
 		if not attack_node_moved:
 			attack_node_moved = true
-			attackNode.look_at(to_global(self.get_local_mouse_position()))
+			var attack_direction = InputHandler.getAttackDirection()
+			if not attack_direction:
+				if animatedSprite.flip_h:
+					attack_direction = Vector2.LEFT
+				else:
+					attack_direction = Vector2.RIGHT
+			attackNode.look_at(to_global(attack_direction))
 		else:
 			velocity = InputHandler.getAttackDirection() * 50
 			attack_started = true
