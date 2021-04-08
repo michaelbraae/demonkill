@@ -18,7 +18,6 @@ var use_facing_vector = false
 
 func _ready():
 	knockback_handler = knockback_handler_script.new()
-	InputHandler.setDeadzones()
 	InputHandler.setMouseMode()
 
 func knockBack(
@@ -47,6 +46,19 @@ func setVelocity() -> void:
 		else:
 			state = IDLE
 
+func getVectorFromFacingDirection() -> Vector2:
+	match facing_direction:
+		'up':
+			return Vector2.UP
+		'right':
+			if animatedSprite.flip_h:
+				return Vector2.LEFT
+			else:
+				return Vector2.RIGHT
+		'down':
+			return Vector2.DOWN
+	return Vector2()
+
 func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:
 		return Vector2(get_local_mouse_position().normalized())
@@ -59,16 +71,5 @@ func getAttackDirection() -> Vector2:
 			return aim_vector
 		if velocity:
 			return velocity
-	var facing_vector = Vector2()
 	use_facing_vector = true
-	match facing_direction:
-		'up':
-			facing_vector = Vector2.UP
-		'down':
-			facing_vector = Vector2.DOWN
-		'right':
-			if animatedSprite.flip_h:
-				facing_vector = Vector2.LEFT
-			else:
-				facing_vector = Vector2.RIGHT
-	return facing_vector
+	return getVectorFromFacingDirection()

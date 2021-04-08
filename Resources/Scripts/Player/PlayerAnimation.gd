@@ -18,16 +18,22 @@ func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 	return 'run_' + facing_direction
 
 func getAnimation() -> String:
+	var animation = 'idle_'
 	if state == DASH:
-		return 'dash_' + facing_direction
-	if state == DASH_RECOVERY:
-		return 'dash_recovery_' + facing_direction
-	if velocity:
+		animation = 'dash_'
+	elif state == DASH_RECOVERY:
+		animation = 'dash_recovery_'
+	elif state == ATTACK_WARMUP:
+		animation = 'attack_warmup_'
+	elif state == ATTACK_CONTACT:
+		animation = 'attack_contact_'
+	elif state == ATTACK_RECOVERY:
+		animation = 'attack_recovery_'
+	elif velocity:
 		var angle_of_focus
 		angle_of_focus = round(rad2deg(velocity.angle()))
 		return getAnimationFromAngleOfFocus(angle_of_focus)
-	else:
-		return 'idle_' + facing_direction
+	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():
 	if state == DASH_RECOVERY:

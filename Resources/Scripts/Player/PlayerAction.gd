@@ -2,8 +2,6 @@ extends PlayerAnimation
 
 class_name PlayerAction
 
-var attacking = false
-
 var melee_attack
 
 var dash_timer
@@ -37,7 +35,6 @@ func dash_cooldown_timeout() -> void:
 	dash_available = true
 
 func _on_AttackSprite_animation_finished():
-	attacking = false
 	attackSprite.stop()
 	attackSprite.hide()
 	melee_node_moved = false
@@ -63,6 +60,16 @@ func damageAndKnockBackOverlappingAreas() -> void:
 					20
 				)
 
+func basicAttackAvailable() -> bool:
+	if [
+		DASH,
+		DASH_RECOVERY,
+		ATTACK_WARMUP,
+		ATTACK_CONTACT,
+	].has(state):
+		return false
+	return true
+
 func meleeAttack():
 	match melee_attack:
 		MELEE_ATTACKS.BASIC:
@@ -76,19 +83,6 @@ func meleeAttack():
 
 func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
-
-func getVectorFromFacingDirection() -> Vector2:
-	match facing_direction:
-		'up':
-			return Vector2.UP
-		'right':
-			if animatedSprite.flip_h:
-				return Vector2.LEFT
-			else:
-				return Vector2.RIGHT
-		'down':
-			return Vector2.DOWN
-	return Vector2()
 
 func handlePlayerAction() -> void:
 	if state == DASH:
@@ -107,7 +101,11 @@ func handlePlayerAction() -> void:
 		dash_cooldown_timer.start(0.4)
 		dash_timer.start(0.15)
 	else:
-		if Input.is_action_just_pressed('melee_attack') or melee_node_moved:
+		if (
+			Input.is_action_just_pressed('melee_attack')
+			and basicAttackAvailable()
+			or melee_node_moved	
+		):
 			meleeAttack()
 		else:
 			setVelocity()
