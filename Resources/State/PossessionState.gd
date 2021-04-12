@@ -46,6 +46,7 @@ func handlePossessionDeath(spawn_position) -> void:
 	var player_instance = PLAYER_SCENE.instance()
 	current_scene.add_child(player_instance)
 	InputHandler.current_actor = player_instance
+	FeedbackHandler.current_camera = player_instance.camera2D
 	player_instance.position = spawn_position
 	bite_box = player_instance.bite_box
 	player_instance.camera2D.make_current()
@@ -58,7 +59,7 @@ func possessNewEntity(current_possession_var) -> void:
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
 					GameState.state = GameState.CONTROLLING_NPC
-					parent.npc_camera.make_current()
+					parent.camera2D.make_current()
 					parent.bite_button.hide()
 					parent.health = parent.MAX_HEALTH
 					parent.attack_started = false
@@ -66,6 +67,7 @@ func possessNewEntity(current_possession_var) -> void:
 					possessedNPC = parent
 					bite_box = area
 					InputHandler.current_actor = parent
+					FeedbackHandler.current_camera = parent.camera2D
 					current_possession_var.queue_free()
 					break
 

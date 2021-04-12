@@ -35,8 +35,11 @@ func setVelocity() -> void:
 	velocity = Vector2()
 	if state == DASH:
 		velocity = InputHandler.getVelocity(130)
-	elif state == ATTACKING:
-		velocity = InputHandler.getVelocity(50)
+	elif ATTACK_STATES.has(state):
+		velocity = InputHandler.getAttackDirection()
+		if not velocity:
+			velocity = getVectorFromFacingDirection()
+		velocity = velocity * 10
 	elif knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
 	else:
@@ -53,8 +56,7 @@ func getVectorFromFacingDirection() -> Vector2:
 		'right':
 			if animatedSprite.flip_h:
 				return Vector2.LEFT
-			else:
-				return Vector2.RIGHT
+			return Vector2.RIGHT
 		'down':
 			return Vector2.DOWN
 	return Vector2()
@@ -62,14 +64,12 @@ func getVectorFromFacingDirection() -> Vector2:
 func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:
 		return Vector2(get_local_mouse_position().normalized())
-	if not use_facing_vector:
-		aim_vector = Vector2()
-		aim_vector.y = Input.get_action_strength('aim_down') - Input.get_action_strength('aim_up')
-		aim_vector.x = Input.get_action_strength('aim_right') - Input.get_action_strength('aim_left')
-		aim_vector = aim_vector.normalized()
-		if aim_vector:
-			return aim_vector
-		if velocity:
-			return velocity
-	use_facing_vector = true
+	aim_vector = Vector2()
+	aim_vector.y = Input.get_action_strength('aim_down') - Input.get_action_strength('aim_up')
+	aim_vector.x = Input.get_action_strength('aim_right') - Input.get_action_strength('aim_left')
+	aim_vector = aim_vector.normalized()
+	if aim_vector:
+		return aim_vector
+	if velocity:
+		return velocity
 	return getVectorFromFacingDirection()

@@ -4,6 +4,8 @@ var slowdown_timer
 
 var slowdown_enabled = false
 
+var current_camera
+
 const MIN_SLOW = 0.12
 const MEDIUM_SLOW = 0.15
 
@@ -11,6 +13,9 @@ func _ready():
 	slowdown_timer = Timer.new()
 	slowdown_timer.connect('timeout', self, 'slowdown_timeout')
 	add_child(slowdown_timer)
+
+func shakeCamera() -> void:
+	current_camera.shake()
 
 func min_slowdown() -> void:
 	if not slowdown_enabled:

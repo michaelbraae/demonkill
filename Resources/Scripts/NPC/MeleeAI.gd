@@ -49,7 +49,6 @@ func damageAndKnockBackOverlappingAreas() -> void:
 	if overlappingAreas:
 		for area in overlappingAreas:
 			if not nodeIsPossessed(area.get_parent()) and area.get_name() == 'EnemyHitBox':
-				npc_camera.shake()
 				var area_parent = area.get_parent()
 				area_parent.damage(basic_attack_damage, false)
 				area_parent.knockBack(
@@ -81,7 +80,7 @@ func targetOverlapsAttackBox() -> bool:
 				return true
 			if (
 				GameState.state == GameState.CONTROLLING_NPC and
-				area.get_name() == 'EnemyHitBox' and
+				area.get_name() == 'HitBox' and
 				not nodeIsPossessed(area.get_parent())
 			):
 				return true

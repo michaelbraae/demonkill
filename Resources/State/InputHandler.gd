@@ -16,7 +16,7 @@ func _ready():
 
 func getVelocity(move_speed) -> Vector2: 
 	if mute_inputs:
-		return Vector2()
+		return velocity * move_speed
 	return getMovementVector() * move_speed
 
 func getMovementVector() -> Vector2:
@@ -30,10 +30,10 @@ func setDeadzones() -> void:
 	InputMap.action_set_deadzone('aim_down', 0.1)
 	InputMap.action_set_deadzone('aim_left', 0.1)
 	InputMap.action_set_deadzone('aim_right', 0.1)
-	InputMap.action_set_deadzone('up', 0.3)
-	InputMap.action_set_deadzone('down', 0.3)
-	InputMap.action_set_deadzone('left', 0.3)
-	InputMap.action_set_deadzone('right', 0.3)
+	InputMap.action_set_deadzone('up', 0.1)
+	InputMap.action_set_deadzone('down', 0.1)
+	InputMap.action_set_deadzone('left', 0.1)
+	InputMap.action_set_deadzone('right', 0.1)
 
 func setMouseMode() -> void:
 	if using_mouse:
@@ -50,7 +50,7 @@ func getAttackDirection() -> Vector2:
 	aim_vector = aim_vector.normalized()
 	if aim_vector:
 		return aim_vector
-	return velocity
+	return getMovementVector()
 
 func _process(_delta):
 	if Input.is_action_just_pressed('ui_cancel'):

@@ -2,17 +2,13 @@ extends PlayerAnimation
 
 class_name PlayerAction
 
-var melee_attack
+var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
 
 var dash_timer
 var dash_cooldown_timer
 var dash_available = true
 var dash_started = false
 var dash_vector
-
-enum MELEE_ATTACKS {
-	BASIC,
-}
 
 var melee_node_moved = false
 
@@ -23,7 +19,6 @@ func _ready():
 	dash_cooldown_timer = Timer.new()
 	dash_cooldown_timer.connect('timeout', self, 'dash_cooldown_timeout')
 	add_child(dash_cooldown_timer)
-	melee_attack = MELEE_ATTACKS.BASIC
 
 func dash_timeout() -> void:
 	dash_timer.stop()
@@ -34,31 +29,10 @@ func dash_cooldown_timeout() -> void:
 	dash_cooldown_timer.stop()
 	dash_available = true
 
-func _on_AttackSprite_animation_finished():
-	attackSprite.stop()
-	attackSprite.hide()
-	melee_node_moved = false
-	use_facing_vector = false
-	state = IDLE
-
-func positionAttackNode() -> void:
-	attackBox.look_at(to_global(getAttackDirection()))
-	attackSprite.play('melee_basic')
-	attackSprite.show()
-
-func damageAndKnockBackOverlappingAreas() -> void:
-	var overlappingAreas = $AttackBox/Area2D.get_overlapping_areas()
-	if overlappingAreas:
-		for area in overlappingAreas:
-			if area.get_name() == 'EnemyHitBox':
-				var area_parent = area.get_parent()
-				camera2D.shake()
-				area_parent.damage(1, true)
-				area_parent.knockBack(
-					get_angle_to(area_parent.get_global_position()),
-					200,
-					20
-				)
+func swipe() -> void:
+	var swipe_instance = SWIPE_SCENE.instance()
+	add_child(swipe_instance)
+	swipe_instance.bang(getAttackDirection(), self)
 
 func basicAttackAvailable() -> bool:
 	if [
@@ -69,17 +43,6 @@ func basicAttackAvailable() -> bool:
 	].has(state):
 		return false
 	return true
-
-func meleeAttack():
-	match melee_attack:
-		MELEE_ATTACKS.BASIC:
-			if not melee_node_moved:
-				melee_node_moved = true
-				positionAttackNode()
-			else:
-				melee_node_moved = false
-				damageAndKnockBackOverlappingAreas()
-	state = ATTACKING
 
 func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
@@ -106,7 +69,9 @@ func handlePlayerAction() -> void:
 			and basicAttackAvailable()
 			or melee_node_moved	
 		):
-			meleeAttack()
+			setVelocity()
+			swipe()
+			state = ATTACK_WARMUP
 		else:
 			setVelocity()
 	animatedSprite.play(getAnimation())

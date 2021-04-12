@@ -49,14 +49,8 @@ func _ready():
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
-func damage(damage : int, use_cooldown : bool = false) -> void:
-	npc_camera.shake()
-	if use_cooldown:
-		if damage_cooldown_timer.is_stopped():
-			damage_cooldown_timer.start(damage_cooldown)
-			health = health - damage
-	else:
-		health = health - damage
+func damage(damage : int) -> void:
+	health = health - damage
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= stun_damage_threshold:

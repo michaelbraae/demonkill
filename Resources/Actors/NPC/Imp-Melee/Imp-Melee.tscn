@@ -28,14 +28,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "idle",
+"name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "stunned",
+"name": "post_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
@@ -43,14 +43,14 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -58,14 +58,14 @@ animations = [ {
 "name": "take_hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
 "loop": true,
-"name": "pre_attack",
+"name": "stunned",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "post_attack",
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -80,14 +80,14 @@ animations = [ {
 "name": "active",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "test1",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "inactive",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "test1",
 "speed": 5.0
 } ]
 
@@ -135,7 +135,6 @@ rotation = 1.5708
 scale = Vector2( 0.632536, 0.632536 )
 frames = SubResource( 3 )
 animation = "active"
-frame = 1
 speed_scale = 4.0
 playing = true
 
@@ -148,10 +147,10 @@ position = Vector2( -19, 0 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
-[node name="EnemyHitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 5 )
 
 [node name="EnemyBiteBox" type="Area2D" parent="."]

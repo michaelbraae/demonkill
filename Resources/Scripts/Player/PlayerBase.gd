@@ -5,13 +5,12 @@ class_name PlayerBase
 onready var GameState = get_node('/root/GameState')
 onready var PlayerState = get_node('/root/PlayerState')
 onready var InputHandler = get_node('/root/InputHandler')
+onready var FeedbackHandler = get_node('/root/FeedbackHandler')
 onready var PossessionState = get_node('/root/PossessionState')
 
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
-onready var attackSprite = $AttackBox/AttackSprite
-onready var attackBox = $AttackBox
 onready var bite_box = $BiteBox
 
 const IS_PLAYER = true
@@ -28,6 +27,8 @@ enum {
 	DASH,
 	DASH_RECOVERY,
 }
+
+const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
 
 func getStateString() -> String:
 	var state_string = 'NO_STATE'
@@ -47,8 +48,8 @@ func getStateString() -> String:
 func _ready() -> void:
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
+	FeedbackHandler.current_camera = camera2D
 	PossessionState.bite_box = bite_box
-	attackSprite.hide()
 
 func damage(damage : int) -> void:
 	camera2D.shake()
