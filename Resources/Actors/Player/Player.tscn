@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=2]
+[gd_scene load_steps=141 format=2]
 
 [ext_resource path="res://Resources/Sprites/Hero/v2/sheets/with-axe/axe-idle-down.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/Hero/v2/sheets/with-axe/axe-run-up.png" type="Texture" id=2]
@@ -401,10 +401,6 @@ region = Rect2( 74, 0, 37, 26 )
 atlas = ExtResource( 14 )
 region = Rect2( 111, 0, 37, 26 )
 
-[sub_resource type="AtlasTexture" id=95]
-atlas = ExtResource( 14 )
-region = Rect2( 148, 0, 37, 26 )
-
 [sub_resource type="AtlasTexture" id=96]
 atlas = ExtResource( 14 )
 region = Rect2( 185, 0, 37, 26 )
@@ -416,10 +412,6 @@ region = Rect2( 68, 0, 34, 26 )
 [sub_resource type="AtlasTexture" id=100]
 atlas = ExtResource( 15 )
 region = Rect2( 102, 0, 34, 26 )
-
-[sub_resource type="AtlasTexture" id=101]
-atlas = ExtResource( 15 )
-region = Rect2( 136, 0, 34, 26 )
 
 [sub_resource type="AtlasTexture" id=102]
 atlas = ExtResource( 15 )
@@ -441,10 +433,6 @@ region = Rect2( 92, 0, 46, 33 )
 atlas = ExtResource( 13 )
 region = Rect2( 138, 0, 46, 33 )
 
-[sub_resource type="AtlasTexture" id=117]
-atlas = ExtResource( 13 )
-region = Rect2( 184, 0, 46, 33 )
-
 [sub_resource type="AtlasTexture" id=118]
 atlas = ExtResource( 13 )
 region = Rect2( 230, 0, 46, 33 )
@@ -456,10 +444,6 @@ region = Rect2( 92, 0, 46, 33 )
 [sub_resource type="AtlasTexture" id=112]
 atlas = ExtResource( 16 )
 region = Rect2( 138, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=113]
-atlas = ExtResource( 16 )
-region = Rect2( 184, 0, 46, 33 )
 
 [sub_resource type="AtlasTexture" id=114]
 atlas = ExtResource( 16 )
@@ -601,12 +585,12 @@ animations = [ {
 "name": "dash_recovery_up",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ) ],
+"frames": [ SubResource( 93 ), SubResource( 94 ), SubResource( 96 ) ],
 "loop": true,
 "name": "attack_contact_right_1",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ) ],
+"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 102 ) ],
 "loop": true,
 "name": "attack_contact_right_2",
 "speed": 5.0
@@ -616,12 +600,12 @@ animations = [ {
 "name": "attack_warmup_right_2",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 115 ), SubResource( 116 ), SubResource( 117 ), SubResource( 118 ) ],
+"frames": [ SubResource( 115 ), SubResource( 116 ), SubResource( 118 ) ],
 "loop": true,
 "name": "attack_contact_down",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ) ],
+"frames": [ SubResource( 111 ), SubResource( 112 ), SubResource( 114 ) ],
 "loop": true,
 "name": "attack_contact_up",
 "speed": 5.0

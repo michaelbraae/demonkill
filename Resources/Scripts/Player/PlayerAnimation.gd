@@ -4,7 +4,7 @@ class_name PlayerAnimation
 
 var attack_order = false
 
-func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
+func setFacingDirection(angle_of_focus : int) -> void:
 	if angle_of_focus < -30 and angle_of_focus > -150:
 		animatedSprite.flip_h = false
 		facing_direction = 'up'
@@ -17,12 +17,14 @@ func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 	elif angle_of_focus > 150 or angle_of_focus < -150:
 		animatedSprite.flip_h = true
 		facing_direction = 'right'
+
+func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
+	setFacingDirection(angle_of_focus)
 	return 'run_' + facing_direction
 
 func getAttackOrder() -> String:
 	if attack_order:
 		return '1'
-	attack_order = !attack_order
 	return '2'
 
 func getAttackAnimation() -> String:
@@ -35,11 +37,16 @@ func getAttackAnimation() -> String:
 		ATTACK_RECOVERY:
 			phase = 'attack_recovery_'
 	if facing_direction == 'right':
-		return phase + facing_direction + '_1'
+		return phase + facing_direction + '_' + getAttackOrder()
+	if attack_order:
+		animatedSprite.flip_h = true
+	else:
+		animatedSprite.flip_h = false
 	return phase + facing_direction
 
 func getAnimation() -> String:
 	var animation = 'idle_'
+	setFacingDirection(round(rad2deg(velocity.angle())))
 	if state == DASH:
 		animation = 'dash_'
 	elif state == DASH_RECOVERY:
@@ -47,9 +54,7 @@ func getAnimation() -> String:
 	elif ATTACK_STATES.has(state):
 		return getAttackAnimation()
 	elif velocity:
-		var angle_of_focus
-		angle_of_focus = round(rad2deg(velocity.angle()))
-		return getAnimationFromAngleOfFocus(angle_of_focus)
+		return getAnimationFromAngleOfFocus(round(rad2deg(velocity.angle())))
 	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():

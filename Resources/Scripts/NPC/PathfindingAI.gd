@@ -79,6 +79,7 @@ func setTargetLocationAsTargetVector() -> void:
 	velocity = velocity.normalized() * move_speed
 
 func runDecisionTree() -> void:
+	print(getStateString())
 	if target_actor:
 		alignRayCastToPlayer()
 		detectBlockers()

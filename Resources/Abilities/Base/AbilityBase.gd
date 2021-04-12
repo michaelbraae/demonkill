@@ -41,7 +41,7 @@ func damageOverlappingAreas() -> void:
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source
 	vector = attack_direction
-	look_at(to_global(attack_direction))
+	look_at(to_global(vector))
 	animatedSprite.play('active')
 	position = attack_direction.normalized() * distance_from_player
 

@@ -49,7 +49,7 @@ func _ready():
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
-func damage(damage : int) -> void:
+func damage(damage : int, use_cooldown : bool = false) -> void:
 	health = health - damage
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())

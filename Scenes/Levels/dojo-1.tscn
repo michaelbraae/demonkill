@@ -5,9 +5,9 @@
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 545.983, 516.222, 543.789, 399.211, 731.739, 402.136, 728, 856, 42.7279, 849.949, 357.303, 514.028, 43.6423, 397.331, 358.034, 395.554 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ) ]
-outlines = [ PoolVector2Array( 42.7279, 849.949, 728, 856, 731.739, 402.136, 543.789, 399.211, 545.983, 516.222, 357.303, 514.028, 358.034, 395.554, 43.6423, 397.331 ) ]
+vertices = PoolVector2Array( 376, 728, 728, 856, 42.7279, 849.949, 144, 728, 43.6423, 397.331, 144, 520, 728, 400, 376, 520 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ), PoolIntArray( 6, 1, 0, 7 ) ]
+outlines = [ PoolVector2Array( 42.7279, 849.949, 728, 856, 728, 400, 43.6423, 397.331 ), PoolVector2Array( 144, 520, 376, 520, 376, 728, 144, 728 ) ]
 
 [node name="root" type="Node2D"]
 position = Vector2( 68.2378, 0.897888 )
@@ -37,7 +37,7 @@ texture = ExtResource( 2 )
 [node name="Navigation2D" type="Navigation2D" parent="Environment"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Environment/Navigation2D"]
-position = Vector2( -8.3429, 6.65814 )
+position = Vector2( -12.2378, 7.10211 )
 navpoly = SubResource( 1 )
 
 [node name="Imp-Melee" parent="Environment/Navigation2D" instance=ExtResource( 4 )]
@@ -144,8 +144,8 @@ position = Vector2( 817.418, 447.072 )
 [node name="Building-Square8" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 824, 480 )
 
-[node name="Building-Square41" parent="Environment/walls" instance=ExtResource( 1 )]
-position = Vector2( 441.418, 423.072 )
+[node name="Building-Square42" parent="Environment/walls" instance=ExtResource( 1 )]
+position = Vector2( 248, 631.102 )
 
 [node name="Building-Square7" parent="Environment/walls" instance=ExtResource( 1 )]
 position = Vector2( 824, 608 )

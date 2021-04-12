@@ -69,9 +69,12 @@ func handlePlayerAction() -> void:
 			and basicAttackAvailable()
 			or melee_node_moved	
 		):
+			print(attack_order)
+			attack_order = !attack_order
 			setVelocity()
 			swipe()
 			state = ATTACK_WARMUP
+			
 		else:
 			setVelocity()
 	animatedSprite.play(getAnimation())
