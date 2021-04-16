@@ -49,7 +49,7 @@ func _ready():
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
-func damage(damage : int, use_cooldown : bool = false) -> void:
+func damage(damage : int) -> void:
 	health = health - damage
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
@@ -183,7 +183,9 @@ func runDecisionTree() -> void:
 				if readyForPreAttack():
 					handlePreAttack()
 				if state == ATTACKING:
-					perAttackAction()
+					if not attack_landed:
+						perAttackAction()
+						attack_landed = true
 			else:
 				.runDecisionTree()
 	animatedSprite.play(getAnimation())
@@ -196,13 +198,13 @@ func handlePostAnimState() -> void:
 			PRE_ATTACK:
 				state = ATTACKING
 			ATTACKING:
-				attack_landed = false
 				current_attack_in_sequence += 1
 				if readyForPostAttack():
 					attack_started = false
 					state = POST_ATTACK
 					current_attack_in_sequence = 1
 			POST_ATTACK:
+				attack_landed = false
 				state = IDLE
 			STUNNED:
 				health += 1
@@ -214,7 +216,6 @@ func handlePostAnimState() -> void:
 			ATTACKING:
 				state = POSSESSED
 				attack_started = false
-				attack_landed = false
 
 func _process(_delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:

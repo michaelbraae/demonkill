@@ -20,29 +20,27 @@ func initialiseConfig() -> void:
 	pass
 
 func damageOverlappingAreas() -> void:
-	var areas = area2D.get_overlapping_areas()
-	if areas:
-		for area in areas:
-			var area_parent = area.get_parent()
-			if (
-				area_parent != source_actor
-				and area.get_name() == 'HitBox'
-				and not damaged_actors.has(area_parent)
-			):
-				FeedbackHandler.shakeCamera()
-				damaged_actors.push_front(area_parent)
-				area_parent.damage(damage)
-				area_parent.knockBack(
-					source_actor.get_angle_to(area_parent.get_global_position()),
-					200,
-					20
-				)
+	for area in area2D.get_overlapping_areas():
+		var area_parent = area.get_parent()
+		if (
+			area_parent != source_actor
+			and area.get_name() == 'HitBox'
+			and not damaged_actors.has(area_parent.get_instance_id())
+		):
+			damaged_actors.push_front(area_parent.get_instance_id())
+			FeedbackHandler.shakeCamera()
+			area_parent.damage(damage)
+			area_parent.knockBack(
+				source_actor.get_angle_to(area_parent.get_global_position()),
+				200,
+				20
+			)
 
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source
 	vector = attack_direction
 	look_at(to_global(vector))
-	animatedSprite.play('active')
+	animatedSprite.play()
 	position = attack_direction.normalized() * distance_from_player
 
 func _physics_process(_delta) -> void:

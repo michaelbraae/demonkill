@@ -52,7 +52,6 @@ func _ready() -> void:
 	PossessionState.bite_box = bite_box
 
 func damage(damage : int) -> void:
-	camera2D.shake()
 	PlayerState.health -= damage
 	if PlayerState.health <= 0:
 		get_tree().quit()

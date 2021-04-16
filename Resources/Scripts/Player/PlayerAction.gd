@@ -10,8 +10,6 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
-var melee_node_moved = false
-
 func _ready():
 	dash_timer = Timer.new()
 	dash_timer.connect('timeout', self, 'dash_timeout')
@@ -64,18 +62,15 @@ func handlePlayerAction() -> void:
 		dash_cooldown_timer.start(0.4)
 		dash_timer.start(0.15)
 	else:
+		setVelocity()
 		if (
 			Input.is_action_just_pressed('melee_attack')
 			and basicAttackAvailable()
-			or melee_node_moved	
 		):
-			print(attack_order)
+			if velocity:
+				setFacingDirection(round(rad2deg(velocity.angle())))
 			attack_order = !attack_order
-			setVelocity()
 			swipe()
 			state = ATTACK_WARMUP
-			
-		else:
-			setVelocity()
 	animatedSprite.play(getAnimation())
 	velocity = move_and_slide(velocity)

@@ -17,8 +17,3 @@ func _process(_delta):
 		bite_button.show()
 	else:
 		bite_button.hide()
-	
-
-func handlePostAnimState() -> void:
-	.handlePostAnimState()
- 

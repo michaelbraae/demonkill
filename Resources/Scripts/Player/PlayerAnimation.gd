@@ -20,7 +20,7 @@ func setFacingDirection(angle_of_focus : int) -> void:
 
 func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 	setFacingDirection(angle_of_focus)
-	return 'run_' + facing_direction
+	return 'run_' + facing_direction + '_axe'
 
 func getAttackOrder() -> String:
 	if attack_order:
@@ -31,22 +31,21 @@ func getAttackAnimation() -> String:
 	var phase
 	match state:
 		ATTACK_WARMUP:
-			phase = 'attack_warmup_'
+			phase = 'warmup_'
 		ATTACK_CONTACT:
-			phase = 'attack_contact_'
+			phase = 'contact_'
 		ATTACK_RECOVERY:
-			phase = 'attack_recovery_'
+			phase = 'recovery_'
 	if facing_direction == 'right':
-		return phase + facing_direction + '_' + getAttackOrder()
+		return 'attack_axe_' +  phase + facing_direction + '_' + getAttackOrder()
 	if attack_order:
 		animatedSprite.flip_h = true
 	else:
 		animatedSprite.flip_h = false
-	return phase + facing_direction
+	return 'attack_axe_' +  phase + facing_direction
 
 func getAnimation() -> String:
 	var animation = 'idle_'
-	setFacingDirection(round(rad2deg(velocity.angle())))
 	if state == DASH:
 		animation = 'dash_'
 	elif state == DASH_RECOVERY:
@@ -55,6 +54,8 @@ func getAnimation() -> String:
 		return getAttackAnimation()
 	elif velocity:
 		return getAnimationFromAngleOfFocus(round(rad2deg(velocity.angle())))
+	else:
+		return animation + facing_direction + '_axe'
 	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():
