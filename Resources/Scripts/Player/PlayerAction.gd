@@ -3,6 +3,7 @@ extends PlayerAnimation
 class_name PlayerAction
 
 var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
+var AXE_SCENE = preload('res://Resources/Abilities/AxeThrow/AxeThrow.tscn')
 
 var dash_timer
 var dash_cooldown_timer
@@ -31,6 +32,11 @@ func swipe() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
 	swipe_instance.bang(getAttackDirection(), self)
+
+func throwAxe() -> void:
+	var axe_instance = AXE_SCENE.instance()
+	get_parent().add_child(axe_instance)
+	axe_instance.bang(getAttackDirection(), self)
 
 func basicAttackAvailable() -> bool:
 	if [
@@ -72,5 +78,7 @@ func handlePlayerAction() -> void:
 			attack_order = !attack_order
 			swipe()
 			state = ATTACK_WARMUP
+		if Input.is_action_just_pressed('throw_axe'):
+			throwAxe()
 	animatedSprite.play(getAnimation())
 	velocity = move_and_slide(velocity)
