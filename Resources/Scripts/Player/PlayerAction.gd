@@ -11,6 +11,8 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
+var axe_recall_available = false
+
 func _ready():
 	dash_timer = Timer.new()
 	dash_timer.connect('timeout', self, 'dash_timeout')
@@ -28,15 +30,23 @@ func dash_cooldown_timeout() -> void:
 	dash_cooldown_timer.stop()
 	dash_available = true
 
-func swipe() -> void:
+func noWeaponMelee() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
 	swipe_instance.bang(getAttackDirection(), self)
 
 func throwAxe() -> void:
+	state = AXE_THROW
 	var axe_instance = AXE_SCENE.instance()
 	get_parent().add_child(axe_instance)
 	axe_instance.bang(getAttackDirection(), self)
+
+func recallAxe() -> void:
+	state = AXE_RECALL
+	var axe_instance = AXE_SCENE.instance()
+	get_parent().add_child(axe_instance)
+	GameState.npc_with_axe.state = GameState.npc_with_axe.IDLE
+	axe_instance.returnToPlayer(GameState.npc_with_axe)
 
 func basicAttackAvailable() -> bool:
 	if [
@@ -67,6 +77,8 @@ func handlePlayerAction() -> void:
 		state = DASH
 		dash_cooldown_timer.start(0.4)
 		dash_timer.start(0.15)
+	elif state == AXE_THROW:
+		pass
 	else:
 		setVelocity()
 		if (
@@ -76,9 +88,12 @@ func handlePlayerAction() -> void:
 			if velocity:
 				setFacingDirection(round(rad2deg(velocity.angle())))
 			attack_order = !attack_order
-			swipe()
+			noWeaponMelee()
 			state = ATTACK_WARMUP
-		if Input.is_action_just_pressed('throw_axe'):
+		if Input.is_action_just_pressed('throw_axe') and has_axe:
+			has_axe = false
 			throwAxe()
+		elif Input.is_action_just_pressed('throw_axe') and axe_recall_available:
+			recallAxe()
 	animatedSprite.play(getAnimation())
 	velocity = move_and_slide(velocity)

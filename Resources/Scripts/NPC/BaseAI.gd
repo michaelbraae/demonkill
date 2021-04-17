@@ -27,6 +27,7 @@ enum {
 	PRE_ATTACK,
 	ATTACKING,
 	POST_ATTACK,
+	WITH_AXE,
 	KNOCKED_BACK,
 	TAKING_DAMAGE,
 	STUNNED,
@@ -54,6 +55,8 @@ func getStateString() -> String:
 			state_string = 'ATTACKING'
 		POST_ATTACK:
 			state_string = 'POST_ATTACK'
+		WITH_AXE:
+			state_string = 'WITH_AXE'
 		TAKING_DAMAGE:
 			state_string = 'TAKING_DAMAGE'
 		STUNNED:

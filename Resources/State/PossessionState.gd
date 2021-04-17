@@ -44,6 +44,7 @@ func handlePossessionDeath(spawn_position) -> void:
 	GameState.state = GameState.CONTROLLING_PLAYER
 	var current_scene = get_tree().get_current_scene()
 	var player_instance = PLAYER_SCENE.instance()
+	GameState.player = player_instance
 	current_scene.add_child(player_instance)
 	InputHandler.current_actor = player_instance
 	FeedbackHandler.current_camera = player_instance.camera2D

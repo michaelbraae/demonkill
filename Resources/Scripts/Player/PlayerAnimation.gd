@@ -3,6 +3,7 @@ extends PlayerNavigation
 class_name PlayerAnimation
 
 var attack_order = false
+var has_axe = true
 
 func setFacingDirection(angle_of_focus : int) -> void:
 	if angle_of_focus < -30 and angle_of_focus > -150:
@@ -20,32 +21,39 @@ func setFacingDirection(angle_of_focus : int) -> void:
 
 func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
 	setFacingDirection(angle_of_focus)
-	return 'run_' + facing_direction + '_axe'
+	return 'run_' + facing_direction + getAnimationWeaponModifier()
 
 func getAttackOrder() -> String:
 	if attack_order:
 		return '1'
 	return '2'
 
+func getAnimationWeaponModifier() -> String:
+	if has_axe:
+		return '_axe'
+	return ''
+
 func getAttackAnimation() -> String:
 	var phase
 	match state:
 		ATTACK_WARMUP:
-			phase = 'warmup_'
+			phase = 'warmup'
 		ATTACK_CONTACT:
-			phase = 'contact_'
+			phase = 'contact'
 		ATTACK_RECOVERY:
-			phase = 'recovery_'
+			phase = 'recovery'
 	if facing_direction == 'right':
-		return 'attack_axe_' +  phase + facing_direction + '_' + getAttackOrder()
+		return 'attack' + getAnimationWeaponModifier() + '_' + phase + '_' + facing_direction + '_' + getAttackOrder()
 	if attack_order:
 		animatedSprite.flip_h = true
 	else:
 		animatedSprite.flip_h = false
-	return 'attack_axe_' +  phase + facing_direction
+	return 'attack' + getAnimationWeaponModifier() + '_' + phase + '_' + facing_direction
 
 func getAnimation() -> String:
 	var animation = 'idle_'
+	if state == AXE_THROW:
+		return 'axe_throw_' + facing_direction
 	if state == DASH:
 		animation = 'dash_'
 	elif state == DASH_RECOVERY:
@@ -55,11 +63,11 @@ func getAnimation() -> String:
 	elif velocity:
 		return getAnimationFromAngleOfFocus(round(rad2deg(velocity.angle())))
 	else:
-		return animation + facing_direction + '_axe'
+		return animation + facing_direction + getAnimationWeaponModifier()
 	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():
-	if state == DASH_RECOVERY:
+	if [DASH_RECOVERY, ATTACK_RECOVERY, AXE_THROW].has(state):
 		state = IDLE
 		animatedSprite.play(str('idle_', facing_direction))
 	elif state == ATTACK_WARMUP:
@@ -68,6 +76,9 @@ func _on_AnimatedSprite_animation_finished():
 	elif state == ATTACK_CONTACT:
 		state = ATTACK_RECOVERY
 		animatedSprite.play(getAttackAnimation())
-	elif state == ATTACK_RECOVERY:
-		animatedSprite.play(str('idle_', facing_direction))
-		state = IDLE
+	#elif state == ATTACK_RECOVERY:
+	#	animatedSprite.play(str('idle_', facing_direction))
+	#	state = IDLE
+	#elif state == AXE_THROW:
+	#	animatedSprite.play(str('idle_', facing_direction))
+	#	state = IDLE

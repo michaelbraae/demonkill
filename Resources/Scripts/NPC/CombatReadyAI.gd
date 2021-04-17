@@ -96,6 +96,8 @@ func getAnimation() -> String:
 		return 'stunned'
 	if state == PRE_DEATH:
 		return 'take_hit'
+	if state == WITH_AXE:
+		return 'with_axe'
 	return 'idle'
 
 func getNavigationAnimation() -> String:
@@ -164,6 +166,8 @@ func runDecisionTree() -> void:
 		knockback_handler.knocked_back = false
 	elif state == PRE_DEATH:
 		pass
+	elif state == WITH_AXE:
+		pass
 	elif knockback_handler.knocked_back:
 		attack_started = false
 		state = KNOCKED_BACK
@@ -216,6 +220,10 @@ func handlePostAnimState() -> void:
 			ATTACKING:
 				state = POSSESSED
 				attack_started = false
+
+func hitByAxe() -> void:
+	state = WITH_AXE
+	animatedSprite.play('with_axe')
 
 func _process(_delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
