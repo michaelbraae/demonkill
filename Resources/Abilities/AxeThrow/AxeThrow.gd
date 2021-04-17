@@ -30,6 +30,10 @@ func returnToPlayer(source) -> void:
 	position = source.get_position()
 	animatedSprite.play()
 
+func earlyCallback() -> void:
+	returning_to_player = true
+	source_actor = null
+
 func detectContact() -> void:
 		for area in area2D.get_overlapping_areas():
 			if area.get_parent() != source_actor and area.get_name() == 'HitBox':

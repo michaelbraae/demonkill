@@ -11,6 +11,7 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
+var axe_instance
 var axe_recall_available = false
 
 func _ready():
@@ -37,16 +38,20 @@ func noWeaponMelee() -> void:
 
 func throwAxe() -> void:
 	state = AXE_THROW
-	var axe_instance = AXE_SCENE.instance()
+	axe_instance = AXE_SCENE.instance()
 	get_parent().add_child(axe_instance)
+	axe_recall_available = false
 	axe_instance.bang(getAttackDirection(), self)
 
 func recallAxe() -> void:
 	state = AXE_RECALL
-	var axe_instance = AXE_SCENE.instance()
-	get_parent().add_child(axe_instance)
-	GameState.npc_with_axe.state = GameState.npc_with_axe.IDLE
-	axe_instance.returnToPlayer(GameState.npc_with_axe)
+	if axe_instance:
+		axe_instance.earlyCallback()
+	else:
+		axe_instance = AXE_SCENE.instance()
+		get_parent().add_child(axe_instance)
+		GameState.npc_with_axe.state = GameState.npc_with_axe.IDLE
+		axe_instance.returnToPlayer(GameState.npc_with_axe)
 
 func basicAttackAvailable() -> bool:
 	if [
@@ -93,7 +98,7 @@ func handlePlayerAction() -> void:
 		if Input.is_action_just_pressed('throw_axe') and has_axe:
 			has_axe = false
 			throwAxe()
-		elif Input.is_action_just_pressed('throw_axe') and axe_recall_available:
+		elif Input.is_action_just_pressed('throw_axe'):
 			recallAxe()
 	animatedSprite.play(getAnimation())
 	velocity = move_and_slide(velocity)
