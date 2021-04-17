@@ -44,12 +44,17 @@ func _ready():
 	knockback_handler = knockback_handler_script.new()
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
+	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
+func stun_duration_timeout() -> void:
+	stun_duration_timer.stop()
+
 func damage(damage : int) -> void:
+	attack_started = false
 	health = health - damage
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
@@ -57,6 +62,7 @@ func damage(damage : int) -> void:
 		if health < 0 or state == STUNNED:
 			state = PRE_DEATH
 		else:
+			stun_duration_timer.start(stun_duration)
 			state = STUNNED
 
 func knockBack(
@@ -169,7 +175,6 @@ func runDecisionTree() -> void:
 	elif state == WITH_AXE:
 		pass
 	elif knockback_handler.knocked_back:
-		attack_started = false
 		state = KNOCKED_BACK
 		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
@@ -211,22 +216,23 @@ func handlePostAnimState() -> void:
 				attack_landed = false
 				state = IDLE
 			STUNNED:
-				health += 1
-				state = IDLE
+				if stun_duration_timer.is_stopped():
+					state = IDLE
 			PRE_DEATH:
 				queue_free()
 	else:
 		match state:
 			ATTACKING:
 				state = POSSESSED
-				attack_started = false
 
-func hitByAxe() -> void:
+func kill() -> void:
+	state = PRE_DEATH
+
+func hitByAxe(damage) -> void:
+	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
 
 func _process(_delta):
 	if damage_cooldown_timer.get_time_left() < 0.1:
 		damage_cooldown_timer.stop()
-	if stun_duration_timer.get_time_left() < 0.1:
-		stun_duration_timer.stop()
