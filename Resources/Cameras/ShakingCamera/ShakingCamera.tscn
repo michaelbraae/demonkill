@@ -3,6 +3,6 @@
 [ext_resource path="res://Resources/Cameras/ShakingCamera/ShakingCamera.gd" type="Script" id=1]
 
 [node name="Camera2D" type="Camera2D"]
-zoom = Vector2( 0.35, 0.35 )
+zoom = Vector2( 0.3, 0.3 )
 drag_margin_h_enabled = true
 script = ExtResource( 1 )

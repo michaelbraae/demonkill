@@ -40,29 +40,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "take_hit",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "post_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
@@ -75,9 +65,19 @@ animations = [ {
 "name": "pre_attack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 } ]
 
@@ -104,7 +104,6 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 5 )
 animation = "with_axe"
-frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -131,7 +130,7 @@ shape = SubResource( 8 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 25 )]
 visible = false
-zoom = Vector2( 0.3, 0.3 )
+zoom = Vector2( 0.35, 0.35 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 

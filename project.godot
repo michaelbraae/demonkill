@@ -137,7 +137,7 @@ FeedbackHandler="*res://Resources/Scripts/Helpers/FeedbackHandler.gd"
 
 [display]
 
-window/size/fullscreen=true
+window/size/resizable=false
 mouse_cursor/custom_image="res://Resources/Sprites/Cursors/Cursor-1-Large.png"
 mouse_cursor/custom_image_hotspot=Vector2( 32, 32 )
 

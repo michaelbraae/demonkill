@@ -16,8 +16,15 @@ var distance_from_player = 15
 var attack_move_speed = 10
 var damage = 1
 
+var target_actor
+
 func initialiseConfig() -> void:
 	pass
+
+func ensureTarget(current_target) -> bool:
+	if target_actor and target_actor != current_target:
+			return false
+	return true
 
 func damageOverlappingAreas() -> void:
 	for area in area2D.get_overlapping_areas():
@@ -26,6 +33,7 @@ func damageOverlappingAreas() -> void:
 			area_parent != source_actor
 			and area.get_name() == 'HitBox'
 			and not damaged_actors.has(area_parent.get_instance_id())
+			and ensureTarget(area_parent)
 		):
 			damaged_actors.push_front(area_parent.get_instance_id())
 			FeedbackHandler.shakeCamera()
@@ -37,7 +45,7 @@ func damageOverlappingAreas() -> void:
 			)
 			collisionEffect(area_parent)
 
-func collisionEffect(target_actor) -> void:
+func collisionEffect(_target_actor) -> void:
 	pass
 
 func bang(attack_direction : Vector2, source) -> void:

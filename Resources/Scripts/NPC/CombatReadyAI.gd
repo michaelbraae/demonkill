@@ -40,9 +40,10 @@ var damage_cooldown_timer
 
 # starting health
 var max_health = 3
-var health = max_health
+var health
 
 func _ready():
+	health = max_health
 	knockback_handler = knockback_handler_script.new()
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
