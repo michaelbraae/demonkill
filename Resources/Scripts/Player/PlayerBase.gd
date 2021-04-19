@@ -52,7 +52,7 @@ func _ready() -> void:
 	GameState.prepareHealthGUI()
 	FeedbackHandler.current_camera = camera2D
 	PossessionState.bite_box = bite_box
-
+\
 func damage(damage : int) -> void:
 	PlayerState.health -= damage
 	if PlayerState.health <= 0:

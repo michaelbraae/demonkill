@@ -61,8 +61,7 @@ func possessNewEntity(current_possession_var) -> void:
 				if parent.state == parent.STUNNED:
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.camera2D.make_current()
-					parent.bite_button.hide()
-					parent.health = parent.MAX_HEALTH
+					parent.health = parent.max_health
 					parent.attack_started = false
 					parent.attack_landed = false
 					possessedNPC = parent

@@ -6,7 +6,7 @@ var slowdown_enabled = false
 
 var current_camera
 
-const MIN_SLOW = 0.12
+const MIN_SLOW = 0.1
 const MEDIUM_SLOW = 0.15
 
 func _ready():
@@ -21,7 +21,7 @@ func min_slowdown() -> void:
 	if not slowdown_enabled:
 		slowdown_enabled = true
 		slowdown_timer.start(MIN_SLOW)
-		Engine.time_scale = 0.1
+		Engine.time_scale = 0.5
 
 func warp() -> void:
 	if not slowdown_enabled:

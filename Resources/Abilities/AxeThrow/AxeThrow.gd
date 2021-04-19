@@ -6,6 +6,8 @@ onready var area2D = $Area2D
 onready var FeedbackHandler = get_node('/root/FeedbackHandler')
 onready var GameState = get_node('/root/GameState')
 
+var WHITE_IMPACT = preload('res://Resources/Effects/Impacts/WhiteImpact/WhiteImpact.tscn')
+
 var source_actor
 
 var vector = Vector2()
@@ -46,17 +48,36 @@ func earlyCallback() -> void:
 	returning_to_player = true
 	source_actor = null
 
+func collisionEffect(target_actor) -> void:
+	var impact_instance = WHITE_IMPACT.instance()
+	get_node('/root/root/Environment').add_child(impact_instance)
+	impact_instance.position = target_actor.get_position()
+	impact_instance.play()
+	FeedbackHandler.current_camera.shake()
+
+# cigarettes after sex
+
 func detectContact() -> void:
 		for area in area2D.get_overlapping_areas():
 			var area_parent = area.get_parent()
 			if area_parent != source_actor and area.get_name() == 'HitBox':
-				if returning_to_player and area_parent == GameState.player:
+				if area_parent == GameState.player:
+					if returning_to_player or distance_timer.is_stopped():
 						GameState.player.has_axe = true
 						queue_free()
+				elif returning_to_player:
+					if not damaged_actors.has(area_parent):
+						damaged_actors.append(area_parent)
+						area_parent.damage(1)
+						collisionEffect(area_parent)
+				elif distance_timer.is_stopped():
+					pass
 				elif area_parent.health == 1:
 					area_parent.kill()
+					collisionEffect(area_parent)
 				else:
 					area_parent.hitByAxe(1)
+					collisionEffect(area_parent)
 					GameState.npc_with_axe = area_parent
 					GameState.player.axe_recall_available = true
 					queue_free()	
@@ -72,7 +93,9 @@ func _physics_process(_delta) -> void:
 	elif distance_timer.is_stopped():
 		if not vector:
 			animatedSprite.stop()
+		source_actor = null
 		vector = move_and_slide(vector.normalized() * slowdown_speed)
+		# todo: tween this bitch
 		slowdown_speed -= 50
 	elif vector:
 		vector = move_and_slide(vector.normalized() * speed)

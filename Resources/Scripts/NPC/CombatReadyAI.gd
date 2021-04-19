@@ -5,6 +5,8 @@ class_name CombatReadyAI
 var knockback_handler_script = preload('res://Resources/Scripts/Helpers/KnockBackHandler.gd')
 var knockback_handler
 
+var AXE_SCENE = preload('res://Resources/Abilities/AxeThrow/AxeThrow.tscn')
+
 var stun_damage_threshold = 1
 var stun_duration_timer
 var stun_duration = 3
@@ -37,8 +39,8 @@ var damage_cooldown = 0.5
 var damage_cooldown_timer
 
 # starting health
-const MAX_HEALTH = 3
-var health = MAX_HEALTH
+var max_health = 3
+var health = max_health
 
 func _ready():
 	knockback_handler = knockback_handler_script.new()
@@ -53,14 +55,24 @@ func _ready():
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
 
+func dropAxe() -> void:
+	state = IDLE
+	GameState.npc_with_axe = null
+	GameState.axe_instance = AXE_SCENE.instance()
+	get_tree().get_root().add_child(GameState.axe_instance)
+	GameState.axe_instance.position = get_global_position()
+
 func damage(damage : int) -> void:
 	attack_started = false
-	health = health - damage
+	health -= damage
+	if GameState.npc_with_axe == self:
+		dropAxe()
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= stun_damage_threshold:
-		if health < 0 or state == STUNNED:
-			state = PRE_DEATH
+		if health <= 0 or state == STUNNED:
+			queue_free()
+			#state = PRE_DEATH
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED

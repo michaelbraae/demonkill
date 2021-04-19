@@ -13,21 +13,25 @@ outlines = [ PoolVector2Array( 42.7279, 849.949, 728, 856, 728, 400, 43.6423, 39
 position = Vector2( 68.2378, 0.897888 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 500.315, 698.139 )
 scale = Vector2( 1.9359, 1.9359 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="."]
+visible = false
 position = Vector2( -25.9729, 697.889 )
 scale = Vector2( 1.9359, 1.9359 )
 texture = ExtResource( 2 )
 
 [node name="Sprite4" type="Sprite" parent="."]
+visible = false
 position = Vector2( 500.231, 171.517 )
 scale = Vector2( 1.9359, 1.9359 )
 texture = ExtResource( 2 )
 
 [node name="Sprite3" type="Sprite" parent="."]
+visible = false
 position = Vector2( -26.0571, 171.267 )
 scale = Vector2( 1.9359, 1.9359 )
 texture = ExtResource( 2 )

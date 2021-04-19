@@ -35,6 +35,10 @@ func damageOverlappingAreas() -> void:
 				200,
 				20
 			)
+			collisionEffect(area_parent)
+
+func collisionEffect(target_actor) -> void:
+	pass
 
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source

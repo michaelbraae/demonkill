@@ -4,6 +4,8 @@ var state = MAIN_MENU
 
 onready var healthGUI = load('res://Scenes/GUI/Health/Health.tscn').instance()
 
+var axe_instance
+
 var npc_with_axe
 
 var player

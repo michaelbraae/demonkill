@@ -1,13 +1,17 @@
-extends CasterAI
+extends CombatReadyAI
 
-func initialiseConfig() -> void:
-	.initialiseConfig()
-	attack_range = 350
-	move_speed = 180
-	attacks_in_sequence = 5
+var SIMPLE_ENERGYBALL_SCENE = preload('res://Resources/Abilities/EnergyBall/Simple/SimpleEnergyBall.tscn')
+
+func initialiseConfig():
+	move_speed = 80
+	attacks_in_sequence = 10
 	repeat_attacks = true
-	attack_cooldown = 2
+	attack_range = 50
+	attack_cooldown = 1
 	complete_attack_sequence = true
 
-func setProjectileScene() -> void:
-	PROJECTILE_SCENE = preload('res://Resources/Abilities/Projectiles/energy-ball/Energy-Ball.tscn')
+func perAttackAction() -> void:
+	var eball = SIMPLE_ENERGYBALL_SCENE.instance()
+	get_parent().add_child(eball)
+	var angle = get_angle_to(target_actor.get_global_position())
+	eball.bang(Vector2(cos(angle), sin(angle)), self)

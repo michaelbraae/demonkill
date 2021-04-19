@@ -11,7 +11,7 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
-var axe_instance
+#var axe_instance
 var axe_recall_available = false
 
 func _ready():
@@ -38,20 +38,21 @@ func noWeaponMelee() -> void:
 
 func throwAxe() -> void:
 	state = AXE_THROW
-	axe_instance = AXE_SCENE.instance()
-	get_parent().add_child(axe_instance)
+	GameState.axe_instance = AXE_SCENE.instance()
+	get_parent().add_child(GameState.axe_instance)
 	axe_recall_available = false
-	axe_instance.bang(getAttackDirection(), self)
+	GameState.axe_instance.bang(getAttackDirection(), self)
 
 func recallAxe() -> void:
 	state = AXE_RECALL
-	if axe_instance:
-		axe_instance.earlyCallback()
+	if GameState.axe_instance:
+		GameState.axe_instance.earlyCallback()
 	else:
-		axe_instance = AXE_SCENE.instance()
-		get_parent().add_child(axe_instance)
+		GameState.axe_instance = AXE_SCENE.instance()
+		get_parent().add_child(GameState.axe_instance)
 		GameState.npc_with_axe.state = GameState.npc_with_axe.IDLE
-		axe_instance.returnToPlayer(GameState.npc_with_axe)
+		GameState.axe_instance.returnToPlayer(GameState.npc_with_axe)
+		GameState.npc_with_axe = null
 
 func basicAttackAvailable() -> bool:
 	if [

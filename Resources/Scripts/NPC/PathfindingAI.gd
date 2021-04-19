@@ -6,7 +6,8 @@ class_name PathfindingAI
 
 # Any new AI must have these nodes as children to use this script
 onready var detectionArea = $DetectionArea
-onready var collisionRayCast = $CollisionRayCast
+onready var collisionRayCast = $RayCast2D
+
 onready var navigation_mesh = get_parent()
 
 # used to stop the animatedSprite flipping when Y axis is aligned
