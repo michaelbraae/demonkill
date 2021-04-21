@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Effects/Impacts/ImpactBase.gd"
 }, {
-"base": "PossessableAI",
-"class": "MeleeAI",
-"language": "GDScript",
-"path": "res://Resources/Scripts/NPC/MeleeAI.gd"
-}, {
 "base": "BaseAI",
 "class": "PathfindingAI",
 "language": "GDScript",
@@ -105,7 +100,6 @@ _global_script_class_icons={
 "CasterAI": "",
 "CombatReadyAI": "",
 "ImpactBase": "",
-"MeleeAI": "",
 "PathfindingAI": "",
 "Player": "",
 "PlayerAction": "",

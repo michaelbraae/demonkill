@@ -55,6 +55,7 @@ func collisionEffect(target_actor) -> void:
 	impact_instance.play()
 	FeedbackHandler.current_camera.shake()
 
+
 # cigarettes after sex
 
 func detectContact() -> void:

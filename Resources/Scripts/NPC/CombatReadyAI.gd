@@ -50,11 +50,15 @@ func _ready():
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
+	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
 	damage_cooldown_timer = Timer.new()
 	add_child(damage_cooldown_timer)
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
+
+func attack_cooldown_timeout() -> void:
+	attack_cooldown_timer.stop()
 
 func dropAxe() -> void:
 	state = IDLE
@@ -73,7 +77,6 @@ func damage(damage : int) -> void:
 	elif health <= stun_damage_threshold:
 		if health <= 0 or state == STUNNED:
 			queue_free()
-			#state = PRE_DEATH
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
@@ -120,13 +123,13 @@ func getAnimation() -> String:
 	return 'idle'
 
 func getNavigationAnimation() -> String:
-	if velocity.x >= 0.1:
+	if chosen_direction.x >= 0.1:
 		animatedSprite.flip_h = false
 		return 'run'
-	if velocity.x <= -0.1:
+	if chosen_direction.x <= -0.1:
 		animatedSprite.flip_h = true
 		return 'run'
-	if velocity.y <= -0.1 or velocity.y >= 0.1:
+	if chosen_direction.y <= -0.1 or chosen_direction.y >= 0.1:
 		return 'run'
 	return 'idle'
 
@@ -172,30 +175,27 @@ func readyForPostAttack() -> bool:
 			return true
 	return false
 
+func possessedDecisionLogic() -> void:
+	if knockback_handler.knocked_back:
+		velocity = knockback_handler.getKnockBackProcessVector()
+	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
+		state = ATTACKING
+	else:
+		velocity = InputHandler.getVelocity(move_speed)
+	velocity = move_and_slide(velocity)
+
 func runDecisionTree() -> void: 
 	if isPossessed():
-		if knockback_handler.knocked_back:
-			velocity = knockback_handler.getKnockBackProcessVector()
-		elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
-			state = ATTACKING
-		else:
-			velocity = InputHandler.getVelocity(move_speed)
-		velocity = move_and_slide(velocity)
-	elif state == STUNNED:
-		knockback_handler.knocked_back = false
-	elif state == PRE_DEATH:
-		pass
-	elif state == WITH_AXE:
+		possessedDecisionLogic()
+	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		pass
 	elif knockback_handler.knocked_back:
 		state = KNOCKED_BACK
 		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
-		if attack_cooldown_timer.get_time_left() < 0.1:
-			attack_cooldown_timer.stop()
 		if target_actor:
-			alignRayCastToPlayer()
-			detectBlockers()
+			#alignRaydaCastToPlayer()
+			#detectBlockers()
 			if (
 				isTargetInRange()
 				and not path_blocked
