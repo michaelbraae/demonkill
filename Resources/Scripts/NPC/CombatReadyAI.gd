@@ -177,12 +177,12 @@ func readyForPostAttack() -> bool:
 
 func possessedDecisionLogic() -> void:
 	if knockback_handler.knocked_back:
-		velocity = knockback_handler.getKnockBackProcessVector()
+		chosen_direction = knockback_handler.getKnockBackProcessVector()
 	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
 		state = ATTACKING
 	else:
-		velocity = InputHandler.getVelocity(move_speed)
-	velocity = move_and_slide(velocity)
+		chosen_direction = InputHandler.getVelocity(move_speed)
+	chosen_direction = move_and_slide(chosen_direction)
 
 func runDecisionTree() -> void: 
 	if isPossessed():
@@ -194,11 +194,8 @@ func runDecisionTree() -> void:
 		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
 	else:
 		if target_actor:
-			#alignRaydaCastToPlayer()
-			#detectBlockers()
 			if (
 				isTargetInRange()
-				and not path_blocked
 				or attack_started
 				or state == POST_ATTACK
 			):
