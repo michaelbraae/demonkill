@@ -82,7 +82,7 @@ func detectContact() -> void:
 					GameState.npc_with_axe = area_parent
 					GameState.player.axe_recall_available = true
 					GameState.axe_instance = null
-					queue_free()	
+					queue_free()
 
 func getVectorToPlayer() -> Vector2:
 	var angle_to_player = self.get_angle_to(GameState.player.get_global_position())

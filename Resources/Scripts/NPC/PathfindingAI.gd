@@ -62,7 +62,10 @@ func setDanger() -> void:
 		danger[i] = 0.0
 		var result = space_state.intersect_ray(position,
 				position + ray_directions[i].rotated(rotation) * 100, [self])
-		if result:
+		if result and result['collider'] is StaticBody:
+			print('StaticBody')
+			danger[i] = 0.0
+		elif result:
 			danger[i] = 1.0
 
 func chooseDirection():
