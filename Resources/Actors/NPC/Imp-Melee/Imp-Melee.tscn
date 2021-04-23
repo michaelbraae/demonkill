@@ -40,34 +40,14 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "take_hit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "run",
+"name": "with_axe",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
@@ -75,9 +55,29 @@ animations = [ {
 "name": "stunned",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "with_axe",
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "take_hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -116,6 +116,7 @@ visible = false
 shape = SubResource( 6 )
 
 [node name="EnemyBiteBox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
 position = Vector2( 0.0783939, 0.078392 )
@@ -131,44 +132,7 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 8 )
 
-[node name="NavigationRayCasts" type="Node2D" parent="."]
-
-[node name="RayCast2D" type="RayCast2D" parent="NavigationRayCasts"]
-enabled = true
+[node name="InterestVector" type="RayCast2D" parent="."]
 cast_to = Vector2( 50, 0 )
 
-[node name="RayCast2D2" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 0.785398
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D3" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 1.5708
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D4" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 2.35619
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D5" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 3.14159
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D6" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 3.92699
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D7" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 4.71239
-enabled = true
-cast_to = Vector2( 50, 0 )
-
-[node name="RayCast2D8" type="RayCast2D" parent="NavigationRayCasts"]
-rotation = 5.49779
-enabled = true
-cast_to = Vector2( 50, 0 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

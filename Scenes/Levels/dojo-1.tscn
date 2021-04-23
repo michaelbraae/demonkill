@@ -1,11 +1,44 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Resources/Environment/Buildings/Building-Square.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Sprites/Environment/Stone Floor/floor-corner-shadow.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/Environment/Stone Floor/floor-shadow.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 67.7622, 40.8979 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "floor-corner-shadow.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 6, 5, 0, 1 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "floor-shadow.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 1, 1, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
 [node name="root" type="Node2D"]
-position = Vector2( 68.2378, 0.897888 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -34,112 +67,17 @@ texture = ExtResource( 2 )
 [node name="Imp-Melee" parent="." instance=ExtResource( 4 )]
 position = Vector2( 336, 791.102 )
 
-[node name="Imp-Melee2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 275.762, 695.102 )
-
-[node name="walls" type="YSort" parent="."]
-
-[node name="Building-Square" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -55.6604, 338.114 )
-
-[node name="Building-Square13" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -49.7321, 317.083 )
-
-[node name="Building-Square14" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -75.8075, 307.939 )
-
-[node name="Building-Square15" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 68.1925, 307.939 )
-
-[node name="Building-Square18" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 228.193, 307.939 )
-
-[node name="Building-Square17" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 372.193, 307.939 )
-
-[node name="Building-Square16" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 516.193, 307.939 )
-
-[node name="Building-Square21" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 228.193, 307.939 )
-
-[node name="Building-Square20" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 372.193, 307.939 )
-
-[node name="Building-Square19" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 516.193, 307.939 )
-
-[node name="Building-Square22" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 668.193, 307.939 )
-
-[node name="Building-Square32" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -29.925, 961.144 )
-
-[node name="Building-Square31" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -56, 952 )
-
-[node name="Building-Square30" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 88, 952 )
-
-[node name="Building-Square29" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 248, 952 )
-
-[node name="Building-Square28" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 392, 952 )
-
-[node name="Building-Square27" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 536, 952 )
-
-[node name="Building-Square26" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 248, 952 )
-
-[node name="Building-Square25" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 392, 952 )
-
-[node name="Building-Square24" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 536, 952 )
-
-[node name="Building-Square23" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 688, 952 )
-
-[node name="Building-Square4" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -66.4355, 477.247 )
-
-[node name="Building-Square5" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -59.8534, 510.175 )
-
-[node name="Building-Square6" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -59.8534, 638.175 )
-
-[node name="Building-Square35" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -59.8534, 734.175 )
-
-[node name="Building-Square34" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( -59.8534, 862.175 )
-
-[node name="Building-Square38" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 704 )
-
-[node name="Building-Square37" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 832 )
-
-[node name="Building-Square36" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 960 )
-
-[node name="Building-Square12" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 828.193, 307.939 )
-
-[node name="Building-Square10" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 817.418, 311.072 )
-
-[node name="Building-Square9" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 817.418, 447.072 )
-
-[node name="Building-Square8" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 480 )
-
-[node name="Building-Square7" parent="walls" instance=ExtResource( 1 )]
-position = Vector2( 824, 608 )
-
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 280, 832 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 139.762, 751.102 )
+shape = SubResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 196611, 0, 0, 196612, 0, 0, 262149, 0, 0, 262150, 0, 0, 327687, 0, 0, 393223, 0, 0, 393224, 0, 0 )

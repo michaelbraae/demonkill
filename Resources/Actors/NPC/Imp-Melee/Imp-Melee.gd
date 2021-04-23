@@ -4,7 +4,7 @@ var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
 
 func initialiseConfig():
 	max_health = 3
-	move_speed = 120
+	move_speed = 70
 	attacks_in_sequence = 1
 	repeat_attacks = true
 	attack_range = 30

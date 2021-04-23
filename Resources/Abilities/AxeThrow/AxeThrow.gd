@@ -81,6 +81,7 @@ func detectContact() -> void:
 					collisionEffect(area_parent)
 					GameState.npc_with_axe = area_parent
 					GameState.player.axe_recall_available = true
+					GameState.axe_instance = null
 					queue_free()	
 
 func getVectorToPlayer() -> Vector2:

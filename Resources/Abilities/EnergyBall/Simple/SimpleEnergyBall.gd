@@ -5,4 +5,4 @@ func initialiseConfig() -> void:
 	attack_move_speed = 150
 
 func collisionEffect(target_actor) -> void:
-	print('Collision Effect')
+	pass

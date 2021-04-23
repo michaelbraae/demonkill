@@ -15,7 +15,7 @@ onready var collisionRayCast = $RayCast2D
 const TARGET_POSITION_OFFSET = 2
 
 # Steering Behaviour
-export var detection_ray_count = 8
+export var detection_ray_count = 12
 
 export var look_ahead = 100
 
@@ -55,22 +55,15 @@ func setInterest() -> void:
 		for i in detection_ray_count:
 			var d = ray_directions[i].rotated(rotation).dot(path_direction)
 			interest[i] = max(0, d)
-	else:
-		setDefaultInterest()
 
 func setDanger() -> void:
 	var space_state = get_world_2d().direct_space_state
 	for i in detection_ray_count:
+		danger[i] = 0.0
 		var result = space_state.intersect_ray(position,
-				position + ray_directions[i].rotated(rotation), [self])
-		danger[i] = 1.0 if result else 0.0
-
-# this doesn't really work, should be replaced with wander logic
-func setDefaultInterest() -> void:
-	# Default to moving forward
-	for i in detection_ray_count:
-		var d = ray_directions[i].rotated(rotation).dot(transform.x)
-		interest[i] = max(0, d)
+				position + ray_directions[i].rotated(rotation) * 100, [self])
+		if result:
+			danger[i] = 1.0
 
 func chooseDirection():
 	# Eliminate interest in slots with danger
@@ -84,15 +77,12 @@ func chooseDirection():
 	chosen_direction = chosen_direction.normalized()
 
 func runDecisionTree() -> void:
-	if isPossessed():
-		# do some funny stuff here probably
-		pass
-	else:
-		state = NAVIGATING
-		setInterest()
-		setDanger()
-		chooseDirection()
-		move_and_slide(chosen_direction * move_speed)
+	state = NAVIGATING
+	setInterest()
+	setDanger()
+	chooseDirection()
+	$InterestVector.look_at(to_global(chosen_direction))
+	move_and_slide(chosen_direction * move_speed)
 
 func _physics_process(_delta : float) -> void:
 	detectTarget()
