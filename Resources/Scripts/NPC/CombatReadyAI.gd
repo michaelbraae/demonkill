@@ -36,7 +36,6 @@ var attack_cooldown_timer
 # time in seconds (float) before the AI can damage the player
 # to prevent damage ticks stacking each swing
 var damage_cooldown = 0.5
-var damage_cooldown_timer
 
 # starting health
 var max_health = 3
@@ -51,8 +50,6 @@ func _ready():
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
-	damage_cooldown_timer = Timer.new()
-	add_child(damage_cooldown_timer)
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
@@ -201,10 +198,9 @@ func runDecisionTree() -> void:
 			):
 				if readyForPreAttack():
 					handlePreAttack()
-				if state == ATTACKING:
-					if not attack_landed:
-						perAttackAction()
-						attack_landed = true
+				elif state == ATTACKING and not attack_landed:
+					perAttackAction()
+					attack_landed = true
 			else:
 				.runDecisionTree()
 	animatedSprite.play(getAnimation())
@@ -242,7 +238,3 @@ func hitByAxe(damage) -> void:
 	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
-
-func _process(_delta):
-	if damage_cooldown_timer.get_time_left() < 0.1:
-		damage_cooldown_timer.stop()

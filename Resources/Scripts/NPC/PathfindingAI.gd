@@ -44,7 +44,7 @@ func detectTarget() -> void:
 	var detectionOverlaps = detectionArea.get_overlapping_areas()
 	if detectionOverlaps:
 		for area in detectionOverlaps:
-			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent().get('IS_PLAYER'):
+			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent() == GameState.player:
 				target_actor = area.get_parent()
 			elif nodeIsPossessed(area.get_parent()):
 				target_actor = PossessionState.possessedNPC
@@ -62,10 +62,7 @@ func setDanger() -> void:
 		danger[i] = 0.0
 		var result = space_state.intersect_ray(position,
 				position + ray_directions[i].rotated(rotation) * 100, [self])
-		if result and result['collider'] is StaticBody:
-			print('StaticBody')
-			danger[i] = 0.0
-		elif result:
+		if result:
 			danger[i] = 1.0
 
 func chooseDirection():
