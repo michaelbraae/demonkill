@@ -17,9 +17,11 @@ const TARGET_POSITION_OFFSET = 2
 # Steering Behaviour
 export var detection_ray_count = 8
 
-export var look_ahead = 100
+export var look_ahead = 30
 
-var target_engagement_range = 70
+# 70 - feels aggressive
+# 100 - feels safer
+var target_engagement_range = 50
 
 var ray_directions = []
 var interest = []
@@ -88,6 +90,15 @@ func setInterest() -> void:
 			var d = ray_directions[i].rotated(rotation).dot(path_direction)
 			interest[i] = max(0, d)
 
+func setDanger() -> void:
+	var space_state = get_world_2d().direct_space_state
+	for i in detection_ray_count:
+		danger[i] = 0.0
+		var result = space_state.intersect_ray(position,
+				position + ray_directions[i].rotated(rotation) * look_ahead, [self])
+		if result:
+			danger[i] = 1.0
+
 func detectTargetAggression() -> void:
 	if target_actor:
 		var space_state = get_world_2d().direct_space_state
@@ -104,15 +115,6 @@ func detectTargetAggression() -> void:
 					in_dodge = true
 					dodge_timer.start(0.3)
 
-func setDanger() -> void:
-	var space_state = get_world_2d().direct_space_state
-	for i in detection_ray_count:
-		danger[i] = 0.0
-		var result = space_state.intersect_ray(position,
-				position + ray_directions[i].rotated(rotation) * 100, [self])
-		if result:
-			danger[i] = 1.0
-
 func chooseDirection():
 	# Eliminate interest in slots with danger
 	for i in detection_ray_count:
@@ -122,11 +124,16 @@ func chooseDirection():
 	chosen_direction = Vector2.ZERO
 	for i in detection_ray_count:
 		chosen_direction += ray_directions[i] * interest[i]
-	# Orbit the target if in engagement range
-	if isTargetInEngagementRange():
+	
+	if not in_dodge and not dodge_cooldown_timer.is_stopped():
+		# once the dodge has finished, but it's still on cooldown
+		# they should be aggresive
+		pass
+	elif isTargetInEngagementRange():
+		# Orbit the target if in engagement range
 		detectTargetAggression()
 		chosen_direction = chosen_direction.rotated(1.5)
-	# targetAggression has resulted in need for dodge
+	# detectTargetAggression() has resulted in need for dodge
 	if in_dodge:
 		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()

@@ -33,7 +33,7 @@ func knockBack(
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	if state == DASH:
+	if state == DASH and not knockback_handler.knocked_back:
 		velocity = InputHandler.getVelocity(130)
 	elif ATTACK_STATES.has(state):
 		velocity = InputHandler.getAttackDirection()

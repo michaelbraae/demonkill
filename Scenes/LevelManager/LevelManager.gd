@@ -35,6 +35,7 @@ func _deferred_goto_scene(path : String):
 		player_controlled_actor = PLAYER_SCENE.instance()
 		GameState.state = GameState.CONTROLLING_PLAYER
 		GameState.player = player_controlled_actor
+		PlayerState.health = PlayerState.max_health
 	current_scene.add_child(player_controlled_actor)
 	# the spawn point should be an argument but it could default to SpawnPoint
 	player_controlled_actor.position = spawnPoint.position

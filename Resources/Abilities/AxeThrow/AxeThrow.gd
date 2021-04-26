@@ -54,8 +54,6 @@ func collisionEffect(target_actor) -> void:
 	impact_instance.position = target_actor.get_global_position()
 	impact_instance.play()
 	FeedbackHandler.current_camera.shake()
-
-
 # cigarettes after sex
 
 func detectContact() -> void:
@@ -69,23 +67,24 @@ func detectContact() -> void:
 				elif returning_to_player:
 					if not damaged_actors.has(area_parent):
 						damaged_actors.append(area_parent)
-						area_parent.damage(1)
+						area_parent.damage(damage)
 						collisionEffect(area_parent)
 				elif distance_timer.is_stopped():
 					pass
-				elif area_parent.health == 1:
+				elif area_parent.health <= damage:
 					area_parent.kill()
 					collisionEffect(area_parent)
 				else:
-					area_parent.hitByAxe(1)
+					area_parent.hitByAxe(damage)
 					collisionEffect(area_parent)
 					GameState.npc_with_axe = area_parent
 					GameState.player.axe_recall_available = true
 					GameState.axe_instance = null
 					queue_free()
+					break
 
 func getVectorToPlayer() -> Vector2:
-	var angle_to_player = self.get_angle_to(GameState.player.get_global_position())
+	var angle_to_player = get_angle_to(GameState.player.get_global_position())
 	return Vector2(cos(angle_to_player), sin(angle_to_player))
 
 func _physics_process(_delta) -> void:
