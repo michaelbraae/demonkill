@@ -30,7 +30,7 @@ func _deferred_goto_scene(path : String):
 	var spawnPoint = current_scene.get_node('SpawnPoint')
 	var player_controlled_actor
 	if GameState.state == GameState.CONTROLLING_NPC:
-		player_controlled_actor = PossessionState.possessedNPC
+		player_controlled_actor = PossessionState.current_possession
 	else:
 		player_controlled_actor = PLAYER_SCENE.instance()
 		GameState.state = GameState.CONTROLLING_PLAYER

@@ -15,7 +15,7 @@ func isPossessed() -> bool:
 	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.possessedNPC == self
 
 func nodeIsPossessed(node_arg : KinematicBody2D) -> bool:
-	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.possessedNPC == node_arg
+	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.current_possession == node_arg
 
 # STATES:
 enum {

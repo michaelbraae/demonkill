@@ -28,6 +28,15 @@ var danger = []
 var chosen_direction = Vector2.ZERO
 var velocity = Vector2.ZERO
 
+# dodge logic
+var dodge_timer
+var dodge_cooldown_timer
+var in_dodge
+var dodge_vector
+
+#dodge variable logic
+var dodge_cooldown = 2
+
 # default move_speed for all PathFindingAI
 var move_speed = 120
 
@@ -41,6 +50,19 @@ func _ready() -> void:
 	for i in detection_ray_count:
 		var angle = i * 2 * PI / detection_ray_count
 		ray_directions[i] = Vector2.RIGHT.rotated(angle)
+	dodge_timer = Timer.new()
+	dodge_timer.connect('timeout', self, 'dodge_timeout')
+	add_child(dodge_timer)
+	dodge_cooldown_timer = Timer.new()
+	dodge_cooldown_timer.connect('timeout', self, 'dodge_cooldown_timeout')
+	add_child(dodge_cooldown_timer)
+
+func dodge_timeout() -> void:
+	in_dodge = false
+	dodge_timer.stop()
+
+func dodge_cooldown_timeout() -> void:
+	dodge_cooldown_timer.stop()
 
 func detectTarget() -> void:
 	var detectionOverlaps = detectionArea.get_overlapping_areas()
@@ -49,10 +71,13 @@ func detectTarget() -> void:
 			if GameState.state == GameState.CONTROLLING_PLAYER and area.get_parent() == GameState.player:
 				target_actor = area.get_parent()
 			elif nodeIsPossessed(area.get_parent()):
-				target_actor = PossessionState.possessedNPC
+				target_actor = PossessionState.current_possession
+
+func getDistanceToTarget():
+	return get_global_position().distance_to(target_actor.get_global_position())
 
 func isTargetInEngagementRange() -> bool:
-	if get_global_position().distance_to(target_actor.get_global_position()) <= target_engagement_range:
+	if getDistanceToTarget() <= target_engagement_range:
 		return true
 	return false
 
@@ -63,8 +88,21 @@ func setInterest() -> void:
 			var d = ray_directions[i].rotated(rotation).dot(path_direction)
 			interest[i] = max(0, d)
 
-func detectTargetAggression():
-	var current_possession = PossessionState.getCurrentPossession()
+func detectTargetAggression() -> void:
+	if target_actor:
+		var space_state = get_world_2d().direct_space_state
+		if target_actor.velocity:
+			var result = space_state.intersect_ray(
+				target_actor.position,
+				target_actor.position + target_actor.velocity * 200,
+				[target_actor]
+			)
+			if result and result['collider'] == self and getDistanceToTarget() < 100:
+				if dodge_cooldown_timer.is_stopped():
+					dodge_vector = target_actor.velocity
+					dodge_cooldown_timer.start(dodge_cooldown)
+					in_dodge = true
+					dodge_timer.start(0.3)
 
 func setDanger() -> void:
 	var space_state = get_world_2d().direct_space_state
@@ -86,17 +124,25 @@ func chooseDirection():
 		chosen_direction += ray_directions[i] * interest[i]
 	# Orbit the target if in engagement range
 	if isTargetInEngagementRange():
+		detectTargetAggression()
 		chosen_direction = chosen_direction.rotated(1.5)
+	# targetAggression has resulted in need for dodge
+	if in_dodge:
+		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()
+
+func getMoveSpeed() -> int:
+	if in_dodge:
+		return move_speed * 2
+	return move_speed
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
-	detectTargetAggression()
 	setInterest()
 	setDanger()
 	chooseDirection()
 	$InterestVector.look_at(to_global(velocity))
-	move_and_slide(velocity * move_speed)
+	move_and_slide(velocity * getMoveSpeed())
 
 func _physics_process(_delta : float) -> void:
 	detectTarget()

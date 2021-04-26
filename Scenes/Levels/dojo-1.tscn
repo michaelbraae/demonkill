@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Sprites/Environment/Stone Floor/stone-floor-16x16.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -8,11 +9,35 @@ extents = Vector2( 67.7622, 40.8979 )
 
 [node name="root" type="Node2D"]
 
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 272, 0 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 272, 272 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 0, 272 )
+texture = ExtResource( 2 )
+
 [node name="Imp-Melee" parent="." instance=ExtResource( 4 )]
 position = Vector2( 72, 64 )
 
 [node name="Imp-Melee2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 64.0784 )
+
+[node name="Imp-Melee3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 144, 104 )
+
+[node name="Imp-Melee4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 112 )
+
+[node name="Imp-Melee5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 152 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 144, 136 )

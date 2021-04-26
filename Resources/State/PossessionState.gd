@@ -12,8 +12,6 @@ var current_possession
 
 var possessedNPC
 
-var possession_candidate
-
 var possession_timer
 
 var possession_time_threshold = 0.3
@@ -32,9 +30,9 @@ func possession_timer_timeout():
 		possessNewEntity(current_possession)
 
 func getCurrentPossession():
-	if GameState.CONTROLLING_PLAYER:
-		return GameState.player
-	return possessedNPC
+	if GameState.CONTROLLING_NPC and current_possession:
+		return current_possession
+	return GameState.player
 
 func initiateBite(current_possession_var):
 	InputHandler.mute_inputs = true
@@ -45,7 +43,7 @@ func initiateBite(current_possession_var):
 
 func handlePossessionDeath(spawn_position) -> void:
 	FeedbackHandler.warp()
-	possessedNPC.queue_free()
+	current_possession.queue_free()
 	GameState.state = GameState.CONTROLLING_PLAYER
 	var current_scene = get_tree().get_current_scene()
 	var player_instance = PLAYER_SCENE.instance()
@@ -64,17 +62,15 @@ func possessNewEntity(current_possession_var) -> void:
 			if area.get_name() == 'EnemyBiteBox':
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
+					current_possession = parent
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.camera2D.make_current()
 					parent.health = parent.max_health
 					parent.attack_started = false
 					parent.attack_landed = false
-					possessedNPC = parent
 					bite_box = area
 					InputHandler.current_actor = parent
 					FeedbackHandler.current_camera = parent.camera2D
-					current_possession_var.queue_free()
-					print('possessedNPC: ', possessedNPC)
 					break
 
 func _physics_process(_delta):
@@ -83,3 +79,4 @@ func _physics_process(_delta):
 		Engine.time_scale = 1
 		bite_started = false
 		possession_timer.stop()
+		current_possession = null

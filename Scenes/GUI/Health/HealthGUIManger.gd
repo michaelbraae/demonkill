@@ -10,9 +10,9 @@ var health_current
 var max_health
 
 func _physics_process(_delta):
-	if GameState.state == GameState.CONTROLLING_NPC and is_instance_valid(PossessionState.possessedNPC):
-		health_current = PossessionState.possessedNPC.health
-		max_health = PossessionState.possessedNPC.max_health
+	if GameState.state == GameState.CONTROLLING_NPC and is_instance_valid(PossessionState.current_possession):
+		health_current = PossessionState.current_possession.health
+		max_health = PossessionState.current_possession.max_health
 	else:
 		health_current = PlayerState.health
 		max_health = PlayerState.max_health
