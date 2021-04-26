@@ -120,13 +120,13 @@ func getAnimation() -> String:
 	return 'idle'
 
 func getNavigationAnimation() -> String:
-	if chosen_direction.x >= 0.1:
+	if velocity.x >= 0.1:
 		animatedSprite.flip_h = false
 		return 'run'
-	if chosen_direction.x <= -0.1:
+	if velocity.x <= -0.1:
 		animatedSprite.flip_h = true
 		return 'run'
-	if chosen_direction.y <= -0.1 or chosen_direction.y >= 0.1:
+	if velocity.y <= -0.1 or velocity.y >= 0.1:
 		return 'run'
 	return 'idle'
 
@@ -174,12 +174,12 @@ func readyForPostAttack() -> bool:
 
 func possessedDecisionLogic() -> void:
 	if knockback_handler.knocked_back:
-		chosen_direction = knockback_handler.getKnockBackProcessVector()
+		velocity = knockback_handler.getKnockBackProcessVector()
 	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
 		state = ATTACKING
 	else:
-		chosen_direction = InputHandler.getVelocity(move_speed)
-	chosen_direction = move_and_slide(chosen_direction)
+		velocity = InputHandler.getVelocity(move_speed)
+	velocity = move_and_slide(velocity)
 
 func runDecisionTree() -> void: 
 	if isPossessed():

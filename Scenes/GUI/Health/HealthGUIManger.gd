@@ -9,8 +9,8 @@ onready var label = get_node('Label')
 var health_current
 var max_health
 
-func _process(_delta):
-	if GameState.state == GameState.CONTROLLING_NPC:
+func _physics_process(_delta):
+	if GameState.state == GameState.CONTROLLING_NPC and is_instance_valid(PossessionState.possessedNPC):
 		health_current = PossessionState.possessedNPC.health
 		max_health = PossessionState.possessedNPC.max_health
 	else:

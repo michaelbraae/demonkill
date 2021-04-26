@@ -31,6 +31,11 @@ func possession_timer_timeout():
 		InputHandler.mute_inputs = false
 		possessNewEntity(current_possession)
 
+func getCurrentPossession():
+	if GameState.CONTROLLING_PLAYER:
+		return GameState.player
+	return possessedNPC
+
 func initiateBite(current_possession_var):
 	InputHandler.mute_inputs = true
 	current_possession = current_possession_var
@@ -69,6 +74,7 @@ func possessNewEntity(current_possession_var) -> void:
 					InputHandler.current_actor = parent
 					FeedbackHandler.current_camera = parent.camera2D
 					current_possession_var.queue_free()
+					print('possessedNPC: ', possessedNPC)
 					break
 
 func _physics_process(_delta):

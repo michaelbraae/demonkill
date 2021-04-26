@@ -15,9 +15,11 @@ onready var collisionRayCast = $RayCast2D
 const TARGET_POSITION_OFFSET = 2
 
 # Steering Behaviour
-export var detection_ray_count = 12
+export var detection_ray_count = 8
 
 export var look_ahead = 100
+
+var target_engagement_range = 70
 
 var ray_directions = []
 var interest = []
@@ -49,12 +51,20 @@ func detectTarget() -> void:
 			elif nodeIsPossessed(area.get_parent()):
 				target_actor = PossessionState.possessedNPC
 
+func isTargetInEngagementRange() -> bool:
+	if get_global_position().distance_to(target_actor.get_global_position()) <= target_engagement_range:
+		return true
+	return false
+
 func setInterest() -> void:
 	if target_actor:
 		var path_direction = get_global_position().direction_to(target_actor.get_global_position())
 		for i in detection_ray_count:
 			var d = ray_directions[i].rotated(rotation).dot(path_direction)
 			interest[i] = max(0, d)
+
+func detectTargetAggression():
+	var current_possession = PossessionState.getCurrentPossession()
 
 func setDanger() -> void:
 	var space_state = get_world_2d().direct_space_state
@@ -74,15 +84,19 @@ func chooseDirection():
 	chosen_direction = Vector2.ZERO
 	for i in detection_ray_count:
 		chosen_direction += ray_directions[i] * interest[i]
-	chosen_direction = chosen_direction.normalized()
+	# Orbit the target if in engagement range
+	if isTargetInEngagementRange():
+		chosen_direction = chosen_direction.rotated(1.5)
+	velocity = chosen_direction.normalized()
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
+	detectTargetAggression()
 	setInterest()
 	setDanger()
 	chooseDirection()
-	$InterestVector.look_at(to_global(chosen_direction))
-	move_and_slide(chosen_direction * move_speed)
+	$InterestVector.look_at(to_global(velocity))
+	move_and_slide(velocity * move_speed)
 
 func _physics_process(_delta : float) -> void:
 	detectTarget()
