@@ -33,9 +33,6 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
-# time in seconds (float) before the AI can damage the player
-# to prevent damage ticks stacking each swing
-var damage_cooldown = 0.5
 
 # starting health
 var max_health = 3
@@ -103,7 +100,7 @@ func isTargetInRange() -> bool:
 func getAnimation() -> String:
 	if isPossessed():
 		if state == ATTACKING:
-			return getAttackLoop()
+			return 'attack_loop'
 		return getNavigationAnimation()
 	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(state):
 		return getNavigationAnimation()
@@ -129,9 +126,6 @@ func getNavigationAnimation() -> String:
 	if velocity.y <= -0.1 or velocity.y >= 0.1:
 		return 'run'
 	return 'idle'
-
-func getAttackLoop() -> String:
-	return 'attack_loop'
 
 func getAttackAnimation() -> String:
 	match state:

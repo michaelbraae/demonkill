@@ -17,6 +17,12 @@ func _ready():
 func shakeCamera() -> void:
 	current_camera.shake()
 
+func vibrateController() -> void:
+	Input.start_joy_vibration(0, 1, 1, 1)
+
+func lightVibrate() -> void:
+	Input.start_joy_vibration(0, 0, 0.3, 0.1)
+
 func min_slowdown() -> void:
 	if not slowdown_enabled:
 		slowdown_enabled = true

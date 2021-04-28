@@ -17,37 +17,42 @@
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit2.png" type="Texture" id=24]
 [ext_resource path="res://Resources/Cameras/ShakingCamera/ShakingCamera.tscn" type="PackedScene" id=25]
 
-[sub_resource type="CircleShape2D" id=9]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 22, 29 )
+[sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 13 )
-region = Rect2( 22, 0, 22, 29 )
+region = Rect2( 0, 0, 22, 29 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 13 )
-region = Rect2( 44, 0, 22, 29 )
+region = Rect2( 22, 0, 22, 29 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 13 )
+region = Rect2( 44, 0, 22, 29 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 13 )
 region = Rect2( 66, 0, 22, 29 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "pre_attack",
+"name": "post_attack",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "with_axe",
 "speed": 5.0
@@ -57,40 +62,35 @@ animations = [ {
 "name": "stunned",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "take_hit",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 11.5585
 height = 7.24638
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=8]
 radius = 24.2581
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 radius = 154.201
 
 [node name="Imp-Melee" type="KinematicBody2D"]
@@ -98,13 +98,14 @@ collision_layer = 5
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 9 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -117,14 +118,14 @@ cast_to = Vector2( 100, 0 )
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="EnemyBiteBox" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
 position = Vector2( 0.0783939, 0.078392 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 25 )]
 visible = false
@@ -134,9 +135,20 @@ zoom = Vector2( 0.35, 0.35 )
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="InterestVector" type="RayCast2D" parent="."]
 cast_to = Vector2( 50, 0 )
+
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = -4.00904
+margin_top = -20.0452
+margin_right = 22.991
+margin_bottom = -6.04522
+rect_scale = Vector2( 0.3, 0.3 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

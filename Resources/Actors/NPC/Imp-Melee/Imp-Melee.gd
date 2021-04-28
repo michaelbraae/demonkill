@@ -2,6 +2,8 @@ extends PossessableAI
 
 var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
 
+onready var health_label = $HealthLabel
+
 func initialiseConfig():
 	max_health = 3
 	move_speed = 70
@@ -11,9 +13,15 @@ func initialiseConfig():
 	attack_cooldown = 1
 	complete_attack_sequence = true
 
+func setHealth() -> void:
+	health_label.set_text(str(health, '/', max_health))
+
 func perAttackAction() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
 	swipe_instance.target_actor = target_actor
 	var angle = get_angle_to(target_actor.get_global_position())
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
+
+func _process(_delta):
+	setHealth()

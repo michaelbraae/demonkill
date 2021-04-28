@@ -37,6 +37,7 @@ func damageOverlappingAreas() -> void:
 		):
 			damaged_actors.push_front(area_parent.get_instance_id())
 			FeedbackHandler.shakeCamera()
+			FeedbackHandler.lightVibrate()
 			area_parent.damage(damage)
 			area_parent.knockBack(
 				source_actor.get_angle_to(area_parent.get_global_position()),
