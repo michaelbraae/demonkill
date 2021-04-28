@@ -1,53 +1,53 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run2.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle1.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle1.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run2.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run3.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run1.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run4.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle3.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle2.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle4.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle5.png" type="Texture" id=9]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/attack/attack_2.png" type="Texture" id=10]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/attack/attack_1.png" type="Texture" id=11]
-[ext_resource path="res://Resources/Actors/NPC/Imp-Melee/Imp-Melee.gd" type="Script" id=12]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/with_axe.png" type="Texture" id=13]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit1.png" type="Texture" id=22]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit2.png" type="Texture" id=24]
-[ext_resource path="res://Resources/Cameras/ShakingCamera/ShakingCamera.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit1.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/attack/attack_2.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/with_axe.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit2.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle5.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/attack/attack_1.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Cameras/ShakingCamera/ShakingCamera.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run4.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run1.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle3.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle4.png" type="Texture" id=14]
+[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle2.png" type="Texture" id=15]
+[ext_resource path="res://Resources/Actors/NPC/Imps/Imp-Melee/Imp-Melee.gd" type="Script" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 22, 29 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 6 )
 region = Rect2( 22, 0, 22, 29 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 6 )
 region = Rect2( 44, 0, 22, 29 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 6 )
 region = Rect2( 66, 0, 22, 29 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "post_attack",
 "speed": 5.0
@@ -57,27 +57,27 @@ animations = [ {
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "stunned",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "attack_loop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "take_hit",
 "speed": 5.0
@@ -95,7 +95,7 @@ radius = 154.201
 
 [node name="Imp-Melee" type="KinematicBody2D"]
 collision_layer = 5
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -105,7 +105,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 4
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -127,7 +127,7 @@ visible = false
 position = Vector2( 0.0783939, 0.078392 )
 shape = SubResource( 8 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 25 )]
+[node name="Camera2D" parent="." instance=ExtResource( 10 )]
 visible = false
 zoom = Vector2( 0.35, 0.35 )
 
