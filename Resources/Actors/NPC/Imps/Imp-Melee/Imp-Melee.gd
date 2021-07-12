@@ -25,7 +25,7 @@ func perAttackAction() -> void:
 
 func _process(_delta):
 	if Input.is_action_pressed("light"):
-		dodge_cooldown = 0.2
-	else:
-		dodge_cooldown = 2
+		pass
+		# need to make the AI dodge back when it enters the light and reduce dodge cooldown
+		# adding like 30 Imp-melees could be really cool, like plague tale rat vibes
 	setHealth()
