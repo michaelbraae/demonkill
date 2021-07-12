@@ -24,4 +24,8 @@ func perAttackAction() -> void:
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func _process(_delta):
+	if Input.is_action_pressed("light"):
+		dodge_cooldown = 0.2
+	else:
+		dodge_cooldown = 2
 	setHealth()

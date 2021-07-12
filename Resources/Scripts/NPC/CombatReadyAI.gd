@@ -225,6 +225,14 @@ func handlePostAnimState() -> void:
 			ATTACKING:
 				state = POSSESSED
 
+func _process(_delta):
+	$AnimatedSprite/LightOccluder2D.visible = true
+	animatedSprite.light_mask = 2
+	if state == STUNNED:
+		$AnimatedSprite/LightOccluder2D.visible = false
+		animatedSprite.light_mask = 1
+
+
 func kill() -> void:
 	state = PRE_DEATH
 
