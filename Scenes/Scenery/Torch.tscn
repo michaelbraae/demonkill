@@ -35,7 +35,7 @@ animations = [ {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 3
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -43,5 +43,4 @@ playing = true
 texture = ExtResource( 2 )
 texture_scale = 0.4
 color = Color( 1, 0.717647, 0.00392157, 1 )
-energy = 0.8
 shadow_enabled = true

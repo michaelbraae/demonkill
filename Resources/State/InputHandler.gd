@@ -3,7 +3,7 @@ extends Node2D
 var velocity = Vector2()
 var aim_vector = Vector2()
 
-var using_mouse = false
+var using_mouse = true
 var mute_inputs = false
 
 var current_actor
@@ -54,4 +54,4 @@ func _process(_delta):
 	if Input.is_action_just_pressed('ui_cancel'):
 		get_tree().quit()
 	if Input.is_action_just_pressed('reload_town'):
-		LevelManager.goto_scene('res://Scenes/Levels/Town/Town.tscn')
+		LevelManager.goto_scene('res://Scenes/Levels/Town.tscn')
