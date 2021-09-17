@@ -19,23 +19,23 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 22, 29 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
 region = Rect2( 22, 0, 22, 29 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 6 )
 region = Rect2( 44, 0, 22, 29 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 6 )
 region = Rect2( 66, 0, 22, 29 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 8 ) ],
 "loop": true,
@@ -47,24 +47,19 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "stunned",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "take_hit",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "run",
+"name": "post_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
@@ -72,18 +67,23 @@ animations = [ {
 "name": "attack_loop",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "stunned",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 11 ) ],
 "loop": true,
-"name": "post_attack",
+"name": "run",
 "speed": 5.0
 } ]
 
-[sub_resource type="OccluderPolygon2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( -2, -0.95314, -0.666672, -6.28647, 0.333328, -9.95314, 1.66666, -5.95314, 3, 0.380196, 3.16666, 3.04686, 3.16666, 7.38019, 1, 2.71353, -1.33334, 2.71353, -4.66667, 6.21353, -3.5, 2.3802 )
 
 [sub_resource type="CapsuleShape2D" id=8]
@@ -108,9 +108,9 @@ shape = SubResource( 1 )
 light_mask = 2
 position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
-scale = Vector2( 1, 1 )
-frames = SubResource( 7 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -118,8 +118,7 @@ playing = true
 show_behind_parent = true
 position = Vector2( 2.38411e-07, -1.92645e-09 )
 rotation = -0.00808018
-scale = Vector2( 1, 1 )
-occluder = SubResource( 2 )
+occluder = SubResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false

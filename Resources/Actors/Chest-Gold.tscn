@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Resources/Sprites/wooden-gold-chest/wood-gold-chest1.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/wooden-gold-chest/wood-gold-chest2.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/wooden-gold-chest/wood-gold-chest3.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Sprites/InteractiveObjects/wooden-gold-chest/wood-gold-chest1.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Sprites/InteractiveObjects/wooden-gold-chest/wood-gold-chest2.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/InteractiveObjects/wooden-gold-chest/wood-gold-chest3.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -34,8 +34,7 @@ extents = Vector2( 8.91066, 4.72715 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "opening"
-frame = 2
+animation = "closed"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
