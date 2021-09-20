@@ -152,28 +152,30 @@ tile_data = PoolIntArray( -1441790, 4, 0, -1441789, 4, 0, -1441788, 4, 0, -14417
 [node name="Building-Enterable" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0.660461, -355.978 )
 
-[node name="SpawnPoint" type="Position2D" parent="."]
+[node name="YSort" type="YSort" parent="."]
 
-[node name="Torch" parent="." instance=ExtResource( 3 )]
+[node name="ChestGold" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 0.173309, -69.6655 )
+
+[node name="Torch" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -41.0588, -182.967 )
 
-[node name="Torch2" parent="." instance=ExtResource( 3 )]
+[node name="Torch2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 38.2216, -179.003 )
 
-[node name="Torch3" parent="." instance=ExtResource( 3 )]
+[node name="Torch3" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 37.4289, -82.2805 )
 
-[node name="Torch4" parent="." instance=ExtResource( 3 )]
+[node name="Torch4" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -41.8516, -79.1093 )
 
-[node name="Torch5" parent="." instance=ExtResource( 3 )]
+[node name="Torch5" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -0.625732, 27.9194 )
 
-[node name="Torch6" parent="." instance=ExtResource( 3 )]
+[node name="Torch6" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -40.2659, -276.518 )
 
-[node name="Torch7" parent="." instance=ExtResource( 3 )]
+[node name="Torch7" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 38.2218, -274.139 )
 
-[node name="ChestGold" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0.173309, -69.6655 )
+[node name="SpawnPoint" type="Position2D" parent="."]
