@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood-gold-chest1.png-d3399d80787086bf134555960a8382e7.stex"
+path="res://.import/wood-gold-chest1.png-c06ac78ce066e17e8965a21542ce9a76.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/InteractiveObjects/wooden-gold-chest/wood-gold-chest1.png"
-dest_files=[ "res://.import/wood-gold-chest1.png-d3399d80787086bf134555960a8382e7.stex" ]
+source_file="res://Resources/Sprites/Objects/wooden-gold-chest/wood-gold-chest1.png"
+dest_files=[ "res://.import/wood-gold-chest1.png-c06ac78ce066e17e8965a21542ce9a76.stex" ]
 
 [params]
 

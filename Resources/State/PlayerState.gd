@@ -6,6 +6,8 @@ var previous_weapon
 var max_health = 7
 var health = max_health
 
+var coins = 0
+
 const PumpShotgun = {
 	'name': 'PumpShotgun',
 	'path': 'res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn',
