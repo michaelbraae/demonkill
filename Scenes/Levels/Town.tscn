@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Environment/Buildings/Building-Enterable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenery/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Sprites/Environment/dungeon.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Actors/ChestGold/ChestGold.tscn" type="PackedScene" id=5]
 
 [sub_resource type="TileSet" id=1]
 0/name = "dungeon.png 0"
@@ -173,3 +174,6 @@ position = Vector2( -40.2659, -276.518 )
 
 [node name="Torch7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 38.2218, -274.139 )
+
+[node name="ChestGold" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0.173309, -69.6655 )
