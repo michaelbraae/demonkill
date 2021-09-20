@@ -7,6 +7,8 @@ enum {
 	CLOSING
 }
 
+var player_in_range = false
+
 var state = CLOSED
 
 func _ready() -> void:
@@ -16,14 +18,16 @@ func _ready() -> void:
 
 func on_body_entered(body) -> void:
 	if body == GameState.player:
+		player_in_range = true
 		$OpenPrompt.visible = true
 
 func on_body_exited(body) -> void:
 	if body == GameState.player:
+		player_in_range = false
 		$OpenPrompt.visible = false
 
 func _process(_delta) -> void:
-	if Input.is_action_just_pressed("interact"):
+	if player_in_range and Input.is_action_just_pressed("interact"):
 		match state:
 			CLOSED:
 				state = OPENING
