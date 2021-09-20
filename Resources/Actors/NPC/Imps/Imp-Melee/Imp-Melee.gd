@@ -24,8 +24,6 @@ func perAttackAction() -> void:
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func _process(_delta):
-	if Input.is_action_pressed("light"):
-		pass
 		# need to make the AI dodge back when it enters the light and reduce dodge cooldown
 		# adding like 30 Imp-melees could be really cool, like plague tale rat vibes
 	setHealth()
