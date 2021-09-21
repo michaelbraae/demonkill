@@ -3,7 +3,7 @@ extends Node2D
 var velocity = Vector2()
 var aim_vector = Vector2()
 
-var using_mouse = false
+var using_mouse = true
 var mute_inputs = false
 
 var current_actor
