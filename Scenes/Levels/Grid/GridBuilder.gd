@@ -16,17 +16,17 @@ var CHUNKS = [
 		"type": QUAD,
 		"scene": INTERSECTION,
 		"weight": 1
+	},
+	{
+		"type": LEFT_RIGHT,
+		"scene": HALL_HORIZONTAL,
+		"weight": 1
+	},
+	{
+		"type": TOP_DOWN,
+		"scene": HALL_VERTICAL,
+		"weight": 1
 	}
-#	{
-#		"type": LEFT_RIGHT,
-#		"scene": HALL_HORIZONTAL,
-#		"weight": 1
-#	},
-#	{
-#		"type": TOP_DOWN,
-#		"scene": HALL_HORIZONTAL,
-#		"weight": 1
-#	}
 ]
 
 # how many grid chunks should be used to construct the grid
@@ -36,13 +36,22 @@ const DUNGEON_SIZE = 10
 func _ready():
 	buildGrid()
 
+func addNewChunk(parent_scene, scene, parent_socket, child_socket) -> void:
+	var top_connected_chunk = scene
+	var new_chunk_position = (
+		parent_scene.get_node('Sockets').get_node(parent_socket).position
+		+ (top_connected_chunk.position - top_connected_chunk.find_node(child_socket).position)
+	)
+	top_connected_chunk.position = new_chunk_position
+	add_child(top_connected_chunk)
+
 func buildGrid() -> void:
 	var chunks_remaining = DUNGEON_SIZE
-#	for i in chunks_remaining:
-#	var chunk = CHUNKS[floor(rand_range(0, 2))]
-	var chunk = CHUNKS[0]
+	randomize()
+	var chunk = CHUNKS[floor(rand_range(0, CHUNKS.size()))]
 	var instanced_chunk = chunk['scene'].instance()
 	add_child(instanced_chunk)
+	
 	match chunk['type']:
 		QUAD:
 			for socket in instanced_chunk.get_node('Sockets').get_children():
@@ -50,23 +59,39 @@ func buildGrid() -> void:
 					"Top":
 						for j in CHUNKS:
 							if [TOP_DOWN, QUAD].has(j['type']):
-								var top_connected_chunk = j['scene'].instance()
-								var new_chunk_position = (
-									instanced_chunk.get_node('Sockets').get_node('Top').position
-									+ (top_connected_chunk.position - top_connected_chunk.find_node('Bottom').position)
-								)
-								top_connected_chunk.position = new_chunk_position
-								add_child(top_connected_chunk)
-								#instance it and put it in place
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Top', 'Bottom')
 					"Bottom":
-						pass
+						for j in CHUNKS:
+							if [TOP_DOWN, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Bottom', 'Top')
 					"Left":
-						pass
+						for j in CHUNKS:
+							if [LEFT_RIGHT, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Left', 'Right')
 					"Right":
-						pass
+						for j in CHUNKS:
+							if [LEFT_RIGHT, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Right', 'Left')
 					# for each socket, instance a new scene and position it correctly
-				pass
 		TOP_DOWN:
-			pass
+			for socket in instanced_chunk.get_node('Sockets').get_children():
+				match socket.get_name():
+					"Top":
+						for j in CHUNKS:
+							if [TOP_DOWN, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Top', 'Bottom')
+					"Bottom":
+						for j in CHUNKS:
+							if [TOP_DOWN, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Bottom', 'Top')
 		LEFT_RIGHT:
-			pass
+			for socket in instanced_chunk.get_node('Sockets').get_children():
+				match socket.get_name():
+					"Left":
+						for j in CHUNKS:
+							if [LEFT_RIGHT, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Left', 'Right')
+					"Right":
+						for j in CHUNKS:
+							if [LEFT_RIGHT, QUAD].has(j['type']):
+								addNewChunk(instanced_chunk, j['scene'].instance(), 'Right', 'Left')
