@@ -3,7 +3,7 @@
 # Straight from hell
 #	Fireball Imp
 #	Claws Imp   -- Imps share models
-#	Suicide Imp -- Detonates within certain proximity of player
+#	Suicide Imp -- Detonates within certain proximity of player - has no arms? maybe just fire coming from holes where his arms should be??
 
 # Knights fight together in groups.
 # They use formations and defensive strategies to make the players life difficult
@@ -20,18 +20,19 @@
 
 # Cultists - play a support role, often accompanying large groups
 # 	Cultist Summoner
-#		Summons Demons, based on their animation, you can tell which
+#		Summons Demons, based on their animation, you can tell which demon will be summoned
 # 	Cultist Protector - Shields other enemies
 
 # Projectile Weapon Demons ? Hitscan or fast projectiles?
 #	Gunslinger Demon - 2 Pistols
 #	Gatling Demon - Minigun
 #	Grenadier Demon
-#	Sniper Demon
+#	Sniper Demon -- should be the only hit-scan type enemy, but should be heavily telegraphed with a red lazer like in Enter the gungeon
 
 # Hybrid Demons
 #	Chimera - Dog, Cat, Bird
 #	Demon Spider
+#	EXPLODING CHICKENS!!! - thanks laura!
 
 # Magic Demons
 #	Eyeball - Lazer beam
@@ -39,7 +40,7 @@
 #	Mesmer Demon - Uses Illusions
 
 # BOSSES AND THEIR UNIQUE DEMONS
-
+# Each boss should have a number of unique demons that are only available in their areas.
 # Possession Boss - Rogue Lord
 #	The boss will switch between his minions as you fight him
 #		In order to beat him, you need to keep track of which enemy is possessed
@@ -68,4 +69,4 @@
 #	Optional Boss - No minions?
 #	Squidlings
 
-# PC's Dad
+# Player Characters Father Perhaps as last boss? but it's a bit tired
