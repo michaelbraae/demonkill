@@ -40,6 +40,7 @@
 #	Mesmer Demon - Uses Illusions
 
 # BOSSES AND THEIR UNIQUE DEMONS
+
 # Each boss should have a number of unique demons that are only available in their areas.
 # Possession Boss - Rogue Lord
 #	The boss will switch between his minions as you fight him

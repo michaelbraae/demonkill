@@ -46,12 +46,16 @@ func addNewChunk(parent_scene, scene, parent_socket, child_socket) -> void:
 	$Grid.add_child(top_connected_chunk)
 
 func buildGrid() -> void:
-	var chunks_remaining = DUNGEON_SIZE
 	randomize()
+	
+	# get a random chunk
 	var chunk = CHUNKS[floor(rand_range(0, CHUNKS.size()))]
+	
+	# instance that chunk and add it to the scene
 	var instanced_chunk = chunk['scene'].instance()
 	$Grid.add_child(instanced_chunk)
 	
+	# get that chunks type
 	match chunk['type']:
 		QUAD:
 			for socket in instanced_chunk.get_node('Sockets').get_children():
