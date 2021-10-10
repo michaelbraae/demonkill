@@ -9,8 +9,8 @@ var tile_size = 32  # size of a tile in the TileMap
 var num_rooms = 30  # number of rooms to generate - 50
 var min_size = 6  # minimum room size (in tiles)
 var max_size = 10  # maximum room size (in tiles) - 16
-var hspread = 200  # horizontal spread (in pixels) - 400
-var cull = 0.5  # chance to cull room
+var hspread = 100  # horizontal spread (in pixels) - 400
+var cull = 0.35  # chance to cull room - 0.5
 
 var path  # AStar pathfinding object
 var start_room = null
