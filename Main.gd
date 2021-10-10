@@ -140,6 +140,7 @@ func make_map():
 	# Carve rooms
 	var corridors = []  # One corridor per connection
 	for room in $Rooms.get_children():
+		room.get_node('CollisionShape2D').queue_free()
 		var s = (room.size / tile_size).floor()
 		var pos = Map.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
