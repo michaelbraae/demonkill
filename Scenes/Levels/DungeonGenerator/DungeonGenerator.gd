@@ -1,14 +1,14 @@
 extends Node2D
 
 var Room = preload("res://Scenes/Levels/DungeonGenerator/Rooms/Room.tscn")
-var PLAYER_SCENE = preload("res://Resources/Actors/Player/Player.tscn")
+var Player = preload("res://Resources/Actors/Player/Player.tscn")
 var font = preload("res://Assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
-var tile_size = 16  # size of a tile in the TileMap
+var tile_size = 32  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
 var min_size = 6  # minimum room size (in tiles)
-var max_size = 10  # maximum room size (in tiles)
+var max_size = 15  # maximum room size (in tiles)
 var hspread = 400  # horizontal spread (in pixels)
 var cull = 0.5  # chance to cull room
 
@@ -21,7 +21,7 @@ var player = null
 func _ready():
 	randomize()
 	make_rooms()
-
+	
 func make_rooms():
 	for i in range(num_rooms):
 		var pos = Vector2(rand_range(-hspread, hspread), 0)
@@ -30,25 +30,21 @@ func make_rooms():
 		var h = min_size + randi() % (max_size - min_size)
 		r.make_room(pos, Vector2(w, h) * tile_size)
 		$Rooms.add_child(r)
-		if i == 0:
-			start_room = r
 	# wait for movement to stop
 	yield(get_tree().create_timer(1.1), 'timeout')
 	# cull rooms
 	var room_positions = []
 	for room in $Rooms.get_children():
-		if randf() < cull and room != start_room:
+		if randf() < cull:
 			room.queue_free()
 		else:
-			if room.get_node('CollisionShape2D'):
-				room.get_node('CollisionShape2D').queue_free()
 			room.mode = RigidBody2D.MODE_STATIC
-			room_positions.append(Vector3(room.position.x, room.position.y, 0))
-	
+			room_positions.append(Vector3(room.position.x,
+										  room.position.y, 0))
 	yield(get_tree(), 'idle_frame')
 	# generate a minimum spanning tree connecting the rooms
 	path = find_mst(room_positions)
-
+			
 func _draw():
 	if start_room:
 		draw_string(font, start_room.position-Vector2(125,0), "start", Color(1,1,1))
@@ -57,11 +53,7 @@ func _draw():
 	if play_mode:
 		return
 	for room in $Rooms.get_children():
-		if room == start_room:
-			draw_rect(Rect2(room.position - room.size, room.size * 2),
-				 Color(0, 0, 1), false)
-		else:
-			draw_rect(Rect2(room.position - room.size, room.size * 2),
+		draw_rect(Rect2(room.position - room.size, room.size * 2),
 				 Color(0, 1, 0), false)
 	if path:
 		for p in path.get_points():
@@ -73,12 +65,11 @@ func _draw():
 
 func _process(delta):
 	update()
-
+	
 func _input(event):
 	if event.is_action_pressed('ui_select'):
 		if play_mode:
 			player.queue_free()
-			$Camera2D.make_current()
 			play_mode = false
 		for n in $Rooms.get_children():
 			n.queue_free()
@@ -86,14 +77,13 @@ func _input(event):
 		start_room = null
 		end_room = null
 		make_rooms()
-	if event.is_action_pressed('make_map'):
-		# tab
+	if event.is_action_pressed('ui_focus_next'):
 		make_map()
-	if event.is_action_pressed('DEBUG_spawn_player'):
-		player = PLAYER_SCENE.instance()
+	if event.is_action_pressed('ui_cancel'):
+		player = Player.instance()
 		add_child(player)
 		player.position = start_room.position
-#		play_mode = true
+		play_mode = true
 
 func find_mst(nodes):
 	# Prim's algorithm
@@ -128,9 +118,8 @@ func find_mst(nodes):
 		# Remove the node from the array so it isn't visited again
 		nodes.erase(min_p)
 	return path
-
+		
 func make_map():
-	print('make_map')
 	# Create a TileMap from the generated rooms and path
 	Map.clear()
 	find_start_room()
@@ -190,7 +179,6 @@ func carve_path(pos1, pos2):
 	
 func find_start_room():
 	var min_x = INF
-	print('find_start_room()')
 	for room in $Rooms.get_children():
 		if room.position.x < min_x:
 			start_room = room
