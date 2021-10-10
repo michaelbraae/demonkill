@@ -6,10 +6,10 @@ var font = preload("res://assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
 var tile_size = 32  # size of a tile in the TileMap
-var num_rooms = 50  # number of rooms to generate
+var num_rooms = 30  # number of rooms to generate - 50
 var min_size = 6  # minimum room size (in tiles)
-var max_size = 15  # maximum room size (in tiles)
-var hspread = 400  # horizontal spread (in pixels)
+var max_size = 10  # maximum room size (in tiles) - 16
+var hspread = 200  # horizontal spread (in pixels) - 400
 var cull = 0.5  # chance to cull room
 
 var path  # AStar pathfinding object
@@ -67,7 +67,7 @@ func _process(delta):
 	update()
 	
 func _input(event):
-	if event.is_action_pressed('dungon_generate_structure'):
+	if event.is_action_pressed('dungeon_generate_structure'):
 		if play_mode:
 			player.queue_free()
 			play_mode = false
