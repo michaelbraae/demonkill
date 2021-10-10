@@ -67,7 +67,7 @@ func _process(delta):
 	update()
 	
 func _input(event):
-	if event.is_action_pressed('ui_select'):
+	if event.is_action_pressed('dungon_generate_structure'):
 		if play_mode:
 			player.queue_free()
 			play_mode = false
@@ -77,9 +77,9 @@ func _input(event):
 		start_room = null
 		end_room = null
 		make_rooms()
-	if event.is_action_pressed('ui_focus_next'):
+	if event.is_action_pressed('dungeon_make_map'):
 		make_map()
-	if event.is_action_pressed('ui_cancel'):
+	if event.is_action_pressed('dungeon_add_player'):
 		player = PLAYER_SCENE.instance()
 		add_child(player)
 		player.position = start_room.position
