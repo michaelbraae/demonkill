@@ -18,6 +18,9 @@ var end_room = null
 var play_mode = false  
 var player = null
 
+var ready_for_tilemap = false
+var ready_for_player = false
+
 func _ready():
 	randomize()
 	make_rooms()
@@ -70,16 +73,20 @@ func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
 		if play_mode:
 			player.queue_free()
+			$Camera2D.make_current()
 			play_mode = false
 		for n in $Rooms.get_children():
 			n.queue_free()
+		Map.clear()
 		path = null
 		start_room = null
 		end_room = null
 		make_rooms()
-	if event.is_action_pressed('dungeon_make_map'):
+	if event.is_action_pressed('dungeon_make_map') and ready_for_tilemap:
+		ready_for_tilemap = false
 		make_map()
-	if event.is_action_pressed('dungeon_add_player'):
+	if event.is_action_pressed('dungeon_add_player') and ready_for_player:
+		ready_for_player = false
 		player = PLAYER_SCENE.instance()
 		add_child(player)
 		player.position = start_room.position
@@ -117,8 +124,9 @@ func find_mst(nodes):
 		path.connect_points(path.get_closest_point(p), n)
 		# Remove the node from the array so it isn't visited again
 		nodes.erase(min_p)
+	ready_for_tilemap = true
 	return path
-		
+
 func make_map():
 	# Create a TileMap from the generated rooms and path
 	Map.clear()
@@ -155,10 +163,11 @@ func make_map():
 				var start = Map.world_to_map(Vector2(path.get_point_position(p).x,
 													path.get_point_position(p).y))
 				var end = Map.world_to_map(Vector2(path.get_point_position(conn).x,
-													path.get_point_position(conn).y))									
+													path.get_point_position(conn).y))
 				carve_path(start, end)
 		corridors.append(p)
-				
+	ready_for_player = true
+
 func carve_path(pos1, pos2):
 	# Carve a path between two points
 	var x_diff = sign(pos2.x - pos1.x)
