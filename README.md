@@ -1,4 +1,4 @@
-# 10MinutesToMidnight
+# Project Setup
 
 To work on this project there are a couple of things to set up:
 
