@@ -24,6 +24,7 @@ var repeat_attacks = false
 
 # units between player and self before considered in range
 var attack_range
+var ability_range
 
 # determines if the AI should complete the entire sequence,
 # before moving to POST_ATTACK
@@ -33,6 +34,7 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
+var ability_on_cooldown = false
 
 # starting health
 var max_health = 3
@@ -97,6 +99,14 @@ func isTargetInRange() -> bool:
 		return true
 	return false
 
+func isTargetInAbilityRange() -> bool:
+	var distance_to_target = get_global_position().distance_to(
+		target_actor.get_global_position()
+	)
+	if distance_to_target <= ability_range:
+		return true
+	return false
+
 func getAnimation() -> String:
 	if isPossessed():
 		if state == ATTACKING:
@@ -153,6 +163,9 @@ func handlePreAttack() -> void:
 func perAttackAction() -> void:
 	pass
 
+func useAbility() -> void:
+	pass
+
 func readyForPostAttack() -> bool:
 	if complete_attack_sequence:
 		if current_attack_in_sequence > attacks_in_sequence:
@@ -189,12 +202,21 @@ func runDecisionTree() -> void:
 				isTargetInRange()
 				or attack_started
 				or state == POST_ATTACK
+				and ability_on_cooldown
 			):
-				if readyForPreAttack():
-					handlePreAttack()
-				elif state == ATTACKING and not attack_landed:
-					perAttackAction()
-					attack_landed = true
+				if isTargetInAbilityRange() and not ability_on_cooldown:
+					if readyForPreAttack():
+						handlePreAttack()
+					elif state == ATTACKING and not attack_landed:
+						useAbility()
+						ability_on_cooldown = true
+						attack_landed = true
+				elif isTargetInRange():
+					if readyForPreAttack():
+						handlePreAttack()
+					elif state == ATTACKING and not attack_landed:
+						perAttackAction()
+						attack_landed = true
 			else:
 				.runDecisionTree()
 	animatedSprite.play(getAnimation())
