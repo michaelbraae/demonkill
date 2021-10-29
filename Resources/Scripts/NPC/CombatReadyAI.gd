@@ -34,6 +34,8 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
+var ability_cooldown
+var ability_cooldown_timer
 var ability_on_cooldown = false
 
 # starting health
@@ -43,18 +45,28 @@ var health
 func _ready():
 	health = max_health
 	knockback_handler = knockback_handler_script.new()
+	
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
+	
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
+	
+	ability_cooldown_timer = Timer.new()
+	add_child(ability_cooldown_timer)
+	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
 
 func attack_cooldown_timeout() -> void:
 	attack_cooldown_timer.stop()
+
+func ability_cooldown_timeout() -> void:
+	ability_cooldown_timer.stop()
+	ability_on_cooldown = false
 
 func dropAxe() -> void:
 	state = IDLE
@@ -209,6 +221,7 @@ func runDecisionTree() -> void:
 						handlePreAttack()
 					elif state == ATTACKING and not attack_landed:
 						useAbility()
+						ability_cooldown_timer.start(ability_cooldown)
 						ability_on_cooldown = true
 						attack_landed = true
 				elif isTargetInRange():

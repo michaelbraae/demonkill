@@ -11,8 +11,9 @@ func initialiseConfig():
 	attacks_in_sequence = 1
 	repeat_attacks = true
 	attack_range = 30
-	ability_range = 300
 	attack_cooldown = 1
+	ability_range = 300
+	ability_cooldown = 3
 	complete_attack_sequence = true
 
 func setHealth() -> void:
