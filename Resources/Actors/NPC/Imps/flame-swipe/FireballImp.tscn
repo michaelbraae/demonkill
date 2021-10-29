@@ -11,7 +11,7 @@
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run1.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit2.png" type="Texture" id=10]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle5.png" type="Texture" id=11]
-[ext_resource path="res://Resources/Actors/NPC/Imps/flame-swipe/FlameSwipe.gd" type="Script" id=12]
+[ext_resource path="res://Resources/Actors/NPC/Imps/flame-swipe/FireballImp.gd" type="Script" id=12]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run4.png" type="Texture" id=13]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/attack/attack_1.png" type="Texture" id=14]
 [ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/run/run2.png" type="Texture" id=15]
@@ -96,7 +96,7 @@ radius = 24.2581
 [sub_resource type="CircleShape2D" id=10]
 radius = 154.201
 
-[node name="Swipe" type="KinematicBody2D"]
+[node name="Fireball" type="KinematicBody2D"]
 collision_layer = 5
 script = ExtResource( 12 )
 
@@ -110,7 +110,6 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 speed_scale = 2.0
 playing = true
 
