@@ -10,8 +10,8 @@ func initialiseConfig():
 	move_speed = 70
 	attacks_in_sequence = 1
 	repeat_attacks = true
-	attack_range = 30 #30
-	ability_range = 100
+	attack_range = 30
+	ability_range = 300
 	attack_cooldown = 1
 	complete_attack_sequence = true
 

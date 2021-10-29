@@ -200,9 +200,9 @@ func runDecisionTree() -> void:
 		if target_actor:
 			if (
 				isTargetInRange()
+				or (isTargetInAbilityRange() and not ability_on_cooldown)
 				or attack_started
 				or state == POST_ATTACK
-				and ability_on_cooldown
 			):
 				if isTargetInAbilityRange() and not ability_on_cooldown:
 					if readyForPreAttack():
