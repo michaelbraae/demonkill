@@ -19,6 +19,7 @@ func setHealth() -> void:
 
 func useAbility() -> void:
 	print('useAbility()')
+	# instance the fireball
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
 	swipe_instance.target_actor = target_actor

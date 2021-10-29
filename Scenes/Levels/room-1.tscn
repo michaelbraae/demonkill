@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Actors/NPC/Imps/swipe/Swipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Actors/NPC/Imps/flame-swipe/FlameSwipe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenery/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Sprites/Environment/dungeon.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/Environment/dungeon2.png" type="Texture" id=5]
