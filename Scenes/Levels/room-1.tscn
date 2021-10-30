@@ -179,7 +179,7 @@ position = Vector2( -228.373, -556.729 )
 position = Vector2( 69.5864, -247.096 )
 
 [node name="Torch8" parent="Torches" instance=ExtResource( 3 )]
-position = Vector2( -58.2119, -236.965 )
+position = Vector2( -72, -240 )
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 49.3292, 93.0305 )
