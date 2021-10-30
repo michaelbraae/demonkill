@@ -2,6 +2,7 @@ extends PossessableAI
 
 var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
 var FIREBALL_SCENE = preload('res://Resources/Abilities/fireball/Fireball.tscn')
+var PICKUP_FIREBALL_SCENE = preload('res://Resources/Abilities/pickupability/pickupfireball/PickupFireball.tscn')
 
 onready var health_label = $HealthLabel
 
@@ -19,8 +20,13 @@ func initialiseConfig():
 func setHealth() -> void:
 	health_label.set_text(str(health, '/', max_health))
 
+func beforeDeath() -> void:
+	print('beforeDeath()')
+	var pickup_ability = PICKUP_FIREBALL_SCENE.instance()
+	pickup_ability.position = position
+	get_tree().get_root().add_child(pickup_ability)
+
 func useAbility() -> void:
-	print('useAbility()')
 	var fireball = FIREBALL_SCENE.instance()
 	fireball.position = position
 	var angle_to_player = get_angle_to(target_actor.get_global_position())

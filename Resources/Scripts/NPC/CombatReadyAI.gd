@@ -84,7 +84,8 @@ func damage(damage : int) -> void:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= stun_damage_threshold:
 		if health <= 0 or state == STUNNED:
-			queue_free()
+			kill()
+#			queue_free()
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
@@ -254,6 +255,7 @@ func handlePostAnimState() -> void:
 				if stun_duration_timer.is_stopped():
 					state = IDLE
 			PRE_DEATH:
+				beforeDeath()
 				queue_free()
 	else:
 		match state:
@@ -267,8 +269,11 @@ func _process(_delta):
 		$AnimatedSprite/LightOccluder2D.visible = false
 		animatedSprite.light_mask = 1
 
+func beforeDeath() -> void:
+	pass
 
 func kill() -> void:
+	beforeDeath()
 	state = PRE_DEATH
 
 func hitByAxe(damage) -> void:

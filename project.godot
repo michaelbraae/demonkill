@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Resources/Scripts/NPC/PathfindingAI.gd"
 }, {
+"base": "Node",
+"class": "PickupAbility",
+"language": "GDScript",
+"path": "res://Resources/Abilities/pickupability/PickupAbility.gd"
+}, {
 "base": "PlayerPossession",
 "class": "Player",
 "language": "GDScript",
@@ -101,6 +106,7 @@ _global_script_class_icons={
 "CombatReadyAI": "",
 "ImpactBase": "",
 "PathfindingAI": "",
+"PickupAbility": "",
 "Player": "",
 "PlayerAction": "",
 "PlayerAnimation": "",
