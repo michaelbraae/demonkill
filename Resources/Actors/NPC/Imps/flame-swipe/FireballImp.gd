@@ -25,7 +25,6 @@ func useAbility() -> void:
 	fireball.position = position
 	var angle_to_player = get_angle_to(target_actor.get_global_position())
 	fireball.target_vector = Vector2(cos(angle_to_player), sin(angle_to_player))
-	fireball.instigator = self
 	get_tree().get_root().add_child(fireball)
 
 func perAttackAction() -> void:

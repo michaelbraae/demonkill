@@ -949,7 +949,7 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 5
+frame = 8
 speed_scale = 3.5
 playing = true
 
@@ -960,6 +960,7 @@ shape = SubResource( 170 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]
 current = true
+zoom = Vector2( 0.4, 0.4 )
 
 [node name="HitBox" type="Area2D" parent="."]
 visible = false
