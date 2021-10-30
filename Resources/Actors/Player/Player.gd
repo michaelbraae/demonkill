@@ -1,4 +1,4 @@
-extends PlayerPossession
+extends PlayerSpell
 
 class_name Player
 

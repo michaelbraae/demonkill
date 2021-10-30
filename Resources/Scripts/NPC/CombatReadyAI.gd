@@ -255,7 +255,6 @@ func handlePostAnimState() -> void:
 				if stun_duration_timer.is_stopped():
 					state = IDLE
 			PRE_DEATH:
-				beforeDeath()
 				queue_free()
 	else:
 		match state:

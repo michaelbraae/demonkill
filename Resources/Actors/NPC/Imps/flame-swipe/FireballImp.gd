@@ -21,7 +21,6 @@ func setHealth() -> void:
 	health_label.set_text(str(health, '/', max_health))
 
 func beforeDeath() -> void:
-	print('beforeDeath()')
 	var pickup_ability = PICKUP_FIREBALL_SCENE.instance()
 	pickup_ability.position = position
 	get_tree().get_root().add_child(pickup_ability)
