@@ -20,12 +20,8 @@ func _physics_process(_delta):
 
 func updateSpellUI(spells: Dictionary) -> void:
 	var slots = GameState.player_ui.get_node("SpellSlotsUI").get_children()
-	print('SpellSlotsUI.get_children()', slots)
 	for i in range(len(slots)):
-		print('i: ', i)
 		if spells[str(i)]:
-			print('spell_i:', i, spells[str(i)])
-#			print(slots[i].get_name())
 			slots[i].set_text(spells[str(i)]["name"])
 		else:
 			slots[i].set_text('Slot' + str(i + 1))

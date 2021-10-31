@@ -7,4 +7,3 @@ func _ready():
 
 func _on_new_Game_button_pressed():
 	LevelManager.goto_scene('res://Scenes/Levels/Town.tscn')
-#	LevelManager.goto_scene('res://Scenes/Levels/Grid/GridBuilder.tscn')

@@ -55,9 +55,10 @@ func castSpell(slot_key: int) -> void:
 		print("castSpell: ", PlayerState.SPELLS[str(slot_key)])
 		var spell_instance = PlayerState.SPELLS[str(slot_key)]["scene"].instance()
 #		spell_instance.collision
+		spell_instance.setCollideWithEnemies()
 		spell_instance.target_vector = getAttackDirection()
 		spell_instance.position = GameState.player.position
-		spell_instance.add_child(spell_instance)
+		get_tree().get_root().add_child(spell_instance)
 		if PlayerState.SPELLS[str(slot_key)]["count"] <= 1:
 			PlayerState.SPELLS[str(slot_key)] = {}
 		else:
