@@ -10,6 +10,7 @@ var coins = 0
 
 var SPELLS: Dictionary
 
+
 const PumpShotgun = {
 	'name': 'PumpShotgun',
 	'path': 'res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn',

@@ -17,3 +17,13 @@ func _physics_process(_delta):
 		health_current = PlayerState.health
 		max_health = PlayerState.max_health
 	label.set_text(str(health_current, '/', max_health))
+
+func updateSpellUI(spells: Dictionary) -> void:
+	var slots = GameState.player_ui.get_node("SpellSlotsUI").get_children()
+	print('SpellSlotsUI.get_children()', slots)
+	for i in range(len(slots)):
+		print('i: ', i)
+		if spells[str(i)]:
+			print('spell_i:', i, spells[str(i)])
+#			print(slots[i].get_name())
+			slots[i].set_text(spells[str(i)]["name"])

@@ -3,10 +3,10 @@ extends PlayerPossession
 class_name PlayerSpell
 
 const SPELL_SLOTS = {
+	"0": {},
 	"1": {},
 	"2": {},
 	"3": {},
-	"4": {},
 }
 
 func pickupSpell(spell : Dictionary):
@@ -21,6 +21,7 @@ func pickupSpell(spell : Dictionary):
 			if !SPELL_SLOTS[slot]:
 				SPELL_SLOTS[slot] = spell
 	PlayerState.SPELLS = SPELL_SLOTS
+	GameState.player_ui.updateSpellUI(SPELL_SLOTS)
 
 # 4 spell slots
 

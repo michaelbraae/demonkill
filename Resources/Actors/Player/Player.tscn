@@ -942,6 +942,7 @@ height = 12.7013
 radius = 43.2871
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( -0.0597687, 0.179295 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 17 )
@@ -949,7 +950,7 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 8
+frame = 9
 speed_scale = 3.5
 playing = true
 
