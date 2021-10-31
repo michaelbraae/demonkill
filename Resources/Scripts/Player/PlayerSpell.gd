@@ -20,6 +20,7 @@ func pickupSpell(spell : Dictionary):
 		for slot in SPELL_SLOTS:
 			if !SPELL_SLOTS[slot]:
 				SPELL_SLOTS[slot] = spell
+	PlayerState.SPELLS = SPELL_SLOTS
 
 # 4 spell slots
 
