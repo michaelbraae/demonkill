@@ -1,0 +1,44 @@
+[gd_scene format=2]
+
+[node name="SpellSlotsUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.71283
+margin_bottom = 0.71283
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot1" type="RichTextLabel" parent="."]
+margin_left = 12.9133
+margin_top = 11.7229
+margin_right = 104.913
+margin_bottom = 28.7229
+text = "Empty"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot2" type="RichTextLabel" parent="."]
+margin_left = 100.913
+margin_top = 11.7229
+margin_right = 192.913
+margin_bottom = 28.7229
+text = "Empty"
+
+[node name="Slot3" type="RichTextLabel" parent="."]
+margin_left = 180.913
+margin_top = 11.7229
+margin_right = 272.913
+margin_bottom = 28.7229
+text = "Empty"
+
+[node name="Slot4" type="RichTextLabel" parent="."]
+margin_left = 260.913
+margin_top = 11.7229
+margin_right = 352.913
+margin_bottom = 28.7229
+text = "Empty"
+__meta__ = {
+"_edit_use_anchors_": false
+}
