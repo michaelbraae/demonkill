@@ -13,6 +13,7 @@ func pickupSpell(spell : Dictionary):
 	var in_slot = false
 	for slot in SPELL_SLOTS:
 		if SPELL_SLOTS[slot] and SPELL_SLOTS[slot]["name"] == spell["name"]:
+			
 			SPELL_SLOTS[slot]["count"] += 1
 			in_slot = true
 			break
@@ -20,6 +21,7 @@ func pickupSpell(spell : Dictionary):
 		for slot in SPELL_SLOTS:
 			if !SPELL_SLOTS[slot]:
 				SPELL_SLOTS[slot] = spell
+				break
 	PlayerState.SPELLS = SPELL_SLOTS
 	GameState.player_ui.updateSpellUI(SPELL_SLOTS)
 
