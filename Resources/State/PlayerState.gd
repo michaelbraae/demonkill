@@ -8,8 +8,12 @@ var health = max_health
 
 var coins = 0
 
-var SPELLS: Dictionary
-
+var SPELLS: Dictionary = {
+	"0": {},
+	"1": {},
+	"2": {},
+	"3": {},
+}
 
 const PumpShotgun = {
 	'name': 'PumpShotgun',

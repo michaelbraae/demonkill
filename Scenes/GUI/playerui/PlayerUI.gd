@@ -27,3 +27,5 @@ func updateSpellUI(spells: Dictionary) -> void:
 			print('spell_i:', i, spells[str(i)])
 #			print(slots[i].get_name())
 			slots[i].set_text(spells[str(i)]["name"])
+		else:
+			slots[i].set_text('Slot' + str(i + 1))

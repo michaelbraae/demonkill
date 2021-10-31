@@ -50,6 +50,32 @@ func getAttackDirection() -> Vector2:
 		return aim_vector
 	return getMovementVector()
 
+func castSpell(slot_key: int) -> void:
+	if PlayerState.SPELLS[str(slot_key)]:
+		print("castSpell: ", PlayerState.SPELLS[str(slot_key)])
+		var spell_instance = PlayerState.SPELLS[str(slot_key)]["scene"].instance()
+#		spell_instance.collision
+		spell_instance.target_vector = getAttackDirection()
+		spell_instance.position = GameState.player.position
+		spell_instance.add_child(spell_instance)
+		if PlayerState.SPELLS[str(slot_key)]["count"] <= 1:
+			PlayerState.SPELLS[str(slot_key)] = {}
+		else:
+			PlayerState.SPELLS[str(slot_key)]["count"] -= 1
+	else:
+		print("No spell in slot!")
+	GameState.player_ui.updateSpellUI(PlayerState.SPELLS)
+
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("spell_slot_1"):
+		castSpell(0)
+	if Input.is_action_just_pressed("spell_slot_2"):
+		castSpell(1)
+	if Input.is_action_just_pressed("spell_slot_3"):
+		castSpell(2)
+	if Input.is_action_just_pressed("spell_slot_4"):
+		castSpell(3)
+
 func _process(_delta):
 	if Input.is_action_just_pressed('ui_cancel'):
 		get_tree().quit()
