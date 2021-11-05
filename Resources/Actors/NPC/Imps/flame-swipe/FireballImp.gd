@@ -27,6 +27,7 @@ func beforeDeath() -> void:
 
 func useAbility() -> void:
 	var fireball = FIREBALL_SCENE.instance()
+	fireball.setCollideWithPlayer()
 	fireball.position = position
 	var angle_to_player = get_angle_to(target_actor.get_global_position())
 	fireball.target_vector = Vector2(cos(angle_to_player), sin(angle_to_player))
