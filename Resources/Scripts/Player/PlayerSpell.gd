@@ -9,6 +9,10 @@ const SPELL_SLOTS = {
 	"3": {},
 }
 
+func updateSpellState(spells : Dictionary) -> void:
+	PlayerState.SPELLS = spells
+	GameState.player_ui.updateSpellUI(spells)
+
 func pickupSpell(spell : Dictionary):
 	var in_slot = false
 	for slot in SPELL_SLOTS:
@@ -21,19 +25,24 @@ func pickupSpell(spell : Dictionary):
 			if !SPELL_SLOTS[slot]:
 				SPELL_SLOTS[slot] = spell
 				break
-	PlayerState.SPELLS = SPELL_SLOTS
-	GameState.player_ui.updateSpellUI(SPELL_SLOTS)
+	updateSpellState(SPELL_SLOTS)
 
-# 4 spell slots
-
-# walking over a pickupability adds it to the next empty slot
-
-# picking up a duplicate abilty adds +1 to the count of that spell
-
-# casting an ability removes it from the slot or -1 if count > 1
-# or increases intensity??
+func castSpell(slot_key: int) -> void:
+	if SPELL_SLOTS[str(slot_key)]:
+		print("castSpell: ", SPELL_SLOTS[str(slot_key)])
+		var spell_instance = SPELL_SLOTS[str(slot_key)]["scene"].instance()
+#		spell_instance.collision
+		spell_instance.setCollideWithEnemies()
+		spell_instance.target_vector = getAttackDirection()
+		spell_instance.position = GameState.player.position
+		get_tree().get_root().add_child(spell_instance)
+		if SPELL_SLOTS[str(slot_key)]["count"] <= 1:
+			SPELL_SLOTS[str(slot_key)] = {}
+		else:
+			SPELL_SLOTS[str(slot_key)]["count"] -= 1
+	else:
+		print("No spell in slot!")
+	updateSpellState(SPELL_SLOTS)
 
 # certain spells could prioritize slots, or maybe..
 # certain spells can ONLY go in particular slots 
-
-# need to play test this probably, kinda hard to know how it will feel
