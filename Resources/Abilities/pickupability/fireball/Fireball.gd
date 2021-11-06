@@ -15,4 +15,4 @@ func _physics_process(delta):
 	var collision = move_and_collide(target_vector * projectile_speed * delta)
 	if collision:
 		queue_free()
-		print('Collision detected!')
+

@@ -1,8 +1,8 @@
 extends PossessableAI
 
 var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
-var FIREBALL_SCENE = preload('res://Resources/Abilities/fireball/Fireball.tscn')
-var PICKUP_FIREBALL_SCENE = preload('res://Resources/Abilities/pickupability/pickupfireball/PickupFireball.tscn')
+var FIREBALL_SCENE = preload('res://Resources/Abilities/pickupability/fireball/Fireball.tscn')
+var PICKUP_FIREBALL_SCENE = preload('res://Resources/Abilities/pickupability/fireball/pickup/PickupFireball.tscn')
 
 onready var health_label = $HealthLabel
 

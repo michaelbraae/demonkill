@@ -47,7 +47,12 @@ _global_script_classes=[ {
 "base": "PickupAbility",
 "class": "PickupFireball",
 "language": "GDScript",
-"path": "res://Resources/Abilities/pickupability/pickupfireball/PickupFireball.gd"
+"path": "res://Resources/Abilities/pickupability/fireball/pickup/PickupFireball.gd"
+}, {
+"base": "PickupAbility",
+"class": "PickupFlameSwipe",
+"language": "GDScript",
+"path": "res://Resources/Abilities/pickupability/flameswipe/pickup/PickupFlameSwipe.gd"
 }, {
 "base": "PlayerSpell",
 "class": "Player",
@@ -118,6 +123,7 @@ _global_script_class_icons={
 "PathfindingAI": "",
 "PickupAbility": "",
 "PickupFireball": "",
+"PickupFlameSwipe": "",
 "Player": "",
 "PlayerAction": "",
 "PlayerAnimation": "",
