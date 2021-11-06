@@ -1,9 +1,5 @@
 extends CanvasLayer
 
-onready var GameState = get_node('/root/GameState')
-onready var PlayerState = get_node('/root/PlayerState')
-onready var PossessionState = get_node('/root/PossessionState')
-
 onready var label = get_node('Label')
 
 var health_current

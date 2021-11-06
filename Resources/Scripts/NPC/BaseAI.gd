@@ -4,10 +4,6 @@ class_name BaseAI
 
 var state
 
-onready var GameState = get_node('/root/GameState')
-onready var PossessionState = get_node('/root/PossessionState')
-onready var InputHandler = get_node('/root/InputHandler')
-
 onready var animatedSprite = $AnimatedSprite
 onready var camera2D = $Camera2D
 

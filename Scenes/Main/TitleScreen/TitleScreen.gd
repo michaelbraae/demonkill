@@ -1,7 +1,5 @@
 extends Control
 
-onready var GameState = get_node('/root/GameState')
-
 func _ready():
 	GameState.state = GameState.MAIN_MENU
 

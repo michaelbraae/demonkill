@@ -3,9 +3,6 @@ extends KinematicBody2D
 onready var animatedSprite = $AnimatedSprite
 onready var area2D = $Area2D
 
-onready var FeedbackHandler = get_node('/root/FeedbackHandler')
-onready var GameState = get_node('/root/GameState')
-
 var WHITE_IMPACT = preload('res://Resources/Effects/Impacts/WhiteImpact/WhiteImpact.tscn')
 
 var source_actor

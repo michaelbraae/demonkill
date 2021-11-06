@@ -2,10 +2,6 @@ extends Node
 
 const PLAYER_SCENE = preload('res://Resources/Actors/Player/Player.tscn')
 
-onready var GameState = get_node('/root/GameState')
-onready var FeedbackHandler = get_node('/root/FeedbackHandler')
-onready var InputHandler = get_node('/root/InputHandler')
-
 var bite_box
 
 var current_possession
