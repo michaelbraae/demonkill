@@ -2,7 +2,7 @@ extends PickupAbility
 
 class_name PickupFlameSwipe
 
-var FLAME_SWIPE_SCENE = preload("res://Resources/Abilities/pickupability/flameswipe/FlameSwipe.tscn")
+const FLAME_SWIPE_SCENE = preload("res://Resources/Abilities/pickupability/flameswipe/FlameSwipe.tscn")
 
 func getPickupSpellConfig() -> Dictionary:
 	return {
