@@ -27,16 +27,26 @@ func pickupSpell(spell : Dictionary):
 				break
 	updateSpellState(SPELL_SLOTS)
 
+func castRangedSpell(spell: Dictionary) -> void:
+	var spell_instance = spell["scene"].instance()
+	spell_instance.setCollideWithEnemies()
+	spell_instance.target_vector = getAttackDirection()
+	spell_instance.position = position
+	get_tree().get_root().add_child(spell_instance)
+
+func castMeleeSpell(spell: Dictionary) -> void:
+	print(spell)
+
 func castSpell(slot_key: int) -> void:
-	if SPELL_SLOTS[str(slot_key)]:
-		print("castSpell: ", SPELL_SLOTS[str(slot_key)])
-		var spell_instance = SPELL_SLOTS[str(slot_key)]["scene"].instance()
-#		spell_instance.collision
-		spell_instance.setCollideWithEnemies()
-		spell_instance.target_vector = getAttackDirection()
-		spell_instance.position = GameState.player.position
-		get_tree().get_root().add_child(spell_instance)
-		if SPELL_SLOTS[str(slot_key)]["count"] <= 1:
+	var spell_to_cast = SPELL_SLOTS[str(slot_key)]
+	if spell_to_cast:
+		var spell_instance = spell_to_cast["scene"].instance()
+		match spell_to_cast["type"]:
+			"ranged":
+				castRangedSpell(spell_to_cast)
+			"melee":
+				castMeleeSpell(spell_to_cast)
+		if spell_to_cast["count"] <= 1:
 			SPELL_SLOTS[str(slot_key)] = {}
 		else:
 			SPELL_SLOTS[str(slot_key)]["count"] -= 1

@@ -76,9 +76,3 @@ func _on_AnimatedSprite_animation_finished():
 	elif state == ATTACK_CONTACT:
 		state = ATTACK_RECOVERY
 		animatedSprite.play(getAttackAnimation())
-	#elif state == ATTACK_RECOVERY:
-	#	animatedSprite.play(str('idle_', facing_direction))
-	#	state = IDLE
-	#elif state == AXE_THROW:
-	#	animatedSprite.play(str('idle_', facing_direction))
-	#	state = IDLE

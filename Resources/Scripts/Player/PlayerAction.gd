@@ -96,10 +96,12 @@ func handlePlayerAction() -> void:
 			attack_order = !attack_order
 			noWeaponMelee()
 			state = ATTACK_WARMUP
-		if Input.is_action_just_pressed('throw_axe') and has_axe:
-			has_axe = false
-			throwAxe()
-		elif Input.is_action_just_pressed('throw_axe'):
-			recallAxe()
+		if Input.is_action_just_pressed('throw_axe'):
+			if has_axe:
+				has_axe = false
+				throwAxe()
+			else:
+				recallAxe()
+			
 	animatedSprite.play(getAnimation())
 	velocity = move_and_slide(velocity)

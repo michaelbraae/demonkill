@@ -7,6 +7,7 @@ const FIREBALL_SCENE = preload("res://Resources/Abilities/pickupability/fireball
 func getPickupSpellConfig() -> Dictionary:
 	return {
 		"name": "Fireball",
+		"type": "ranged",
 		"scene": FIREBALL_SCENE,
 		"count": 1,
 	}
