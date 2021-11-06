@@ -27,7 +27,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Swipe" type="KinematicBody2D"]
 rotation = 1.5708
 script = ExtResource( 2 )
 
