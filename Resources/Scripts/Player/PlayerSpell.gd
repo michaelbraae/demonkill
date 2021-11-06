@@ -35,7 +35,7 @@ func castRangedSpell(spell: Dictionary) -> void:
 	get_tree().get_root().add_child(spell_instance)
 
 func castMeleeSpell(spell: Dictionary) -> void:
-	print(spell)
+	next_spell = spell
 
 func castSpell(slot_key: int) -> void:
 	var spell_to_cast = SPELL_SLOTS[str(slot_key)]

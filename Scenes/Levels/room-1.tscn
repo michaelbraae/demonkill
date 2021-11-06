@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Scenery/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Sprites/Environment/dungeon.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/Environment/dungeon2.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Actors/NPC/Imps/fireballimp/FlameSwipeImp.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/Actors/NPC/Imps/fireballimp/FireballImp.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Actors/Objects/CoinGold/CoinGold.tscn" type="PackedScene" id=7]
 
 [sub_resource type="TileSet" id=1]

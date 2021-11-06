@@ -11,6 +11,8 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
+var next_spell : Dictionary
+
 #var axe_instance
 var axe_recall_available = false
 
@@ -32,9 +34,14 @@ func dash_cooldown_timeout() -> void:
 	dash_available = true
 
 func noWeaponMelee() -> void:
-	var swipe_instance = SWIPE_SCENE.instance()
-	add_child(swipe_instance)
-	swipe_instance.bang(getAttackDirection(), self)
+	var attack_instance
+	if next_spell:
+		attack_instance = next_spell["scene"].instance()
+		next_spell = {}
+	else:
+		attack_instance = SWIPE_SCENE.instance()
+	add_child(attack_instance)
+	attack_instance.bang(getAttackDirection(), self)
 
 func throwAxe() -> void:
 	state = AXE_THROW
