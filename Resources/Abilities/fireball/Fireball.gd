@@ -4,12 +4,10 @@ var target_vector : Vector2
 var projectile_speed : int = 300
 
 func setCollideWithEnemies() -> void:
-	set_collision_mask(3)
-	set_collision_layer(3)
-	print("mask: ", get_collision_mask())
-	print("layer: ", get_collision_layer())
+	set_collision_mask(4)
+	set_collision_layer(4)
 
-func setCollideWithPlayer():
+func setCollideWithPlayer() -> void:
 	set_collision_mask(2)
 	set_collision_layer(2)
 
