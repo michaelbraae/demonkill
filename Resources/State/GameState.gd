@@ -2,13 +2,14 @@ extends Node
 
 var state = MAIN_MENU
 
-onready var healthGUI = load('res://Scenes/GUI/Health/Health.tscn').instance()
+onready var PlayerUI = load('res://Scenes/GUI/playerui/PlayerUI.tscn').instance()
 
 var axe_instance
 
 var npc_with_axe
 
 var player
+var player_ui
 
 enum {
 	MAIN_MENU,
@@ -30,4 +31,5 @@ func getStateString() -> String:
 	return 'NO_STATE'
 
 func prepareHealthGUI() -> void:
-	get_tree().get_root().call_deferred('add_child', healthGUI)
+	player_ui = PlayerUI
+	get_tree().get_root().call_deferred('add_child', PlayerUI)

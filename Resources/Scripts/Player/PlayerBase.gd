@@ -2,12 +2,6 @@ extends KinematicBody2D
 
 class_name PlayerBase
 
-onready var GameState = get_node('/root/GameState')
-onready var PlayerState = get_node('/root/PlayerState')
-onready var InputHandler = get_node('/root/InputHandler')
-onready var FeedbackHandler = get_node('/root/FeedbackHandler')
-onready var PossessionState = get_node('/root/PossessionState')
-
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D

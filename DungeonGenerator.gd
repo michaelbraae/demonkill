@@ -187,7 +187,7 @@ func carve_path(pos1, pos2):
 	for y in range(pos1.y, pos2.y, y_diff):
 		Map.set_cell(y_x.x, y, 0)
 		Map.set_cell(y_x.x + x_diff, y, 0)
-	
+
 func find_start_room():
 	var min_x = INF
 	for room in $Rooms.get_children():

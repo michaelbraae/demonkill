@@ -50,6 +50,16 @@ func getAttackDirection() -> Vector2:
 		return aim_vector
 	return getMovementVector()
 
+func _physics_process(_delta):
+	if Input.is_action_just_pressed("spell_slot_1"):
+		GameState.player.castSpell(0)
+	if Input.is_action_just_pressed("spell_slot_2"):
+		GameState.player.castSpell(1)
+	if Input.is_action_just_pressed("spell_slot_3"):
+		GameState.player.castSpell(2)
+	if Input.is_action_just_pressed("spell_slot_4"):
+		GameState.player.castSpell(3)
+
 func _process(_delta):
 	if Input.is_action_just_pressed('ui_cancel'):
 		get_tree().quit()

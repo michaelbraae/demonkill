@@ -24,6 +24,7 @@ var repeat_attacks = false
 
 # units between player and self before considered in range
 var attack_range
+var ability_range
 
 # determines if the AI should complete the entire sequence,
 # before moving to POST_ATTACK
@@ -33,6 +34,9 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
+var ability_cooldown
+var ability_cooldown_timer
+var ability_on_cooldown = false
 
 # starting health
 var max_health = 3
@@ -41,18 +45,28 @@ var health
 func _ready():
 	health = max_health
 	knockback_handler = knockback_handler_script.new()
+	
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
+	
 	attack_cooldown_timer = Timer.new()
 	add_child(attack_cooldown_timer)
 	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
+	
+	ability_cooldown_timer = Timer.new()
+	add_child(ability_cooldown_timer)
+	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
 
 func attack_cooldown_timeout() -> void:
 	attack_cooldown_timer.stop()
+
+func ability_cooldown_timeout() -> void:
+	ability_cooldown_timer.stop()
+	ability_on_cooldown = false
 
 func dropAxe() -> void:
 	state = IDLE
@@ -70,7 +84,8 @@ func damage(damage : int) -> void:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= stun_damage_threshold:
 		if health <= 0 or state == STUNNED:
-			queue_free()
+			kill()
+#			queue_free()
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
@@ -94,6 +109,14 @@ func isTargetInRange() -> bool:
 		target_actor.get_global_position()
 	)
 	if distance_to_target <= attack_range:
+		return true
+	return false
+
+func isTargetInAbilityRange() -> bool:
+	var distance_to_target = get_global_position().distance_to(
+		target_actor.get_global_position()
+	)
+	if distance_to_target <= ability_range:
 		return true
 	return false
 
@@ -153,6 +176,9 @@ func handlePreAttack() -> void:
 func perAttackAction() -> void:
 	pass
 
+func useAbility() -> void:
+	pass
+
 func readyForPostAttack() -> bool:
 	if complete_attack_sequence:
 		if current_attack_in_sequence > attacks_in_sequence:
@@ -187,14 +213,24 @@ func runDecisionTree() -> void:
 		if target_actor:
 			if (
 				isTargetInRange()
+				or (isTargetInAbilityRange() and not ability_on_cooldown)
 				or attack_started
 				or state == POST_ATTACK
 			):
-				if readyForPreAttack():
-					handlePreAttack()
-				elif state == ATTACKING and not attack_landed:
-					perAttackAction()
-					attack_landed = true
+				if isTargetInAbilityRange() and not ability_on_cooldown:
+					if readyForPreAttack():
+						handlePreAttack()
+					elif state == ATTACKING and not attack_landed:
+						useAbility()
+						ability_cooldown_timer.start(ability_cooldown)
+						ability_on_cooldown = true
+						attack_landed = true
+				elif isTargetInRange():
+					if readyForPreAttack():
+						handlePreAttack()
+					elif state == ATTACKING and not attack_landed:
+						perAttackAction()
+						attack_landed = true
 			else:
 				.runDecisionTree()
 	animatedSprite.play(getAnimation())
@@ -232,8 +268,11 @@ func _process(_delta):
 		$AnimatedSprite/LightOccluder2D.visible = false
 		animatedSprite.light_mask = 1
 
+func beforeDeath() -> void:
+	pass
 
 func kill() -> void:
+	beforeDeath()
 	state = PRE_DEATH
 
 func hitByAxe(damage) -> void:

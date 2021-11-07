@@ -1,7 +1,5 @@
 extends Node
 
-onready var GameState = get_node('/root/GameState')
-onready var PossessionState = get_node('/root/PossessionState')
 var current_scene = null
 const PLAYER_SCENE = preload('res://Resources/Actors/Player/Player.tscn')
 
