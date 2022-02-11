@@ -5,7 +5,7 @@ class_name CombatReadyAI
 var knockback_handler_script = preload('res://resources/scripts/helpers/KnockBackHandler.gd')
 var knockback_handler
 
-var AXE_SCENE = preload('res://resources/abilities/axe_throw/axe_throw.tscn')
+var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
 
 var stun_damage_threshold = 1
 var stun_duration_timer
