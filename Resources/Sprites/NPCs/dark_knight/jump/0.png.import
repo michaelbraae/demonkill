@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-08be4cd7559c2090f3da4ca7c4aea373.stex"
+path="res://.import/0.png-217d269e5ef9435f06aa88ab35588583.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/jump/0.png"
-dest_files=[ "res://.import/0.png-08be4cd7559c2090f3da4ca7c4aea373.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/jump/0.png"
+dest_files=[ "res://.import/0.png-217d269e5ef9435f06aa88ab35588583.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

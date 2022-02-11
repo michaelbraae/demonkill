@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-104857e1b8333bc614fddccf03e3f948.stex"
+path="res://.import/2.png-6459dcc0d78842f6188c82c58ef05104.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/hang-back/2.png"
-dest_files=[ "res://.import/2.png-104857e1b8333bc614fddccf03e3f948.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/hang-back/2.png"
+dest_files=[ "res://.import/2.png-6459dcc0d78842f6188c82c58ef05104.stex" ]
 
 [params]
 

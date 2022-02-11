@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4.png-30f09e9890052a88e2c9d06ed65eb21a.stex"
+path="res://.import/4.png-e581e83687d4740e41edecefb60ea48c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/attack/4.png"
-dest_files=[ "res://.import/4.png-30f09e9890052a88e2c9d06ed65eb21a.stex" ]
+source_file="res://resources/sprites/npcs/archer/attack/4.png"
+dest_files=[ "res://.import/4.png-e581e83687d4740e41edecefb60ea48c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

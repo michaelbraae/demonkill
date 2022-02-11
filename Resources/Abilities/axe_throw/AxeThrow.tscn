@@ -1,23 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Sprites/Abilities/AxeThrow/axe-throw.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Abilities/AxeThrow/AxeThrow.gd" type="Script" id=2]
-[ext_resource path="res://Resources/Sprites/Lights/light.png" type="Texture" id=3]
+[ext_resource path="res://resources/abilities/axe_throw/AxeThrow.gd" type="Script" id=2]
+[ext_resource path="res://resources/sprites/lights/light.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 17, 21 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
 region = Rect2( 17, 0, 17, 21 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
 region = Rect2( 34, 0, 17, 21 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
 region = Rect2( 51, 0, 17, 21 )
 
 [sub_resource type="SpriteFrames" id=5]
@@ -38,7 +33,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "anim"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 

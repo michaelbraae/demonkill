@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-b20fd87e53225e80b29f89987d6909b3.stex"
+path="res://.import/1.png-f278ca4596e9fbbd46c84c3c51c690b5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/melee/1.png"
-dest_files=[ "res://.import/1.png-b20fd87e53225e80b29f89987d6909b3.stex" ]
+source_file="res://resources/sprites/npcs/archer/melee/1.png"
+dest_files=[ "res://.import/1.png-f278ca4596e9fbbd46c84c3c51c690b5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

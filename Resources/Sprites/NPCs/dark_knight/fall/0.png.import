@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-9e7ce298951c7a2675344dfca6796e80.stex"
+path="res://.import/0.png-0be817dbe8cbae4b632d2934e128bced.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/fall/0.png"
-dest_files=[ "res://.import/0.png-9e7ce298951c7a2675344dfca6796e80.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/fall/0.png"
+dest_files=[ "res://.import/0.png-0be817dbe8cbae4b632d2934e128bced.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

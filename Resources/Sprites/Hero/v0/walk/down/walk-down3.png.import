@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk-down3.png-5df4fca97ac133d8d171231a4afa37ad.stex"
+path="res://.import/walk-down3.png-bd7bf23af0f66d04dcedb6784717e887.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v0/walk/down/walk-down3.png"
-dest_files=[ "res://.import/walk-down3.png-5df4fca97ac133d8d171231a4afa37ad.stex" ]
+source_file="res://resources/sprites/hero/v0/walk/down/walk-down3.png"
+dest_files=[ "res://.import/walk-down3.png-bd7bf23af0f66d04dcedb6784717e887.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

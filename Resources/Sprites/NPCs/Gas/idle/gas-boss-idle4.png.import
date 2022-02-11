@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gas-boss-idle4.png-640ca22dea985a20f16a3f84d5a6a6e0.stex"
+path="res://.import/gas-boss-idle4.png-d67f19cf512460353a7834b5dd08d324.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Gas/idle/gas-boss-idle4.png"
-dest_files=[ "res://.import/gas-boss-idle4.png-640ca22dea985a20f16a3f84d5a6a6e0.stex" ]
+source_file="res://resources/sprites/npcs/gas/idle/gas-boss-idle4.png"
+dest_files=[ "res://.import/gas-boss-idle4.png-d67f19cf512460353a7834b5dd08d324.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gold-coin.png-dcf7d7bc7269231f63ed8e5bc0d45212.stex"
+path="res://.import/gold-coin.png-7f445248f4b1d6a26a524790f0498b95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Objects/coins/gold-coin.png"
-dest_files=[ "res://.import/gold-coin.png-dcf7d7bc7269231f63ed8e5bc0d45212.stex" ]
+source_file="res://resources/sprites/objects/coins/gold-coin.png"
+dest_files=[ "res://.import/gold-coin.png-7f445248f4b1d6a26a524790f0498b95.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

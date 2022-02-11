@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor-shadow.png-5a8d15630d463ddec9347e971c781c2e.stex"
+path="res://.import/floor-shadow.png-488982f2b9990de54a2b1f171005a931.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Environment/Stone Floor/floor-shadow.png"
-dest_files=[ "res://.import/floor-shadow.png-5a8d15630d463ddec9347e971c781c2e.stex" ]
+source_file="res://resources/sprites/environment/stone_floor/floor-shadow.png"
+dest_files=[ "res://.import/floor-shadow.png-488982f2b9990de54a2b1f171005a931.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

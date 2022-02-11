@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash-up.png-91312fe9fad84a821e99a2154b237cc9.stex"
+path="res://.import/dash-up.png-33269a62b06d1d0d092cd5adba9a2aa3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v2/sheets/dash/dash_up/dash-up.png"
-dest_files=[ "res://.import/dash-up.png-91312fe9fad84a821e99a2154b237cc9.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/dash/dash_up/dash-up.png"
+dest_files=[ "res://.import/dash-up.png-33269a62b06d1d0d092cd5adba9a2aa3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

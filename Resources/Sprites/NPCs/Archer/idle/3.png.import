@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-e5ca934eff1a2610ff846b78440b3924.stex"
+path="res://.import/3.png-2b70ea1f07b525da59e742af54d0f4f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/idle/3.png"
-dest_files=[ "res://.import/3.png-e5ca934eff1a2610ff846b78440b3924.stex" ]
+source_file="res://resources/sprites/npcs/archer/idle/3.png"
+dest_files=[ "res://.import/3.png-2b70ea1f07b525da59e742af54d0f4f9.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

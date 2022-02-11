@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run-up-right3.png-8a455a7259365e265ea85c15d2640818.stex"
+path="res://.import/run-up-right3.png-efaaa16e80261b0c346235d498fdc78e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v1/run/up-right/run-up-right3.png"
-dest_files=[ "res://.import/run-up-right3.png-8a455a7259365e265ea85c15d2640818.stex" ]
+source_file="res://resources/sprites/hero/v1/run/up-right/run-up-right3.png"
+dest_files=[ "res://.import/run-up-right3.png-efaaa16e80261b0c346235d498fdc78e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

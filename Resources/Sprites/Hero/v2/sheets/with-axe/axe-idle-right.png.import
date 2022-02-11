@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/axe-idle-right.png-ce3b103c5a88203648cbf8fea6f9155c.stex"
+path="res://.import/axe-idle-right.png-411957b136c27a8125e19073da4f1eba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v2/sheets/with-axe/axe-idle-right.png"
-dest_files=[ "res://.import/axe-idle-right.png-ce3b103c5a88203648cbf8fea6f9155c.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/with-axe/axe-idle-right.png"
+dest_files=[ "res://.import/axe-idle-right.png-411957b136c27a8125e19073da4f1eba.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

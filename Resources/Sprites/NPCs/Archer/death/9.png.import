@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/9.png-15980a8cfe64a0145d276e337fc76916.stex"
+path="res://.import/9.png-068f8685a857f8f76770c47841191845.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/death/9.png"
-dest_files=[ "res://.import/9.png-15980a8cfe64a0145d276e337fc76916.stex" ]
+source_file="res://resources/sprites/npcs/archer/death/9.png"
+dest_files=[ "res://.import/9.png-068f8685a857f8f76770c47841191845.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

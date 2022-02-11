@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Resources/Sprites/skele/skele4.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/skele/skele1.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/skele/skele2.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Sprites/skele/skele3.png" type="Texture" id=4]
+[ext_resource path="res://resources/sprites/skele/skele4.png" type="Texture" id=1]
+[ext_resource path="res://resources/sprites/skele/skele1.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/skele/skele2.png" type="Texture" id=3]
+[ext_resource path="res://resources/sprites/skele/skele3.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

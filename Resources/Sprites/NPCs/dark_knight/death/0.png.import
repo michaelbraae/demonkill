@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-b400143174b50c75523143f145d6d7ad.stex"
+path="res://.import/0.png-c5f2618281a4d078dbfe5150490ab871.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/death/0.png"
-dest_files=[ "res://.import/0.png-b400143174b50c75523143f145d6d7ad.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/death/0.png"
+dest_files=[ "res://.import/0.png-c5f2618281a4d078dbfe5150490ab871.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run7.png-8bab1c48570c0159708f5853bfdddcdb.stex"
+path="res://.import/run7.png-9de4c638b6113090caee78323b82897a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Eyeball/run/run7.png"
-dest_files=[ "res://.import/run7.png-8bab1c48570c0159708f5853bfdddcdb.stex" ]
+source_file="res://resources/sprites/npcs/eyeball/run/run7.png"
+dest_files=[ "res://.import/run7.png-9de4c638b6113090caee78323b82897a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

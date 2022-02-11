@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/6.png-a58cb92daf1665ecd2b79150c915dd25.stex"
+path="res://.import/6.png-bc98c622174653bbacd61fc7602b281b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/death/6.png"
-dest_files=[ "res://.import/6.png-a58cb92daf1665ecd2b79150c915dd25.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/death/6.png"
+dest_files=[ "res://.import/6.png-bc98c622174653bbacd61fc7602b281b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

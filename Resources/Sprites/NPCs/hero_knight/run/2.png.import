@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-0bce66e4b28afe2c4213e02f0ace5d74.stex"
+path="res://.import/2.png-63598963d8fbf627486ab81e5c9c90fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/run/2.png"
-dest_files=[ "res://.import/2.png-0bce66e4b28afe2c4213e02f0ace5d74.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/run/2.png"
+dest_files=[ "res://.import/2.png-63598963d8fbf627486ab81e5c9c90fb.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

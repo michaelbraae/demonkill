@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/6.png-be63023a56d49c2b5cdf5cdc590816f9.stex"
+path="res://.import/6.png-0672f917dbe5f281956aab5419bce6d7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Gas/run/6.png"
-dest_files=[ "res://.import/6.png-be63023a56d49c2b5cdf5cdc590816f9.stex" ]
+source_file="res://resources/sprites/npcs/gas/run/6.png"
+dest_files=[ "res://.import/6.png-0672f917dbe5f281956aab5419bce6d7.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

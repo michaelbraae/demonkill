@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Resources/Sprites/hall-window.png" type="Texture" id=1]
+[ext_resource path="res://resources/sprites/hall-window.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45.3353, 1.89365 )

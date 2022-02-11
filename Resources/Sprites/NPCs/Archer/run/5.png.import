@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/5.png-01f7d8699f2e994f7159a84b3714c876.stex"
+path="res://.import/5.png-e89bc5e7ac6a1f432d64d3d5f600c4d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/run/5.png"
-dest_files=[ "res://.import/5.png-01f7d8699f2e994f7159a84b3714c876.stex" ]
+source_file="res://resources/sprites/npcs/archer/run/5.png"
+dest_files=[ "res://.import/5.png-e89bc5e7ac6a1f432d64d3d5f600c4d8.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

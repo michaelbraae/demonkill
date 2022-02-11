@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4.png-89b31dd03f32dcd327b49369abaf7569.stex"
+path="res://.import/4.png-f0253fd62f485fc6b147a37537f01e72.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/attack/attack2/4.png"
-dest_files=[ "res://.import/4.png-89b31dd03f32dcd327b49369abaf7569.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/attack/attack2/4.png"
+dest_files=[ "res://.import/4.png-f0253fd62f485fc6b147a37537f01e72.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

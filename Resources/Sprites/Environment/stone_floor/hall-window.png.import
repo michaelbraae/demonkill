@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hall-window.png-bde52405d52297aa24c3a582a7ae936b.stex"
+path="res://.import/hall-window.png-67c1da442dec9a4038dff29bd364c05e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Environment/Stone Floor/hall-window.png"
-dest_files=[ "res://.import/hall-window.png-bde52405d52297aa24c3a582a7ae936b.stex" ]
+source_file="res://resources/sprites/environment/stone_floor/hall-window.png"
+dest_files=[ "res://.import/hall-window.png-67c1da442dec9a4038dff29bd364c05e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,13 +1,13 @@
 [gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit1.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/with_axe.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Melee/takehit/hit2.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Caster/idle.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Caster/run.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Sprites/NPCs/Imp/Caster/attack.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Cameras/ShakingCamera/ShakingCamera.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Resources/Actors/NPC/Imps/Imp-Caster/Imp-Caster.gd" type="Script" id=8]
+[ext_resource path="res://resources/sprites/npcs/imp/melee/takehit/hit1.png" type="Texture" id=1]
+[ext_resource path="res://resources/sprites/npcs/imp/melee/with_axe.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/npcs/imp/melee/takehit/hit2.png" type="Texture" id=3]
+[ext_resource path="res://resources/sprites/npcs/imp/caster/idle.png" type="Texture" id=4]
+[ext_resource path="res://resources/sprites/npcs/imp/caster/run.png" type="Texture" id=5]
+[ext_resource path="res://resources/sprites/npcs/imp/caster/attack.png" type="Texture" id=6]
+[ext_resource path="res://resources/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/actors/npc/imps/imp-Caster/imp-Caster.gd" type="Script" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )

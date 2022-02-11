@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-57e374ea85087d4075b5122f7d78b6f2.stex"
+path="res://.import/1.png-65dadd022069c5df0cfb8618cfc1316a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/grab-ledge/1.png"
-dest_files=[ "res://.import/1.png-57e374ea85087d4075b5122f7d78b6f2.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/grab-ledge/1.png"
+dest_files=[ "res://.import/1.png-65dadd022069c5df0cfb8618cfc1316a.stex" ]
 
 [params]
 

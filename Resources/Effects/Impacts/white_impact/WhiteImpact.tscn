@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Resources/Effects/Impacts/WhiteImpact/WhiteImpact.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Sprites/Effects/Impacts/white-impact.png" type="Texture" id=2]
+[ext_resource path="res://resources/effects/impacts/white_impact/WhiteImpact.gd" type="Script" id=1]
+[ext_resource path="res://resources/sprites/effects/impacts/impact-small.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

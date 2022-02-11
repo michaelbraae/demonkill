@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/torch.png-553b95c719d1e464670e7d01e9af0542.stex"
+path="res://.import/torch.png-cc5bd3ed80d7f5b66123081b0371b047.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/ScenerySpice/torch.png"
-dest_files=[ "res://.import/torch.png-553b95c719d1e464670e7d01e9af0542.stex" ]
+source_file="res://resources/sprites/scenery_spice/torch.png"
+dest_files=[ "res://.import/torch.png-cc5bd3ed80d7f5b66123081b0371b047.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Abilities/Old/TelegraphedAOE/TestAOE.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Sprites/Abilities/Telegraphs/Red-Circle.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/Abilities/Projectiles/energy-ball.png" type="Texture" id=3]
+[ext_resource path="res://resources/abilities/old/telegraphed_aoe/TestAOE.gd" type="Script" id=1]
+[ext_resource path="res://resources/sprites/abilities/telegraphs/Red-Circle.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/abilities/projectiles/energy-ball.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

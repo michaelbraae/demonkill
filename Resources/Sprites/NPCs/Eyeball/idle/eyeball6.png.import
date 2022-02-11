@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/eyeball6.png-197eb2c1ce43fdf3a941e817e1ea9573.stex"
+path="res://.import/eyeball6.png-304b0f26933fb21f51215a28190d532f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Eyeball/idle/eyeball6.png"
-dest_files=[ "res://.import/eyeball6.png-197eb2c1ce43fdf3a941e817e1ea9573.stex" ]
+source_file="res://resources/sprites/npcs/eyeball/idle/eyeball6.png"
+dest_files=[ "res://.import/eyeball6.png-304b0f26933fb21f51215a28190d532f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

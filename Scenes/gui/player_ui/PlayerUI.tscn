@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/GUI/playerui/PlayerUI.gd" type="Script" id=1]
-[ext_resource path="res://Resources/ui/SpellSlotsUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/gui/player_ui/PlayerUI.gd" type="Script" id=1]
+[ext_resource path="res://resources/ui/SpellSlotsUI.tscn" type="PackedScene" id=2]
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource( 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-bcabc5648a9d82742f81267832f0d8c8.stex"
+path="res://.import/2.png-8b533758e0aefd41995dd09354c3b4de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/Parry/2.png"
-dest_files=[ "res://.import/2.png-bcabc5648a9d82742f81267832f0d8c8.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/Parry/2.png"
+dest_files=[ "res://.import/2.png-8b533758e0aefd41995dd09354c3b4de.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

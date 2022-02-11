@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-34c3052163181aaeb9da07ac95ccf4c7.stex"
+path="res://.import/0.png-7faa0dcde8215a45c36aa500b6df3c83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/run/0.png"
-dest_files=[ "res://.import/0.png-34c3052163181aaeb9da07ac95ccf4c7.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/run/0.png"
+dest_files=[ "res://.import/0.png-7faa0dcde8215a45c36aa500b6df3c83.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

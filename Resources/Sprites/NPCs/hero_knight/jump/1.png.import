@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-424ecdf95879c0535392a26bc2a20898.stex"
+path="res://.import/1.png-df6b88468041de4c3f02d2ca108269ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/jump/1.png"
-dest_files=[ "res://.import/1.png-424ecdf95879c0535392a26bc2a20898.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/jump/1.png"
+dest_files=[ "res://.import/1.png-df6b88468041de4c3f02d2ca108269ce.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

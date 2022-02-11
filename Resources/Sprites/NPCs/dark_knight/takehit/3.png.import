@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-4920895206cf89f201cd5789f06c5a95.stex"
+path="res://.import/3.png-fe9363fae571402902d2b8f6c03ba192.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/takehit/3.png"
-dest_files=[ "res://.import/3.png-4920895206cf89f201cd5789f06c5a95.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/takehit/3.png"
+dest_files=[ "res://.import/3.png-fe9363fae571402902d2b8f6c03ba192.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4.png-f01fb324b0a1f11967a16bb2d0a97950.stex"
+path="res://.import/4.png-dd3b1c9355e48345e14f6e09054a95c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/attack/attack2/4.png"
-dest_files=[ "res://.import/4.png-f01fb324b0a1f11967a16bb2d0a97950.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/attack/attack2/4.png"
+dest_files=[ "res://.import/4.png-dd3b1c9355e48345e14f6e09054a95c4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

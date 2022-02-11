@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run-down.png-781481142c75f803f562060b7db95ed9.stex"
+path="res://.import/run-down.png-f86b3420b4bb6b5754d015668cde5e67.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v2/sheets/run-down.png"
-dest_files=[ "res://.import/run-down.png-781481142c75f803f562060b7db95ed9.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/run-down.png"
+dest_files=[ "res://.import/run-down.png-f86b3420b4bb6b5754d015668cde5e67.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

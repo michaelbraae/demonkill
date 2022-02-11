@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-0e49164c9dff547120d25773a9fe6a09.stex"
+path="res://.import/2.png-e81d845d7bb729dfd65be7fc6d129f5d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Hero Knight/takedamage/2.png"
-dest_files=[ "res://.import/2.png-0e49164c9dff547120d25773a9fe6a09.stex" ]
+source_file="res://resources/sprites/npcs/hero_knight/takedamage/2.png"
+dest_files=[ "res://.import/2.png-e81d845d7bb729dfd65be7fc6d129f5d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/8.png-b9127f337f8c39eecdd06a8013cb9b96.stex"
+path="res://.import/8.png-bb8a361c0b700e15a0680a9d46dd8394.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Archer/roll/8.png"
-dest_files=[ "res://.import/8.png-b9127f337f8c39eecdd06a8013cb9b96.stex" ]
+source_file="res://resources/sprites/npcs/archer/roll/8.png"
+dest_files=[ "res://.import/8.png-bb8a361c0b700e15a0680a9d46dd8394.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

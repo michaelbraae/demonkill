@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-a51d05c40670a40582b484ef173690bb.stex"
+path="res://.import/3.png-c13d57812ece8efa9ddf98dad5769449.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/NPCs/Dark Knight/idle/3.png"
-dest_files=[ "res://.import/3.png-a51d05c40670a40582b484ef173690bb.stex" ]
+source_file="res://resources/sprites/npcs/dark_knight/idle/3.png"
+dest_files=[ "res://.import/3.png-c13d57812ece8efa9ddf98dad5769449.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

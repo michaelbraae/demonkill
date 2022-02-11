@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Actors/NPC/Caster/Caster.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Sprites/Sprites/skele/skele2.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Sprites/Sprites/skele/skele4.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Sprites/Sprites/skele/skele3.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/Sprites/skele/skele1.png" type="Texture" id=5]
+[ext_resource path="res://resources/actors/npc/caster/Caster.gd" type="Script" id=1]
+[ext_resource path="res://resources/sprites/sprites/skele/skele2.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/sprites/skele/skele4.png" type="Texture" id=3]
+[ext_resource path="res://resources/sprites/sprites/skele/skele3.png" type="Texture" id=4]
+[ext_resource path="res://resources/sprites/sprites/skele/skele1.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

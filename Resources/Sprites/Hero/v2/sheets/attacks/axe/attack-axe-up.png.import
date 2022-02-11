@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack-axe-up.png-d24ff3627afa821686c1e3c679a08e7d.stex"
+path="res://.import/attack-axe-up.png-5a98c94e73fbe36e24d38dd87b4547ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Sprites/Hero/v2/sheets/attacks/axe/attack-axe-up.png"
-dest_files=[ "res://.import/attack-axe-up.png-d24ff3627afa821686c1e3c679a08e7d.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/attacks/axe/attack-axe-up.png"
+dest_files=[ "res://.import/attack-axe-up.png-5a98c94e73fbe36e24d38dd87b4547ba.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -70,4 +70,4 @@
 #	Optional Boss - No minions?
 #	Squidlings
 
-# Player Characters Father Perhaps as last boss? but it's a bit tired
+# player Characters Father Perhaps as last boss? but it's a bit tired
