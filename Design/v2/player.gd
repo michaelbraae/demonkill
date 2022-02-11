@@ -1,4 +1,4 @@
-# Player Design
+# Player design
 
 # The player cannot alter their appearance or weapons
 

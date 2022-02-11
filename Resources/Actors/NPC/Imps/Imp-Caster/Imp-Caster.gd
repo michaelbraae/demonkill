@@ -1,6 +1,6 @@
 extends CombatReadyAI
 
-var SIMPLE_ENERGYBALL_SCENE = preload('res://Resources/Abilities/EnergyBall/Simple/SimpleEnergyBall.tscn')
+var SIMPLE_ENERGYBALL_SCENE = preload('res://resources/abilities/energy_ball/simple/SimpleEnergyBall.tscn')
 
 func initialiseConfig():
 	move_speed = 80

@@ -50,7 +50,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 344.093
 
-[node name="Eyeball" type="KinematicBody2D"]
+[node name="eyeball" type="KinematicBody2D"]
 collision_mask = 3
 script = ExtResource( 15 )
 

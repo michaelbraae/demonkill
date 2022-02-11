@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/energy-ball.png-f4903289da728f63a674e8c8e616212d.stex"
+path="res://.import/energy-ball.png-b901393acc64192dbef65b68457607b0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Abilities/Projectiles/energy-ball.png"
-dest_files=[ "res://.import/energy-ball.png-f4903289da728f63a674e8c8e616212d.stex" ]
+source_file="res://resources/Sprites/Abilities/Projectiles/energy-ball.png"
+dest_files=[ "res://.import/energy-ball.png-b901393acc64192dbef65b68457607b0.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -1,4 +1,4 @@
-# Player Design
+# Player design
 
 # PILLARS OF COMBAT DESIGN
 	# fairly squishy forces player to play aggressive

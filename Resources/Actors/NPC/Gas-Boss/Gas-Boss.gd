@@ -1,4 +1,4 @@
-extends 'res://Resources/Scripts/NPC/PathfindingAI.gd'
+extends 'res://resources/scripts/npc/PathfindingAI.gd'
 
 
 func getAnimation() -> String:

@@ -1,7 +1,7 @@
 # The old designs had the player with many different weapons but i reckon it might be cooler
 # if we just have the axe and then you need to possess enemies to make use of different weapons
 
-# PumpShotgun
+# pump_shotgun
 #	8 - 10 bullets in clip, medium reload time, medium rate of fire
 #	slow projectile, damage relative to amount of bullets hit
 # CrossBow

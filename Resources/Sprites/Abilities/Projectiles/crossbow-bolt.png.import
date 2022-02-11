@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crossbow-bolt.png-a8b223f3846460819feb0b8b07b7bf14.stex"
+path="res://.import/crossbow-bolt.png-35467ea598cae3ad4a10771176dc7aeb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Abilities/Projectiles/crossbow-bolt.png"
-dest_files=[ "res://.import/crossbow-bolt.png-a8b223f3846460819feb0b8b07b7bf14.stex" ]
+source_file="res://resources/Sprites/Abilities/Projectiles/crossbow-bolt.png"
+dest_files=[ "res://.import/crossbow-bolt.png-35467ea598cae3ad4a10771176dc7aeb.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

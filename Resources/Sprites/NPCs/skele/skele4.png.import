@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skele4.png-c5af4567773108b3fa6366058ab99ea4.stex"
+path="res://.import/skele4.png-ecc7494c26783353375c2642b408427c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/skele/skele4.png"
-dest_files=[ "res://.import/skele4.png-c5af4567773108b3fa6366058ab99ea4.stex" ]
+source_file="res://resources/Sprites/NPCs/skele/skele4.png"
+dest_files=[ "res://.import/skele4.png-ecc7494c26783353375c2642b408427c.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

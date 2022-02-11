@@ -41,7 +41,7 @@ height = 28.8152
 [sub_resource type="CircleShape2D" id=3]
 radius = 429.707
 
-[node name="Caster-Basic" type="KinematicBody2D"]
+[node name="caster-Basic" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )

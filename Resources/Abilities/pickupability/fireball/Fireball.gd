@@ -3,7 +3,7 @@ extends KinematicBody2D
 var target_vector : Vector2
 var projectile_speed : int = 300
 
-var WHITE_IMPACT = preload('res://Resources/Effects/Impacts/WhiteImpact/WhiteImpact.tscn')
+var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
 func setCollideWithEnemies() -> void:
 	set_collision_mask(4)

@@ -1,12 +1,12 @@
 extends Node
 
 const Weapons = {
-	'PumpShotgun': {
-		'name': 'PumpShotgun',
-		'path': 'res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn',
+	'pump_shotgun': {
+		'name': 'pump_shotgun',
+		'path': 'res://resources/weapons/PumpShotgun/PumpShotgun.tscn',
 		'iconPath' : '',
 	},
 }
 
 func getPumpShotgun() -> Dictionary:
-	return Weapons['PumpShotgun']
+	return Weapons['pump_shotgun']

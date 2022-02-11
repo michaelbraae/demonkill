@@ -1,4 +1,4 @@
-# Abilities and how they work
+# abilities and how they work
 
 # A new class -> Ability
 # Should be useable by the player and npcs

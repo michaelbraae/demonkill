@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run5.png-23fb4b89d66d6f43bd411394494c04cf.stex"
+path="res://.import/run5.png-0088a4922ce84687573c00c632dbce9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Eyeball/run/run5.png"
-dest_files=[ "res://.import/run5.png-23fb4b89d66d6f43bd411394494c04cf.stex" ]
+source_file="res://resources/Sprites/NPCs/Eyeball/run/run5.png"
+dest_files=[ "res://.import/run5.png-0088a4922ce84687573c00c632dbce9a.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

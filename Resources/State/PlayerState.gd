@@ -16,8 +16,8 @@ var SPELLS: Dictionary = {
 }
 
 const PumpShotgun = {
-	'name': 'PumpShotgun',
-	'path': 'res://Resources/Weapons/PumpShotgun/PumpShotgun.tscn',
+	'name': 'pump_shotgun',
+	'path': 'res://resources/weapons/pump_shotgun/pump_shotgun.tscn',
 	'iconPath' : '',
 }
 

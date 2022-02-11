@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle-down1.png-ffd22715689cb36e35ad5c71c104b0ee.stex"
+path="res://.import/idle-down1.png-d630f32d40de6c2850dc2cf3b34f2672.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v0/idle/down/idle-down1.png"
-dest_files=[ "res://.import/idle-down1.png-ffd22715689cb36e35ad5c71c104b0ee.stex" ]
+source_file="res://resources/Sprites/Hero/v0/idle/down/idle-down1.png"
+dest_files=[ "res://.import/idle-down1.png-d630f32d40de6c2850dc2cf3b34f2672.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

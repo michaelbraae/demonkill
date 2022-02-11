@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run.png-0d661780d4e337291a905b208ebdd5e9.stex"
+path="res://.import/run.png-a1523c11ac2160d9c88835ca63565416.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Imp/Caster/run.png"
-dest_files=[ "res://.import/run.png-0d661780d4e337291a905b208ebdd5e9.stex" ]
+source_file="res://resources/Sprites/NPCs/Imp/Caster/run.png"
+dest_files=[ "res://.import/run.png-a1523c11ac2160d9c88835ca63565416.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

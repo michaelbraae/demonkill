@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-8ad461622b5072f402b3fcddd4bced3c.stex"
+path="res://.import/3.png-754a31ed79a8a70223422df1488fd532.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Archer/roll/3.png"
-dest_files=[ "res://.import/3.png-8ad461622b5072f402b3fcddd4bced3c.stex" ]
+source_file="res://resources/Sprites/NPCs/Archer/roll/3.png"
+dest_files=[ "res://.import/3.png-754a31ed79a8a70223422df1488fd532.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

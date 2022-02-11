@@ -1,8 +1,8 @@
 extends PossessableAI
 
-var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
-var ABILITY_SCENE = preload('res://Resources/Abilities/pickupability/flameswipe/FlameSwipe.tscn')
-var PICKUP_ABILITY_SCENE = preload('res://Resources/Abilities/pickupability/flameswipe/pickup/PickupFlameSwipe.tscn')
+var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
+var ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swipe/FlameSwipe.tscn')
+var PICKUP_ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.tscn')
 
 onready var health_label = $HealthLabel
 
@@ -41,5 +41,5 @@ func perAttackAction() -> void:
 
 func _process(_delta):
 		# need to make the AI dodge back when it enters the light and reduce dodge cooldown
-		# adding like 30 Imp-melees could be really cool, like plague tale rat vibes
+		# adding like 30 imp-melees could be really cool, like plague tale rat vibes
 	setHealth()

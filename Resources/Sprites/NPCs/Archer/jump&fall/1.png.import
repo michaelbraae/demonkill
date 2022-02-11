@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-04bdee8db8f0bb171f21a1dbec41d9db.stex"
+path="res://.import/1.png-c733bc1e4fd04b8077913d320c6e6f00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Archer/jump&fall/1.png"
-dest_files=[ "res://.import/1.png-04bdee8db8f0bb171f21a1dbec41d9db.stex" ]
+source_file="res://resources/Sprites/NPCs/Archer/jump&fall/1.png"
+dest_files=[ "res://.import/1.png-c733bc1e4fd04b8077913d320c6e6f00.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

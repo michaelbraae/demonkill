@@ -2,8 +2,8 @@ extends PlayerAnimation
 
 class_name PlayerAction
 
-var SWIPE_SCENE = preload('res://Resources/Abilities/Swipe/Swipe.tscn')
-var AXE_SCENE = preload('res://Resources/Abilities/AxeThrow/AxeThrow.tscn')
+var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
+var AXE_SCENE = preload('res://resources/abilities/axe_throw/axe_throw.tscn')
 
 var dash_timer
 var dash_cooldown_timer

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk-right2.png-4cc37916ef00733a220756fd0baf43cd.stex"
+path="res://.import/walk-right2.png-c6b511398e15dd9cb1d941d27d7b699b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v0/walk/right/walk-right2.png"
-dest_files=[ "res://.import/walk-right2.png-4cc37916ef00733a220756fd0baf43cd.stex" ]
+source_file="res://resources/Sprites/Hero/v0/walk/right/walk-right2.png"
+dest_files=[ "res://.import/walk-right2.png-c6b511398e15dd9cb1d941d27d7b699b.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

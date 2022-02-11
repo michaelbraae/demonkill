@@ -1,6 +1,6 @@
 extends AbilityBase
 
-var WHITE_IMPACT = preload('res://Resources/Effects/Impacts/WhiteImpact/WhiteImpact.tscn')
+var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
 func initialiseConfig() -> void:
 	damage = 3

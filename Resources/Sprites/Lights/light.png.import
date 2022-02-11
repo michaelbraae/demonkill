@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-c7bb2720e5ac6421c33bb1f9875391fb.stex"
+path="res://.import/light.png-a3d8bce6fb8064a36d101958ecf1dceb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Lights/light.png"
-dest_files=[ "res://.import/light.png-c7bb2720e5ac6421c33bb1f9875391fb.stex" ]
+source_file="res://resources/Sprites/Lights/light.png"
+dest_files=[ "res://.import/light.png-a3d8bce6fb8064a36d101958ecf1dceb.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

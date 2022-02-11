@@ -1,4 +1,4 @@
-# Artifacts are modifiers - GO no go
+# artifacts are modifiers - GO no go
 #	these help the player make new playstyles
 #	
 #	1. Pickup souls from killed enemies -> can be activated to empower the player?

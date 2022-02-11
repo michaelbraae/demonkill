@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER_SCENE = preload('res://Resources/Actors/Player/Player.tscn')
+const PLAYER_SCENE = preload('res://resources/actors/player/Player.tscn')
 
 var bite_box
 

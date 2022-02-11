@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/eyeball2.png-10d6d2a7fefd752c942a2805547e5ff7.stex"
+path="res://.import/eyeball2.png-f91a282f15629451d0b3436222f104df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Eyeball/idle/eyeball2.png"
-dest_files=[ "res://.import/eyeball2.png-10d6d2a7fefd752c942a2805547e5ff7.stex" ]
+source_file="res://resources/Sprites/NPCs/Eyeball/idle/eyeball2.png"
+dest_files=[ "res://.import/eyeball2.png-f91a282f15629451d0b3436222f104df.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

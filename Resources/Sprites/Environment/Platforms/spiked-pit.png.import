@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spiked-pit.png-083659250965bf3179573f18f6171e41.stex"
+path="res://.import/spiked-pit.png-6ea1c697a520ec90808ae87b8459c6eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Environment/Platforms/spiked-pit.png"
-dest_files=[ "res://.import/spiked-pit.png-083659250965bf3179573f18f6171e41.stex" ]
+source_file="res://resources/Sprites/Environment/Platforms/spiked-pit.png"
+dest_files=[ "res://.import/spiked-pit.png-6ea1c697a520ec90808ae87b8459c6eb.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

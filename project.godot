@@ -12,107 +12,107 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "AbilityBase",
 "language": "GDScript",
-"path": "res://Resources/Abilities/Base/AbilityBase.gd"
+"path": "res://resources/abilities/Base/AbilityBase.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "BaseAI",
 "language": "GDScript",
-"path": "res://Resources/Scripts/NPC/BaseAI.gd"
+"path": "res://resources/Scripts/NPC/BaseAI.gd"
 }, {
 "base": "CombatReadyAI",
 "class": "CasterAI",
 "language": "GDScript",
-"path": "res://Resources/Scripts/NPC/CasterAI.gd"
+"path": "res://resources/Scripts/NPC/CasterAI.gd"
 }, {
 "base": "PathfindingAI",
 "class": "CombatReadyAI",
 "language": "GDScript",
-"path": "res://Resources/Scripts/NPC/CombatReadyAI.gd"
+"path": "res://resources/Scripts/NPC/CombatReadyAI.gd"
 }, {
 "base": "Node2D",
 "class": "ImpactBase",
 "language": "GDScript",
-"path": "res://Resources/Effects/Impacts/ImpactBase.gd"
+"path": "res://resources/effects/impacts/ImpactBase.gd"
 }, {
 "base": "BaseAI",
 "class": "PathfindingAI",
 "language": "GDScript",
-"path": "res://Resources/Scripts/NPC/PathfindingAI.gd"
+"path": "res://resources/Scripts/NPC/PathfindingAI.gd"
 }, {
 "base": "Node",
 "class": "PickupAbility",
 "language": "GDScript",
-"path": "res://Resources/Abilities/pickupability/PickupAbility.gd"
+"path": "res://resources/abilities/pickupability/PickupAbility.gd"
 }, {
 "base": "PickupAbility",
 "class": "PickupFireball",
 "language": "GDScript",
-"path": "res://Resources/Abilities/pickupability/fireball/pickup/PickupFireball.gd"
+"path": "res://resources/abilities/pickupability/fireball/pickup/PickupFireball.gd"
 }, {
 "base": "PickupAbility",
 "class": "PickupFlameSwipe",
 "language": "GDScript",
-"path": "res://Resources/Abilities/pickupability/flameswipe/pickup/PickupFlameSwipe.gd"
+"path": "res://resources/abilities/pickupability/flameswipe/pickup/PickupFlameSwipe.gd"
 }, {
 "base": "PlayerSpell",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Resources/Actors/Player/Player.gd"
+"path": "res://resources/actors/Player/Player.gd"
 }, {
 "base": "PlayerAnimation",
 "class": "PlayerAction",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerAction.gd"
+"path": "res://resources/Scripts/Player/PlayerAction.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerAnimation",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerAnimation.gd"
+"path": "res://resources/Scripts/Player/PlayerAnimation.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PlayerBase",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerBase.gd"
+"path": "res://resources/Scripts/Player/PlayerBase.gd"
 }, {
 "base": "PlayerBase",
 "class": "PlayerNavigation",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerNavigation.gd"
+"path": "res://resources/Scripts/Player/PlayerNavigation.gd"
 }, {
 "base": "PlayerAction",
 "class": "PlayerPossession",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerPossession.gd"
+"path": "res://resources/Scripts/Player/PlayerPossession.gd"
 }, {
 "base": "PlayerPossession",
 "class": "PlayerSpell",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerSpell.gd"
+"path": "res://resources/Scripts/Player/PlayerSpell.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerWeapon",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Player/PlayerWeapon.gd"
+"path": "res://resources/Scripts/Player/PlayerWeapon.gd"
 }, {
 "base": "CombatReadyAI",
 "class": "PossessableAI",
 "language": "GDScript",
-"path": "res://Resources/Scripts/NPC/PossessableAI.gd"
+"path": "res://resources/Scripts/NPC/PossessableAI.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "ProjectileBase",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Ability/ProjectileBase.gd"
+"path": "res://resources/Scripts/Ability/ProjectileBase.gd"
 }, {
 "base": "Node2D",
 "class": "RotatingWeapon",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Weapons/RotatingWeapon.gd"
+"path": "res://resources/Scripts/Weapons/RotatingWeapon.gd"
 }, {
 "base": "Node2D",
 "class": "TelegraphedAOE",
 "language": "GDScript",
-"path": "res://Resources/Scripts/Ability/TelegraphedAOE.gd"
+"path": "res://resources/scripts/ability/TelegraphedAOE.gd"
 } ]
 _global_script_class_icons={
 "AbilityBase": "",
@@ -141,17 +141,17 @@ _global_script_class_icons={
 [application]
 
 config/name="10MinutesToMidnight"
-run/main_scene="res://Scenes/Main/TitleScreen/TitleScreen.tscn"
+run/main_scene="res://Scenes/main/TitleScreen/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-LevelManager="*res://Scenes/LevelManager/LevelManager.gd"
+LevelManager="*res://scenes/level_manager/level_manager.gd"
 PlayerState="*res://Resources/State/PlayerState.gd"
 GameState="*res://Resources/State/GameState.gd"
 PossessionState="*res://Resources/State/PossessionState.gd"
 InputHandler="*res://Resources/State/InputHandler.gd"
-FeedbackHandler="*res://Resources/Scripts/Helpers/FeedbackHandler.gd"
+FeedbackHandler="*res://Resources/scripts/Helpers/FeedbackHandler.gd"
 
 [display]
 

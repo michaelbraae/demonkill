@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/axe-run-down.png-b838bbc85258cbe961081090f669544e.stex"
+path="res://.import/axe-run-down.png-8530b80940fbbbec903eca1ad1fde183.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v2/sheets/with-axe/axe-run-down.png"
-dest_files=[ "res://.import/axe-run-down.png-b838bbc85258cbe961081090f669544e.stex" ]
+source_file="res://resources/Sprites/Hero/v2/sheets/with-axe/axe-run-down.png"
+dest_files=[ "res://.import/axe-run-down.png-8530b80940fbbbec903eca1ad1fde183.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

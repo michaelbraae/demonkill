@@ -96,7 +96,7 @@ radius = 24.2581
 [sub_resource type="CircleShape2D" id=10]
 radius = 154.201
 
-[node name="Imp-Melee" type="KinematicBody2D"]
+[node name="imp-melee" type="KinematicBody2D"]
 collision_layer = 5
 script = ExtResource( 16 )
 

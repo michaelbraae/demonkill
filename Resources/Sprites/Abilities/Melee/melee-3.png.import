@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/melee-3.png-f7fcda2a82e89e7073e332733650c903.stex"
+path="res://.import/melee-3.png-fb5ef2b80d068207aaf76cc674a9601d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Abilities/Melee/melee-3.png"
-dest_files=[ "res://.import/melee-3.png-f7fcda2a82e89e7073e332733650c903.stex" ]
+source_file="res://resources/Sprites/Abilities/Melee/melee-3.png"
+dest_files=[ "res://.import/melee-3.png-fb5ef2b80d068207aaf76cc674a9601d.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

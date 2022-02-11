@@ -10,4 +10,4 @@ func initialiseConfig() -> void:
 	move_speed = 120
 
 func setProjectileScene() -> void:
-	PROJECTILE_SCENE = preload('res://Resources/Abilities/TelegraphedAOE/TelegraphedAOE.tscn')
+	PROJECTILE_SCENE = preload('res://resources/abilities/telegraphed_aoe/telegraphed_aoe.tscn')

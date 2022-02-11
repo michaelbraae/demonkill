@@ -1,9 +1,9 @@
 # GENERIC DEMONS
 
 # Straight from hell
-#	Fireball Imp
-#	Claws Imp   -- Imps share models
-#	Suicide Imp -- Detonates within certain proximity of player - has no arms? maybe just fire coming from holes where his arms should be??
+#	Fireball imp
+#	Claws imp   -- Imps share models
+#	Suicide imp -- Detonates within certain proximity of player - has no arms? maybe just fire coming from holes where his arms should be??
 
 # Knights fight together in groups.
 # They use formations and defensive strategies to make the players life difficult
@@ -11,7 +11,7 @@
 
 #	Demon Knight - Captain - Greatsword only - defensive
 #	Demon Knight - Sword and Shield - Aggressive melee
-#	Demon Knight - Archer - Aggressive Ranged
+#	Demon Knight - archer - Aggressive Ranged
 
 # Demon Botanist
 #	Plants things in the ground, then waters them
@@ -35,7 +35,7 @@
 #	EXPLODING CHICKENS!!! - thanks laura!
 
 # Magic Demons
-#	Eyeball - Lazer beam
+#	eyeball - Lazer beam
 #	Elemental Demon
 #	Mesmer Demon - Uses Illusions
 
@@ -48,16 +48,16 @@
 #	Rogue - Can turn translucent, does high damage with basic stab attack
 #	Dagger Throw - Teleporter - Spin to win
 
-# Gas Boss & Minions - Immune to gas attacks
+# gas Boss & Minions - Immune to gas attacks
 #	BOSS
-#	Wheezer (Base Level Minion, can swing and spray gas from mouth)
+#	Wheezer (base Level Minion, can swing and spray gas from mouth)
 #	Bloater (Heavy Minion, Shoots gas grenads from mouth and 
 #		explodes when killed or when player gets too close)
 
 # Demon Chemist
 #	Throws a fuck load of grenades
 #	BOSS
-#	Rat mutants - Melee and pounce - Can use tunnels - Can potentially burrow
+#	Rat mutants - melee and pounce - Can use tunnels - Can potentially burrow
 
 # Cannibal Librarian
 #	Demon Students - Can locate secret doors in bookshelfs

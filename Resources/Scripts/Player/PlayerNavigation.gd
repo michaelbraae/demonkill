@@ -7,7 +7,7 @@ var velocity = Vector2()
 const SPEED = 100
 var speed_actual
 
-var knockback_handler_script = preload('res://Resources/Scripts/Helpers/KnockBackHandler.gd')
+var knockback_handler_script = preload('res://resources/scripts/helpers/KnockBackHandler.gd')
 var knockback_handler
 
 var aim_vector = Vector2()

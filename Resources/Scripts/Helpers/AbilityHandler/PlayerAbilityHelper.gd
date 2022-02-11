@@ -1,6 +1,6 @@
 extends Node
 
-var BOLT_SCENE = preload('res://Resources/Abilities/Projectiles/Bolt/Bolt.tscn')
+var BOLT_SCENE = preload('res://resources/abilities/projectiles/bolt/bolt.tscn')
 
 var ability_cool_down_timer
 var ABILITY_COOL_DOWN = 2.0
