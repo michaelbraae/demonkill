@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-1238007b50859c7c5e83e4222ee24249.stex"
+path="res://.import/1.png-e43417decb40c2882e61fcab705499cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Environment/props/fire-2/1.png"
-dest_files=[ "res://.import/1.png-1238007b50859c7c5e83e4222ee24249.stex" ]
+source_file="res://resources/sprites/environment/props/fire-2/1.png"
+dest_files=[ "res://.import/1.png-e43417decb40c2882e61fcab705499cf.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

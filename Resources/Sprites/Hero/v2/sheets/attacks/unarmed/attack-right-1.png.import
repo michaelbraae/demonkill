@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack-right-1.png-a24fd0df3305c5265218a933a513e364.stex"
+path="res://.import/attack-right-1.png-39f5c7ac8888e7805d034b270813417c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v2/sheets/attacks/unarmed/attack-right-1.png"
-dest_files=[ "res://.import/attack-right-1.png-a24fd0df3305c5265218a933a513e364.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/attacks/unarmed/attack-right-1.png"
+dest_files=[ "res://.import/attack-right-1.png-39f5c7ac8888e7805d034b270813417c.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/5.png-1eb75a7ac1d73f9ae46c158679c5c21d.stex"
+path="res://.import/5.png-9a0b35a9c4b625aaf7324110bd8afa66.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Environment/props/misc/5.png"
-dest_files=[ "res://.import/5.png-1eb75a7ac1d73f9ae46c158679c5c21d.stex" ]
+source_file="res://resources/sprites/environment/props/misc/5.png"
+dest_files=[ "res://.import/5.png-9a0b35a9c4b625aaf7324110bd8afa66.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

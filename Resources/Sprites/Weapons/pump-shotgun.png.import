@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pump-shotgun.png-df4c4e3222318b436dea67df2f1d68a6.stex"
+path="res://.import/pump-shotgun.png-9c7fbce84f8d56544af5c3a360b82d0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Weapons/pump-shotgun.png"
-dest_files=[ "res://.import/pump-shotgun.png-df4c4e3222318b436dea67df2f1d68a6.stex" ]
+source_file="res://resources/sprites/weapons/pump-shotgun.png"
+dest_files=[ "res://.import/pump-shotgun.png-9c7fbce84f8d56544af5c3a360b82d0e.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

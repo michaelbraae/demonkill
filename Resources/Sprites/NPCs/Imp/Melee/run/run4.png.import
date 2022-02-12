@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run4.png-21b1c39cee1012eac7dc6091ffa8f33a.stex"
+path="res://.import/run4.png-e128f731eaf0dca042c5e823d467fd44.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Imp/Melee/run/run4.png"
-dest_files=[ "res://.import/run4.png-21b1c39cee1012eac7dc6091ffa8f33a.stex" ]
+source_file="res://resources/sprites/npcs/imp/melee/run/run4.png"
+dest_files=[ "res://.import/run4.png-e128f731eaf0dca042c5e823d467fd44.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

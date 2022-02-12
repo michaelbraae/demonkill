@@ -1,6 +1,6 @@
-# Abilities and how they work
+# abilities and how they work
 
-# A new class -> Ability
+# A new class -> ability
 # Should be useable by the player and npcs
 # should be self contained
 # if AOE, should have a telegraph location and animation

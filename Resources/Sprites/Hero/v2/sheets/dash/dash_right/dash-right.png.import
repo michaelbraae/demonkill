@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash-right.png-7d97e087aa9638e5c44dfb1ae5b24260.stex"
+path="res://.import/dash-right.png-69b16a69c40e108b74be65b2352eb88d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v2/sheets/dash/dash_right/dash-right.png"
-dest_files=[ "res://.import/dash-right.png-7d97e087aa9638e5c44dfb1ae5b24260.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/dash/dash_right/dash-right.png"
+dest_files=[ "res://.import/dash-right.png-69b16a69c40e108b74be65b2352eb88d.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

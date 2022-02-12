@@ -6,7 +6,7 @@
 #	3. Library
 #		- Possession boss
 #		- Library first
-#		- Gas boss
+#		- gas boss
 #	4. Gain gas power for access to second area of library and 
 #		option to return to the mansion
 #	5a. Second area of library

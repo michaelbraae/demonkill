@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack-axe-right-1.png-4e171687f3bfe063be9934a7d16d3587.stex"
+path="res://.import/attack-axe-right-1.png-fc13fbe7fa2d27ac393ab0bca96d533a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v2/sheets/attacks/axe/attack-axe-right-1.png"
-dest_files=[ "res://.import/attack-axe-right-1.png-4e171687f3bfe063be9934a7d16d3587.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/attacks/axe/attack-axe-right-1.png"
+dest_files=[ "res://.import/attack-axe-right-1.png-fc13fbe7fa2d27ac393ab0bca96d533a.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white-impact.png-53fcd2dc1119fb254d0138dbad923944.stex"
+path="res://.import/white-impact.png-db36096a6541a5f9f41bc26295cc3b74.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Effects/Impacts/white-impact.png"
-dest_files=[ "res://.import/white-impact.png-53fcd2dc1119fb254d0138dbad923944.stex" ]
+source_file="res://resources/sprites/effects/impacts/white-impact.png"
+dest_files=[ "res://.import/white-impact.png-db36096a6541a5f9f41bc26295cc3b74.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

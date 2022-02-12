@@ -1,6 +1,6 @@
 # possession
 
-# all non-boss NPCs should be possessable
+# all non-boss npcs should be possessable
 
 # each will have a unique attack 
 #	which binds to the players basic attack button

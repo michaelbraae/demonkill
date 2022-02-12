@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle2.png-dcabf72aa7acac0deb95cb858cc1b262.stex"
+path="res://.import/idle2.png-fd90c11d683412abdadf6cb7e51f245c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/NPCs/Imp/Melee/idle/idle2.png"
-dest_files=[ "res://.import/idle2.png-dcabf72aa7acac0deb95cb858cc1b262.stex" ]
+source_file="res://resources/sprites/npcs/imp/melee/idle/idle2.png"
+dest_files=[ "res://.import/idle2.png-fd90c11d683412abdadf6cb7e51f245c.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

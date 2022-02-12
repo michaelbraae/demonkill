@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack-down.png-437ff42c6746f9dd14c27e93ee0acdfe.stex"
+path="res://.import/attack-down.png-849a453afa56afb15092bfea3814d834.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Hero/v2/sheets/attacks/unarmed/attack-down.png"
-dest_files=[ "res://.import/attack-down.png-437ff42c6746f9dd14c27e93ee0acdfe.stex" ]
+source_file="res://resources/sprites/hero/v2/sheets/attacks/unarmed/attack-down.png"
+dest_files=[ "res://.import/attack-down.png-849a453afa56afb15092bfea3814d834.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

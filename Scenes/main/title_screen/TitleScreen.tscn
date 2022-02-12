@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/main/title_screen/TitleScreen.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.612183
+margin_top = 0.61216
+margin_right = -0.612183
+margin_bottom = 0.612183
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 440.0
+margin_top = 168.0
+margin_right = 591.0
+margin_bottom = 182.0
+text = "Development Build"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 472.0
+margin_top = 216.0
+margin_right = 554.0
+margin_bottom = 236.0
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_new_Game_button_pressed"]

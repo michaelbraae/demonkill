@@ -1,6 +1,6 @@
 extends Area2D
 
-const COMBAT_TEST_ROOM = 'res://Scenes/Levels/room-1.tscn'
+const COMBAT_TEST_ROOM = 'res://scenes/levels/room-1.tscn'
 
 func _process(_delta : float) -> void:
 	var areas = get_overlapping_areas()

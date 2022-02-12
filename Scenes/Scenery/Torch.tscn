@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Resources/Sprites/ScenerySpice/torch.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/Lights/light.png" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/scenery_spice/torch.png" type="Texture" id=1]
+[ext_resource path="res://resources/sprites/lights/light.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

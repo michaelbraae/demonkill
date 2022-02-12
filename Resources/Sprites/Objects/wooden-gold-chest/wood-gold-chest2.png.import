@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood-gold-chest2.png-b3cc903fc0e7dc7e6c59ad2d021d0079.stex"
+path="res://.import/wood-gold-chest2.png-ee741f061606fe4c1ef74d2d6fb21177.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Objects/wooden-gold-chest/wood-gold-chest2.png"
-dest_files=[ "res://.import/wood-gold-chest2.png-b3cc903fc0e7dc7e6c59ad2d021d0079.stex" ]
+source_file="res://resources/sprites/objects/wooden-gold-chest/wood-gold-chest2.png"
+dest_files=[ "res://.import/wood-gold-chest2.png-ee741f061606fe4c1ef74d2d6fb21177.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

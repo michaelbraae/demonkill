@@ -5,14 +5,14 @@
 # 6 bosses
 
 # Straight from hell
-#	Fireball Imp - throws fireballs at player, low difficulty
-#	Claws Imp - Melee variety - already in game
-#	Suicide Imp -- Detonates within certain proximity of player
+#	Fireball imp - throws fireballs at player, low difficulty
+#	Claws imp - melee variety - already in game
+#	Suicide imp -- Detonates within certain proximity of player
 
 # Demon Knights 
 #	Captain - Greatsword only - defensive
 #	Sword and Shield - Aggressive melee
-#	Archer - Aggressive Ranged
+#	archer - Aggressive Ranged
 
 # Demon Botanist
 #	Plants things in the ground, then waters them
@@ -36,7 +36,7 @@
 #	Demon Spider
 
 # Magic Demons
-#	Eyeball - Lazer beam
+#	eyeball - Lazer beam
 #	Elemental Demon
 
 # BOSSES AND THEIR UNIQUE DEMONS
@@ -47,16 +47,16 @@
 #	Rogue - Can turn translucent, does high damage with basic stab attack
 #	Dagger Throw - Teleporter - Spin to win
 
-# Gas Boss & Minions - Immune to gas attacks
+# gas Boss & Minions - Immune to gas attacks
 #	BOSS
-#	Wheezer (Base Level Minion, can swing and spray gas from mouth)
+#	Wheezer (base Level Minion, can swing and spray gas from mouth)
 #	Bloater (Heavy Minion, Shoots gas grenads from mouth and 
 #		explodes when killed or when player gets too close)
 
 # Demon Chemist
 #	Throws a fuck load of grenades
 #	BOSS
-#	Rat mutants - Melee and pounce - Can use tunnels - Can potentially burrow
+#	Rat mutants - melee and pounce - Can use tunnels - Can potentially burrow
 
 # Cannibal Librarian - Turned his library into a grotesque kitchen
 #	Demon Students

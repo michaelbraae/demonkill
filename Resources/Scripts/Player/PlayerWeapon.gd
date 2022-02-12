@@ -2,7 +2,7 @@ extends PlayerNavigation
 
 class_name PlayerWeapon
 
-var weapon_slots_script = load('res://Resources/State/WeaponSlots.gd')
+var weapon_slots_script = load('res://resources/state/WeaponSlots.gd')
 var WeaponSlots
 
 var current_weapon
