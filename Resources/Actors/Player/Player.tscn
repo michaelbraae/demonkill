@@ -1005,7 +1005,7 @@ height = 12.7013
 [sub_resource type="CircleShape2D" id=172]
 radius = 43.2871
 
-[node name="player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 position = Vector2( -0.0597687, 0.179295 )
 collision_layer = 3
 collision_mask = 3
@@ -1014,7 +1014,7 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 4
+frame = 10
 speed_scale = 3.5
 playing = true
 
@@ -1026,6 +1026,10 @@ shape = SubResource( 170 )
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]
 current = true
 zoom = Vector2( 0.4, 0.4 )
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 
 [node name="HitBox" type="Area2D" parent="."]
 visible = false
