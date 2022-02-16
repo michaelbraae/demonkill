@@ -113,7 +113,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 4
+frame = 2
 speed_scale = 2.0
 playing = true
 

@@ -15,10 +15,12 @@ func setCollideWithPlayer() -> void:
 
 func _physics_process(delta):
 	var collision = move_and_collide(target_vector * projectile_speed * delta)
-	if collision:
+	if collision and collision.get_collider().get_name() != "Fireball":
 		var impact_instance = WHITE_IMPACT.instance()
-		if collision.get_collider().get_parent().has_method("damage"):
-			collision.get_collider().get_parent().damage(1)
+		if collision.get_collider().has_method("damage"):
+			collision.get_collider().damage(1)
+		if collision.get_collider().has_method("knockBack"):
+			collision.get_collider().knockBack(target_vector.angle(), 150, 15)
 		get_tree().get_root().add_child(impact_instance)
 		impact_instance.position = position
 		impact_instance.play()

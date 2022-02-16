@@ -50,4 +50,4 @@ func _ready() -> void:
 func damage(damage : int) -> void:
 	PlayerState.health -= damage
 	if PlayerState.health <= 0:
-		get_tree().quit()
+		LevelManager.goto_scene('res://scenes/levels/Town.tscn')
