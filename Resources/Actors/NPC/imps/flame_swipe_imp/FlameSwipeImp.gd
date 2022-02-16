@@ -18,7 +18,8 @@ func initialiseConfig():
 	complete_attack_sequence = true
 
 func setHealth() -> void:
-	health_label.set_text(str(health, '/', max_health))
+	$HealthBar.max_value = max_health
+	$HealthBar.value = health
 
 func beforeDeath() -> void:
 	var pickup_ability = PICKUP_ABILITY_SCENE.instance()

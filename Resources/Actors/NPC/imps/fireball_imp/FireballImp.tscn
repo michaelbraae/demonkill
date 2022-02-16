@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
+[ext_resource path="res://resources/sprites/ui/healthbar/health.png" type="Texture" id=1]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle3.png" type="Texture" id=2]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle1.png" type="Texture" id=3]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle5.png" type="Texture" id=4]
@@ -16,6 +17,7 @@
 [ext_resource path="res://resources/sprites/npcs/imp/melee/takehit/hit2.png" type="Texture" id=15]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/run/run1.png" type="Texture" id=16]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/takehit/hit1.png" type="Texture" id=17]
+[ext_resource path="res://resources/sprites/ui/healthbar/background.png" type="Texture" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -46,24 +48,9 @@ animations = [ {
 "name": "stunned",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "take_hit",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "with_axe",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "attack_loop",
+"name": "post_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
@@ -71,14 +58,29 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "take_hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "with_axe",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
@@ -115,7 +117,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 2
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -165,6 +167,21 @@ margin_right = 22.991
 margin_bottom = -6.04522
 rect_scale = Vector2( 0.3, 0.3 )
 text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+light_mask = 8
+margin_left = -6.0
+margin_top = -23.0
+margin_right = 34.0
+margin_bottom = 17.0
+rect_scale = Vector2( 0.7, 0.7 )
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource( 18 )
+texture_progress = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

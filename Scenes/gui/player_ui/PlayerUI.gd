@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-onready var label = get_node('Label')
+onready var label = $Label
+onready var healthBar = $HealthBar
 
 var health_current
 var max_health
@@ -12,7 +13,10 @@ func _physics_process(_delta):
 	else:
 		health_current = PlayerState.health
 		max_health = PlayerState.max_health
-	label.set_text(str(health_current, '/', max_health))
+#	label.set_text(str(health_current, '/', max_health))
+	healthBar.max_value = max_health
+	healthBar.value = health_current
+
 
 func updateSpellUI(spells: Dictionary) -> void:
 	var slots = GameState.player_ui.get_node("SpellSlotsUI").get_children()
