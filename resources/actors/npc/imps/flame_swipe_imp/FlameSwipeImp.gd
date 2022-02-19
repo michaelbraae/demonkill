@@ -7,7 +7,7 @@ var PICKUP_ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/fla
 onready var health_label = $HealthLabel
 
 func initialiseConfig():
-	max_health = 3
+	max_health = 8
 	move_speed = 70
 	attacks_in_sequence = 1
 	repeat_attacks = true
@@ -27,6 +27,7 @@ func beforeDeath() -> void:
 	get_tree().get_root().add_child(pickup_ability)
 
 func useAbility() -> void:
+	.useAbility()
 	var ability_instance = ABILITY_SCENE.instance()
 	add_child(ability_instance)
 	ability_instance.target_actor = target_actor

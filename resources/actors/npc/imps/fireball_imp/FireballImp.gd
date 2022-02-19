@@ -27,6 +27,7 @@ func beforeDeath() -> void:
 	get_tree().get_root().add_child(pickup_ability)
 
 func useAbility() -> void:
+	.useAbility()
 	var fireball = FIREBALL_SCENE.instance()
 	fireball.setCollideWithPlayer()
 	fireball.position = position

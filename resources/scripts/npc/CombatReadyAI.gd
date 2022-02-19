@@ -38,8 +38,10 @@ var ability_cooldown
 var ability_cooldown_timer
 var ability_on_cooldown = false
 
+var recovery_timer
+var recovery_cooldown = 0.3
 # starting health
-var max_health = 3
+var max_health = 8
 var health
 
 func _ready():
@@ -57,6 +59,10 @@ func _ready():
 	ability_cooldown_timer = Timer.new()
 	add_child(ability_cooldown_timer)
 	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
+	
+	recovery_timer = Timer.new()
+	recovery_timer.connect('timeout', self, 'recovery_timeout')
+	add_child(recovery_timer)
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
@@ -127,6 +133,13 @@ func hasLineOfSight() -> bool:
 		return true
 	return false
 
+func recovery() -> void:
+	if not recovery_timer.get_time_left() > 0:
+		recovery_timer.start(recovery_cooldown)
+
+func recovery_timeout() -> void:
+	state = IDLE
+
 func getAnimation() -> String:
 	if isPossessed():
 		if state == ATTACKING:
@@ -184,7 +197,8 @@ func perAttackAction() -> void:
 	pass
 
 func useAbility() -> void:
-	pass
+	ability_cooldown_timer.start(ability_cooldown)
+	ability_on_cooldown = true
 
 func readyForPostAttack() -> bool:
 	if complete_attack_sequence:
@@ -213,6 +227,8 @@ func runDecisionTree() -> void:
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		pass
+	elif state == RECOVERY:
+		recovery()
 	elif knockback_handler.knocked_back:
 		state = KNOCKED_BACK
 		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
@@ -229,8 +245,6 @@ func runDecisionTree() -> void:
 						handlePreAttack()
 					elif state == ATTACKING and not attack_landed:
 						useAbility()
-						ability_cooldown_timer.start(ability_cooldown)
-						ability_on_cooldown = true
 						attack_landed = true
 				elif isTargetInRange():
 					if readyForPreAttack():
@@ -269,6 +283,7 @@ func handlePostAnimState() -> void:
 				state = POSSESSED
 
 func _process(_delta):
+	print(getStateString())
 	$AnimatedSprite/LightOccluder2D.visible = true
 	animatedSprite.light_mask = 2
 	if state == STUNNED:
@@ -283,6 +298,7 @@ func kill() -> void:
 	state = PRE_DEATH
 
 func hitByAxe(damage) -> void:
+	print("Hitby axe")
 	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')

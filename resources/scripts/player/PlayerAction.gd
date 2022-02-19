@@ -57,7 +57,7 @@ func recallAxe() -> void:
 	else:
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)
-		GameState.npc_with_axe.state = GameState.npc_with_axe.IDLE
+		GameState.npc_with_axe.state = GameState.npc_with_axe.RECOVERY
 		GameState.axe_instance.returnToPlayer(GameState.npc_with_axe)
 		GameState.npc_with_axe = null
 

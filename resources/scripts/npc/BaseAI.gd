@@ -30,6 +30,7 @@ enum {
 	PRE_DEATH,
 	DEAD,
 	POSSESSED,
+	RECOVERY,
 }
 
 func getStateString() -> String:
@@ -61,6 +62,8 @@ func getStateString() -> String:
 			state_string = 'PRE_DEATH'
 		DEAD:
 			state_string = 'DEAD'
+		RECOVERY:
+			state_string = "RECOVERY"
 	return state_string
 
 func _ready():
