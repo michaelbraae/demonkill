@@ -120,6 +120,13 @@ func isTargetInAbilityRange() -> bool:
 		return true
 	return false
 
+func hasLineOfSight() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
+	if result and result['collider'] == GameState.player:
+		return true
+	return false
+
 func getAnimation() -> String:
 	if isPossessed():
 		if state == ATTACKING:
@@ -213,7 +220,7 @@ func runDecisionTree() -> void:
 		if target_actor:
 			if (
 				isTargetInRange()
-				or (isTargetInAbilityRange() and not ability_on_cooldown)
+				or (isTargetInAbilityRange() and not ability_on_cooldown and hasLineOfSight())
 				or attack_started
 				or state == POST_ATTACK
 			):
