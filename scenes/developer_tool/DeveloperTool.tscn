@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/developer_tool/DeveloperTool.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Stranger back in the Night.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/developer_tool/FireballImpButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/developer_tool/FlameSwipeButton.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+use_filter = true
+extra_spacing_top = 5
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1032.0
+margin_bottom = 600.0
+color = Color( 0.247059, 0.0588235, 0.372549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 448.0
+margin_top = 32.0
+margin_right = 640.0
+margin_bottom = 104.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Developer Tool"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCButtons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="FireballImpButton" parent="NPCButtons" instance=ExtResource( 3 )]
+margin_left = 256.0
+margin_top = 136.0
+margin_right = 216.0
+margin_bottom = 96.0
+
+[node name="FlameSwipeImpButton" parent="NPCButtons" instance=ExtResource( 4 )]
+margin_left = 368.0
+margin_top = 136.0
+margin_right = 328.0
+margin_bottom = 96.0
+
+[node name="SelectedNPCs" type="Control" parent="."]
+margin_left = 64.0
+margin_top = 288.0
+margin_right = 104.0
+margin_bottom = 328.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectedNPCs"]
+margin_right = 896.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SelectedNPCs"]
+margin_right = 88.0
+margin_bottom = 40.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Selected NPCs"
+__meta__ = {
+"_edit_use_anchors_": false
+}
