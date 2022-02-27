@@ -11,6 +11,8 @@ var npc_with_axe
 var player
 var player_ui
 
+var developer_tool_state
+
 enum {
 	MAIN_MENU,
 	PAUSE_MENU,

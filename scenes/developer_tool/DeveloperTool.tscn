@@ -49,6 +49,9 @@ __meta__ = {
 [node name="NPCButtons" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FireballImpButton" parent="NPCButtons" instance=ExtResource( 3 )]
 margin_left = 256.0
@@ -88,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 margin_left = 808.0
 margin_top = 488.0
 margin_right = 1000.0

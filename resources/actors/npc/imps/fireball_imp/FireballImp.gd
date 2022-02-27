@@ -8,7 +8,7 @@ onready var health_label = $HealthLabel
 
 func initialiseConfig():
 	max_health = 3
-	move_speed = 50 # 70
+	move_speed = 30 # 70
 	attacks_in_sequence = 1
 	repeat_attacks = true
 	attack_range = 30
