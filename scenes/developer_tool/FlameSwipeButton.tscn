@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle5.png" type="Texture" id=1]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle2.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle1.png" type="Texture" id=4]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle4.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Stranger back in the Night.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/developer_tool/scripts/FlameSwipeButton.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -960.0
 margin_bottom = -508.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,7 +47,7 @@ self_modulate = Color( 0, 1, 0.133333, 1 )
 position = Vector2( 41, 75 )
 scale = Vector2( 2.68182, 2.68182 )
 frames = SubResource( 1 )
-frame = 4
+frame = 3
 speed_scale = 2.5
 playing = true
 
