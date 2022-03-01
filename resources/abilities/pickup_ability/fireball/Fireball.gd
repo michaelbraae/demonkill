@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var target_vector : Vector2
-var projectile_speed : int = 300
+var projectile_speed : int = 150 #300
 
 var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
@@ -15,7 +15,7 @@ func setCollideWithPlayer() -> void:
 
 func _physics_process(delta):
 	var collision = move_and_collide(target_vector * projectile_speed * delta)
-	if collision and collision.get_collider().get_name() != "Fireball":
+	if collision:
 		var impact_instance = WHITE_IMPACT.instance()
 		if collision.get_collider().has_method("damage"):
 			collision.get_collider().damage(1)

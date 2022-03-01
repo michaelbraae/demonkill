@@ -3,7 +3,8 @@ extends Node
 var current_weapon
 var previous_weapon
 
-var max_health = 7
+# 7 
+var max_health = 15
 var health = max_health
 
 var coins = 0
