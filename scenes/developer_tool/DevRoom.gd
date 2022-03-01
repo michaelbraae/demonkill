@@ -10,7 +10,7 @@ extends Node2D
 func _ready():
 	var totalSpawns = 1
 	for i in range(GameState.developer_tool_state.size()):
-		for j in range(GameState.developer_tool_state[i]["count"]):
+		for _j in range(GameState.developer_tool_state[i]["count"]):
 			var scene_resource = ResourceLoader.load(GameState.developer_tool_state[i]["scene"])
 
 			# Instance the new scene.

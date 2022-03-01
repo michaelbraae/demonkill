@@ -61,7 +61,9 @@ func _physics_process(_delta):
 		GameState.player.castSpell(3)
 
 func _process(_delta):
-	if Input.is_action_just_pressed('ui_cancel'):
+	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	if Input.is_action_just_pressed('reload_town'):
-		LevelManager.goto_scene('res://scenes/levels/Town.tscn')
+	if Input.is_action_just_pressed("reload_town"):
+		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
+	if Input.is_action_just_pressed("dev_tool"):
+		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")

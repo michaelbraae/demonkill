@@ -14,7 +14,7 @@ func play_button_down() -> void:
 
 func npc_button_down(npcSceneString: String) -> void:
 	var npcInSlot = false
-	if totalNPCCount <= 30:
+	if totalNPCCount < 30:
 		for npc in NPCS:
 			if npc["scene"] == npcSceneString:
 				npc["count"] += 1

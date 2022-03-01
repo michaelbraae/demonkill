@@ -15,6 +15,7 @@ func initialiseConfig():
 	attack_cooldown = 1
 	ability_range = 300
 	ability_cooldown = 1
+	too_close_range = 70
 	complete_attack_sequence = true
 
 func setHealth() -> void:
