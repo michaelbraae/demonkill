@@ -117,7 +117,6 @@ func isTargetInAbilityRange() -> bool:
 	var distance_to_target = get_global_position().distance_to(
 		target_actor.get_global_position()
 	)
-	# set target too close
 	if distance_to_target <= ability_range:
 		return true
 	return false
@@ -126,7 +125,6 @@ func isTargetTooClose() -> bool:
 	var distance_to_target = get_global_position().distance_to(
 		target_actor.get_global_position()
 	)
-	# set target too close
 	if distance_to_target <= too_close_range:
 		return true
 	return false
