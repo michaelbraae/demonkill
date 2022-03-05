@@ -38,7 +38,7 @@ func useAbility() -> void:
 func perAttackAction() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
-	swipe_instance.target_actor = target_actor
+#	swipe_instance.target_actor = target_actor
 	var angle = getAttackAngle()
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
