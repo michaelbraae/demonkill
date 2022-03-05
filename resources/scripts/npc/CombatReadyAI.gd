@@ -2,10 +2,12 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
-var knockback_handler_script = preload('res://resources/scripts/helpers/KnockBackHandler.gd')
+var knockback_handler_script = preload("res://resources/scripts/helpers/KnockBackHandler.gd")
 var knockback_handler
 
-var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
+var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
+
+var Q_BUTTON_SCENE = preload("res://scenes/gui/buttons/ButtonQ.tscn")
 
 var stun_damage_threshold = 1
 var stun_duration_timer
@@ -60,6 +62,8 @@ func _ready():
 	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
 func stun_duration_timeout() -> void:
+	if is_instance_valid(get_node("ButtonQ")):
+		get_node("ButtonQ").queue_free()
 	stun_duration_timer.stop()
 
 func attack_cooldown_timeout() -> void:
@@ -90,6 +94,9 @@ func damage(damage : int) -> void:
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
+			var q_button = Q_BUTTON_SCENE.instance()
+			q_button.position.y = q_button.position.y - 30
+			add_child(q_button)
 
 func knockBack(
 	hit_direction : float,

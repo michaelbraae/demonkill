@@ -58,6 +58,8 @@ func possessNewEntity() -> void:
 			if area.get_name() == "EnemyBiteBox":
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
+					if is_instance_valid(parent.get_node("ButtonQ")):
+						parent.get_node("ButtonQ").queue_free()
 					current_possession = parent
 					possessedNPC = parent
 					GameState.state = GameState.CONTROLLING_NPC
