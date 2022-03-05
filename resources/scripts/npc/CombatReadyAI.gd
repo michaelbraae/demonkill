@@ -2,10 +2,12 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
-var knockback_handler_script = preload('res://resources/scripts/helpers/KnockBackHandler.gd')
+var knockback_handler_script = preload("res://resources/scripts/helpers/KnockBackHandler.gd")
 var knockback_handler
 
-var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
+var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
+
+var Q_BUTTON_SCENE = preload("res://scenes/gui/buttons/ButtonQ.tscn")
 
 var stun_damage_threshold = 1
 var stun_duration_timer
@@ -60,6 +62,8 @@ func _ready():
 	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
 func stun_duration_timeout() -> void:
+	if is_instance_valid(get_node("ButtonQ")):
+		get_node("ButtonQ").queue_free()
 	stun_duration_timer.stop()
 
 func attack_cooldown_timeout() -> void:
@@ -90,6 +94,9 @@ func damage(damage : int) -> void:
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
+			var q_button = Q_BUTTON_SCENE.instance()
+			q_button.position.y = q_button.position.y - 30
+			add_child(q_button)
 
 func knockBack(
 	hit_direction : float,
@@ -106,19 +113,23 @@ func readyForDamage() -> bool:
 	return true
 
 func isTargetInRange() -> bool:
-	var distance_to_target = get_global_position().distance_to(
-		target_actor.get_global_position()
-	)
-	if distance_to_target <= attack_range:
-		return true
+	var wr = weakref(target_actor)
+	if wr.get_ref():
+		var distance_to_target = get_global_position().distance_to(
+			target_actor.get_global_position()
+		)
+		if distance_to_target <= attack_range:
+			return true
 	return false
 
 func isTargetInAbilityRange() -> bool:
-	var distance_to_target = get_global_position().distance_to(
-		target_actor.get_global_position()
-	)
-	if distance_to_target <= ability_range:
-		return true
+	var wr = weakref(target_actor)
+	if wr.get_ref():
+		var distance_to_target = get_global_position().distance_to(
+			target_actor.get_global_position()
+		)
+		if distance_to_target <= ability_range:
+			return true
 	return false
 
 func isTargetTooClose() -> bool:
@@ -178,6 +189,13 @@ func getAttackAnimation() -> String:
 			return 'post_attack'
 	return 'idle'
 
+# get the angle of attack, using player input if possessed
+func getAttackAngle() -> float:
+	if isPossessed():
+		return get_angle_to(get_global_mouse_position())
+	else:
+		return get_angle_to(target_actor.get_global_position())
+
 func readyForPreAttack() -> bool:
 	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
@@ -211,11 +229,21 @@ func readyForPostAttack() -> bool:
 func possessedDecisionLogic() -> void:
 	if knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
-	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
+	elif (
+		Input.is_action_just_pressed("melee_attack")
+		or Input.is_action_just_pressed("use_ability")
+		or state == ATTACKING
+	):
+		if not attack_started:
+			attack_started = true
+			if Input.is_action_just_pressed("melee_attack"):
+				perAttackAction()
+			elif Input.is_action_just_pressed("use_ability"):
+				useAbility()
 		state = ATTACKING
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
-	velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity)
 
 func runDecisionTree() -> void: 
 	if isPossessed():
@@ -254,30 +282,30 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	if PossessionState.possessedNPC != self:
-		match state:
-			KNOCKED_BACK:
+#	if !isPossessed():
+	match state:
+		KNOCKED_BACK:
+			state = IDLE
+		PRE_ATTACK:
+			state = ATTACKING
+		ATTACKING:
+			current_attack_in_sequence += 1
+			if readyForPostAttack():
+				attack_started = false
+				state = POST_ATTACK
+				current_attack_in_sequence = 1
+		POST_ATTACK:
+			attack_landed = false
+			state = IDLE
+		STUNNED:
+			if stun_duration_timer.is_stopped():
 				state = IDLE
-			PRE_ATTACK:
-				state = ATTACKING
-			ATTACKING:
-				current_attack_in_sequence += 1
-				if readyForPostAttack():
-					attack_started = false
-					state = POST_ATTACK
-					current_attack_in_sequence = 1
-			POST_ATTACK:
-				attack_landed = false
-				state = IDLE
-			STUNNED:
-				if stun_duration_timer.is_stopped():
-					state = IDLE
-			PRE_DEATH:
-				queue_free()
-	else:
-		match state:
-			ATTACKING:
-				state = POSSESSED
+		PRE_DEATH:
+			queue_free()
+#	else:
+#		match state:
+#			ATTACKING:
+#				state = POSSESSED
 
 func _process(_delta):
 	$AnimatedSprite/LightOccluder2D.visible = true

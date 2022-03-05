@@ -84,7 +84,7 @@ func isTargetInEngagementRange() -> bool:
 	return false
 
 func setInterest() -> void:
-	if target_actor:
+	if is_instance_valid(target_actor):
 		var path_direction = get_global_position().direction_to(target_actor.get_global_position())
 		for i in detection_ray_count:
 			var d = ray_directions[i].rotated(rotation).dot(path_direction)
@@ -100,7 +100,7 @@ func setDanger() -> void:
 			danger[i] = 1.0
 
 func detectTargetAggression() -> void:
-	if target_actor:
+	if is_instance_valid(target_actor):
 		var space_state = get_world_2d().direct_space_state
 		if target_actor.velocity:
 			var result = space_state.intersect_ray(
@@ -108,7 +108,7 @@ func detectTargetAggression() -> void:
 				target_actor.position + target_actor.velocity * 200,
 				[target_actor]
 			)
-			if result and result['collider'] == self and getDistanceToTarget() < 100:
+			if result and result['collider'] == self and is_instance_valid(target_actor) and getDistanceToTarget() < 100:
 				if dodge_cooldown_timer.is_stopped():
 					dodge_vector = target_actor.velocity
 					dodge_cooldown_timer.start(dodge_cooldown)
@@ -116,6 +116,7 @@ func detectTargetAggression() -> void:
 					dodge_timer.start(0.3)
 
 func chooseDirection():
+	var wr = weakref(target_actor)
 	# Eliminate interest in slots with danger
 	for i in detection_ray_count:
 		if danger[i] > 0.0:
@@ -129,7 +130,7 @@ func chooseDirection():
 		# once the dodge has finished, but it's still on cooldown
 		# they should be aggresive
 		pass
-	elif isTargetInEngagementRange():
+	elif is_instance_valid(target_actor) and isTargetInEngagementRange():
 		# Orbit the target if in engagement range
 		detectTargetAggression()
 		chosen_direction = chosen_direction.rotated(1.5)

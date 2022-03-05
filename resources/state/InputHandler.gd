@@ -39,6 +39,7 @@ func setMouseMode() -> void:
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
+
 func getAttackDirection() -> Vector2:
 	if using_mouse:
 		return Vector2(current_actor.get_local_mouse_position().normalized())

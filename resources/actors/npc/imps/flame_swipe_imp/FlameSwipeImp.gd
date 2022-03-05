@@ -29,15 +29,15 @@ func beforeDeath() -> void:
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()
 	add_child(ability_instance)
-	ability_instance.target_actor = target_actor
-	var angle = get_angle_to(target_actor.get_global_position())
+	if not isPossessed():
+		ability_instance.target_actor = target_actor
+	var angle = getAttackAngle()
 	ability_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func perAttackAction() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
-	swipe_instance.target_actor = target_actor
-	var angle = get_angle_to(target_actor.get_global_position())
+	var angle = getAttackAngle()
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func _process(_delta):

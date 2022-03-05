@@ -23,7 +23,7 @@ func possession_timer_timeout():
 	if bite_started:
 		Engine.time_scale = 1
 		InputHandler.mute_inputs = false
-		possessNewEntity(current_possession)
+		possessNewEntity()
 
 func getCurrentPossession():
 	if GameState.CONTROLLING_NPC and current_possession:
@@ -51,22 +51,28 @@ func handlePossessionDeath(spawn_position) -> void:
 	bite_box = player_instance.bite_box
 	player_instance.camera2D.make_current()
 
-func possessNewEntity(current_possession_var) -> void:
+func possessNewEntity() -> void:
 	var areas = bite_box.get_overlapping_areas()
 	if areas:
 		for area in areas:
-			if area.get_name() == 'EnemyBiteBox':
+			if area.get_name() == "EnemyBiteBox":
 				var parent = area.get_parent()
 				if parent.state == parent.STUNNED:
+					if is_instance_valid(parent.get_node("ButtonQ")):
+						parent.get_node("ButtonQ").queue_free()
 					current_possession = parent
+					possessedNPC = parent
 					GameState.state = GameState.CONTROLLING_NPC
 					parent.camera2D.make_current()
 					parent.health = parent.max_health
 					parent.attack_started = false
 					parent.attack_landed = false
+					parent.target_actor = null
 					bite_box = area
 					InputHandler.current_actor = parent
 					FeedbackHandler.current_camera = parent.camera2D
+					GameState.player.queue_free()
+					parent.state = parent.IDLE
 					break
 
 func _physics_process(_delta):

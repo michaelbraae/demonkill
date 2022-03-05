@@ -29,17 +29,18 @@ func beforeDeath() -> void:
 
 func useAbility() -> void:
 	var fireball = FIREBALL_SCENE.instance()
-	fireball.setCollideWithPlayer()
+	if not isPossessed():
+		fireball.setCollideWithPlayer()
 	fireball.position = position
-	var angle_to_player = get_angle_to(target_actor.get_global_position())
-	fireball.target_vector = Vector2(cos(angle_to_player), sin(angle_to_player))
+	var angle = getAttackAngle()
+	fireball.target_vector = Vector2(cos(angle), sin(angle))
 	get_tree().get_root().add_child(fireball)
 
 func perAttackAction() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
-	swipe_instance.target_actor = target_actor
-	var angle = get_angle_to(target_actor.get_global_position())
+#	swipe_instance.target_actor = target_actor
+	var angle = getAttackAngle()
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func _process(_delta):

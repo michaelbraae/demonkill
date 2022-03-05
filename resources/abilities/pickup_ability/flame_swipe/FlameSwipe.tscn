@@ -32,7 +32,7 @@ rotation = 1.5708
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-self_modulate = Color( 1, 0.423529, 0, 1 )
+self_modulate = Color( 0, 1, 0.788235, 1 )
 scale = Vector2( 1.10622, 1.10622 )
 frames = SubResource( 5 )
 animation = "anim"
