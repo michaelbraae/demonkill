@@ -106,19 +106,23 @@ func readyForDamage() -> bool:
 	return true
 
 func isTargetInRange() -> bool:
-	var distance_to_target = get_global_position().distance_to(
-		target_actor.get_global_position()
-	)
-	if distance_to_target <= attack_range:
-		return true
+	var wr = weakref(target_actor)
+	if wr.get_ref():
+		var distance_to_target = get_global_position().distance_to(
+			target_actor.get_global_position()
+		)
+		if distance_to_target <= attack_range:
+			return true
 	return false
 
 func isTargetInAbilityRange() -> bool:
-	var distance_to_target = get_global_position().distance_to(
-		target_actor.get_global_position()
-	)
-	if distance_to_target <= ability_range:
-		return true
+	var wr = weakref(target_actor)
+	if wr.get_ref():
+		var distance_to_target = get_global_position().distance_to(
+			target_actor.get_global_position()
+		)
+		if distance_to_target <= ability_range:
+			return true
 	return false
 
 func isTargetTooClose() -> bool:
@@ -212,6 +216,9 @@ func possessedDecisionLogic() -> void:
 	if knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
 	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
+		if not attack_started:
+			attack_started = true
+			perAttackAction()
 		state = ATTACKING
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
@@ -254,30 +261,30 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-	if PossessionState.possessedNPC != self:
-		match state:
-			KNOCKED_BACK:
+#	if !isPossessed():
+	match state:
+		KNOCKED_BACK:
+			state = IDLE
+		PRE_ATTACK:
+			state = ATTACKING
+		ATTACKING:
+			current_attack_in_sequence += 1
+			if readyForPostAttack():
+				attack_started = false
+				state = POST_ATTACK
+				current_attack_in_sequence = 1
+		POST_ATTACK:
+			attack_landed = false
+			state = IDLE
+		STUNNED:
+			if stun_duration_timer.is_stopped():
 				state = IDLE
-			PRE_ATTACK:
-				state = ATTACKING
-			ATTACKING:
-				current_attack_in_sequence += 1
-				if readyForPostAttack():
-					attack_started = false
-					state = POST_ATTACK
-					current_attack_in_sequence = 1
-			POST_ATTACK:
-				attack_landed = false
-				state = IDLE
-			STUNNED:
-				if stun_duration_timer.is_stopped():
-					state = IDLE
-			PRE_DEATH:
-				queue_free()
-	else:
-		match state:
-			ATTACKING:
-				state = POSSESSED
+		PRE_DEATH:
+			queue_free()
+#	else:
+#		match state:
+#			ATTACKING:
+#				state = POSSESSED
 
 func _process(_delta):
 	$AnimatedSprite/LightOccluder2D.visible = true
