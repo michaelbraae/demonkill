@@ -18,6 +18,9 @@ var damage = 1
 
 var target_actor
 
+func _ready() -> void:
+	initialiseConfig()
+
 func initialiseConfig() -> void:
 	pass
 
