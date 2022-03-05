@@ -229,14 +229,21 @@ func readyForPostAttack() -> bool:
 func possessedDecisionLogic() -> void:
 	if knockback_handler.knocked_back:
 		velocity = knockback_handler.getKnockBackProcessVector()
-	elif Input.is_action_just_pressed('melee_attack') or state == ATTACKING:
+	elif (
+		Input.is_action_just_pressed("melee_attack")
+		or Input.is_action_just_pressed("use_ability")
+		or state == ATTACKING
+	):
 		if not attack_started:
 			attack_started = true
-			perAttackAction()
+			if Input.is_action_just_pressed("melee_attack"):
+				perAttackAction()
+			elif Input.is_action_just_pressed("use_ability"):
+				useAbility()
 		state = ATTACKING
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
-	velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity)
 
 func runDecisionTree() -> void: 
 	if isPossessed():

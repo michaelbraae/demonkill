@@ -95,7 +95,7 @@ func handlePlayerAction() -> void:
 	else:
 		setVelocity()
 		if (
-			Input.is_action_just_pressed('melee_attack')
+			Input.is_action_just_pressed("melee_attack")
 			and basicAttackAvailable()
 		):
 			if velocity:
@@ -103,7 +103,7 @@ func handlePlayerAction() -> void:
 			attack_order = !attack_order
 			noWeaponMelee()
 			state = ATTACK_WARMUP
-		if Input.is_action_just_pressed('throw_axe'):
+		if Input.is_action_just_pressed("use_ability"):
 			if has_axe:
 				has_axe = false
 				throwAxe()

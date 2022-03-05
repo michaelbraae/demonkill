@@ -44,19 +44,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "pre_attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "attack_loop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "post_attack",
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
@@ -69,6 +64,11 @@ animations = [ {
 "name": "with_axe",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "stunned",
@@ -79,9 +79,9 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "run",
+"name": "pre_attack",
 "speed": 5.0
 } ]
 
@@ -107,7 +107,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-self_modulate = Color( 0, 1, 0.133333, 1 )
+self_modulate = Color( 0, 1, 0.788235, 1 )
 light_mask = 2
 position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018

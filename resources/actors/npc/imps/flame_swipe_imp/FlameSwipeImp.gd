@@ -29,7 +29,8 @@ func beforeDeath() -> void:
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()
 	add_child(ability_instance)
-	ability_instance.target_actor = target_actor
+	if not isPossessed():
+		ability_instance.target_actor = target_actor
 	var angle = getAttackAngle()
 	ability_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
