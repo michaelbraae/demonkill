@@ -20,6 +20,5 @@ animations = [ {
 
 [node name="ButtonQ" type="AnimatedSprite"]
 frames = SubResource( 3 )
-frame = 1
 speed_scale = 0.5
 playing = true
