@@ -189,6 +189,13 @@ func getAttackAnimation() -> String:
 			return 'post_attack'
 	return 'idle'
 
+# get the angle of attack, using player input if possessed
+func getAttackAngle() -> float:
+	if isPossessed():
+		return get_angle_to(get_global_mouse_position())
+	else:
+		return get_angle_to(target_actor.get_global_position())
+
 func readyForPreAttack() -> bool:
 	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)

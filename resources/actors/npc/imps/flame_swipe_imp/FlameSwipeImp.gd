@@ -30,24 +30,14 @@ func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()
 	add_child(ability_instance)
 	ability_instance.target_actor = target_actor
-	var attack_direction
-	if isPossessed():
-		attack_direction = InputHandler.getAttackDirection()
-	else:
-		attack_direction = get_angle_to(target_actor.get_global_position())
-	ability_instance.bang(Vector2(cos(attack_direction), sin(attack_direction)), self)
+	var angle = getAttackAngle()
+	ability_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func perAttackAction() -> void:
 	var swipe_instance = SWIPE_SCENE.instance()
 	add_child(swipe_instance)
-
-	var attack_direction
-	if isPossessed():
-		attack_direction = get_angle_to(get_global_mouse_position())
-	else:
-		swipe_instance.target_actor = target_actor
-		attack_direction = get_angle_to(target_actor.get_global_position())
-	swipe_instance.bang(Vector2(cos(attack_direction), sin(attack_direction)), self)
+	var angle = getAttackAngle()
+	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
 func _process(_delta):
 		# need to make the AI dodge back when it enters the light and reduce dodge cooldown
