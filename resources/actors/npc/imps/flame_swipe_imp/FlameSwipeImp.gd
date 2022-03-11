@@ -22,6 +22,7 @@ func setHealth() -> void:
 	$HealthBar.value = health
 
 func beforeDeath() -> void:
+	.beforeDeath()
 	var pickup_ability = PICKUP_ABILITY_SCENE.instance()
 	pickup_ability.position = position
 	get_tree().get_root().add_child(pickup_ability)

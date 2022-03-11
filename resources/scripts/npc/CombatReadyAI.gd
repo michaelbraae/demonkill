@@ -37,6 +37,7 @@ var complete_attack_sequence = false
 var attack_cooldown
 var attack_cooldown_timer
 
+# abilty cooldown handler
 var ability_cooldown
 var ability_cooldown_timer
 var ability_on_cooldown = false
@@ -44,6 +45,12 @@ var ability_on_cooldown = false
 # starting health
 var max_health = 3
 var health
+
+# -- HEALTH PICKUP --
+# health pickup scene
+var HEALTH_PICKUP = preload("res://resources/pickups/health_pickup/HealthPickup.tscn")
+# rng for deciding to drophealth
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	health = max_health
@@ -282,7 +289,6 @@ func runDecisionTree() -> void:
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
-#	if !isPossessed():
 	match state:
 		KNOCKED_BACK:
 			state = IDLE
@@ -302,10 +308,6 @@ func handlePostAnimState() -> void:
 				state = IDLE
 		PRE_DEATH:
 			queue_free()
-#	else:
-#		match state:
-#			ATTACKING:
-#				state = POSSESSED
 
 func _process(_delta):
 	$AnimatedSprite/LightOccluder2D.visible = true
@@ -315,7 +317,11 @@ func _process(_delta):
 		animatedSprite.light_mask = 1
 
 func beforeDeath() -> void:
-	pass
+	rng.randomize()
+	if rng.randf() > 0:
+		var health_pickup = HEALTH_PICKUP.instance()
+		health_pickup.position.x = health_pickup.position.x + 50
+		add_child(health_pickup)
 
 func kill() -> void:
 	beforeDeath()
