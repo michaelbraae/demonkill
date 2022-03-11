@@ -40,7 +40,6 @@ func castMeleeSpell(spell: Dictionary) -> void:
 func castSpell(slot_key: int) -> void:
 	var spell_to_cast = SPELL_SLOTS[str(slot_key)]
 	if spell_to_cast:
-		var spell_instance = spell_to_cast["scene"].instance()
 		match spell_to_cast["type"]:
 			"ranged":
 				castRangedSpell(spell_to_cast)
