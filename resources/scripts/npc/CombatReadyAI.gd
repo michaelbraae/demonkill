@@ -46,9 +46,6 @@ var ability_on_cooldown = false
 var max_health = 3
 var health
 
-# -- HEALTH PICKUP --
-# health pickup scene
-var HEALTH_PICKUP = preload("res://resources/pickups/health_pickup/HealthPickup.tscn")
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
@@ -101,6 +98,8 @@ func damage(damage : int) -> void:
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
+			
+			# add the Q button to the parent when it gets stunned
 			var q_button = Q_BUTTON_SCENE.instance()
 			q_button.position.y = q_button.position.y - 30
 			add_child(q_button)
@@ -115,6 +114,7 @@ func knockBack(
 		knock_back_speed,
 		knock_back_decay
 	)
+
 
 func readyForDamage() -> bool:
 	return true
@@ -256,7 +256,8 @@ func runDecisionTree() -> void:
 	if isPossessed():
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
-		pass
+		if knockback_handler.knocked_back:
+			knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
 	elif knockback_handler.knocked_back:
 		state = KNOCKED_BACK
 		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
@@ -317,11 +318,7 @@ func _process(_delta):
 		animatedSprite.light_mask = 1
 
 func beforeDeath() -> void:
-	rng.randomize()
-	if rng.randf() > 0:
-		var health_pickup = HEALTH_PICKUP.instance()
-		health_pickup.position.x = health_pickup.position.x + 50
-		add_child(health_pickup)
+	pass
 
 func kill() -> void:
 	beforeDeath()
