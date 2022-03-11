@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/gui/player_ui/PlayerUI.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/player_ui/PlayerUI.gd" type="Script" id=1]
 [ext_resource path="res://resources/ui/SpellSlotsUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/sprites/ui/healthbar/health.png" type="Texture" id=3]
 [ext_resource path="res://resources/sprites/ui/healthbar/background.png" type="Texture" id=4]

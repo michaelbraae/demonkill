@@ -4,7 +4,7 @@ class_name CombatReadyAI
 
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
 
-var Q_BUTTON_SCENE = preload("res://scenes/gui/buttons/ButtonQ.tscn")
+var Q_BUTTON_SCENE = preload("res://scenes/ui/buttons/ButtonQ.tscn")
 
 var stun_damage_threshold = 1
 var stun_duration_timer

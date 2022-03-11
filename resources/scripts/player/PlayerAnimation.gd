@@ -36,6 +36,8 @@ func getAnimationWeaponModifier() -> String:
 func getAttackAnimation() -> String:
 	var phase
 	match state:
+		POSSESSION_TARGETING:
+			phase = "warmup"
 		ATTACK_WARMUP:
 			phase = 'warmup'
 		ATTACK_CONTACT:
@@ -52,6 +54,8 @@ func getAttackAnimation() -> String:
 
 func getAnimation() -> String:
 	var animation = 'idle_'
+	if state == POSSESSION_TARGETING:
+		return getAttackAnimation()
 	if state == AXE_THROW:
 		return 'axe_throw_' + facing_direction
 	if state == DASH:
@@ -67,7 +71,9 @@ func getAnimation() -> String:
 	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():
-	if [DASH_RECOVERY, ATTACK_RECOVERY, AXE_THROW].has(state):
+	if state == POSSESSION_TARGETING:
+		pass
+	elif [DASH_RECOVERY, ATTACK_RECOVERY, AXE_THROW].has(state):
 		state = IDLE
 		animatedSprite.play(str('idle_', facing_direction))
 	elif state == ATTACK_WARMUP:

@@ -22,6 +22,8 @@ enum {
 	AXE_RECALL,
 	DASH,
 	DASH_RECOVERY,
+	POSSESSION_TARGETING,
+	POSSESSION_DASH,
 }
 
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
@@ -39,6 +41,10 @@ func getStateString() -> String:
 			state_string = 'DASH'
 		DASH_RECOVERY:
 			state_string = 'DASH_RECOVERY'
+		POSSESSION_TARGETING:
+			state_string = "POSSESSION_TARGETING"
+		POSSESSION_DASH:
+			state_string = "POSSESSION_DASH"
 	return state_string
 
 func _ready() -> void:
