@@ -7,9 +7,6 @@ var velocity = Vector2()
 const SPEED = 100
 var speed_actual
 
-var knockback_handler_script = preload('res://resources/scripts/helpers/KnockBackHandler.gd')
-var knockback_handler
-
 var aim_vector = Vector2()
 
 var facing_direction = 'down'
@@ -17,31 +14,19 @@ var facing_direction = 'down'
 var use_facing_vector = false
 
 func _ready():
-	knockback_handler = knockback_handler_script.new()
 	InputHandler.setMouseMode()
-
-func knockBack(
-	hit_direction : float,
-	knock_back_speed : int,
-	knock_back_decay : int
-) -> void:
-	knockback_handler.knockBack(
-		hit_direction,
-		knock_back_speed,
-		knock_back_decay
-	)
 
 func setVelocity() -> void:
 	velocity = Vector2()
-	if state == DASH and not knockback_handler.knocked_back:
+	if state == DASH and not knocked_back:
 		velocity = InputHandler.getVelocity(130)
 	elif ATTACK_STATES.has(state):
 		velocity = InputHandler.getAttackDirection()
 		if not velocity:
 			velocity = getVectorFromFacingDirection()
 		velocity = velocity * 10
-	elif knockback_handler.knocked_back:
-		velocity = knockback_handler.getKnockBackProcessVector()
+	elif knocked_back:
+		velocity = getKnockBackProcessVector()
 	else:
 		velocity = InputHandler.getVelocity(SPEED)
 		if velocity:

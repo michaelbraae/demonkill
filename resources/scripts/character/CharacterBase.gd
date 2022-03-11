@@ -2,10 +2,9 @@ extends KinematicBody2D
 
 class_name CharacterBase
 
-# this script should handle all logic that is used by both players and AI
+# this script handles all logic that is used by both players and AI
 
-# this script should handle the knockback handler logi
-
+# --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector
 var speed = 300

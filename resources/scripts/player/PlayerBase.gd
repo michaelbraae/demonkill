@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBase
 
 class_name PlayerBase
 
