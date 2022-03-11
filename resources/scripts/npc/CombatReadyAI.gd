@@ -2,9 +2,6 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
-var knockback_handler_script = preload("res://resources/scripts/helpers/KnockBackHandler.gd")
-var knockback_handler
-
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
 
 var Q_BUTTON_SCENE = preload("res://scenes/gui/buttons/ButtonQ.tscn")
@@ -51,7 +48,6 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	health = max_health
-	knockback_handler = knockback_handler_script.new()
 	
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
@@ -103,18 +99,6 @@ func damage(damage : int) -> void:
 			var q_button = Q_BUTTON_SCENE.instance()
 			q_button.position.y = q_button.position.y - 30
 			add_child(q_button)
-
-func knockBack(
-	hit_direction : float,
-	knock_back_speed : int,
-	knock_back_decay : int
-) -> void:
-	knockback_handler.knockBack(
-		hit_direction,
-		knock_back_speed,
-		knock_back_decay
-	)
-
 
 func readyForDamage() -> bool:
 	return true
@@ -234,8 +218,8 @@ func readyForPostAttack() -> bool:
 	return false
 
 func possessedDecisionLogic() -> void:
-	if knockback_handler.knocked_back:
-		velocity = knockback_handler.getKnockBackProcessVector()
+	if knocked_back:
+		velocity = getKnockBackProcessVector()
 	elif (
 		Input.is_action_just_pressed("melee_attack")
 		or Input.is_action_just_pressed("use_ability")
@@ -256,11 +240,11 @@ func runDecisionTree() -> void:
 	if isPossessed():
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
-		if knockback_handler.knocked_back:
-			knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
-	elif knockback_handler.knocked_back:
+		if knocked_back:
+			knockback_vector = move_and_slide(getKnockBackProcessVector())
+	elif knocked_back:
 		state = KNOCKED_BACK
-		knockback_handler.vector = move_and_slide(knockback_handler.getKnockBackProcessVector())
+		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
 		if target_actor:
 			if (

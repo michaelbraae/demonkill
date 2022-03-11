@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/abilities/base/AbilityBase.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "CharacterBase",
 "class": "BaseAI",
 "language": "GDScript",
 "path": "res://resources/scripts/npc/BaseAI.gd"
@@ -23,6 +23,11 @@ _global_script_classes=[ {
 "class": "CasterAI",
 "language": "GDScript",
 "path": "res://resources/scripts/npc/CasterAI.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "CharacterBase",
+"language": "GDScript",
+"path": "res://resources/scripts/character/CharacterBase.gd"
 }, {
 "base": "PathfindingAI",
 "class": "CombatReadyAI",
@@ -123,6 +128,7 @@ _global_script_class_icons={
 "AbilityBase": "",
 "BaseAI": "",
 "CasterAI": "",
+"CharacterBase": "",
 "CombatReadyAI": "",
 "ImpactBase": "",
 "NPCButton": "",
