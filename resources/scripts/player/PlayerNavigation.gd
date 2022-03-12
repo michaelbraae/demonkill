@@ -48,7 +48,7 @@ func getVectorFromFacingDirection() -> Vector2:
 
 func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:
-		return Vector2(get_local_mouse_position().normalized())
+		return get_local_mouse_position().normalized()
 	aim_vector = Vector2()
 	aim_vector.y = Input.get_action_strength('aim_down') - Input.get_action_strength('aim_up')
 	aim_vector.x = Input.get_action_strength('aim_right') - Input.get_action_strength('aim_left')
