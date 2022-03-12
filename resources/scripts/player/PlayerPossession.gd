@@ -31,9 +31,9 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	if state == POSSESSION_DASH:
-		var overlapping_areas = $HitBox.get_overlapping_areas()
+		var overlapping_areas = $PossessionHitBox.get_overlapping_areas()
 		for area in overlapping_areas:
-			if area.get_name() == "EnemyBiteBox" and not possession_targets_to_ignore.has(area.get_parent()):
+			if area.get_name() == "EnemyPossessionHitBox" and not possession_targets_to_ignore.has(area.get_parent()):
 				var impact_instance = WHITE_IMPACT.instance()
 				get_tree().get_root().add_child(impact_instance)
 				impact_instance.position = area.get_parent().get_global_position()

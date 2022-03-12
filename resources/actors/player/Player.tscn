@@ -1014,7 +1014,7 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 7
+frame = 11
 speed_scale = 3.5
 playing = true
 
@@ -1037,10 +1037,10 @@ visible = false
 position = Vector2( 0.494781, -0.593735 )
 shape = SubResource( 171 )
 
-[node name="BiteBox" type="Area2D" parent="."]
-visible = false
+[node name="PossessionHitBox" type="Area2D" parent="."]
+scale = Vector2( 0.216497, 0.216497 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionHitBox"]
 shape = SubResource( 172 )
 
 [node name="Light2D" type="Light2D" parent="."]

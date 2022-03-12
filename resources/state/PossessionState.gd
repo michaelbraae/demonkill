@@ -30,7 +30,7 @@ func handlePossessionDeath(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.bite_box
+	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func exitPossession(spawn_position) -> void:
@@ -55,7 +55,7 @@ func exitPossession(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.bite_box
+	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:

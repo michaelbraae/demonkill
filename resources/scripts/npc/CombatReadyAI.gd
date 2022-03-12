@@ -176,8 +176,9 @@ func getAttackAnimation() -> String:
 func getAttackAngle() -> float:
 	if isPossessed():
 		return get_angle_to(get_global_mouse_position())
-	else:
+	elif is_instance_valid(target_actor):
 		return get_angle_to(target_actor.get_global_position())
+	return 0.0
 
 func readyForPreAttack() -> bool:
 	return (

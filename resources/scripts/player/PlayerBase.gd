@@ -5,7 +5,7 @@ class_name PlayerBase
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
-onready var bite_box = $BiteBox
+onready var possession_hitbox = $PossessionHitBox
 
 const IS_PLAYER = true
 
@@ -51,7 +51,7 @@ func _ready() -> void:
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
 	FeedbackHandler.current_camera = camera2D
-	PossessionState.bite_box = bite_box
+	PossessionState.bite_box = possession_hitbox
 
 func damage(damage : int) -> void:
 	PlayerState.health -= damage

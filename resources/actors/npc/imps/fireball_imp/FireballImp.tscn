@@ -48,21 +48,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "take_hit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "pre_attack",
@@ -73,9 +58,14 @@ animations = [ {
 "name": "post_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "stunned",
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
@@ -86,6 +76,16 @@ animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "stunned",
 "speed": 5.0
 } ]
 
@@ -137,10 +137,10 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 8 )
 
-[node name="EnemyBiteBox" type="Area2D" parent="."]
-visible = false
+[node name="EnemyPossessionHitBox" type="Area2D" parent="."]
+scale = Vector2( 0.26124, 0.26124 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPossessionHitBox"]
 position = Vector2( 0.0783939, 0.078392 )
 shape = SubResource( 9 )
 
