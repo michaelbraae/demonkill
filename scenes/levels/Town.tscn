@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://resources/environment/buildings/Building-Enterable.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/scenery/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/sprites/environment/dungeon.png" type="Texture" id=4]
-[ext_resource path="res://resources/actors/objects/coin_gold/CoinGold.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "dungeon.png 0"
@@ -126,6 +124,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 9.26184, 0, 9.26184 )
 [node name="root" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 scale = Vector2( 0.553581, 0.427577 )
 color = Color( 0, 0, 0, 1 )
 
@@ -153,44 +152,5 @@ tile_data = PoolIntArray( -1441790, 4, 0, -1441789, 4, 0, -1441788, 4, 0, -14417
 position = Vector2( 0.660461, -355.978 )
 
 [node name="YSort" type="YSort" parent="."]
-
-[node name="Torch" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -41.0588, -182.967 )
-
-[node name="Torch2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 38.2216, -179.003 )
-
-[node name="Torch3" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 37.4289, -82.2805 )
-
-[node name="Torch4" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -41.8516, -79.1093 )
-
-[node name="Torch5" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -0.625732, 27.9194 )
-
-[node name="Torch6" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -40.2659, -276.518 )
-
-[node name="Torch7" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 38.2218, -274.139 )
-
-[node name="coin_gold" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 2.86195, -273.24 )
-
-[node name="CoinGold2" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 3.28239, -257.263 )
-
-[node name="CoinGold3" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 3.28239, -243.809 )
-
-[node name="CoinGold4" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 3.28239, -228.252 )
-
-[node name="CoinGold5" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 3.70284, -213.957 )
-
-[node name="CoinGold6" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 3.70284, -200.082 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]

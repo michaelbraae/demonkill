@@ -48,14 +48,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 11 ) ],
@@ -68,14 +73,9 @@ animations = [ {
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "stunned",
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
@@ -83,9 +83,9 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "pre_attack",
+"name": "stunned",
 "speed": 5.0
 } ]
 
@@ -117,7 +117,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 3
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -138,10 +138,10 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 8 )
 
-[node name="EnemyBiteBox" type="Area2D" parent="."]
-visible = false
+[node name="EnemyPossessionHitBox" type="Area2D" parent="."]
+scale = Vector2( 0.26124, 0.26124 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPossessionHitBox"]
 position = Vector2( 0.0783939, 0.078392 )
 shape = SubResource( 9 )
 
@@ -157,18 +157,6 @@ shape = SubResource( 10 )
 
 [node name="InterestVector" type="RayCast2D" parent="."]
 cast_to = Vector2( 50, 0 )
-
-[node name="HealthLabel" type="Label" parent="."]
-visible = false
-margin_left = -4.00904
-margin_top = -20.0452
-margin_right = 22.991
-margin_bottom = -6.04522
-rect_scale = Vector2( 0.3, 0.3 )
-text = "test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 light_mask = 8

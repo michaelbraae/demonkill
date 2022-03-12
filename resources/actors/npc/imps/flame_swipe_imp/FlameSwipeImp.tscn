@@ -44,14 +44,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
@@ -64,14 +69,9 @@ animations = [ {
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "stunned",
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -79,9 +79,9 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "pre_attack",
+"name": "stunned",
 "speed": 5.0
 } ]
 
@@ -92,7 +92,7 @@ polygon = PoolVector2Array( -2, -0.95314, -0.666672, -6.28647, 0.333328, -9.9531
 radius = 11.5585
 height = 7.24638
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=11]
 radius = 24.2581
 
 [sub_resource type="CircleShape2D" id=10]
@@ -113,7 +113,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 2
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -134,12 +134,13 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 8 )
 
-[node name="EnemyBiteBox" type="Area2D" parent="."]
+[node name="EnemyPossessionHitBox" type="Area2D" parent="."]
 visible = false
+scale = Vector2( 0.26124, 0.26124 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBiteBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPossessionHitBox"]
 position = Vector2( 0.0783939, 0.078392 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 visible = false

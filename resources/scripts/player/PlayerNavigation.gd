@@ -13,8 +13,48 @@ var facing_direction = 'down'
 
 var use_facing_vector = false
 
-func _ready():
+var dash_timer
+var dash_cooldown_timer
+var dash_available = true
+var dash_started = false
+var dash_vector
+
+var possession_dash_vector
+
+func _ready() -> void:
 	InputHandler.setMouseMode()
+	dash_timer = Timer.new()
+	dash_timer.connect('timeout', self, 'dash_timeout')
+	add_child(dash_timer)
+	dash_cooldown_timer = Timer.new()
+	dash_cooldown_timer.connect('timeout', self, 'dash_cooldown_timeout')
+	add_child(dash_cooldown_timer)
+
+func dash_timeout() -> void:
+	dash_timer.stop()
+	dash_started = false
+	state = DASH_RECOVERY
+
+func dash_cooldown_timeout() -> void:
+	dash_cooldown_timer.stop()
+	dash_available = true
+
+func initiateDash() -> void:
+	dash_available = false
+	state = DASH
+	dash_cooldown_timer.start(0.4)
+	dash_timer.start(0.15)
+
+func continueDash() -> void:
+	if not dash_started:
+		dash_started = true
+		if velocity:
+			dash_vector = InputHandler.getMovementVector()
+		if state == POSSESSION_DASH:
+			dash_vector = possession_dash_vector
+		else:
+			dash_vector = getVectorFromFacingDirection()
+		velocity = dash_vector * 450
 
 func setVelocity() -> void:
 	velocity = Vector2()
@@ -48,7 +88,7 @@ func getVectorFromFacingDirection() -> Vector2:
 
 func getAttackDirection() -> Vector2:
 	if InputHandler.using_mouse:
-		return Vector2(get_local_mouse_position().normalized())
+		return get_local_mouse_position().normalized()
 	aim_vector = Vector2()
 	aim_vector.y = Input.get_action_strength('aim_down') - Input.get_action_strength('aim_up')
 	aim_vector.x = Input.get_action_strength('aim_right') - Input.get_action_strength('aim_left')

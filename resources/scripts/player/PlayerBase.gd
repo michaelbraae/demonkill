@@ -5,7 +5,7 @@ class_name PlayerBase
 onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
-onready var bite_box = $BiteBox
+onready var possession_hitbox = $PossessionHitBox
 
 const IS_PLAYER = true
 
@@ -22,6 +22,8 @@ enum {
 	AXE_RECALL,
 	DASH,
 	DASH_RECOVERY,
+	POSSESSION_TARGETING,
+	POSSESSION_DASH,
 }
 
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
@@ -39,13 +41,17 @@ func getStateString() -> String:
 			state_string = 'DASH'
 		DASH_RECOVERY:
 			state_string = 'DASH_RECOVERY'
+		POSSESSION_TARGETING:
+			state_string = "POSSESSION_TARGETING"
+		POSSESSION_DASH:
+			state_string = "POSSESSION_DASH"
 	return state_string
 
 func _ready() -> void:
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
 	FeedbackHandler.current_camera = camera2D
-	PossessionState.bite_box = bite_box
+	PossessionState.bite_box = possession_hitbox
 
 func damage(damage : int) -> void:
 	PlayerState.health -= damage

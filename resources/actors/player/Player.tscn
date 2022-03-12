@@ -1014,18 +1014,16 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 3
+frame = 1
 speed_scale = 3.5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0.597988, 6.38688 )
 shape = SubResource( 170 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]
 current = true
-zoom = Vector2( 0.45, 0.45 )
 drag_margin_left = 0.1
 drag_margin_top = 0.1
 drag_margin_right = 0.1
@@ -1038,10 +1036,11 @@ visible = false
 position = Vector2( 0.494781, -0.593735 )
 shape = SubResource( 171 )
 
-[node name="BiteBox" type="Area2D" parent="."]
+[node name="PossessionHitBox" type="Area2D" parent="."]
 visible = false
+scale = Vector2( 0.314863, 0.311341 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionHitBox"]
 shape = SubResource( 172 )
 
 [node name="Light2D" type="Light2D" parent="."]

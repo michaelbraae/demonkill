@@ -16,6 +16,9 @@ func _physics_process(_delta):
 #	label.set_text(str(health_current, '/', max_health))
 	healthBar.max_value = max_health
 	healthBar.value = health_current
+	
+	$ManaBar.max_value = PlayerState.max_mana
+	$ManaBar.value = PlayerState.mana
 
 
 func updateSpellUI(spells: Dictionary) -> void:

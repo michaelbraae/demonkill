@@ -2,7 +2,7 @@ extends Node
 
 var state = MAIN_MENU
 
-onready var PlayerUI = load('res://scenes/gui/player_ui/PlayerUI.tscn').instance()
+onready var PlayerUI = load('res://scenes/ui/player_ui/PlayerUI.tscn').instance()
 
 var axe_instance
 
