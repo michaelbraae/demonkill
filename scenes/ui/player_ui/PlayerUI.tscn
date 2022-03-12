@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ui/player_ui/PlayerUI.gd" type="Script" id=1]
 [ext_resource path="res://resources/ui/SpellSlotsUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/sprites/ui/healthbar/health.png" type="Texture" id=3]
-[ext_resource path="res://resources/sprites/ui/healthbar/background.png" type="Texture" id=4]
+[ext_resource path="res://resources/sprites/ui/health_mana/mana.png" type="Texture" id=3]
+[ext_resource path="res://resources/sprites/ui/health_mana/background.png" type="Texture" id=5]
+[ext_resource path="res://resources/sprites/ui/health_mana/health.png" type="Texture" id=6]
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -16,10 +17,10 @@ __meta__ = {
 }
 
 [node name="SpellSlotsUI" parent="." instance=ExtResource( 2 )]
-margin_left = 152.0
+margin_left = 353.0
 margin_top = 8.0
-margin_right = -372.0
-margin_bottom = -542.0
+margin_right = -171.0
+margin_bottom = -509.0
 rect_pivot_offset = Vector2( -258.799, -10.7261 )
 
 [node name="HealthBar" type="TextureProgress" parent="."]
@@ -30,14 +31,13 @@ margin_bottom = 48.0
 rect_scale = Vector2( 7, 7 )
 max_value = 7.0
 rounded = true
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 3 )
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ManaBar" type="TextureProgress" parent="."]
-self_modulate = Color( 0.352941, 0.0235294, 1, 1 )
 margin_left = 14.0
 margin_top = 54.0
 margin_right = 54.0
@@ -45,7 +45,7 @@ margin_bottom = 94.0
 rect_scale = Vector2( 7, 7 )
 max_value = 7.0
 rounded = true
-texture_under = ExtResource( 4 )
+texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

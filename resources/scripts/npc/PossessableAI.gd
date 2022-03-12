@@ -2,14 +2,14 @@ extends CombatReadyAI
 
 class_name PossessableAI
 
-
 onready var POSSESSION_ARROW_SCENE = preload("res://scenes/ui/possession_arrow/PossessionArrow.tscn")
 var possession_arrow_instance
 
 var possession_targeting_started: bool = false
 
 func _process(_delta):
-	if Input.is_action_just_pressed("possess") and isPossessed():
+	if Input.is_action_just_pressed("possess") and isPossessed() and PlayerState.mana >= 1:
+		PlayerState.mana -= 1
 		possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()
 		add_child(possession_arrow_instance)
 		possession_targeting_started = true
