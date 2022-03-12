@@ -21,11 +21,14 @@ func noWeaponMelee() -> void:
 	attack_instance.bang(getAttackDirection(), self)
 
 func throwAxe() -> void:
-	state = AXE_THROW
-	GameState.axe_instance = AXE_SCENE.instance()
-	get_parent().add_child(GameState.axe_instance)
-	axe_recall_available = false
-	GameState.axe_instance.bang(getAttackDirection(), self)
+	if PlayerState.mana >= 1:
+		has_axe = false
+		PlayerState.mana -= 1
+		state = AXE_THROW
+		GameState.axe_instance = AXE_SCENE.instance()
+		get_parent().add_child(GameState.axe_instance)
+		axe_recall_available = false
+		GameState.axe_instance.bang(getAttackDirection(), self)
 
 func recallAxe() -> void:
 	state = AXE_RECALL
@@ -73,7 +76,6 @@ func handlePlayerAction() -> void:
 			state = ATTACK_WARMUP
 		if Input.is_action_just_pressed("use_ability"):
 			if has_axe:
-				has_axe = false
 				throwAxe()
 			else:
 				recallAxe()

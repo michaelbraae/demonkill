@@ -3,7 +3,9 @@ extends Node
 var current_weapon
 var previous_weapon
 
-# 7 
+const max_mana: int = 5
+var mana: int = max_mana
+
 var max_health = 15
 var health = max_health
 
@@ -15,17 +17,3 @@ var SPELLS: Dictionary = {
 	"2": {},
 	"3": {},
 }
-
-const PumpShotgun = {
-	'name': 'pump_shotgun',
-	'path': 'res://resources/weapons/pump_shotgun/pump_shotgun.tscn',
-	'iconPath' : '',
-}
-
-func _ready():
-	current_weapon = PumpShotgun
-
-func changeWeapon(new_weapon : Dictionary) -> void:
-	previous_weapon = current_weapon
-	current_weapon = new_weapon
-

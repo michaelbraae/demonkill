@@ -4,8 +4,6 @@ class_name CombatReadyAI
 
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
 
-var Q_BUTTON_SCENE = preload("res://scenes/ui/buttons/ButtonQ.tscn")
-
 var stun_damage_threshold = 1
 var stun_duration_timer
 var stun_duration = 3
@@ -62,8 +60,6 @@ func _ready():
 	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
 func stun_duration_timeout() -> void:
-	if is_instance_valid(get_node("ButtonQ")):
-		get_node("ButtonQ").queue_free()
 	stun_duration_timer.stop()
 
 func attack_cooldown_timeout() -> void:
@@ -90,15 +86,9 @@ func damage(damage : int) -> void:
 	elif health <= stun_damage_threshold:
 		if health <= 0 or state == STUNNED:
 			kill()
-#			queue_free()
 		else:
 			stun_duration_timer.start(stun_duration)
 			state = STUNNED
-			
-			# add the Q button to the parent when it gets stunned
-			var q_button = Q_BUTTON_SCENE.instance()
-			q_button.position.y = q_button.position.y - 30
-			add_child(q_button)
 
 func readyForDamage() -> bool:
 	return true
@@ -139,6 +129,8 @@ func hasLineOfSight() -> bool:
 	return false
 
 func getAnimation() -> String:
+	if state == POSSESSION_RECOVERY:
+		return "stunned"
 	if isPossessed():
 		if state == ATTACKING:
 			return 'attack_loop'
@@ -218,7 +210,9 @@ func readyForPostAttack() -> bool:
 	return false
 
 func possessedDecisionLogic() -> void:
-	if knocked_back:
+	if state == POSSESSION_TARGETING:
+		pass
+	elif knocked_back:
 		velocity = getKnockBackProcessVector()
 	elif (
 		Input.is_action_just_pressed("melee_attack")
@@ -236,8 +230,10 @@ func possessedDecisionLogic() -> void:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
 
-func runDecisionTree() -> void: 
-	if isPossessed():
+func runDecisionTree() -> void:
+	if state == POSSESSION_RECOVERY:
+		pass
+	elif isPossessed():
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		if knocked_back:
@@ -275,6 +271,9 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	match state:
+		POSSESSION_RECOVERY:
+			state = IDLE
+			$CollisionShape2D.disabled = false
 		KNOCKED_BACK:
 			state = IDLE
 		PRE_ATTACK:

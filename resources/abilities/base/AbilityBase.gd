@@ -42,6 +42,8 @@ func damageOverlappingAreas() -> void:
 			FeedbackHandler.shakeCamera()
 			FeedbackHandler.lightVibrate()
 			area_parent.damage(damage)
+			if source_actor == GameState.player and PlayerState.mana < PlayerState.max_mana:
+				PlayerState.mana += 1
 			area_parent.knockBack(
 				source_actor.get_angle_to(area_parent.get_global_position()),
 				200,
