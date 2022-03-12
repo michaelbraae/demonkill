@@ -50,3 +50,29 @@ texture_progress = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 772.0
+margin_top = 150.0
+margin_right = 1001.0
+margin_bottom = 492.0
+text = "Movement = WASD
+
+Aim = Mouse
+
+Basic Attack = Left Click
+
+Use Ability = Right Click
+
+Aim Possession Dash = HOLD Q
+
+Possession Dash = Release Q
+
+Pickup Cards that enemies drop
+
+Use the spell in the slots by pressing the relevant key
+
+1, 2, 3 and 4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
