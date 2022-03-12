@@ -12,7 +12,7 @@ var possession_targets_to_ignore: Array = []
 
 func _process(_delta):
 	if Input.is_action_just_pressed("possess") and dash_available and PlayerState.mana >= 1:
-		PlayerState.mana -= 1
+		PlayerState.useMana(1)
 		possession_targets_to_ignore = []
 		if not possession_targeting_started:
 			possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()

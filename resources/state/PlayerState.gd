@@ -11,6 +11,12 @@ var health = max_health
 
 var coins = 0
 
+func useMana(mana_use: int) -> void:
+	if mana - mana_use < 0:
+		mana = 0
+	else:
+		mana -= mana_use
+
 var SPELLS: Dictionary = {
 	"0": {},
 	"1": {},

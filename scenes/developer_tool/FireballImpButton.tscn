@@ -47,7 +47,6 @@ self_modulate = Color( 0.992157, 0.141176, 0.141176, 1 )
 position = Vector2( 41, 75 )
 scale = Vector2( 2.68182, 2.68182 )
 frames = SubResource( 1 )
-frame = 4
 speed_scale = 2.5
 playing = true
 
