@@ -47,7 +47,7 @@ self_modulate = Color( 0, 1, 0.788235, 1 )
 position = Vector2( 41, 75 )
 scale = Vector2( 2.68182, 2.68182 )
 frames = SubResource( 1 )
-frame = 3
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -62,9 +62,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="."]
-margin_right = 83.0
-margin_bottom = 119.0
+[node name="SpinBox" type="SpinBox" parent="."]
+margin_left = 5.0
+margin_top = 121.0
+margin_right = 79.0
+margin_bottom = 145.0
+max_value = 10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

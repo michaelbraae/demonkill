@@ -4,5 +4,8 @@ class_name NPCButton
 
 var SCENE = "";
 
-func getSceneString() -> String:
-	return SCENE;
+func getSceneString() -> Dictionary:
+	return {
+		"scene": SCENE,
+		"count": $SpinBox.value
+	}

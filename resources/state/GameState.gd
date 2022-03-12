@@ -11,7 +11,7 @@ var npc_with_axe
 var player
 var player_ui
 
-var developer_tool_state
+var developer_tool_state: Array = []
 
 enum {
 	MAIN_MENU,
