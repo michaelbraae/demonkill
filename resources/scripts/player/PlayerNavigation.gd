@@ -13,8 +13,44 @@ var facing_direction = 'down'
 
 var use_facing_vector = false
 
-func _ready():
+var dash_timer
+var dash_cooldown_timer
+var dash_available = true
+var dash_started = false
+var dash_vector
+
+func _ready() -> void:
 	InputHandler.setMouseMode()
+	dash_timer = Timer.new()
+	dash_timer.connect('timeout', self, 'dash_timeout')
+	add_child(dash_timer)
+	dash_cooldown_timer = Timer.new()
+	dash_cooldown_timer.connect('timeout', self, 'dash_cooldown_timeout')
+	add_child(dash_cooldown_timer)
+
+func dash_timeout() -> void:
+	dash_timer.stop()
+	dash_started = false
+	state = DASH_RECOVERY
+
+func dash_cooldown_timeout() -> void:
+	dash_cooldown_timer.stop()
+	dash_available = true
+
+func initiateDash() -> void:
+	dash_available = false
+	state = DASH
+	dash_cooldown_timer.start(0.4)
+	dash_timer.start(0.15)
+
+func continueDash() -> void:
+	if not dash_started:
+		dash_started = true
+		if velocity:
+			dash_vector = InputHandler.getMovementVector()
+		else:
+			dash_vector = getVectorFromFacingDirection()
+		velocity = dash_vector * 450
 
 func setVelocity() -> void:
 	velocity = Vector2()
