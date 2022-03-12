@@ -5,7 +5,7 @@ var FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fireball/
 var PICKUP_FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fireball/pickup/PickupFireball.tscn')
 
 func initialiseConfig():
-	max_health = 3
+	max_health = 4
 	move_speed = 30 # 70
 	attacks_in_sequence = 1
 	repeat_attacks = true
