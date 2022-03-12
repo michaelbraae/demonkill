@@ -19,7 +19,7 @@ func _process(_delta):
 			possession_targeting_started = true
 			state = POSSESSION_TARGETING
 			Engine.time_scale = 0.3
-	elif Input.is_action_just_released("possess") and dash_available and PlayerState.mana >= 1:
+	elif Input.is_action_just_released("possess") and dash_available and possession_targeting_started:
 		initiateDash()
 		possession_dash_vector = getAttackDirection()
 		state = POSSESSION_DASH
