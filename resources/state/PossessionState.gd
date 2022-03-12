@@ -51,6 +51,20 @@ func handlePossessionDeath(spawn_position) -> void:
 	bite_box = player_instance.bite_box
 	player_instance.camera2D.make_current()
 
+func possessEntity(new_possession) -> void:
+	current_possession = new_possession
+	possessedNPC = new_possession
+	GameState.state = GameState.CONTROLLING_NPC
+	new_possession.camera2D.make_current()
+	new_possession.health = new_possession.max_health
+	new_possession.attack_started = false
+	new_possession.attack_landed = false
+	new_possession.target_actor = null
+	InputHandler.current_actor = new_possession
+	FeedbackHandler.current_camera = new_possession.camera2D
+	GameState.player.queue_free()
+	new_possession.state = new_possession.IDLE
+
 func possessNewEntity() -> void:
 	var areas = bite_box.get_overlapping_areas()
 	if areas:

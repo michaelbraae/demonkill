@@ -19,6 +19,8 @@ var dash_available = true
 var dash_started = false
 var dash_vector
 
+var possession_dash_vector
+
 func _ready() -> void:
 	InputHandler.setMouseMode()
 	dash_timer = Timer.new()
@@ -48,6 +50,8 @@ func continueDash() -> void:
 		dash_started = true
 		if velocity:
 			dash_vector = InputHandler.getMovementVector()
+		if state == POSSESSION_DASH:
+			dash_vector = possession_dash_vector
 		else:
 			dash_vector = getVectorFromFacingDirection()
 		velocity = dash_vector * 450

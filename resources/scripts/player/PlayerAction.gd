@@ -10,7 +10,6 @@ var next_spell : Dictionary
 #var axe_instance
 var axe_recall_available = false
 
-
 func noWeaponMelee() -> void:
 	var attack_instance
 	if next_spell:
@@ -53,12 +52,12 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if state == DASH:
+	if Input.is_action_just_pressed('dash') and dash_available:
+		initiateDash()
+	elif state == DASH or state == POSSESSION_DASH:
 		continueDash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
-	elif Input.is_action_just_pressed('dash') and dash_available:
-		initiateDash()
 	elif state == AXE_THROW:
 		pass
 	else:

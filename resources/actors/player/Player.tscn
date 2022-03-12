@@ -1014,7 +1014,7 @@ script = ExtResource( 17 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
 animation = "run_down"
-frame = 3
+frame = 10
 speed_scale = 3.5
 playing = true
 
@@ -1025,7 +1025,6 @@ shape = SubResource( 170 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]
 current = true
-zoom = Vector2( 0.45, 0.45 )
 drag_margin_left = 0.1
 drag_margin_top = 0.1
 drag_margin_right = 0.1
