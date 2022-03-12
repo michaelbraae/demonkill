@@ -4,8 +4,6 @@ var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
 var ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swipe/FlameSwipe.tscn')
 var PICKUP_ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.tscn')
 
-onready var health_label = $HealthLabel
-
 func initialiseConfig():
 	max_health = 3
 	move_speed = 70

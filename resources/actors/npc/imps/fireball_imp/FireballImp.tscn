@@ -117,6 +117,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -156,18 +157,6 @@ shape = SubResource( 10 )
 
 [node name="InterestVector" type="RayCast2D" parent="."]
 cast_to = Vector2( 50, 0 )
-
-[node name="HealthLabel" type="Label" parent="."]
-visible = false
-margin_left = -4.00904
-margin_top = -20.0452
-margin_right = 22.991
-margin_bottom = -6.04522
-rect_scale = Vector2( 0.3, 0.3 )
-text = "test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 light_mask = 8
