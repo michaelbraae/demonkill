@@ -26,8 +26,8 @@ rect_pivot_offset = Vector2( -258.799, -10.7261 )
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = 14.0
 margin_top = 8.0
-margin_right = 54.0
-margin_bottom = 48.0
+margin_right = 62.0
+margin_bottom = 14.0
 rect_scale = Vector2( 7, 7 )
 max_value = 7.0
 rounded = true
@@ -40,8 +40,8 @@ __meta__ = {
 [node name="ManaBar" type="TextureProgress" parent="."]
 margin_left = 14.0
 margin_top = 54.0
-margin_right = 54.0
-margin_bottom = 94.0
+margin_right = 62.0
+margin_bottom = 60.0
 rect_scale = Vector2( 7, 7 )
 max_value = 7.0
 rounded = true
