@@ -6,7 +6,7 @@ var PICKUP_FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fi
 
 func initialiseConfig():
 	max_health = 4
-	move_speed = 30 # 70
+	move_speed = 30
 	attacks_in_sequence = 1
 	repeat_attacks = true
 	attack_range = 30

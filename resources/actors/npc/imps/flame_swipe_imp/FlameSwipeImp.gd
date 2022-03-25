@@ -11,7 +11,7 @@ func initialiseConfig():
 	repeat_attacks = true
 	attack_range = 30
 	attack_cooldown = 1
-	ability_range = 30
+	ability_range = 50
 	ability_cooldown = 3
 	complete_attack_sequence = true
 

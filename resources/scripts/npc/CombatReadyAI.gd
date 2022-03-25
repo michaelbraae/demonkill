@@ -9,7 +9,7 @@ var stun_duration_timer
 var stun_duration = 3
 
 # number of attacks to run before moving to POST_ATTACK
-var attacks_in_sequence
+var attacks_in_sequence = 1
 var current_attack_in_sequence = 1
 
 # used to ensure the attack_sequence is completed
@@ -94,8 +94,7 @@ func readyForDamage() -> bool:
 	return true
 
 func isTargetInRange() -> bool:
-	var wr = weakref(target_actor)
-	if wr.get_ref():
+	if is_instance_valid(target_actor):
 		var distance_to_target = get_global_position().distance_to(
 			target_actor.get_global_position()
 		)
@@ -104,8 +103,7 @@ func isTargetInRange() -> bool:
 	return false
 
 func isTargetInAbilityRange() -> bool:
-	var wr = weakref(target_actor)
-	if wr.get_ref():
+	if is_instance_valid(target_actor):
 		var distance_to_target = get_global_position().distance_to(
 			target_actor.get_global_position()
 		)
@@ -114,11 +112,12 @@ func isTargetInAbilityRange() -> bool:
 	return false
 
 func isTargetTooClose() -> bool:
-	var distance_to_target = get_global_position().distance_to(
-		target_actor.get_global_position()
-	)
-	if distance_to_target <= too_close_range:
-		return true
+	if is_instance_valid(target_actor):
+		var distance_to_target = get_global_position().distance_to(
+			target_actor.get_global_position()
+		)
+		if distance_to_target <= too_close_range:
+			return true
 	return false
 
 func hasLineOfSight() -> bool:
@@ -232,6 +231,7 @@ func possessedDecisionLogic() -> void:
 		velocity = move_and_slide(velocity)
 
 func runDecisionTree() -> void:
+#	print("ability_cooldown: ", ability_cooldown_timer.get_time_left())
 	if state == POSSESSION_RECOVERY:
 		pass
 	elif isPossessed():
@@ -243,7 +243,7 @@ func runDecisionTree() -> void:
 		state = KNOCKED_BACK
 		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
-		if target_actor:
+		if is_instance_valid(target_actor):
 			if (
 				isTargetInRange()
 				or (isTargetInAbilityRange() and not ability_on_cooldown and hasLineOfSight())
@@ -280,13 +280,11 @@ func handlePostAnimState() -> void:
 		PRE_ATTACK:
 			state = ATTACKING
 		ATTACKING:
-			current_attack_in_sequence += 1
-			if readyForPostAttack():
-				attack_started = false
-				state = POST_ATTACK
-				current_attack_in_sequence = 1
-		POST_ATTACK:
+			attack_started = false
 			attack_landed = false
+			state = POST_ATTACK
+		POST_ATTACK:
+#			attack_landed = false
 			state = IDLE
 		STUNNED:
 			if stun_duration_timer.is_stopped():
