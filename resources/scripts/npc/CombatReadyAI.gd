@@ -123,7 +123,7 @@ func isTargetTooClose() -> bool:
 func hasLineOfSight() -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
-	if result and result['collider'] == GameState.player:
+	if result and result['collider'] == target_actor:
 		return true
 	return false
 
@@ -284,7 +284,6 @@ func handlePostAnimState() -> void:
 			attack_landed = false
 			state = POST_ATTACK
 		POST_ATTACK:
-#			attack_landed = false
 			state = IDLE
 		STUNNED:
 			if stun_duration_timer.is_stopped():
