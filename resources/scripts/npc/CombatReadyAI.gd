@@ -231,7 +231,6 @@ func possessedDecisionLogic() -> void:
 		velocity = move_and_slide(velocity)
 
 func runDecisionTree() -> void:
-#	print("ability_cooldown: ", ability_cooldown_timer.get_time_left())
 	if state == POSSESSION_RECOVERY:
 		pass
 	elif isPossessed():
