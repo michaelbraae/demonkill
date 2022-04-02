@@ -12,12 +12,20 @@ func initialiseConfig():
 	attack_range = 30
 	attack_cooldown = 1
 	ability_range = 50
-	ability_cooldown = 3
+	ability_cooldown = 5
 	complete_attack_sequence = true
 
 func setHealth() -> void:
-	$HealthBar.max_value = max_health
-	$HealthBar.value = health
+	$EnemyUI/HealthBar.max_value = max_health
+	$EnemyUI/HealthBar.value = health
+	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
+	if is_instance_valid(ability_cooldown_timer):
+		if ability_cooldown_timer.is_stopped():
+			push_warning("ability timer stopped")
+			$EnemyUI/AbilityCooldown.value = ability_cooldown
+		else:
+			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
+			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
 
 func beforeDeath() -> void:
 	.beforeDeath()

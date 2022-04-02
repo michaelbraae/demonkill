@@ -47,7 +47,7 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-self_modulate = Color( 0.0352941, 1, 0.0509804, 1 )
+self_modulate = Color( 0.568627, 0, 1, 1 )
 position = Vector2( 41, 75 )
 scale = Vector2( 2.68182, 2.68182 )
 frames = SubResource( 1 )
@@ -72,7 +72,6 @@ margin_top = 121.0
 margin_right = 79.0
 margin_bottom = 145.0
 max_value = 10.0
-value = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

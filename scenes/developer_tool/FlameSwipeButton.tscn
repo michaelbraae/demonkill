@@ -47,17 +47,16 @@ self_modulate = Color( 0, 1, 0.788235, 1 )
 position = Vector2( 41, 75 )
 scale = Vector2( 2.68182, 2.68182 )
 frames = SubResource( 1 )
-frame = 1
 speed_scale = 2.5
 playing = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = 24.0
+margin_left = 8.0
 margin_top = -8.0
-margin_right = 89.0
+margin_right = 73.0
 margin_bottom = 31.0
 custom_fonts/font = SubResource( 2 )
-text = "Swipe"
+text = "Fast Melee"
 __meta__ = {
 "_edit_use_anchors_": false
 }
