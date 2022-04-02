@@ -17,6 +17,10 @@ func useMana(mana_use: int) -> void:
 	else:
 		mana -= mana_use
 
+func addHealth(health_add: int) -> void:
+	if health + health_add <= max_health:
+		health += health_add
+
 var SPELLS: Dictionary = {
 	"0": {},
 	"1": {},

@@ -26,7 +26,8 @@ func _deferred_goto_scene(path : String):
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 	var spawnPoint = current_scene.get_node('SpawnPoint')
-	if spawnPoint:
+#	var player_ui = get_tree().get_root().get_node("root/PlayerUI")
+	if is_instance_valid(spawnPoint):
 		var player_controlled_actor
 		if GameState.state == GameState.CONTROLLING_NPC:
 			player_controlled_actor = PossessionState.possessedNPC
@@ -38,3 +39,6 @@ func _deferred_goto_scene(path : String):
 		current_scene.get_node('YSort').add_child(player_controlled_actor)
 		# the spawn point should be an argument but it could default to SpawnPoint
 		player_controlled_actor.position = spawnPoint.position
+#	elif is_instance_valid(player_ui):
+#		print(player_ui.get_name())
+#		player_ui.queue_free()

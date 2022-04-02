@@ -40,6 +40,7 @@ func _physics_process(_delta):
 				impact_instance.position = area.get_parent().get_global_position()
 				impact_instance.play()
 				PossessionState.possessEntity(area.get_parent())
+				PlayerState.addHealth(2)
 				break
 
 func handlePlayerAction() -> void:
