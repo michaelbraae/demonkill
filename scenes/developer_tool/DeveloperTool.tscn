@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/developer_tool/DeveloperTool.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Stranger back in the Night.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/developer_tool/FireballImpButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/developer_tool/FlameSwipeButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/developer_tool/StrangerBackInTheNight.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/developer_tool/EliteImpButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -59,6 +60,11 @@ margin_bottom = -8.0
 [node name="FlameSwipeImpButton" parent="NPCButtons" instance=ExtResource( 4 )]
 margin_left = 104.0
 margin_right = -184.0
+margin_bottom = -8.0
+
+[node name="EliteImpButton" parent="NPCButtons" instance=ExtResource( 6 )]
+margin_left = 208.0
+margin_right = -80.0
 margin_bottom = -8.0
 
 [node name="PlayButton" type="Button" parent="."]

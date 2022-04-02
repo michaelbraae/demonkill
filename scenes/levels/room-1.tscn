@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/actors/npc/imps/elite_imp/EliteImp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/sprites/environment/dungeon.png" type="Texture" id=4]
 [ext_resource path="res://resources/sprites/environment/dungeon2.png" type="Texture" id=5]
 [ext_resource path="res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn" type="PackedScene" id=6]
@@ -182,6 +183,9 @@ position = Vector2( -16, 208 )
 
 [node name="Swipe3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -18, -62 )
+
+[node name="EliteImp" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 332 )
 
 [node name="Swipe4" parent="." instance=ExtResource( 2 )]
 position = Vector2( -13, -153 )
