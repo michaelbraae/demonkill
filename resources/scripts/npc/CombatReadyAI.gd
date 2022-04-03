@@ -257,14 +257,15 @@ func runDecisionTree() -> void:
 						ability_cooldown_timer.start(ability_cooldown)
 						ability_on_cooldown = true
 						attack_landed = true
-				elif isTargetInRange() or attack_started:
-					if readyForPreAttack():
-						handlePreAttack()
-					elif state == ATTACKING and not attack_landed:
-						perAttackAction()
-						attack_landed = true
 				else:
-					.runDecisionTree()
+					if isTargetInRange() or attack_started:
+						if readyForPreAttack():
+							handlePreAttack()
+						elif state == ATTACKING and not attack_landed:
+							perAttackAction()
+							attack_landed = true
+					else:
+						.runDecisionTree()
 			else:
 				.runDecisionTree()
 	animatedSprite.play(getAnimation())

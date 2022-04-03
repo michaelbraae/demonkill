@@ -21,7 +21,7 @@ func setHealth() -> void:
 	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
 	if is_instance_valid(ability_cooldown_timer):
 		if ability_cooldown_timer.is_stopped():
-			push_warning("ability timer stopped")
+
 			$EnemyUI/AbilityCooldown.value = ability_cooldown
 		else:
 			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
