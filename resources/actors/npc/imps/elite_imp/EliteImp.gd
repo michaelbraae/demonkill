@@ -15,10 +15,6 @@ func initialiseConfig():
 	ability_cooldown = 3
 	complete_attack_sequence = true
 
-func setHealth() -> void:
-	$HealthBar.max_value = max_health
-	$HealthBar.value = health
-
 func beforeDeath() -> void:
 	.beforeDeath()
 	var pickup_ability = PICKUP_ABILITY_SCENE.instance()

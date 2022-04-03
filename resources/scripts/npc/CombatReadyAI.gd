@@ -44,6 +44,19 @@ var health
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
+func setHealth() -> void:
+	$EnemyUI/HealthBar.max_value = max_health
+	$EnemyUI/HealthBar.value = health
+	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
+	if is_instance_valid(ability_cooldown_timer):
+		if ability_cooldown_timer.is_stopped():
+			$EnemyUI/AbilityCooldown.visible = false
+			$EnemyUI/AbilityCooldown.value = ability_cooldown
+		else:
+			$EnemyUI/AbilityCooldown.visible = true
+			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
+			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
+
 func _ready():
 	health = max_health
 	
