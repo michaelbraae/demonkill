@@ -4,7 +4,7 @@ var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
 var FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fireball/Fireball.tscn')
 var PICKUP_FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fireball/pickup/PickupFireball.tscn')
 
-func initialiseConfig():
+func initialiseConfig() -> void:
 	max_health = 4
 	move_speed = 30
 	attacks_in_sequence = 1
@@ -38,7 +38,7 @@ func perAttackAction() -> void:
 	var angle = getAttackAngle()
 	swipe_instance.bang(Vector2(cos(angle), sin(angle)), self)
 
-func _process(_delta):
+func _process(_delta) -> void:
 		# need to make the AI dodge back when it enters the light and reduce dodge cooldown
 		# adding like 30 imp-melees could be really cool, like plague tale rat vibes
 	setHealth()
