@@ -24,7 +24,7 @@ var ready_for_player = false
 func _ready():
 	randomize()
 	make_rooms()
-	
+
 func make_rooms():
 	for i in range(num_rooms):
 		var pos = Vector2(rand_range(-hspread, hspread), 0)

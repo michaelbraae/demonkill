@@ -55,7 +55,7 @@ __meta__ = {
 margin_left = 772.0
 margin_top = 150.0
 margin_right = 1001.0
-margin_bottom = 492.0
+margin_bottom = 525.0
 text = "Movement = WASD
 
 Aim = Mouse
@@ -73,6 +73,8 @@ Pickup Cards that enemies drop
 Use the spell in the slots by pressing the relevant key: 1, 2, 3 and 4
 
 Regain mana by attacking
+
+Press 0 to toggle fullscreen
 
 Press 9 to use Debug Tool
 "

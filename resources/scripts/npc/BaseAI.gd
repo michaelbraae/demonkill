@@ -74,7 +74,7 @@ func getStateString() -> String:
 func _ready():
 	initialiseConfig()
 
-func initialiseConfig():
+func initialiseConfig() -> void:
 	pass
 
 func _on_AnimatedSprite_animation_finished() -> void:
