@@ -35,3 +35,7 @@ func getStateString() -> String:
 func prepareHealthGUI() -> void:
 	player_ui = PlayerUI
 	get_tree().get_root().call_deferred('add_child', PlayerUI)
+
+func _process(_delta) -> void:
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
