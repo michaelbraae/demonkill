@@ -17,6 +17,12 @@ func useMana(mana_use: int) -> void:
 	else:
 		mana -= mana_use
 
+func addMana(mana_add: int) -> void:
+	if mana + mana_add > max_mana:
+		mana = max_mana
+	else:
+		mana += mana_add
+
 func addHealth(health_add: int) -> void:
 	if health + health_add <= max_health:
 		health += health_add

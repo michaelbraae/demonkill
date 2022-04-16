@@ -60,6 +60,9 @@ func detectContact() -> void:
 				if area_parent == GameState.player:
 					if returning_to_player or distance_timer.is_stopped():
 						GameState.player.has_axe = true
+						if not returning_to_player:
+	
+							PlayerState.addMana(2)
 						queue_free()
 				elif returning_to_player:
 					if not damaged_actors.has(area_parent):

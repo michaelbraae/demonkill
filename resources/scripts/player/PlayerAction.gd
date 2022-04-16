@@ -30,6 +30,9 @@ func throwAxe() -> void:
 		axe_recall_available = false
 		GameState.axe_instance.bang(getAttackDirection(), self)
 
+func interruptAction() -> void:
+	state = IDLE
+
 func recallAxe() -> void:
 	state = AXE_RECALL
 	if GameState.axe_instance:

@@ -6,7 +6,7 @@ onready var healthBar = $HealthBar
 var health_current
 var max_health
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if GameState.state == GameState.CONTROLLING_NPC and is_instance_valid(PossessionState.current_possession):
 		health_current = PossessionState.current_possession.health
 		max_health = PossessionState.current_possession.max_health
@@ -19,7 +19,6 @@ func _physics_process(_delta):
 	
 	$ManaBar.max_value = PlayerState.max_mana
 	$ManaBar.value = PlayerState.mana
-
 
 func updateSpellUI(spells: Dictionary) -> void:
 	var slots = GameState.player_ui.get_node("SpellSlotsUI").get_children()

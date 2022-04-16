@@ -5,4 +5,5 @@
 [node name="Camera2D" type="Camera2D"]
 zoom = Vector2( 0.45, 0.45 )
 drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 script = ExtResource( 1 )

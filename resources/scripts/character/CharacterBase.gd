@@ -18,12 +18,16 @@ func getKnockBackProcessVector() -> Vector2:
 	speed_current -= decay
 	return knockback_vector.normalized() * speed_current
 
+func interruptAction() -> void:
+	pass
+
 func knockBack(
 	hit_direction : float,
 	knock_back_speed : int,
 	knock_back_decay : int
 ) -> void:
 	if not knocked_back:
+		interruptAction()
 		knocked_back = true
 		speed = knock_back_speed
 		decay = knock_back_decay
