@@ -61,7 +61,6 @@ func detectContact() -> void:
 					if returning_to_player or distance_timer.is_stopped():
 						GameState.player.has_axe = true
 						if not returning_to_player:
-	
 							PlayerState.addMana(2)
 						queue_free()
 				elif returning_to_player:
