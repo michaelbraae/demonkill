@@ -20,6 +20,10 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 18, 25 )
+
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 22, 29 )
@@ -36,35 +40,11 @@ region = Rect2( 44, 0, 22, 29 )
 atlas = ExtResource( 9 )
 region = Rect2( 66, 0, 22, 29 )
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 17 )
-region = Rect2( 0, 0, 18, 25 )
-
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "stunned",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "pre_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
@@ -72,9 +52,14 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "with_axe",
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
@@ -82,9 +67,24 @@ animations = [ {
 "name": "post_attack",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "with_axe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -116,7 +116,6 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -149,7 +148,7 @@ visible = false
 
 [node name="DetectionArea" type="Area2D" parent="."]
 visible = false
-scale = Vector2( 0.560872, 0.560872 )
+scale = Vector2( 1.23472, 1.23472 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 10 )
