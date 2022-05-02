@@ -112,7 +112,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -142,6 +142,7 @@ position = Vector2( 0.0783939, 0.078392 )
 shape = SubResource( 11 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 scale = Vector2( 1.37731, 1.37731 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
