@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if collision:
 		var impact_instance = WHITE_IMPACT.instance()
 		if collision.get_collider().has_method("damage"):
-			collision.get_collider().damage(1)
+			collision.get_collider().damage(2)
 		if collision.get_collider().has_method("knockBack"):
 			collision.get_collider().knockBack(target_vector.angle(), 150, 15)
 		get_tree().get_root().add_child(impact_instance)

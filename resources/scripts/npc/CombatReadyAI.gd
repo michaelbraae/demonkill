@@ -44,6 +44,13 @@ var health
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
+func addHealth(health_add: int) -> void:
+	if health_add + health > max_health:
+		health = max_health
+	else:
+		health += health_add
+	
+
 func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
 	$EnemyUI/HealthBar.value = health
