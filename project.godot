@@ -152,7 +152,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="10MinutesToMidnight"
+config/name="Demonkill"
 run/main_scene="res://scenes/main/title_screen/TitleScreen.tscn"
 config/icon="res://icon.png"
 
