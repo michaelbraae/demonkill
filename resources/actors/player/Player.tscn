@@ -996,7 +996,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=170]
 radius = 7.85083
-height = 1.61317
+height = 6.65693
 
 [sub_resource type="CapsuleShape2D" id=171]
 radius = 8.26377
@@ -1013,12 +1013,12 @@ script = ExtResource( 17 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 169 )
-animation = "run_down"
+animation = "idle_down"
 speed_scale = 3.5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( 0.0597687, 2.8207 )
 shape = SubResource( 170 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]

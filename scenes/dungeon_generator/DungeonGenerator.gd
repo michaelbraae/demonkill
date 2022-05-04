@@ -5,9 +5,9 @@ var PLAYER_SCENE = preload("res://resources/actors/player/Player.tscn")
 var font = preload("res://assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
-var tile_size = 32  # size of a tile in the TileMap
+var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 30  # number of rooms to generate - 50
-var min_size = 6  # minimum room size (in tiles)
+var min_size = 6  # minimum room size (in tiles) - 6 
 var max_size = 10  # maximum room size (in tiles) - 16
 var hspread = 100  # horizontal spread (in pixels) - 400
 var cull = 0.35  # chance to cull room - 0.5
@@ -51,7 +51,7 @@ func make_rooms():
 func _draw():
 	if start_room:
 		draw_string(font, start_room.position-Vector2(125,0), "start", Color(1,1,1))
-	if end_room:
+	if is_instance_valid(end_room):
 		draw_string(font, end_room.position-Vector2(125,0), "end", Color(1,1,1))
 	if play_mode:
 		return

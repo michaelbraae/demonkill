@@ -42,6 +42,3 @@ func _deferred_goto_scene(path : String):
 		current_scene.get_node('YSort').add_child(player_controlled_actor)
 		# the spawn point should be an argument but it could default to SpawnPoint
 		player_controlled_actor.position = spawnPoint.position
-#	elif is_instance_valid(player_ui):
-#		print(player_ui.get_name())
-#		player_ui.queue_free()
