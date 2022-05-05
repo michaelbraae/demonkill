@@ -9,8 +9,8 @@ var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 30  # number of rooms to generate - 50
 var min_size = 6  # minimum room size (in tiles) - 6 
 var max_size = 10  # maximum room size (in tiles) - 16
-var hspread = 100  # horizontal spread (in pixels) - 400
-var cull = 0.5  # chance to cull room - 0.35
+var hspread = 30  # horizontal spread (in pixels) - 400
+var cull = 0.4  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
@@ -42,8 +42,7 @@ func make_rooms():
 			room.queue_free()
 		else:
 			room.mode = RigidBody2D.MODE_STATIC
-			room_positions.append(Vector3(room.position.x,
-										  room.position.y, 0))
+			room_positions.append(Vector3(room.position.x, room.position.y, 0))
 	yield(get_tree(), 'idle_frame')
 	# generate a minimum spanning tree connecting the rooms
 	path = find_mst(room_positions)
@@ -159,10 +158,12 @@ func make_map():
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
 				Map.set_cell(ul.x + x, ul.y + y, 0)
-				
+		
 		# add the walls to the rooms.
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
+				# check if each position is at any edge of the room, 
+				# if so, set the next cell outside the room to the wall sprite
 				if x == 2:
 					Map.set_cell(ul.x + x, ul.y + y, 1)
 				elif y == 2:
@@ -171,9 +172,10 @@ func make_map():
 					Map.set_cell(ul.x + x, ul.y + y, 1)
 				elif y == s.y * 2 - 2:
 					Map.set_cell(ul.x + x, ul.y + y, 1)
+		
 		# Carve connecting corridor
-		var p = path.get_closest_point(Vector3(room.position.x, 
-											room.position.y, 0))
+		var p = path.get_closest_point(Vector3(room.position.x, room.position.y, 0))
+		
 		for conn in path.get_point_connections(p):
 			if not conn in corridors:
 				var start = Map.world_to_map(Vector2(path.get_point_position(p).x,
@@ -193,28 +195,78 @@ func carve_path(pos1, pos2):
 	# choose either x/y or y/x
 	var x_y = pos1
 	var y_x = pos2
-	if (randi() % 2) > 0:
-		x_y = pos2
-		y_x = pos1
+#	if (randi() % 2) > 0:
+#		x_y = pos2
+#		y_x = pos1
 	for x in range(pos1.x, pos2.x, x_diff):
-		if x == pos1.x:
-			Map.set_cell(x + 1, x_y.y, 2)
-		elif x == pos2.x:
-			Map.set_cell(x - 1, x_y.y, 2)
+		if Map.get_cell(x, x_y.y) == 0:
+			pass
 		else:
-			Map.set_cell(x, x_y.y, 0)
-			Map.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
-		# if the x value is at it's max or min, clear a block above and belowe
-#		if x == pos2.x:
-#			Map.set_cell(x - 2, x_y.y, 2)
+			Map.set_cell(x, x_y.y, 2)
+			Map.set_cell(x, x_y.y + y_diff, 2) # widen the corridor
+			
+			Map.set_cell(x, x_y.y - y_diff, 3)
+			Map.set_cell(x, x_y.y + y_diff * 2, 3)
+		
+#		if x == pos1.x:
+#			Map.set_cell(x - 1, x_y.y, 0)
+#			Map.set_cell(x + 1, x_y.y, 0)
+#		elif x > pos2.x - x_diff:
+#			print("x > pos2.x - x_diff")
+#			Map.set_cell(x + 2, x_y.y, 0)
+		# add the walls to the horizontal corridors
+		# only if it hasnt been established as a path.
+		# get_cell == 0 means that there is floor in that cell
+		# TileMap.INVALID_CELL
+#		if Map.get_cell(x, x_y.y - 1) != 0:
+#			Map.set_cell(x, x_y.y - 1, 1)
+#		elif Map.get_cell(x, x_y.y + 1) != 0:
+#			Map.set_cell(x, x_y.y + 1, 1)
+#		elif Map.get_cell(x, x_y.y + y_diff + 1) != 0:
+#			Map.set_cell(x, x_y.y + y_diff + 1, 1)
+#		elif Map.get_cell(x, x_y.y + y_diff - 1) != 0:
+#			Map.set_cell(x, x_y.y + y_diff - 1, 1)
 	for y in range(pos1.y, pos2.y, y_diff):
-		if y == pos1.y:
-			Map.set_cell(y_x.x, y - 1, 0)
-		elif y == pos2.y:
-			Map.set_cell(y_x.x, y + 1, 0)
+		
+#		if y == pos1.y:
+#			Map.set_cell(y_x.x - y_diff, y, -1)
+#			Map.set_cell(y_x.x + y_diff, y, -1)
+#			print("start of the Y range")
+#
+		if Map.get_cell(y_x.x, y) == 0:
+			pass
 		else:
-			Map.set_cell(y_x.x, y, 0)
-			Map.set_cell(y_x.x + x_diff, y, 0)
+			Map.set_cell(y_x.x, y, 4)
+			Map.set_cell(y_x.x + y_diff, y, 4)
+			
+	#		if Map.get_cell(y_x.x - y_diff, y) == 1:
+	#			Map.set_cell(y_x.x - y_diff, y, 0)
+	#		else:
+			Map.set_cell(y_x.x - y_diff, y, 5)
+			Map.set_cell(y_x.x + y_diff * 2, y, 5)
+		
+		
+#		if pos1.y > pos2.y:
+#			Map.set_cell(y_x.x + 3, y, 2)
+#		else:
+#			Map.set_cell(y_x.x - 1, y, 1)
+			
+#		if y > pos2.y - y_diff:
+#			print("y == pos2.y - y_diff")
+#			Map.set_cell(y_x.x, y, 2)
+			
+		
+#		Map.set_cell(y_x.x + 1, y, 2)
+#		if Map.get_cell(y_x.x - 1, y) != 0:
+#			Map.set_cell(y_x.x - 1, y, 1)
+#		elif Map.get_cell(y_x.x + 1, y) != 0:
+#			Map.set_cell(y_x.x + 1, y, 1)
+#		elif Map.get_cell(y_x.x + 1, y) != 0:
+#			Map.set_cell(y_x.x + 1, y, 1)
+#		elif Map.get_cell(y_x.x - 1, y) != 0:
+#			Map.set_cell(y_x.x - 1, y, 1)
+#		Map.set_cell(y_x.x + x_diff - 1, y, 1)
+		
 
 func find_start_room():
 	var min_x = INF
