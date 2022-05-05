@@ -10,7 +10,7 @@ var num_rooms = 30  # number of rooms to generate - 50
 var min_size = 6  # minimum room size (in tiles) - 6 
 var max_size = 10  # maximum room size (in tiles) - 16
 var hspread = 100  # horizontal spread (in pixels) - 400
-var cull = 0.35  # chance to cull room - 0.5
+var cull = 0.5  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
@@ -135,16 +135,18 @@ func make_map():
 	find_end_room()
 	
 	# Fill TileMap with walls, then carve empty rooms
-	var full_rect = Rect2()
-	for room in $Rooms.get_children():
-		var r = Rect2(room.position-room.size,
-					room.get_node("CollisionShape2D").shape.extents*2)
-		full_rect = full_rect.merge(r)
-	var topleft = Map.world_to_map(full_rect.position)
-	var bottomright = Map.world_to_map(full_rect.end)
-	for x in range(topleft.x, bottomright.x):
-		for y in range(topleft.y, bottomright.y):
-			Map.set_cell(x, y, 1)	
+	
+	# only add walls on the edge of the rooms.. if possible
+#	var full_rect = Rect2()
+#	for room in $Rooms.get_children():
+#		var r = Rect2(room.position-room.size,
+#					room.get_node("CollisionShape2D").shape.extents*2)
+#		full_rect = full_rect.merge(r)
+#	var topleft = Map.world_to_map(full_rect.position)
+#	var bottomright = Map.world_to_map(full_rect.end)
+#	for x in range(topleft.x, bottomright.x):
+#		for y in range(topleft.y, bottomright.y):
+#			Map.set_cell(x, y, -1)
 	
 	# Carve rooms
 	var corridors = []  # One corridor per connection
@@ -153,9 +155,22 @@ func make_map():
 		var s = (room.size / tile_size).floor()
 		var pos = Map.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
+#		print("s.x * 2 - 1: ", s.x * 2 - 1)
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
 				Map.set_cell(ul.x + x, ul.y + y, 0)
+				
+		# add the walls to the rooms.
+		for x in range(2, s.x * 2 - 1):
+			for y in range(2, s.y * 2 - 1):
+				if x == 2:
+					Map.set_cell(ul.x + x, ul.y + y, 1)
+				elif y == 2:
+					Map.set_cell(ul.x + x, ul.y + y, 1)
+				elif x == s.x * 2 - 2:
+					Map.set_cell(ul.x + x, ul.y + y, 1)
+				elif y == s.y * 2 - 2:
+					Map.set_cell(ul.x + x, ul.y + y, 1)
 		# Carve connecting corridor
 		var p = path.get_closest_point(Vector3(room.position.x, 
 											room.position.y, 0))
@@ -182,11 +197,24 @@ func carve_path(pos1, pos2):
 		x_y = pos2
 		y_x = pos1
 	for x in range(pos1.x, pos2.x, x_diff):
-		Map.set_cell(x, x_y.y, 0)
-		Map.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
+		if x == pos1.x:
+			Map.set_cell(x + 1, x_y.y, 2)
+		elif x == pos2.x:
+			Map.set_cell(x - 1, x_y.y, 2)
+		else:
+			Map.set_cell(x, x_y.y, 0)
+			Map.set_cell(x, x_y.y + y_diff, 0)  # widen the corridor
+		# if the x value is at it's max or min, clear a block above and belowe
+#		if x == pos2.x:
+#			Map.set_cell(x - 2, x_y.y, 2)
 	for y in range(pos1.y, pos2.y, y_diff):
-		Map.set_cell(y_x.x, y, 0)
-		Map.set_cell(y_x.x + x_diff, y, 0)
+		if y == pos1.y:
+			Map.set_cell(y_x.x, y - 1, 0)
+		elif y == pos2.y:
+			Map.set_cell(y_x.x, y + 1, 0)
+		else:
+			Map.set_cell(y_x.x, y, 0)
+			Map.set_cell(y_x.x + x_diff, y, 0)
 
 func find_start_room():
 	var min_x = INF
