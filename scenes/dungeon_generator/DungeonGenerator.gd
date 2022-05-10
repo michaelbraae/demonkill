@@ -196,33 +196,15 @@ func carve_path(pos1, pos2):
 	var y_x = pos2
 	
 	for x in range(pos1.x, pos2.x, x_diff):
-		
-		# if the cell before the start is a wall cell, replace with floor
-		# OR if the cell after the end is a wall cell, replace with floor
-		# OR if the current cell is a wall cell, replace with floor
+		# skip if the cell is a background tile
 		if Map.get_cell(x, x_y.y) == 0:
 			pass
-#		elif x == pos2.x - 1:
-#			print("end of x axis columns reached")
-#			# make the current tile the correct sprite
-#			Map.set_cell(pos2.x, x_y.y, -1)
-#			# widen the corridor positive in y axis
-#			Map.set_cell(pos2.x, x_y.y + y_diff, -1)
-#			# make the cell below the current cell a wall cell
-#			Map.set_cell(pos2.x, x_y.y - y_diff, -1)
-#			# make the cell 2 cells above current a wall cell
-#			Map.set_cell(pos2.x, x_y.y + y_diff * 2, -1)
-#			pass
-		# skip if the cell is a bacskground tile
 		else:
 			# make the current tile the correct sprite
 			Map.set_cell(x, x_y.y, 0)
-			# widen the corridor positive in y axis
+			# widen the corridor both ways in y axis
 			Map.set_cell(x, x_y.y + y_diff, 0)
-			# make the cell below the current cell a wall cell
 			Map.set_cell(x, x_y.y - y_diff, 0)
-			# make the cell 2 cells above current a wall cell
-#			Map.set_cell(x, x_y.y + y_diff * 2, 1)
 			
 	for y in range(pos1.y, pos2.y, y_diff):
 		if Map.get_cell(y_x.x, y) == 0:
