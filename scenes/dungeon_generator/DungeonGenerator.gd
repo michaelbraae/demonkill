@@ -220,9 +220,9 @@ func carve_path(pos1, pos2):
 			# widen the corridor positive in y axis
 			Map.set_cell(x, x_y.y + y_diff, 0)
 			# make the cell below the current cell a wall cell
-			Map.set_cell(x, x_y.y - y_diff, 1)
+			Map.set_cell(x, x_y.y - y_diff, 0)
 			# make the cell 2 cells above current a wall cell
-			Map.set_cell(x, x_y.y + y_diff * 2, 1)
+#			Map.set_cell(x, x_y.y + y_diff * 2, 1)
 			
 	for y in range(pos1.y, pos2.y, y_diff):
 		if Map.get_cell(y_x.x, y) == 0:
@@ -234,9 +234,9 @@ func carve_path(pos1, pos2):
 			# widen the corridor positive in x axis
 			Map.set_cell(y_x.x + y_diff, y, 0)
 			# make the cell 1 cell negative from current a wall cell
-			Map.set_cell(y_x.x - y_diff, y, 1)
+			Map.set_cell(y_x.x - y_diff, y, 0)
 			# make the cell 2 cells positive from current a wall cell
-			Map.set_cell(y_x.x + y_diff * 2, y, 1)
+#			Map.set_cell(y_x.x + y_diff * 2, y, 1)
 
 func find_start_room():
 	var min_x = INF
