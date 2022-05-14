@@ -6,10 +6,10 @@ var font = preload("res://assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
 var tile_size = 16  # size of a tile in the TileMap
-var num_rooms = 30  # number of rooms to generate - 50
-var min_size = 6  # minimum room size (in tiles) - 6 
-var max_size = 10  # maximum room size (in tiles) - 16
-var hspread = 30  # horizontal spread (in pixels) - 400
+var num_rooms = 40  # number of rooms to generate - 50
+var min_size = 8  # minimum room size (in tiles) - 6 
+var max_size = 12  # maximum room size (in tiles) - 16
+var hspread = 70  # horizontal spread (in pixels) - 400
 var cull = 0.4  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
