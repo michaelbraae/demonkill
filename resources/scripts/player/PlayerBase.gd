@@ -69,4 +69,5 @@ func damage(damage : int) -> void:
 	PlayerState.health -= damage
 	flash()
 	if PlayerState.health <= 0:
+		animatedSprite.material.set_shader_param("flash_modifier", 0)
 		LevelManager.goto_scene('res://scenes/levels/Town.tscn')
