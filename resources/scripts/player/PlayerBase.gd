@@ -11,6 +11,8 @@ const IS_PLAYER = true
 
 var state
 
+var flashTimer: Timer
+
 enum {
 	IDLE,
 	NAVIGATING,
@@ -48,12 +50,23 @@ func getStateString() -> String:
 	return state_string
 
 func _ready() -> void:
+	flashTimer = Timer.new()
+	add_child(flashTimer)
+	flashTimer.connect('timeout', self, 'flash_timeout')
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
 	FeedbackHandler.current_camera = camera2D
 	PossessionState.bite_box = possession_hitbox
 
+func flash() -> void:
+	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
+	flashTimer.start(0.1)
+
+func flash_timeout() -> void:
+	animatedSprite.material.set_shader_param("flash_modifier", 0)
+
 func damage(damage : int) -> void:
 	PlayerState.health -= damage
+	flash()
 	if PlayerState.health <= 0:
 		LevelManager.goto_scene('res://scenes/levels/Town.tscn')

@@ -41,9 +41,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 459.0
-margin_top = 258.0
+margin_top = 243.0
 margin_right = 565.0
-margin_bottom = 342.0
+margin_bottom = 357.0
 custom_constants/separation = 10
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
@@ -64,8 +64,53 @@ margin_right = 106.0
 margin_bottom = 54.0
 text = "Resume Game"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 64.0
 margin_right = 106.0
 margin_bottom = 84.0
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 94.0
+margin_right = 106.0
+margin_bottom = 114.0
 text = "Quit"
+
+[node name="Instructions" type="RichTextLabel" parent="."]
+margin_left = 571.0
+margin_top = 11.0
+margin_right = 1008.0
+margin_bottom = 598.0
+text = "Pause = Escape
+
+Movement = WASD
+
+Dash = Space Bar
+
+Aim = Mouse
+
+Basic Attack = Left Click
+
+Use Ability = Right Click
+
+Aim Possession Dash = HOLD Q
+
+Possession Dash = Release Q
+
+Pickup Cards that enemies drop
+
+Use the spell in the slots by pressing the relevant key: 1, 2, 3 and 4
+
+Regain mana by attacking
+
+Press 0 to toggle fullscreen
+
+Press 9 to use Debug Tool
+---------------------------------------------------
+Dungeon Generation Commands:
+
+Enter the dungon generator
+
+Once all green room boxes have stopped moving: press X to build the paths and walls
+
+Press C to enter the dungeon at the Start room"
