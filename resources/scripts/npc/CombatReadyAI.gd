@@ -242,6 +242,11 @@ func onPossessEnd() -> void:
 	outline_shader.queue_free()
 
 func possessedDecisionLogic() -> void:
+	if is_instance_valid(outline_shader):
+		outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
+		outline_shader.flip_h = animatedSprite.flip_h
+		outline_shader.modulate = animatedSprite.modulate
+		outline_shader.scale = animatedSprite.scale
 	if state == POSSESSION_TARGETING:
 		pass
 	elif knocked_back:
@@ -270,11 +275,7 @@ func runDecisionTree() -> void:
 	if state == POSSESSION_RECOVERY:
 		pass
 	elif isPossessed():
-		if is_instance_valid(outline_shader):
-			outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
-			outline_shader.flip_h = animatedSprite.flip_h
-			outline_shader.modulate = animatedSprite.modulate
-			outline_shader.scale = animatedSprite.scale
+		
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		if knocked_back:
