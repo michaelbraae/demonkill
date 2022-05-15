@@ -5,6 +5,14 @@ class_name PlayerAnimation
 var attack_order = false
 var has_axe = true
 
+const DASH_GHOST_SCENE = preload('res://resources/actors/player/dash_ghost/DashGhost.tscn')
+var dash_ghost_cooldown_timer: Timer
+
+func _ready() -> void:
+	dash_ghost_cooldown_timer = Timer.new()
+	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
+	add_child(dash_ghost_cooldown_timer)
+
 func setFacingDirection(angle_of_focus : int) -> void:
 	if angle_of_focus < -30 and angle_of_focus > -150:
 		animatedSprite.flip_h = false
@@ -32,17 +40,23 @@ func getAnimationWeaponModifier() -> String:
 	if has_axe:
 		return '_axe'
 	return ''
-const DASH_GHOST_SCENE = preload('res://resources/actors/player/dash_ghost/DashGhost.tscn')
+
+func dash_ghost() -> void:
+	if dash_ghost_cooldown_timer.is_stopped():
+		dash_ghost_cooldown_timer.start(0.05)
+		var ghost: Sprite = DASH_GHOST_SCENE.instance()
+		ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
+		ghost.position = position
+		ghost.flip_h = animatedSprite.flip_h
+		get_parent().add_child(ghost)
+
+func dash_ghost_timeout() -> void:
+	dash_ghost_cooldown_timer.stop()
+
 func on_dash_continuous() -> void:
 	.on_dash_continuous()
-	print(getAnimation())
-#	print(getAnimation())
-	var ghost: Sprite = DASH_GHOST_SCENE.instance()
-	print(animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame()))
-##	print(animatedSprite.get_sprite_frames().get_frame("test", 1))
-	ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
-	ghost.position = position
-	get_parent().add_child(ghost)
+	dash_ghost()
+	
 
 func getAttackAnimation() -> String:
 	var phase

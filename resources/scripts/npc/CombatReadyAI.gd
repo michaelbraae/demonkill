@@ -3,6 +3,7 @@ extends PathfindingAI
 class_name CombatReadyAI
 
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
+var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
 
 var stun_damage_threshold = 1
 var stun_duration_timer
@@ -229,6 +230,17 @@ func readyForPostAttack() -> bool:
 			return true
 	return false
 
+func onPossess() -> void:
+	outline_shader = OUTLINE_SHADER.instance()
+	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
+	add_child(outline_shader)
+	animatedSprite.visible = false
+#	possessedDecisionLogic()
+
+func onPossessEnd() -> void:
+	animatedSprite.visible = true
+	outline_shader.queue_free()
+
 func possessedDecisionLogic() -> void:
 	if state == POSSESSION_TARGETING:
 		pass
@@ -250,10 +262,19 @@ func possessedDecisionLogic() -> void:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
 
+var has_outline: bool = false
+
+var outline_shader
+
 func runDecisionTree() -> void:
 	if state == POSSESSION_RECOVERY:
 		pass
 	elif isPossessed():
+		if is_instance_valid(outline_shader):
+			outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
+			outline_shader.flip_h = animatedSprite.flip_h
+			outline_shader.modulate = animatedSprite.modulate
+			outline_shader.scale = animatedSprite.scale
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		if knocked_back:
@@ -312,6 +333,8 @@ func handlePostAnimState() -> void:
 			queue_free()
 
 func _process(_delta):
+	
+	
 	$AnimatedSprite/LightOccluder2D.visible = true
 	animatedSprite.light_mask = 2
 	if state == STUNNED:

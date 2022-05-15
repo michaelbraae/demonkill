@@ -71,3 +71,4 @@ func possessEntity(new_possession) -> void:
 	FeedbackHandler.current_camera = new_possession.camera2D
 	GameState.player.queue_free()
 	new_possession.state = new_possession.STUNNED
+	new_possession.onPossess()

@@ -22,5 +22,6 @@ func _process(_delta):
 		Engine.time_scale = 1
 
 func handlePossessionExit() -> void:
+	onPossessEnd()
 	get_node("CollisionShape2D").disabled = true
 	state = POSSESSION_RECOVERY
