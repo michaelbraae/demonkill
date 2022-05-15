@@ -30,6 +30,9 @@ func _ready() -> void:
 	dash_cooldown_timer.connect('timeout', self, 'dash_cooldown_timeout')
 	add_child(dash_cooldown_timer)
 
+func on_dash_continuous() -> void:
+	pass
+
 func dash_timeout() -> void:
 	dash_timer.stop()
 	dash_started = false
@@ -46,6 +49,7 @@ func initiateDash() -> void:
 	dash_timer.start(0.15)
 
 func continueDash() -> void:
+	on_dash_continuous()
 	if not dash_started:
 		dash_started = true
 		if velocity:

@@ -32,6 +32,17 @@ func getAnimationWeaponModifier() -> String:
 	if has_axe:
 		return '_axe'
 	return ''
+const DASH_GHOST_SCENE = preload('res://resources/actors/player/dash_ghost/DashGhost.tscn')
+func on_dash_continuous() -> void:
+	.on_dash_continuous()
+	print(getAnimation())
+#	print(getAnimation())
+	var ghost: Sprite = DASH_GHOST_SCENE.instance()
+	print(animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame()))
+##	print(animatedSprite.get_sprite_frames().get_frame("test", 1))
+	ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
+	ghost.position = position
+	get_parent().add_child(ghost)
 
 func getAttackAnimation() -> String:
 	var phase

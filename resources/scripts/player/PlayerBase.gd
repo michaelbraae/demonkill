@@ -50,9 +50,11 @@ func getStateString() -> String:
 	return state_string
 
 func _ready() -> void:
+	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)
 	flashTimer.connect('timeout', self, 'flash_timeout')
+	
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
 	FeedbackHandler.current_camera = camera2D
