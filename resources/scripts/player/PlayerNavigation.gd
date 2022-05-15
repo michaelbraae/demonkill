@@ -47,16 +47,17 @@ func initiateDash() -> void:
 	state = DASH
 	dash_cooldown_timer.start(0.4)
 	dash_timer.start(0.15)
+	dash_vector = InputHandler.getMovementVector()
 
 func continueDash() -> void:
 	on_dash_continuous()
 	if not dash_started:
 		dash_started = true
-		if velocity:
-			dash_vector = InputHandler.getMovementVector()
+#		if velocity:
+#			dash_vector = InputHandler.getMovementVector()
 		if state == POSSESSION_DASH:
 			dash_vector = possession_dash_vector
-		else:
+		elif not velocity:
 			dash_vector = getVectorFromFacingDirection()
 		velocity = dash_vector * 450
 
