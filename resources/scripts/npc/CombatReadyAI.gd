@@ -42,6 +42,8 @@ var ability_on_cooldown = false
 var max_health = 3
 var health
 
+var axeOutlineShader
+
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
@@ -91,6 +93,8 @@ func ability_cooldown_timeout() -> void:
 	ability_on_cooldown = false
 
 func dropAxe() -> void:
+	if is_instance_valid(axeOutlineShader):
+		axeOutlineShader.queue_free()
 	state = IDLE
 	GameState.npc_with_axe = null
 	GameState.axe_instance = AXE_SCENE.instance()
@@ -245,7 +249,8 @@ func possessedDecisionLogic() -> void:
 	if is_instance_valid(outline_shader):
 		outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 		outline_shader.flip_h = animatedSprite.flip_h
-		outline_shader.modulate = animatedSprite.self_modulate
+		outline_shader.self_modulate = animatedSprite.self_modulate
+#		outline_shader.material.set_shader_param("outline_color", Color(1,1,1,1))
 		outline_shader.scale = animatedSprite.scale
 	if state == POSSESSION_TARGETING:
 		pass
@@ -334,8 +339,16 @@ func handlePostAnimState() -> void:
 			queue_free()
 
 func _process(_delta):
-	
-	
+	if state == WITH_AXE:
+		if not is_instance_valid(axeOutlineShader):
+			axeOutlineShader = OUTLINE_SHADER.instance()
+		axeOutlineShader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
+		axeOutlineShader.flip_h = animatedSprite.flip_h
+		axeOutlineShader.self_modulate = animatedSprite.self_modulate
+		add_child(axeOutlineShader)
+	else:
+		if is_instance_valid(axeOutlineShader):
+			axeOutlineShader.queue_free()
 	$AnimatedSprite/LightOccluder2D.visible = true
 	animatedSprite.light_mask = 2
 	if state == STUNNED:

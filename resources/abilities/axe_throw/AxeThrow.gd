@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var animatedSprite = $AnimatedSprite
 onready var area2D = $Area2D
 
+var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
 var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
 var source_actor
@@ -86,6 +87,8 @@ func getVectorToPlayer() -> Vector2:
 	var angle_to_player = get_angle_to(GameState.player.get_global_position())
 	return Vector2(cos(angle_to_player), sin(angle_to_player))
 
+var outline_shader
+
 func _physics_process(_delta) -> void:
 	if returning_to_player:
 		animatedSprite.play()
@@ -99,4 +102,13 @@ func _physics_process(_delta) -> void:
 		slowdown_speed -= 50
 	elif vector:
 		vector = move_and_slide(vector.normalized() * speed)
+	if not is_instance_valid(outline_shader):
+		outline_shader = OUTLINE_SHADER.instance()
+		add_child(outline_shader)
+	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(
+		animatedSprite.get_animation(),
+		animatedSprite.get_frame()
+	)
+	outline_shader.material.set_shader_param("outline_color", Color(1,1,1,1))
+	outline_shader.position = animatedSprite.position
 	detectContact()
