@@ -8,6 +8,8 @@ var current_possession
 
 var possessedNPC
 
+var possession_duration = 3
+
 func getCurrentPossession():
 	if GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
@@ -71,4 +73,4 @@ func possessEntity(new_possession) -> void:
 	FeedbackHandler.current_camera = new_possession.camera2D
 	GameState.player.queue_free()
 	new_possession.state = new_possession.STUNNED
-	new_possession.onPossess()
+	new_possession.onPossess(possession_duration)
