@@ -101,9 +101,9 @@ func ability_cooldown_timeout() -> void:
 	ability_on_cooldown = false
 
 func possession_duration_timeout() -> void:
-	possession_duration_timer.stop()
 	onPossessEnd()
-	PossessionState.exitPossession(position)
+	if isPossessed():
+		PossessionState.exitPossession(position)
 
 func dropAxe() -> void:
 	if is_instance_valid(axeOutlineShader):
@@ -247,7 +247,6 @@ func readyForPostAttack() -> bool:
 			return true
 	return false
 
-
 var outline_shader
 
 func onPossess(possession_duration: float = -1) -> void:
@@ -259,6 +258,8 @@ func onPossess(possession_duration: float = -1) -> void:
 		possession_duration_timer.start(possession_duration)
 
 func onPossessEnd() -> void:
+	if is_instance_valid(possession_duration_timer):
+		possession_duration_timer.stop()
 	animatedSprite.visible = true
 	if is_instance_valid(outline_shader):
 		outline_shader.queue_free()
