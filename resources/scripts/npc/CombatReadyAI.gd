@@ -101,7 +101,6 @@ func ability_cooldown_timeout() -> void:
 	ability_on_cooldown = false
 
 func possession_duration_timeout() -> void:
-	print("possession_duration_timeout")
 	possession_duration_timer.stop()
 	onPossessEnd()
 	PossessionState.exitPossession(position)
@@ -257,16 +256,12 @@ func onPossess(possession_duration: float = -1) -> void:
 	add_child(outline_shader)
 	animatedSprite.visible = false
 	if possession_duration > -1 and possession_duration_timer.is_stopped():
-		print("start possession timer")
 		possession_duration_timer.start(possession_duration)
-
-	# incorporate a timer to handle the length of possession. this should be an argument coming from player
 
 func onPossessEnd() -> void:
 	animatedSprite.visible = true
 	if is_instance_valid(outline_shader):
 		outline_shader.queue_free()
-	
 
 func possessedDecisionLogic() -> void:
 	if is_instance_valid(outline_shader):
