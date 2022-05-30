@@ -77,10 +77,11 @@ margin_bottom = 114.0
 text = "Quit"
 
 [node name="Instructions" type="RichTextLabel" parent="."]
-margin_left = 571.0
-margin_top = 11.0
-margin_right = 1008.0
-margin_bottom = 598.0
+margin_left = 44.0
+margin_top = 135.0
+margin_right = 481.0
+margin_bottom = 722.0
+rect_scale = Vector2( 0.779991, 0.779991 )
 text = "Pause = Escape
 
 Movement = WASD
@@ -97,10 +98,6 @@ Aim Possession Dash = HOLD Q
 
 Possession Dash = Release Q
 
-Pickup Cards that enemies drop
-
-Use the spell in the slots by pressing the relevant key: 1, 2, 3 and 4
-
 Regain mana by attacking
 
 Press 0 to toggle fullscreen
@@ -111,6 +108,10 @@ Dungeon Generation Commands:
 
 Enter the dungon generator
 
-Once all green room boxes have stopped moving: press X to build the paths and walls
+Once all green room boxes have stopped moving:
+press X to build the paths and walls
 
 Press C to enter the dungeon at the Start room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
