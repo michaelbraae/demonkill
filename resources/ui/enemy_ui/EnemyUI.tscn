@@ -43,3 +43,20 @@ texture_progress = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PossessionCooldownBar" type="TextureProgress" parent="."]
+visible = false
+self_modulate = Color( 0.937255, 0.619608, 0.00784314, 1 )
+margin_left = -6.0
+margin_top = -29.0
+margin_right = 12.0
+margin_bottom = -23.0
+rect_scale = Vector2( 0.694855, 0.452846 )
+max_value = 5.0
+step = 0.3
+value = 5.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

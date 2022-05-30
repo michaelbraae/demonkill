@@ -62,6 +62,15 @@ func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
 	$EnemyUI/HealthBar.value = health
 	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
+	if is_instance_valid(possession_duration_timer):
+		if possession_duration_timer.is_stopped():
+			$EnemyUI/PossessionCooldownBar.visible = false
+		else:
+			$EnemyUI/PossessionCooldownBar.visible = true
+			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
+			var cooldown_as_percentage = possession_duration_timer.get_time_left() / possession_duration
+			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
+
 	if is_instance_valid(ability_cooldown_timer):
 		if ability_cooldown_timer.is_stopped():
 			$EnemyUI/AbilityCooldown.visible = false
@@ -248,14 +257,16 @@ func readyForPostAttack() -> bool:
 	return false
 
 var outline_shader
+var possession_duration
 
-func onPossess(possession_duration: float = -1) -> void:
+func onPossess(new_possession_duration: float = -1) -> void:
 	outline_shader = OUTLINE_SHADER.instance()
 	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 	add_child(outline_shader)
 	animatedSprite.visible = false
-	if possession_duration > -1 and possession_duration_timer.is_stopped():
-		possession_duration_timer.start(possession_duration)
+	if new_possession_duration > -1 and possession_duration_timer.is_stopped():
+		possession_duration = new_possession_duration
+		possession_duration_timer.start(new_possession_duration)
 
 func onPossessEnd() -> void:
 	if is_instance_valid(possession_duration_timer):
