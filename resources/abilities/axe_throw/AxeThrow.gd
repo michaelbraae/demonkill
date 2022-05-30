@@ -62,7 +62,7 @@ func detectContact() -> void:
 					if returning_to_player or distance_timer.is_stopped():
 						GameState.player.has_axe = true
 						if not returning_to_player:
-							PlayerState.addMana(2)
+							PlayerState.addMana(1)
 						queue_free()
 				elif returning_to_player:
 					if not damaged_actors.has(area_parent):

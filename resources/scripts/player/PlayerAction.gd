@@ -23,7 +23,7 @@ func noWeaponMelee() -> void:
 func throwAxe() -> void:
 	if PlayerState.mana >= 1:
 		has_axe = false
-#		PlayerState.useMana(2)
+		PlayerState.useMana(2)
 		state = AXE_THROW
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)

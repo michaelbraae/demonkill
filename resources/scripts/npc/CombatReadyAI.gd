@@ -372,10 +372,10 @@ func _process(_delta):
 	if state == WITH_AXE:
 		if not is_instance_valid(axeOutlineShader):
 			axeOutlineShader = OUTLINE_SHADER.instance()
+			add_child(axeOutlineShader)
 		axeOutlineShader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 		axeOutlineShader.flip_h = animatedSprite.flip_h
 		axeOutlineShader.self_modulate = animatedSprite.self_modulate
-		add_child(axeOutlineShader)
 	else:
 		if is_instance_valid(axeOutlineShader):
 			axeOutlineShader.queue_free()

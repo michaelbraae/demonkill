@@ -65,7 +65,6 @@ func possessEntity(new_possession) -> void:
 	possessedNPC = new_possession
 	GameState.state = GameState.CONTROLLING_NPC
 	new_possession.camera2D.make_current()
-	new_possession.health = new_possession.max_health
 	new_possession.attack_started = false
 	new_possession.attack_landed = false
 	new_possession.target_actor = null
