@@ -36,6 +36,66 @@ shader = ExtResource( 30 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="AtlasTexture" id=325]
+atlas = ExtResource( 25 )
+region = Rect2( 0, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=326]
+atlas = ExtResource( 25 )
+region = Rect2( 45, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=305]
+atlas = ExtResource( 19 )
+region = Rect2( 90, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=306]
+atlas = ExtResource( 19 )
+region = Rect2( 135, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=307]
+atlas = ExtResource( 19 )
+region = Rect2( 180, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=308]
+atlas = ExtResource( 19 )
+region = Rect2( 225, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=250]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 14, 29 )
+
+[sub_resource type="AtlasTexture" id=351]
+atlas = ExtResource( 27 )
+region = Rect2( 92, 0, 46, 33 )
+
+[sub_resource type="AtlasTexture" id=352]
+atlas = ExtResource( 27 )
+region = Rect2( 138, 0, 46, 33 )
+
+[sub_resource type="AtlasTexture" id=353]
+atlas = ExtResource( 27 )
+region = Rect2( 184, 0, 46, 33 )
+
+[sub_resource type="AtlasTexture" id=354]
+atlas = ExtResource( 27 )
+region = Rect2( 230, 0, 46, 33 )
+
+[sub_resource type="AtlasTexture" id=297]
+atlas = ExtResource( 22 )
+region = Rect2( 90, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=298]
+atlas = ExtResource( 22 )
+region = Rect2( 135, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=299]
+atlas = ExtResource( 22 )
+region = Rect2( 180, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=300]
+atlas = ExtResource( 22 )
+region = Rect2( 225, 0, 45, 55 )
+
 [sub_resource type="AtlasTexture" id=309]
 atlas = ExtResource( 20 )
 region = Rect2( 0, 0, 45, 55 )
@@ -712,68 +772,33 @@ region = Rect2( 180, 0, 45, 55 )
 atlas = ExtResource( 25 )
 region = Rect2( 225, 0, 45, 55 )
 
-[sub_resource type="AtlasTexture" id=325]
-atlas = ExtResource( 25 )
-region = Rect2( 0, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=326]
-atlas = ExtResource( 25 )
-region = Rect2( 45, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=297]
-atlas = ExtResource( 22 )
-region = Rect2( 90, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=298]
-atlas = ExtResource( 22 )
-region = Rect2( 135, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=299]
-atlas = ExtResource( 22 )
-region = Rect2( 180, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=300]
-atlas = ExtResource( 22 )
-region = Rect2( 225, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=351]
-atlas = ExtResource( 27 )
-region = Rect2( 92, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=352]
-atlas = ExtResource( 27 )
-region = Rect2( 138, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=353]
-atlas = ExtResource( 27 )
-region = Rect2( 184, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=354]
-atlas = ExtResource( 27 )
-region = Rect2( 230, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=305]
-atlas = ExtResource( 19 )
-region = Rect2( 90, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=306]
-atlas = ExtResource( 19 )
-region = Rect2( 135, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=307]
-atlas = ExtResource( 19 )
-region = Rect2( 180, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=308]
-atlas = ExtResource( 19 )
-region = Rect2( 225, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=250]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 14, 29 )
-
 [sub_resource type="SpriteFrames" id=169]
 animations = [ {
+"frames": [ SubResource( 325 ), SubResource( 326 ) ],
+"loop": true,
+"name": "attack_axe_warmup_right_2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 305 ), SubResource( 306 ), SubResource( 307 ), SubResource( 308 ) ],
+"loop": true,
+"name": "attack_axe_contact_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 250 ) ],
+"loop": true,
+"name": "idle_up_axe",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 351 ), SubResource( 352 ), SubResource( 353 ), SubResource( 354 ) ],
+"loop": true,
+"name": "attack_contact_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 297 ), SubResource( 298 ), SubResource( 299 ), SubResource( 300 ) ],
+"loop": true,
+"name": "attack_axe_contact_up",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 309 ), SubResource( 310 ) ],
 "loop": true,
 "name": "attack_axe_warmup_right_1",
@@ -972,31 +997,6 @@ animations = [ {
 "frames": [ SubResource( 335 ), SubResource( 336 ), SubResource( 337 ), SubResource( 338 ) ],
 "loop": true,
 "name": "attack_axe_contact_right_2",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 325 ), SubResource( 326 ) ],
-"loop": true,
-"name": "attack_axe_warmup_right_2",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 297 ), SubResource( 298 ), SubResource( 299 ), SubResource( 300 ) ],
-"loop": true,
-"name": "attack_axe_contact_up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 351 ), SubResource( 352 ), SubResource( 353 ), SubResource( 354 ) ],
-"loop": true,
-"name": "attack_contact_up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 305 ), SubResource( 306 ), SubResource( 307 ), SubResource( 308 ) ],
-"loop": true,
-"name": "attack_axe_contact_down",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 250 ) ],
-"loop": true,
-"name": "idle_up_axe",
 "speed": 5.0
 } ]
 
