@@ -8,7 +8,7 @@ var current_possession
 
 var possessedNPC
 
-var possession_duration = 3
+var possession_duration = 5.0
 
 func getCurrentPossession():
 	if GameState.CONTROLLING_NPC and current_possession:
