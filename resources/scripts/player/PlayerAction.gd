@@ -9,7 +9,6 @@ var next_spell : Dictionary
 
 var axe_recall_available = false
 
-var sprint: bool = false
 
 var sprint_timer: Timer
 

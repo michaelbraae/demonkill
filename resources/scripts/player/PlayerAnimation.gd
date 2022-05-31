@@ -7,11 +7,22 @@ var has_axe = true
 
 const DASH_GHOST_SCENE = preload('res://resources/actors/player/dash_ghost/DashGhost.tscn')
 var dash_ghost_cooldown_timer: Timer
+var sprint_ghost_cooldown_timer: Timer
+
+var sprint: bool = false
 
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
 	add_child(dash_ghost_cooldown_timer)
+	
+	sprint_ghost_cooldown_timer = Timer.new()
+	sprint_ghost_cooldown_timer.connect("timeout", self, "sprint_ghost_timeout")
+	add_child(sprint_ghost_cooldown_timer)
+
+func _physics_process(_delta) -> void:
+	if sprint:
+		sprint_ghost()
 
 func setFacingDirection(angle_of_focus : int) -> void:
 	if angle_of_focus < -30 and angle_of_focus > -150:
@@ -56,7 +67,18 @@ func dash_ghost_timeout() -> void:
 func on_dash_continuous() -> void:
 	.on_dash_continuous()
 	dash_ghost()
-	
+
+func sprint_ghost() -> void:
+	if sprint_ghost_cooldown_timer.is_stopped():
+		sprint_ghost_cooldown_timer.start(0.15)
+		var ghost: Sprite = DASH_GHOST_SCENE.instance()
+		ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
+		ghost.position = position
+		ghost.flip_h = animatedSprite.flip_h
+		get_parent().add_child(ghost)
+
+func sprint_ghost_timeout() -> void:
+	sprint_ghost_cooldown_timer.stop()
 
 func getAttackAnimation() -> String:
 	var phase
