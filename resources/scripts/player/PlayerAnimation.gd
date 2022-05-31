@@ -73,7 +73,8 @@ func sprint_ghost() -> void:
 		sprint_ghost_cooldown_timer.start(0.15)
 		var ghost: Sprite = DASH_GHOST_SCENE.instance()
 		ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
-		ghost.position = position
+		# we want the sprint ghost to spawn behind the player
+		ghost.position = position + velocity.normalized() * 13 * -1
 		ghost.flip_h = animatedSprite.flip_h
 		get_parent().add_child(ghost)
 
