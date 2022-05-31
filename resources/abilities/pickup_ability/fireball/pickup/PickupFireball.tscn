@@ -21,5 +21,4 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )

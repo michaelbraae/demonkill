@@ -3,7 +3,8 @@ extends PathfindingAI
 class_name CombatReadyAI
 
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
-var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
+
+onready var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
 
 var stun_damage_threshold = 1
 var stun_duration_timer
@@ -44,6 +45,9 @@ var health
 
 var axeOutlineShader
 
+# POSSESSION DURATION
+var possession_duration_timer: Timer
+
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
@@ -58,6 +62,15 @@ func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
 	$EnemyUI/HealthBar.value = health
 	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
+	if is_instance_valid(possession_duration_timer):
+		if possession_duration_timer.is_stopped():
+			$EnemyUI/PossessionCooldownBar.visible = false
+		else:
+			$EnemyUI/PossessionCooldownBar.visible = true
+			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
+			var cooldown_as_percentage = possession_duration_timer.get_time_left() / possession_duration
+			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
+
 	if is_instance_valid(ability_cooldown_timer):
 		if ability_cooldown_timer.is_stopped():
 			$EnemyUI/AbilityCooldown.visible = false
@@ -69,7 +82,7 @@ func setHealth() -> void:
 
 func _ready():
 	health = max_health
-	
+
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
@@ -82,6 +95,10 @@ func _ready():
 	add_child(ability_cooldown_timer)
 	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
 
+	possession_duration_timer = Timer.new()
+	add_child(possession_duration_timer)
+	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
+
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
 
@@ -91,6 +108,11 @@ func attack_cooldown_timeout() -> void:
 func ability_cooldown_timeout() -> void:
 	ability_cooldown_timer.stop()
 	ability_on_cooldown = false
+
+func possession_duration_timeout() -> void:
+	onPossessEnd()
+	if isPossessed():
+		PossessionState.exitPossession(position)
 
 func dropAxe() -> void:
 	if is_instance_valid(axeOutlineShader):
@@ -234,16 +256,24 @@ func readyForPostAttack() -> bool:
 			return true
 	return false
 
-func onPossess() -> void:
+var outline_shader
+var possession_duration
+
+func onPossess(new_possession_duration: float = -1) -> void:
 	outline_shader = OUTLINE_SHADER.instance()
 	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 	add_child(outline_shader)
 	animatedSprite.visible = false
-#	possessedDecisionLogic()
+	if new_possession_duration > -1 and possession_duration_timer.is_stopped():
+		possession_duration = new_possession_duration
+		possession_duration_timer.start(new_possession_duration)
 
 func onPossessEnd() -> void:
+	if is_instance_valid(possession_duration_timer):
+		possession_duration_timer.stop()
 	animatedSprite.visible = true
-	outline_shader.queue_free()
+	if is_instance_valid(outline_shader):
+		outline_shader.queue_free()
 
 func possessedDecisionLogic() -> void:
 	if is_instance_valid(outline_shader):
@@ -274,7 +304,7 @@ func possessedDecisionLogic() -> void:
 
 var has_outline: bool = false
 
-var outline_shader
+
 
 func runDecisionTree() -> void:
 	if state == POSSESSION_RECOVERY:
@@ -342,10 +372,10 @@ func _process(_delta):
 	if state == WITH_AXE:
 		if not is_instance_valid(axeOutlineShader):
 			axeOutlineShader = OUTLINE_SHADER.instance()
+			add_child(axeOutlineShader)
 		axeOutlineShader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 		axeOutlineShader.flip_h = animatedSprite.flip_h
 		axeOutlineShader.self_modulate = animatedSprite.self_modulate
-		add_child(axeOutlineShader)
 	else:
 		if is_instance_valid(axeOutlineShader):
 			axeOutlineShader.queue_free()

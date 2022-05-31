@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://resources/tilesets/PurpleDungeon.tres" type="TileSet" id=2]
-[ext_resource path="res://resources/abilities/pickup_ability/fireball/pickup/PickupFireball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/sprites/environment/dungeon.png" type="Texture" id=4]
-[ext_resource path="res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://resources/actors/npc/imps/elite_imp/EliteImp.tscn" type="PackedScene" id=9]
@@ -72,45 +70,6 @@ tile_data = PoolIntArray( -5570533, 1, 0, -5570532, 1, 0, -5570531, 1, 0, -55705
 
 [node name="PrizeRoom1" type="Node2D" parent="YSort"]
 position = Vector2( 416, -320 )
-
-[node name="PickupFireball" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( -56, 0 )
-
-[node name="PickupFireball2" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( -40, -24 )
-
-[node name="PickupFireball5" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( 168, -463 )
-
-[node name="PickupFireball6" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( 192, -488 )
-
-[node name="PickupFireball7" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( 216, -463 )
-
-[node name="PickupFireball8" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( 192, -442 )
-
-[node name="PickupFireball3" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( -16, -24 )
-
-[node name="PickupFireball4" parent="YSort/PrizeRoom1" instance=ExtResource( 3 )]
-position = Vector2( 16, -24 )
-
-[node name="PickupFlameSwipe" parent="YSort/PrizeRoom1" instance=ExtResource( 6 )]
-position = Vector2( 56, 0 )
-
-[node name="PickupFlameSwipe3" parent="YSort/PrizeRoom1" instance=ExtResource( 6 )]
-position = Vector2( 144, -442 )
-
-[node name="PickupFlameSwipe4" parent="YSort/PrizeRoom1" instance=ExtResource( 6 )]
-position = Vector2( 120, -464 )
-
-[node name="PickupFlameSwipe5" parent="YSort/PrizeRoom1" instance=ExtResource( 6 )]
-position = Vector2( 144, -488 )
-
-[node name="PickupFlameSwipe2" parent="YSort/PrizeRoom1" instance=ExtResource( 6 )]
-position = Vector2( 44, -24 )
 
 [node name="Encounter1" type="Node2D" parent="YSort"]
 

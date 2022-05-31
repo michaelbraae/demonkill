@@ -3,7 +3,7 @@ extends AbilityBase
 var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
 func initialiseConfig() -> void:
-	damage = 5
+	damage = 3
 	distance_from_player = 15
 	attack_move_speed = 10
 

@@ -3,8 +3,8 @@ extends CombatReadyAI
 class_name PossessableAI
 
 onready var POSSESSION_ARROW_SCENE = preload("res://scenes/ui/possession_arrow/PossessionArrow.tscn")
-var possession_arrow_instance
 
+var possession_arrow_instance
 var possession_targeting_started: bool = false
 
 func _process(_delta):
