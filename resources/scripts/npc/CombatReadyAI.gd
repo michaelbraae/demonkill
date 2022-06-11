@@ -311,8 +311,6 @@ func possessedDecisionLogic() -> void:
 
 var has_outline: bool = false
 
-
-
 func runDecisionTree() -> void:
 	if state == POSSESSION_RECOVERY:
 		pass

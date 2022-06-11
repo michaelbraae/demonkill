@@ -15,12 +15,6 @@ func initialiseConfig() -> void:
 	ability_cooldown = 3
 	complete_attack_sequence = true
 
-#func beforeDeath() -> void:
-#	.beforeDeath()
-#	var pickup_ability = PICKUP_ABILITY_SCENE.instance()
-#	pickup_ability.position = position
-#	get_tree().get_root().add_child(pickup_ability)
-
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()
 	add_child(ability_instance)
