@@ -130,12 +130,8 @@ func damage(damage : int) -> void:
 		dropAxe()
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
-	elif health <= stun_damage_threshold:
-		if health <= 0 or state == STUNNED:
-			kill()
-		else:
-			stun_duration_timer.start(stun_duration)
-			state = STUNNED
+	elif health <= 0:
+		kill()
 
 func readyForDamage() -> bool:
 	return true
