@@ -44,7 +44,8 @@ func exitPossession(spawn_position) -> void:
 	current_scene.add_child(player_instance)
 	
 	current_possession.handlePossessionExit()
-
+	current_possession.setEnemyCollision()
+	
 	# handle the possession dash 
 	player_instance.possession_dash_vector = player_instance.getAttackDirection()
 	player_instance.initiateDash()
@@ -71,5 +72,6 @@ func possessEntity(new_possession) -> void:
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
 	GameState.player.queue_free()
+	new_possession.setPossessionCollisions()
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
