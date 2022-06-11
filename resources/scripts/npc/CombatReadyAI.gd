@@ -105,6 +105,11 @@ func stun_duration_timeout() -> void:
 func attack_cooldown_timeout() -> void:
 	attack_cooldown_timer.stop()
 
+func resetAbilityCooldown() -> void:
+	if is_instance_valid(ability_cooldown_timer):
+		ability_cooldown_timer.stop()
+	ability_on_cooldown = false
+
 func ability_cooldown_timeout() -> void:
 	ability_cooldown_timer.stop()
 	ability_on_cooldown = false
@@ -291,9 +296,15 @@ func possessedDecisionLogic() -> void:
 			attack_started = true
 			if Input.is_action_just_pressed("melee_attack"):
 				perAttackAction()
+				state = ATTACKING
 			elif Input.is_action_just_pressed("use_ability"):
-				useAbility()
-		state = ATTACKING
+				if not ability_on_cooldown:
+					ability_cooldown_timer.start(ability_cooldown)
+					ability_on_cooldown = true
+					useAbility()
+				else:
+					perAttackAction()
+				state = ATTACKING
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)

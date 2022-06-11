@@ -3,7 +3,6 @@ extends Control
 func _ready():
 	$CenterContainer/VBoxContainer/DungeonButton.connect("pressed", self, "on_dungeon_button_pressed")
 	$CenterContainer/VBoxContainer/QuitButton.connect("pressed", self, "on_quit_button_pressed")
-		
 	GameState.state = GameState.MAIN_MENU
 
 func _on_new_Game_button_pressed():
