@@ -15,12 +15,6 @@ func initialiseConfig() -> void:
 	ability_cooldown = 1
 	too_close_range = 70
 	complete_attack_sequence = true
-#
-#func beforeDeath() -> void:
-#	.beforeDeath()
-#	var pickup_ability = PICKUP_FIREBALL_SCENE.instance()
-#	pickup_ability.position = position
-#	get_tree().get_root().add_child(pickup_ability)
 
 func useAbility() -> void:
 	var fireball = FIREBALL_SCENE.instance()

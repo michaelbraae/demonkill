@@ -30,6 +30,8 @@ func handlePossessionDeath(spawn_position) -> void:
 	InputHandler.current_actor = player_instance
 	FeedbackHandler.current_camera = player_instance.camera2D
 	
+	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
+	
 	# set the player's location
 	player_instance.position = spawn_position
 	bite_box = player_instance.possession_hitbox
@@ -42,6 +44,7 @@ func exitPossession(spawn_position) -> void:
 	var player_instance = PLAYER_SCENE.instance()
 	GameState.player = player_instance
 	current_scene.add_child(player_instance)
+	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
 	
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()
