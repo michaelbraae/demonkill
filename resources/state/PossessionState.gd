@@ -73,6 +73,9 @@ func possessEntity(new_possession) -> void:
 	new_possession.attack_started = false
 	new_possession.attack_landed = false
 	new_possession.target_actor = null
+	if GameState.npc_with_axe == new_possession:
+		GameState.npc_with_axe = null
+		GameState.player.has_axe = true
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
 	GameState.player.queue_free()

@@ -131,7 +131,7 @@ func dropAxe() -> void:
 func damage(damage : int) -> void:
 	attack_started = false
 	health -= damage
-	if GameState.npc_with_axe == self:
+	if GameState.npc_with_axe == self and not isPossessed():
 		dropAxe()
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
