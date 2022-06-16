@@ -9,7 +9,7 @@ func make_room(_pos, _size):
 	# create several random enemies half way between center and edge
 	var spawn_distance = _size / 4
 	for i in 3:
-		
+
 		pass
 	
 	var s = RectangleShape2D.new()

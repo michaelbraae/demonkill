@@ -84,11 +84,9 @@ func handlePostAnimState() -> void:
 	pass
 
 func setPossessionCollisions() -> void:
-	print("setPossessionCollisions()")
 	set_collision_mask(2)
 	set_collision_layer(2)
 
 func setEnemyCollision() -> void:
-	print("setEnemyCollision()")
 	set_collision_mask(4)
 	set_collision_layer(4)

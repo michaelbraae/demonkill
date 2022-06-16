@@ -140,26 +140,10 @@ func make_map():
 		var s = (room.size / tile_size).floor()
 		var pos = Map.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
-#		print("s.x * 2 - 1: ", s.x * 2 - 1)
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):
 				Map.set_cell(ul.x + x, ul.y + y, 0)
-		
-		# add the walls to the rooms.
-#		for x in range(2, s.x * 2 - 1):
-#			for y in range(2, s.y * 2 - 1):
-#				if Map.get_cell(ul.x + x, ul.y + y) != 0:
-#				# check if each position is at any edge of the room, 
-#				# if so, set the next cell outside the room to the wall sprite
-#					if x == 2:
-#						Map.set_cell(ul.x + x, ul.y + y, 1)
-#					elif y == 2:
-#						Map.set_cell(ul.x + x, ul.y + y, 1)
-#					elif x == s.x * 2 - 2:
-#						Map.set_cell(ul.x + x, ul.y + y, 1)
-#					elif y == s.y * 2 - 2:
-#						Map.set_cell(ul.x + x, ul.y + y, 1)
-		
+	
 		# Carve connecting corridor
 		var p = path.get_closest_point(Vector3(room.position.x, room.position.y, 0))
 		
