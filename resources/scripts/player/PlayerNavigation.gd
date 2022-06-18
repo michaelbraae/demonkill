@@ -34,6 +34,8 @@ func on_dash_continuous() -> void:
 	pass
 
 func dash_timeout() -> void:
+	set_collision_layer_bit(1, true)
+	set_collision_mask_bit(1, true)
 	dash_timer.stop()
 	dash_started = false
 	state = DASH_RECOVERY
@@ -43,6 +45,8 @@ func dash_cooldown_timeout() -> void:
 	dash_available = true
 
 func initiateDash() -> void:
+	set_collision_layer_bit(1, false)
+	set_collision_mask_bit(1, false)
 	dash_available = false
 	state = DASH
 	dash_cooldown_timer.start(0.4)
