@@ -12,6 +12,6 @@ func _physics_process(_delta):
 					&& PossessionState.getCurrentPossession() != GameState.player
 				):
 					PossessionState.getCurrentPossession().addHealth(health_amount)
-				if area.get_parent() == GameState.player:
+				if area.get_parent() == GameState.player and PlayerState.health < PlayerState.max_health:
 					PlayerState.addHealth(health_amount)
-				queue_free()
+					queue_free()
