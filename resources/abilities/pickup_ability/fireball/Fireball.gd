@@ -5,6 +5,7 @@ var projectile_speed : int = 150 #300
 
 var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
+
 func setCollideWithEnemies() -> void:
 	set_collision_mask(4)
 	set_collision_layer(4)

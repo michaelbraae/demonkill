@@ -6,10 +6,10 @@ var font = preload("res://assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
 var tile_size = 16  # size of a tile in the TileMap
-var num_rooms = 40  # number of rooms to generate - 50
-var min_size = 8  # minimum room size (in tiles) - 6 
-var max_size = 12  # maximum room size (in tiles) - 16
-var hspread = 70  # horizontal spread (in pixels) - 400
+var num_rooms = 30  # number of rooms to generate - 50
+var min_size = 6  # minimum room size (in tiles) - 6 
+var max_size = 10  # maximum room size (in tiles) - 16
+var hspread = 50  # horizontal spread (in pixels) - 400
 var cull = 0.4  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
@@ -20,6 +20,8 @@ var player = null
 
 var ready_for_tilemap = false
 var ready_for_player = false
+
+var room_positions = []
 
 func _ready():
 	randomize()
@@ -36,7 +38,6 @@ func make_rooms():
 	# wait for movement to stop
 	yield(get_tree().create_timer(1.1), 'timeout')
 	# cull rooms
-	var room_positions = []
 	for room in $Rooms.get_children():
 		if randf() < cull:
 			room.queue_free()
@@ -46,7 +47,7 @@ func make_rooms():
 	yield(get_tree(), 'idle_frame')
 	# generate a minimum spanning tree connecting the rooms
 	path = find_mst(room_positions)
-			
+
 func _draw():
 	if start_room:
 		draw_string(font, start_room.position-Vector2(125,0), "start", Color(1,1,1))
@@ -166,6 +167,9 @@ func make_map():
 			Map.set_cell(floor_cell.x, floor_cell.y + 1, 1)
 		if Map.get_cell(floor_cell.x, floor_cell.y - 1) == -1:
 			Map.set_cell(floor_cell.x, floor_cell.y - 1, 1)
+			
+	# iterate over the rooms and add npcs to each
+	add_npcs()
 	ready_for_player = true
 
 func carve_path(pos1, pos2):
@@ -202,7 +206,6 @@ func carve_path(pos1, pos2):
 			# make the cell 1 cell negative from current a wall cell
 			Map.set_cell(y_x.x - y_diff, y, 0)
 			# make the cell 2 cells positive from current a wall cell
-#			Map.set_cell(y_x.x + y_diff * 2, y, 1)
 
 func find_start_room():
 	var min_x = INF
@@ -217,3 +220,7 @@ func find_end_room():
 		if room.position.x > max_x:
 			end_room = room
 			max_x = room.position.x
+
+func add_npcs() -> void:
+	for room in $Rooms.get_children():
+		room.spawnNpcs()

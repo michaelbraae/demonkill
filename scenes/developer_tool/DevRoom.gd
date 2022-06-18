@@ -20,9 +20,3 @@ func _ready():
 			# set it's position to be equal to the spawn points
 			current_scene.position = $NPCSpawnPoints.get_node("SpawnPoint" + str(totalSpawns)).position
 			totalSpawns += 1
-		
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

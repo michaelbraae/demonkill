@@ -5,7 +5,7 @@ var ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swip
 var PICKUP_ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.tscn')
 
 func initialiseConfig() -> void:
-	max_health = 5
+	max_health = 3
 	move_speed = 70
 	attacks_in_sequence = 1
 	repeat_attacks = true

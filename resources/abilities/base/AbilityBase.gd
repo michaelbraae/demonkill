@@ -19,7 +19,21 @@ var damage = 1
 var target_actor
 
 func _ready() -> void:
+	if source_actor == GameState.player:
+		print("setCollideWithEnemies")
+		setCollideWithEnemies()
+	else:
+		print("setCollideWithPlayer")
+		setCollideWithPlayer()
 	initialiseConfig()
+
+func setCollideWithEnemies() -> void:
+	set_collision_mask(4)
+	set_collision_layer(4)
+
+func setCollideWithPlayer() -> void:
+	set_collision_mask(2)
+	set_collision_layer(2)
 
 func initialiseConfig() -> void:
 	pass
