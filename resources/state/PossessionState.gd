@@ -15,6 +15,12 @@ func getCurrentPossession():
 		return current_possession
 	return GameState.player
 
+func onPossessionExit() -> void:
+	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
+	if is_instance_valid(GameState.npc_with_axe) && current_possession == GameState.npc_with_axe:
+		GameState.player.has_axe = true
+		GameState.npc_with_axe = null
+
 func handlePossessionDeath(spawn_position) -> void:
 	FeedbackHandler.warp()
 	current_possession.queue_free()
@@ -30,7 +36,7 @@ func handlePossessionDeath(spawn_position) -> void:
 	InputHandler.current_actor = player_instance
 	FeedbackHandler.current_camera = player_instance.camera2D
 	
-	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
+	onPossessionExit()
 	
 	# set the player's location
 	player_instance.position = spawn_position
@@ -44,7 +50,6 @@ func exitPossession(spawn_position) -> void:
 	var player_instance = PLAYER_SCENE.instance()
 	GameState.player = player_instance
 	current_scene.add_child(player_instance)
-	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
 	
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()
@@ -55,6 +60,7 @@ func exitPossession(spawn_position) -> void:
 	player_instance.initiateDash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
+	onPossessionExit()
 	
 	# assign the player as the current_actor
 	InputHandler.current_actor = player_instance

@@ -12,7 +12,6 @@ var possession_targets_to_ignore: Array = []
 
 func _process(_delta):
 	if Input.is_action_just_pressed("possess") and dash_available and PlayerState.mana >= 1:
-		PlayerState.useMana(2)
 		possession_targets_to_ignore = []
 		if not possession_targeting_started:
 			possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()
@@ -40,6 +39,7 @@ func _physics_process(_delta):
 				impact_instance.position = area.get_parent().get_global_position()
 				impact_instance.play()
 				PossessionState.possessEntity(area.get_parent())
+				PlayerState.useMana(2)
 				PlayerState.addHealth(2)
 				break
 

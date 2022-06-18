@@ -9,7 +9,6 @@ var possession_targeting_started: bool = false
 
 func _process(_delta):
 	if Input.is_action_just_pressed("possess") and isPossessed() and PlayerState.mana >= 1:
-		PlayerState.useMana(1)
 		possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()
 		add_child(possession_arrow_instance)
 		possession_targeting_started = true
