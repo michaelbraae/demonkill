@@ -229,6 +229,8 @@ func find_end_room():
 
 func add_npcs() -> void:
 	for room in $Rooms.get_children():
+		if room == start_room:
+			continue
 		var random_npc = rand_range(0, 1)
 		var rand_npc
 		if random_npc < 0.33:
@@ -243,3 +245,7 @@ func add_npcs() -> void:
 			rand_npc = ELITE_IMP_SCENE.instance()
 			rand_npc.position = room.get_position()
 			add_child(rand_npc)
+
+
+
+

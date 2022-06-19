@@ -116,6 +116,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -123,6 +124,7 @@ playing = true
 show_behind_parent = true
 position = Vector2( 2.38411e-07, -1.92645e-09 )
 rotation = -0.00808018
+scale = Vector2( 0.99136, 1 )
 occluder = SubResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
