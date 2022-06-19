@@ -94,6 +94,7 @@ func _input(event):
 		ready_for_player = false
 		player = PLAYER_SCENE.instance()
 		add_child(player)
+		GameState.state = GameState.CONTROLLING_PLAYER
 		GameState.player = player
 		player.position = start_room.position
 		play_mode = true
