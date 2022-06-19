@@ -5,6 +5,11 @@ var PLAYER_SCENE = preload("res://resources/actors/player/Player.tscn")
 var font = preload("res://assets/RobotoBold120.tres")
 onready var Map = $TileMap
 
+# npc scenes
+const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
+const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
+const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
+
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 30  # number of rooms to generate - 50
 var min_size = 6  # minimum room size (in tiles) - 6 
@@ -223,4 +228,17 @@ func find_end_room():
 
 func add_npcs() -> void:
 	for room in $Rooms.get_children():
-		room.spawnNpcs()
+		var random_npc = rand_range(0, 1)
+		var rand_npc
+		if random_npc < 0.33:
+			rand_npc = FIREBALL_IMP_SCENE.instance()
+			rand_npc.position = room.get_position()
+			add_child(rand_npc)
+		elif random_npc < 0.66:
+			rand_npc = SWIPE_IMP_SCENE.instance()
+			rand_npc.position = room.get_position()
+			add_child(rand_npc)
+		else:
+			rand_npc = ELITE_IMP_SCENE.instance()
+			rand_npc.position = room.get_position()
+			add_child(rand_npc)
