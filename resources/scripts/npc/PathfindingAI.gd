@@ -19,6 +19,8 @@ export var detection_ray_count = 8
 
 export var look_ahead = 30
 
+
+
 # 70 - feels aggressive
 # 100 - feels safer
 var target_engagement_range = 50
@@ -58,6 +60,7 @@ func _ready() -> void:
 	dodge_cooldown_timer = Timer.new()
 	dodge_cooldown_timer.connect('timeout', self, 'dodge_cooldown_timeout')
 	add_child(dodge_cooldown_timer)
+	
 
 func dodge_timeout() -> void:
 	in_dodge = false
@@ -146,12 +149,41 @@ func getMoveSpeed() -> int:
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
-	setInterest()
-	setDanger()
-	chooseDirection()
+#	setInterest()
+#	setDanger()
+#	chooseDirection()
+	
+	# we lose detect target aggresion here
+	
+	# get an array of tilemap coordinates from the
+	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap):
+		
+		var navigation_points = calculate_point_path()
+#		print(navigation_points)
+#		var next_point_position = GameState.astar.get_point_position(navigation_points[1])
+#		get_parent().get_node("TileMap").get_cell(next_point_position.x, next_point_position.y)
+	else:
+		setInterest()
+		setDanger()
+		chooseDirection()
 	$InterestVector.look_at(to_global(velocity))
 	move_and_slide(velocity * getMoveSpeed())
 
 func _physics_process(_delta : float) -> void:
 	detectTarget()
 	runDecisionTree()
+
+
+# ASTAR PATHFINDING LOGIC # To be invoked when target actor is valid and not directly in line of sight
+func calculate_point_path() -> PoolVector2Array:
+	var current_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.world_to_map(get_position()))
+#	print("current_location_in_tilemap: ", current_location_in_tilemap)
+	var target_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.world_to_map(target_actor.get_position()))
+	print("target_location_in_tilemap: ", target_location_in_tilemap)
+	return GameState.astar.get_point_path(current_location_in_tilemap, target_location_in_tilemap)
+
+
+
+
+
+

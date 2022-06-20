@@ -3,7 +3,7 @@ extends Node2D
 var Room = preload("res://Room.tscn")
 var PLAYER_SCENE = preload("res://resources/actors/player/Player.tscn")
 var font = preload("res://assets/RobotoBold120.tres")
-onready var Map = $TileMap
+onready var Map: TileMap = $TileMap
 
 # npc scenes
 const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
@@ -29,6 +29,7 @@ var ready_for_player = false
 var room_positions = []
 
 func _ready():
+	GameState.tilemap = $TileMap
 	randomize()
 	make_rooms()
 
@@ -175,10 +176,33 @@ func make_map():
 			Map.set_cell(floor_cell.x, floor_cell.y + 1, 1)
 		if Map.get_cell(floor_cell.x, floor_cell.y - 1) == -1:
 			Map.set_cell(floor_cell.x, floor_cell.y - 1, 1)
-			
+	
+	buildAStarNavigation()
+	connectAstarNavPoints()
+	
 	# iterate over the rooms and add npcs to each
 	add_npcs()
 	ready_for_player = true
+
+func buildAStarNavigation() -> void:
+	var used_cells = $TileMap.get_used_cells_by_id(0)
+	for cell in used_cells:
+		GameState.astar.add_point(cellId(cell), cell)
+
+func connectAstarNavPoints() -> void:
+	var used_cells = $TileMap.get_used_cells_by_id(0)
+	for cell in used_cells:
+		# RIGHT, LEFT, DOWN, UP
+		var neighbors = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
+		for neighbor in neighbors:
+			var next_cell = cell + neighbor
+			if used_cells.has(next_cell):
+				GameState.astar.connect_points(cellId(cell), cellId(next_cell), false)
+
+func cellId(point) -> int:
+	var a = point.x
+	var b = point.y
+	return (a + b) * (a + b + 1) / 2 + b
 
 func carve_path(pos1, pos2):
 	# Carve a path between two points
@@ -232,25 +256,28 @@ func find_end_room():
 func add_npcs() -> void:
 	for room in $Rooms.get_children():
 		if room == start_room:
-			continue
-		spawnNpcs(room.get_position())
+			spawnNpcs(room.get_position())
+		continue
 
 func spawnNpcs(spawn_origin) -> void:
-	for i in 3:
-		var random_npc = rand_range(0, 1)
-		var rand_npc
-		spawn_origin.x += i * 15
-		if random_npc < 0.33:
-			rand_npc = FIREBALL_IMP_SCENE.instance()
-			rand_npc.position = spawn_origin
-			add_child(rand_npc)
-		elif random_npc < 0.66:
-			rand_npc = SWIPE_IMP_SCENE.instance()
-			rand_npc.position = spawn_origin
-			add_child(rand_npc)
-		else:
-			rand_npc = ELITE_IMP_SCENE.instance()
-			rand_npc.position = spawn_origin
-			add_child(rand_npc)
+	var rand_npc = SWIPE_IMP_SCENE.instance()
+	rand_npc.position = spawn_origin
+	add_child(rand_npc)
+#	for i in 3:
+#		var random_npc = rand_range(0, 1)
+#		var rand_npc
+#		spawn_origin.x += i * 15
+#		if random_npc < 0.33:
+#			rand_npc = FIREBALL_IMP_SCENE.instance()
+#			rand_npc.position = spawn_origin
+#			add_child(rand_npc)
+#		elif random_npc < 0.66:
+#			rand_npc = SWIPE_IMP_SCENE.instance()
+#			rand_npc.position = spawn_origin
+#			add_child(rand_npc)
+#		else:
+#			rand_npc = ELITE_IMP_SCENE.instance()
+#			rand_npc.position = spawn_origin
+#			add_child(rand_npc)
 
 
