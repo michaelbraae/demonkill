@@ -12,9 +12,9 @@ const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/Elite
 
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
-var min_size = 10  # minimum room size (in tiles) - 6 
-var max_size = 15  # maximum room size (in tiles) - 16
-var hspread = 50  # horizontal spread (in pixels) - 400
+var min_size = 8  # minimum room size (in tiles) - 6 
+var max_size = 12  # maximum room size (in tiles) - 16
+var hspread = 80  # horizontal spread (in pixels) - 400
 var cull = 0.20  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
