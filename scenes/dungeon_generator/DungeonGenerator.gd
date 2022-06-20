@@ -233,21 +233,24 @@ func add_npcs() -> void:
 	for room in $Rooms.get_children():
 		if room == start_room:
 			continue
+		spawnNpcs(room.get_position())
+
+func spawnNpcs(spawn_origin) -> void:
+	for i in 3:
 		var random_npc = rand_range(0, 1)
 		var rand_npc
+		spawn_origin.x += i * 15
 		if random_npc < 0.33:
 			rand_npc = FIREBALL_IMP_SCENE.instance()
-			rand_npc.position = room.get_position()
+			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		elif random_npc < 0.66:
 			rand_npc = SWIPE_IMP_SCENE.instance()
-			rand_npc.position = room.get_position()
+			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		else:
 			rand_npc = ELITE_IMP_SCENE.instance()
-			rand_npc.position = room.get_position()
+			rand_npc.position = spawn_origin
 			add_child(rand_npc)
-
-
 
 
