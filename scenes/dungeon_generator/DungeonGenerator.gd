@@ -11,16 +11,16 @@ const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp
 const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
-var num_rooms = 30  # number of rooms to generate - 50
-var min_size = 6  # minimum room size (in tiles) - 6 
-var max_size = 10  # maximum room size (in tiles) - 16
+var num_rooms = 15  # number of rooms to generate - 50
+var min_size = 10  # minimum room size (in tiles) - 6 
+var max_size = 15  # maximum room size (in tiles) - 16
 var hspread = 50  # horizontal spread (in pixels) - 400
-var cull = 0.4  # chance to cull room - 0.35
+var cull = 0.20  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
 var end_room = null
-var play_mode = false  
+var play_mode = false
 var player = null
 
 var ready_for_tilemap = false
@@ -77,7 +77,8 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
 		if play_mode:
-			player.queue_free()
+			if is_instance_valid(player):
+				player.queue_free()
 			$Camera2D.make_current()
 			play_mode = false
 		for n in $Rooms.get_children():
@@ -96,7 +97,8 @@ func _input(event):
 		add_child(player)
 		GameState.state = GameState.CONTROLLING_PLAYER
 		GameState.player = player
-		player.position = start_room.position
+		if is_instance_valid(start_room):
+			player.position = start_room.position
 		play_mode = true
 
 func find_mst(nodes):
