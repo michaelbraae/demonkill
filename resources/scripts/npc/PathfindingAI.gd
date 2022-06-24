@@ -19,8 +19,6 @@ export var detection_ray_count = 8
 
 export var look_ahead = 30
 
-
-
 # 70 - feels aggressive
 # 100 - feels safer
 var target_engagement_range = 50
@@ -47,6 +45,20 @@ var move_speed = 120
 # The AI's current target
 var target_actor
 
+
+# every few seconds, if the AI is still trying to chase the player
+# and the player is visible
+# add the players location to the last_know_position variable
+# path find towards the last known position until the position is reached
+
+# only overwrite the LNP if the player is visible at that moment
+# otherwise continue towards to previously set last known position
+
+
+# when the AI sees the player add the player location to this var
+# if the  reaches the 
+var target_last_known_position
+
 func _ready() -> void:
 	interest.resize(detection_ray_count)
 	danger.resize(detection_ray_count)
@@ -61,6 +73,9 @@ func _ready() -> void:
 	dodge_cooldown_timer.connect('timeout', self, 'dodge_cooldown_timeout')
 	add_child(dodge_cooldown_timer)
 	
+	navigation_reset_timer = Timer.new()
+	navigation_reset_timer.connect('timeout', self, 'navigation_reset_timer')
+	add_child(navigation_reset_timer)
 
 func dodge_timeout() -> void:
 	in_dodge = false
@@ -68,6 +83,9 @@ func dodge_timeout() -> void:
 
 func dodge_cooldown_timeout() -> void:
 	dodge_cooldown_timer.stop()
+
+func navigation_reset_timer() -> void:
+	pass
 
 func detectTarget() -> void:
 	var detectionOverlaps = detectionArea.get_overlapping_areas()
@@ -147,21 +165,17 @@ func getMoveSpeed() -> int:
 		return move_speed * 2
 	return move_speed
 
+var path_line: Line2D = Line2D.new()
+var navigation_reset_timer: Timer
+
 func runDecisionTree() -> void:
 	state = NAVIGATING
-#	setInterest()
-#	setDanger()
-#	chooseDirection()
-	
 	# we lose detect target aggresion here
-	
 	# get an array of tilemap coordinates from the
 	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap):
-		
 		var navigation_points = calculate_point_path()
-#		print(navigation_points)
-#		var next_point_position = GameState.astar.get_point_position(navigation_points[1])
-#		get_parent().get_node("TileMap").get_cell(next_point_position.x, next_point_position.y)
+		var angle_to_navigation_point = get_angle_to(navigation_points[0])
+		velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
 	else:
 		setInterest()
 		setDanger()
@@ -173,17 +187,12 @@ func _physics_process(_delta : float) -> void:
 	detectTarget()
 	runDecisionTree()
 
-
 # ASTAR PATHFINDING LOGIC # To be invoked when target actor is valid and not directly in line of sight
 func calculate_point_path() -> PoolVector2Array:
-	var current_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.world_to_map(get_position()))
+#	var current_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.map_to_world(get_position()))
+	var current_location_in_tilemap = GameState.astar.get_closest_point(get_position())
 #	print("current_location_in_tilemap: ", current_location_in_tilemap)
-	var target_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.world_to_map(target_actor.get_position()))
-	print("target_location_in_tilemap: ", target_location_in_tilemap)
+	var target_location_in_tilemap = GameState.astar.get_closest_point(target_actor.get_position())
+#	var target_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.map_to_world(target_actor.get_position()))
+#	print("target_location_in_tilemap: ", target_location_in_tilemap)
 	return GameState.astar.get_point_path(current_location_in_tilemap, target_location_in_tilemap)
-
-
-
-
-
-

@@ -178,18 +178,33 @@ func make_map():
 			Map.set_cell(floor_cell.x, floor_cell.y - 1, 1)
 	
 	buildAStarNavigation()
-	connectAstarNavPoints()
+	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
 	add_npcs()
 	ready_for_player = true
 
+var cell_coords = []
+
 func buildAStarNavigation() -> void:
 	var used_cells = $TileMap.get_used_cells_by_id(0)
+	var count = 0
 	for cell in used_cells:
-		GameState.astar.add_point(cellId(cell), cell)
+		var new_cell_coord = {
+			"id": count,
+			"cell": cell
+		}
+		cell_coords.push_back(new_cell_coord)
+		count += 1
+		GameState.astar.add_point(new_cell_coord["id"], $TileMap.map_to_world(new_cell_coord["cell"]))
 
-func connectAstarNavPoints() -> void:
+func findCellFromCoordinates(cell) -> Dictionary:
+	for tile_cell in cell_coords:
+		if cell == tile_cell["cell"]:
+			return tile_cell
+	return {}
+
+func connectAStarNavPoints() -> void:
 	var used_cells = $TileMap.get_used_cells_by_id(0)
 	for cell in used_cells:
 		# RIGHT, LEFT, DOWN, UP
@@ -197,12 +212,20 @@ func connectAstarNavPoints() -> void:
 		for neighbor in neighbors:
 			var next_cell = cell + neighbor
 			if used_cells.has(next_cell):
-				GameState.astar.connect_points(cellId(cell), cellId(next_cell), false)
+				GameState.astar.connect_points(
+					findCellFromCoordinates(cell)["id"],
+					findCellFromCoordinates(next_cell)["id"]
+				)
 
+# cantor id generation from vector coords
 func cellId(point) -> int:
 	var a = point.x
 	var b = point.y
-	return (a + b) * (a + b + 1) / 2 + b
+	var cantorised_int = (a + b) * (a + b + 1) * 2 + b
+#	if cantorised_int < 1:
+#		cantorised_int *= 1
+#	print("cantorised_int: ", cantorised_int)
+	return cantorised_int
 
 func carve_path(pos1, pos2):
 	# Carve a path between two points
