@@ -167,7 +167,7 @@ func getMoveSpeed() -> int:
 	return move_speed
 
 var navigation_reset_timer: Timer
-const navigation_reset: float = 3.0
+const navigation_reset: float = 1.0
 var navigation_path: PoolVector2Array = []
 
 # create a navigation path
@@ -175,25 +175,33 @@ var navigation_path: PoolVector2Array = []
 
 # if cam.position.distance_to(targetPos) < 4:
 
+func hasLineOfSight() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
+	if result and result['collider'] == target_actor:
+		return true
+	return false
+
 var next_position = Vector2(0, 0)
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
 	# we lose detect target aggresion here
 	# get an array of tilemap coordinates from the
-	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap):
+	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
 		if navigation_reset_timer.is_stopped() or !navigation_path:
-			print('reset path')
 			navigation_reset_timer.start(navigation_reset)
 			navigation_path = calculate_point_path()
 		if navigation_path.size() > 1:
-			next_position = navigation_path[1]
+			next_position = next_position.linear_interpolate(navigation_path[1], 0.8)
+			# instead of doing this, create a lerp between this point and the next 
 			if position.distance_to(navigation_path[1]) < 1:
-				print('cull first path point')
 				navigation_path.remove(0)
 		else:
 			navigation_path = calculate_point_path()
 		
+		# read the path coordinates as the center of the tile (tile_size = 16)
+		next_position + Vector2(next_position.x + 8, next_position.y + 8)
 		var angle_to_navigation_point = get_angle_to(next_position)
 		
 		velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))

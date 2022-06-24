@@ -280,7 +280,7 @@ func add_npcs() -> void:
 	for room in $Rooms.get_children():
 		if room == start_room:
 			spawnNpcs(room.get_position())
-		continue
+#		continue
 
 func spawnNpcs(spawn_origin) -> void:
 	var rand_npc = SWIPE_IMP_SCENE.instance()
