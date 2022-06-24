@@ -69,6 +69,7 @@ func _ready() -> void:
 	dodge_timer = Timer.new()
 	dodge_timer.connect('timeout', self, 'dodge_timeout')
 	add_child(dodge_timer)
+	
 	dodge_cooldown_timer = Timer.new()
 	dodge_cooldown_timer.connect('timeout', self, 'dodge_cooldown_timeout')
 	add_child(dodge_cooldown_timer)
@@ -85,7 +86,7 @@ func dodge_cooldown_timeout() -> void:
 	dodge_cooldown_timer.stop()
 
 func navigation_reset_timer() -> void:
-	pass
+	navigation_reset_timer.stop()
 
 func detectTarget() -> void:
 	var detectionOverlaps = detectionArea.get_overlapping_areas()
@@ -165,16 +166,36 @@ func getMoveSpeed() -> int:
 		return move_speed * 2
 	return move_speed
 
-var path_line: Line2D = Line2D.new()
 var navigation_reset_timer: Timer
+const navigation_reset: float = 3.0
+var navigation_path: PoolVector2Array = []
+
+# create a navigation path
+# while the timer is active consume points along the path
+
+# if cam.position.distance_to(targetPos) < 4:
+
+var next_position = Vector2(0, 0)
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
 	# we lose detect target aggresion here
 	# get an array of tilemap coordinates from the
 	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap):
-		var navigation_points = calculate_point_path()
-		var angle_to_navigation_point = get_angle_to(navigation_points[0])
+		if navigation_reset_timer.is_stopped() or !navigation_path:
+			print('reset path')
+			navigation_reset_timer.start(navigation_reset)
+			navigation_path = calculate_point_path()
+		if navigation_path.size() > 1:
+			next_position = navigation_path[1]
+			if position.distance_to(navigation_path[1]) < 1:
+				print('cull first path point')
+				navigation_path.remove(0)
+		else:
+			navigation_path = calculate_point_path()
+		
+		var angle_to_navigation_point = get_angle_to(next_position)
+		
 		velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
 	else:
 		setInterest()
