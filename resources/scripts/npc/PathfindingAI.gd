@@ -170,15 +170,6 @@ func getMoveSpeed() -> int:
 		return move_speed * 2
 	return move_speed
 
-var navigation_reset_timer: Timer
-const navigation_reset: float = 1.0
-var navigation_path: PoolVector2Array = []
-
-# create a navigation path
-# while the timer is active consume points along the path
-
-# if cam.position.distance_to(targetPos) < 4:
-
 func hasLineOfSight() -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
@@ -187,15 +178,21 @@ func hasLineOfSight() -> bool:
 	return false
 
 var spawn_position
+var max_wander_distance = 500
 
 func decideContinueChasingTarget() -> bool:
 	# if the target has line of sight then it's okay to continue
 	if hasLineOfSight():
 		return true
-	if get_position().distance_to(spawn_position) > 100:
+	if get_position().distance_to(spawn_position) > max_wander_distance:
 		print("returning home")
 		return false
 	return true
+
+
+var navigation_reset_timer: Timer
+const navigation_reset: float = 1.0
+var navigation_path: PoolVector2Array = []
 
 func navigateAlongPath(target_position) -> void:
 	if navigation_path.size() > 1:
