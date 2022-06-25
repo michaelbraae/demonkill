@@ -181,7 +181,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-	add_npcs()
+#	add_npcs()
+	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
@@ -276,31 +277,33 @@ func find_end_room():
 			end_room = room
 			max_x = room.position.x
 
+
+func add_test_npc() -> void:
+	var npc = SWIPE_IMP_SCENE.instance()
+	npc.set_position(start_room.get_position())
+	add_child(npc)
+
 func add_npcs() -> void:
 	for room in $Rooms.get_children():
-		if room == start_room:
+		if room != start_room:
 			spawnNpcs(room.get_position())
-#		continue
 
 func spawnNpcs(spawn_origin) -> void:
-	var rand_npc = SWIPE_IMP_SCENE.instance()
-	rand_npc.position = spawn_origin
-	add_child(rand_npc)
-#	for i in 3:
-#		var random_npc = rand_range(0, 1)
-#		var rand_npc
-#		spawn_origin.x += i * 15
-#		if random_npc < 0.33:
-#			rand_npc = FIREBALL_IMP_SCENE.instance()
-#			rand_npc.position = spawn_origin
-#			add_child(rand_npc)
-#		elif random_npc < 0.66:
-#			rand_npc = SWIPE_IMP_SCENE.instance()
-#			rand_npc.position = spawn_origin
-#			add_child(rand_npc)
-#		else:
-#			rand_npc = ELITE_IMP_SCENE.instance()
-#			rand_npc.position = spawn_origin
-#			add_child(rand_npc)
+	for i in 3:
+		var random_npc = rand_range(0, 1)
+		var rand_npc
+		spawn_origin.x += i * 15
+		if random_npc < 0.33:
+			rand_npc = FIREBALL_IMP_SCENE.instance()
+			rand_npc.position = spawn_origin
+			add_child(rand_npc)
+		elif random_npc < 0.66:
+			rand_npc = SWIPE_IMP_SCENE.instance()
+			rand_npc.position = spawn_origin
+			add_child(rand_npc)
+		else:
+			rand_npc = ELITE_IMP_SCENE.instance()
+			rand_npc.position = spawn_origin
+			add_child(rand_npc)
 
 

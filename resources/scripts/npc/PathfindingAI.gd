@@ -46,6 +46,9 @@ var move_speed = 120
 var target_actor
 
 
+
+
+
 # every few seconds, if the AI is still trying to chase the player
 # and the player is visible
 # add the players location to the last_know_position variable
@@ -57,9 +60,10 @@ var target_actor
 
 # when the AI sees the player add the player location to this var
 # if the  reaches the 
-var target_last_known_position
 
 func _ready() -> void:
+	spawn_position = get_position()
+	print("spawn_position: ", spawn_position)
 	interest.resize(detection_ray_count)
 	danger.resize(detection_ray_count)
 	ray_directions.resize(detection_ray_count)
@@ -182,46 +186,56 @@ func hasLineOfSight() -> bool:
 		return true
 	return false
 
-var next_position = Vector2(0, 0)
+var spawn_position
 
+func decideContinueChasingTarget() -> bool:
+	# if the target has line of sight then it's okay to continue
+	if hasLineOfSight():
+		return true
+	if get_position().distance_to(spawn_position) > 100:
+		print("returning home")
+		return false
+	return true
+
+func navigateAlongPath(target_position) -> void:
+	if navigation_path.size() > 1:
+		next_position = next_position.linear_interpolate(navigation_path[1], 0.8)
+		if position.distance_to(navigation_path[1]) < 1:
+			navigation_path.remove(0)
+	else:
+		navigation_path = calculate_point_path(target_position)
+	next_position + Vector2(next_position.x + 8, next_position.y + 8)
+	var angle_to_navigation_point = get_angle_to(next_position)
+	
+	velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
+
+var next_position = Vector2(0, 0)
 func runDecisionTree() -> void:
 	state = NAVIGATING
-	# we lose detect target aggresion here
-	# get an array of tilemap coordinates from the
-	if is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
+	if not decideContinueChasingTarget():
+		navigation_path = calculate_point_path(spawn_position)
+		navigateAlongPath(spawn_position)
+	elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
+		print("pathfinding")
 		if navigation_reset_timer.is_stopped() or !navigation_path:
 			navigation_reset_timer.start(navigation_reset)
-			navigation_path = calculate_point_path()
-		if navigation_path.size() > 1:
-			next_position = next_position.linear_interpolate(navigation_path[1], 0.8)
-			# instead of doing this, create a lerp between this point and the next 
-			if position.distance_to(navigation_path[1]) < 1:
-				navigation_path.remove(0)
-		else:
-			navigation_path = calculate_point_path()
+			navigation_path = calculate_point_path(target_actor.get_position())
+		navigateAlongPath(target_actor.get_position())
 		
 		# read the path coordinates as the center of the tile (tile_size = 16)
-		next_position + Vector2(next_position.x + 8, next_position.y + 8)
-		var angle_to_navigation_point = get_angle_to(next_position)
-		
-		velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
 	else:
+		print("setInterest")
 		setInterest()
 		setDanger()
 		chooseDirection()
 	$InterestVector.look_at(to_global(velocity))
 	move_and_slide(velocity * getMoveSpeed())
 
+func calculate_point_path(target_position) -> PoolVector2Array:
+	var current_location_in_tilemap = GameState.astar.get_closest_point(get_position())
+	var target_location_in_tilemap = GameState.astar.get_closest_point(target_position)
+	return GameState.astar.get_point_path(current_location_in_tilemap, target_location_in_tilemap)
+
 func _physics_process(_delta : float) -> void:
 	detectTarget()
 	runDecisionTree()
-
-# ASTAR PATHFINDING LOGIC # To be invoked when target actor is valid and not directly in line of sight
-func calculate_point_path() -> PoolVector2Array:
-#	var current_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.map_to_world(get_position()))
-	var current_location_in_tilemap = GameState.astar.get_closest_point(get_position())
-#	print("current_location_in_tilemap: ", current_location_in_tilemap)
-	var target_location_in_tilemap = GameState.astar.get_closest_point(target_actor.get_position())
-#	var target_location_in_tilemap = GameState.astar.get_closest_point(GameState.tilemap.map_to_world(target_actor.get_position()))
-#	print("target_location_in_tilemap: ", target_location_in_tilemap)
-	return GameState.astar.get_point_path(current_location_in_tilemap, target_location_in_tilemap)
