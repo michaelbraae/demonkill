@@ -61,9 +61,12 @@ var target_actor
 # when the AI sees the player add the player location to this var
 # if the  reaches the 
 
+var nav_line: Line2D = Line2D.new()
+
+
 func _ready() -> void:
+	get_parent().add_child(nav_line)
 	spawn_position = get_position()
-	print("spawn_position: ", spawn_position)
 	interest.resize(detection_ray_count)
 	danger.resize(detection_ray_count)
 	ray_directions.resize(detection_ray_count)
@@ -160,7 +163,6 @@ func chooseDirection():
 		# Orbit the target if in engagement range
 		detectTargetAggression()
 		chosen_direction = chosen_direction.rotated(1.5)
-	# detectTargetAggression() has resulted in need for dodge
 	if in_dodge:
 		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()
@@ -178,21 +180,23 @@ func hasLineOfSight() -> bool:
 	return false
 
 var spawn_position
-var max_wander_distance = 500
+var max_wander_distance = 400
 
 func decideContinueChasingTarget() -> bool:
+	return true
 	# if the target has line of sight then it's okay to continue
 	if hasLineOfSight():
 		return true
 	if get_position().distance_to(spawn_position) > max_wander_distance:
-		print("returning home")
 		return false
 	return true
-
 
 var navigation_reset_timer: Timer
 const navigation_reset: float = 1.0
 var navigation_path: PoolVector2Array = []
+var next_position = Vector2.ZERO
+
+
 
 func navigateAlongPath(target_position) -> void:
 	if navigation_path.size() > 1:
@@ -201,27 +205,28 @@ func navigateAlongPath(target_position) -> void:
 			navigation_path.remove(0)
 	else:
 		navigation_path = calculate_point_path(target_position)
-	next_position + Vector2(next_position.x + 8, next_position.y + 8)
+	
+	nav_line.clear_points()
+	for nav_location in navigation_path:
+		nav_line.add_point(Vector2(nav_location.x, nav_location.y))
+	# draw a line here to show the intention of the AI
+	next_position = Vector2(next_position.x + 0.5, next_position.y + 0.5)
 	var angle_to_navigation_point = get_angle_to(next_position)
 	
 	velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
 
-var next_position = Vector2(0, 0)
 func runDecisionTree() -> void:
 	state = NAVIGATING
 	if not decideContinueChasingTarget():
 		navigation_path = calculate_point_path(spawn_position)
 		navigateAlongPath(spawn_position)
 	elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
-		print("pathfinding")
 		if navigation_reset_timer.is_stopped() or !navigation_path:
 			navigation_reset_timer.start(navigation_reset)
 			navigation_path = calculate_point_path(target_actor.get_position())
 		navigateAlongPath(target_actor.get_position())
-		
 		# read the path coordinates as the center of the tile (tile_size = 16)
 	else:
-		print("setInterest")
 		setInterest()
 		setDanger()
 		chooseDirection()

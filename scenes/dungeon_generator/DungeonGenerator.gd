@@ -181,8 +181,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-	add_npcs()
-#	add_test_npc()
+#	add_npcs()
+	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
