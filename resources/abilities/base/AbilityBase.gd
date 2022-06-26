@@ -22,16 +22,10 @@ func _ready() -> void:
 	initialiseConfig()
 
 func setCollideWithEnemies() -> void:
-#	$Area2D.set_collision_mask(3)
 	$Area2D.set_collision_mask_bit(2, true)
-	for i in range(10):
-		print(i, '\t', $Area2D.get_collision_mask_bit(i))
 
 func setCollideWithPlayer() -> void:
 	$Area2D.set_collision_mask_bit(1, true)
-#	$Area2D.set_collision_mask(1)
-	for i in range(10):
-		print(i, '\t', $Area2D.get_collision_mask_bit(i))
 
 func initialiseConfig() -> void:
 	pass
