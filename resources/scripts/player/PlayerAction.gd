@@ -22,12 +22,14 @@ func sprint_timeout() -> void:
 	sprint = true
 
 func noWeaponMelee() -> void:
+	print('no weapon melee')
 	var attack_instance
 	if next_spell:
 		attack_instance = next_spell["scene"].instance()
 		next_spell = {}
 	else:
 		attack_instance = SWIPE_SCENE.instance()
+		attack_instance.source_actor = self
 	add_child(attack_instance)
 	attack_instance.bang(getAttackDirection(), self)
 

@@ -6,7 +6,7 @@ var previous_weapon
 const max_mana: int = 5
 var mana: int = max_mana
 
-var max_health = 15
+var max_health = 100#15
 var health = max_health
 
 var coins = 0

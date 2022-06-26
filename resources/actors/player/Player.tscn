@@ -1013,7 +1013,7 @@ radius = 43.2871
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -0.0597687, 0.179295 )
-collision_layer = 3
+collision_layer = 2
 collision_mask = 3
 script = ExtResource( 17 )
 
@@ -1038,6 +1038,8 @@ drag_margin_bottom = 0.1
 
 [node name="HitBox" type="Area2D" parent="."]
 visible = false
+collision_layer = 3
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0.494781, -0.593735 )

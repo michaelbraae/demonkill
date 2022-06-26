@@ -19,21 +19,19 @@ var damage = 1
 var target_actor
 
 func _ready() -> void:
-	if source_actor == GameState.player:
-		print("setCollideWithEnemies")
-		setCollideWithEnemies()
-	else:
-		print("setCollideWithPlayer")
-		setCollideWithPlayer()
 	initialiseConfig()
 
 func setCollideWithEnemies() -> void:
-	set_collision_mask(4)
-	set_collision_layer(4)
+#	$Area2D.set_collision_mask(3)
+	$Area2D.set_collision_mask_bit(2, true)
+	for i in range(10):
+		print(i, '\t', $Area2D.get_collision_mask_bit(i))
 
 func setCollideWithPlayer() -> void:
-	set_collision_mask(2)
-	set_collision_layer(2)
+	$Area2D.set_collision_mask_bit(1, true)
+#	$Area2D.set_collision_mask(1)
+	for i in range(10):
+		print(i, '\t', $Area2D.get_collision_mask_bit(i))
 
 func initialiseConfig() -> void:
 	pass
@@ -75,6 +73,12 @@ func collisionEffect(_target_actor) -> void:
 
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source
+	if source_actor == GameState.player or source_actor.isPossessed():
+		print("setCollideWithEnemies")
+		setCollideWithEnemies()
+	else:
+		print("setCollideWithPlayer")
+		setCollideWithPlayer()
 	vector = attack_direction
 	look_at(to_global(vector))
 	animatedSprite.play()

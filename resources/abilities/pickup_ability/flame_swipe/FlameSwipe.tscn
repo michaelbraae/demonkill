@@ -29,6 +29,8 @@ animations = [ {
 
 [node name="FlameSwipe" type="KinematicBody2D"]
 rotation = 1.5708
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -39,6 +41,8 @@ animation = "anim"
 speed_scale = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( -0.0437088, 0.00661577 )
