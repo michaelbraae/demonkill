@@ -20,6 +20,10 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 18, 25 )
+
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 22, 29 )
@@ -36,10 +40,6 @@ region = Rect2( 44, 0, 22, 29 )
 atlas = ExtResource( 9 )
 region = Rect2( 66, 0, 22, 29 )
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 17 )
-region = Rect2( 0, 0, 18, 25 )
-
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
@@ -52,29 +52,9 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "stunned",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "with_axe",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "pre_attack",
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
@@ -82,9 +62,29 @@ animations = [ {
 "name": "attack_loop",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "with_axe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "stunned",
 "speed": 5.0
 } ]
 
@@ -103,6 +103,7 @@ radius = 154.201
 
 [node name="FireballImp" type="KinematicBody2D"]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -116,7 +117,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 

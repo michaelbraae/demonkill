@@ -48,29 +48,9 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "stunned",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "post_attack",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "with_axe",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "pre_attack",
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
@@ -78,9 +58,29 @@ animations = [ {
 "name": "attack_loop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "with_axe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "post_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "stunned",
 "speed": 5.0
 } ]
 
@@ -98,7 +98,8 @@ radius = 24.2581
 radius = 154.201
 
 [node name="EliteImp" type="KinematicBody2D"]
-collision_layer = 0
+collision_layer = 4
+collision_mask = 5
 script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
