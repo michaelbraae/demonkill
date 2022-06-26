@@ -168,13 +168,6 @@ func isTargetTooClose() -> bool:
 			return true
 	return false
 
-func hasLineOfSight() -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
-	if result and result['collider'] == target_actor:
-		return true
-	return false
-
 func getAnimation() -> String:
 	if state == POSSESSION_RECOVERY:
 		return "stunned"
@@ -281,7 +274,6 @@ func possessedDecisionLogic() -> void:
 		outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 		outline_shader.flip_h = animatedSprite.flip_h
 		outline_shader.self_modulate = animatedSprite.self_modulate
-#		outline_shader.material.set_shader_param("outline_color", Color(1,1,1,1))
 		outline_shader.scale = animatedSprite.scale
 	if state == POSSESSION_TARGETING:
 		pass
@@ -315,7 +307,6 @@ func runDecisionTree() -> void:
 	if state == POSSESSION_RECOVERY:
 		pass
 	elif isPossessed():
-		
 		possessedDecisionLogic()
 	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
 		if knocked_back:

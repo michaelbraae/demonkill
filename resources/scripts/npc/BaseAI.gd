@@ -84,9 +84,13 @@ func handlePostAnimState() -> void:
 	pass
 
 func setPossessionCollisions() -> void:
-	set_collision_mask(2)
-	set_collision_layer(2)
+	set_collision_layer_bit(1, true)
+	set_collision_layer_bit(2, false)
+	$HitBox.set_collision_layer_bit(1, true)
+	$HitBox.set_collision_layer_bit(2, false)
 
 func setEnemyCollision() -> void:
-	set_collision_mask(4)
-	set_collision_layer(4)
+	set_collision_layer_bit(1, false)
+	set_collision_layer_bit(2, true)
+	$HitBox.set_collision_layer_bit(1, false)
+	$HitBox.set_collision_layer_bit(2, true)

@@ -19,21 +19,13 @@ var damage = 1
 var target_actor
 
 func _ready() -> void:
-	if source_actor == GameState.player:
-		print("setCollideWithEnemies")
-		setCollideWithEnemies()
-	else:
-		print("setCollideWithPlayer")
-		setCollideWithPlayer()
 	initialiseConfig()
 
 func setCollideWithEnemies() -> void:
-	set_collision_mask(4)
-	set_collision_layer(4)
+	$Area2D.set_collision_mask_bit(2, true)
 
 func setCollideWithPlayer() -> void:
-	set_collision_mask(2)
-	set_collision_layer(2)
+	$Area2D.set_collision_mask_bit(1, true)
 
 func initialiseConfig() -> void:
 	pass
@@ -51,6 +43,7 @@ func damageOverlappingAreas() -> void:
 			and area.get_name() == 'HitBox'
 			and not damaged_actors.has(area_parent.get_instance_id())
 			and ensureTarget(area_parent)
+			# check the current frames of the animation sprite are in the damage frames
 		):
 			damaged_actors.push_front(area_parent.get_instance_id())
 			FeedbackHandler.shakeCamera()
@@ -74,6 +67,10 @@ func collisionEffect(_target_actor) -> void:
 
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source
+	if source_actor == GameState.player or source_actor.isPossessed():
+		setCollideWithEnemies()
+	else:
+		setCollideWithPlayer()
 	vector = attack_direction
 	look_at(to_global(vector))
 	animatedSprite.play()

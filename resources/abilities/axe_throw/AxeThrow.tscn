@@ -33,16 +33,20 @@ radius = 7.66395
 height = 4.62888
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "anim"
-frame = 1
+frame = 3
 speed_scale = 2.0
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 6 )

@@ -13,6 +13,9 @@ var player_ui
 
 var developer_tool_state: Array = []
 
+var tilemap: TileMap
+var astar: AStar2D = AStar2D.new()
+
 enum {
 	MAIN_MENU,
 	PAUSE_MENU,

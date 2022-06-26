@@ -3,7 +3,7 @@ extends Node2D
 var Room = preload("res://Room.tscn")
 var PLAYER_SCENE = preload("res://resources/actors/player/Player.tscn")
 var font = preload("res://assets/RobotoBold120.tres")
-onready var Map = $TileMap
+onready var Map: TileMap = $TileMap
 
 # npc scenes
 const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
@@ -14,8 +14,9 @@ var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
 var min_size = 8  # minimum room size (in tiles) - 6 
 var max_size = 12  # maximum room size (in tiles) - 16
-var hspread = 80  # horizontal spread (in pixels) - 400
-var cull = 0.20  # chance to cull room - 0.35
+var hspread = 400  # horizontal spread (in pixels) - 400
+var vspread = 400
+var cull = 0.35  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
@@ -29,12 +30,14 @@ var ready_for_player = false
 var room_positions = []
 
 func _ready():
+	GameState.tilemap = $TileMap
 	randomize()
 	make_rooms()
 
 func make_rooms():
 	for i in range(num_rooms):
-		var pos = Vector2(rand_range(-hspread, hspread), 0)
+#		var pos = Vector2(rand_range(-hspread, hspread), 0)
+		var pos = Vector2(rand_range(-hspread, hspread), rand_range(-vspread, vspread))
 		var r = Room.instance()
 		var w = min_size + randi() % (max_size - min_size)
 		var h = min_size + randi() % (max_size - min_size)
@@ -175,10 +178,48 @@ func make_map():
 			Map.set_cell(floor_cell.x, floor_cell.y + 1, 1)
 		if Map.get_cell(floor_cell.x, floor_cell.y - 1) == -1:
 			Map.set_cell(floor_cell.x, floor_cell.y - 1, 1)
-			
+	
+	buildAStarNavigation()
+	connectAStarNavPoints()
+	
 	# iterate over the rooms and add npcs to each
 	add_npcs()
+#	add_test_npc()
 	ready_for_player = true
+
+var cell_coords = []
+
+func buildAStarNavigation() -> void:
+	var used_cells = $TileMap.get_used_cells_by_id(0)
+	var count = 0
+	for cell in used_cells:
+		var new_cell_coord = {
+			"id": count,
+			"cell": cell
+		}
+		cell_coords.push_back(new_cell_coord)
+		count += 1
+		
+		GameState.astar.add_point(new_cell_coord["id"], $TileMap.map_to_world(new_cell_coord["cell"]))
+
+func findCellFromCoordinates(cell) -> Dictionary:
+	for tile_cell in cell_coords:
+		if cell == tile_cell["cell"]:
+			return tile_cell
+	return {}
+
+func connectAStarNavPoints() -> void:
+	var used_cells = $TileMap.get_used_cells_by_id(0)
+	for cell in used_cells:
+		# RIGHT, LEFT, DOWN, UP
+		var neighbors = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
+		for neighbor in neighbors:
+			var next_cell = cell + neighbor
+			if used_cells.has(next_cell):
+				GameState.astar.connect_points(
+					findCellFromCoordinates(cell)["id"],
+					findCellFromCoordinates(next_cell)["id"]
+				)
 
 func carve_path(pos1, pos2):
 	# Carve a path between two points
@@ -229,11 +270,16 @@ func find_end_room():
 			end_room = room
 			max_x = room.position.x
 
+
+func add_test_npc() -> void:
+	var npc = SWIPE_IMP_SCENE.instance()
+	npc.set_position(start_room.get_position())
+	add_child(npc)
+
 func add_npcs() -> void:
 	for room in $Rooms.get_children():
-		if room == start_room:
-			continue
-		spawnNpcs(room.get_position())
+		if room != start_room:
+			spawnNpcs(room.get_position())
 
 func spawnNpcs(spawn_origin) -> void:
 	for i in 3:
