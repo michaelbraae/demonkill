@@ -14,8 +14,9 @@ var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
 var min_size = 8  # minimum room size (in tiles) - 6 
 var max_size = 12  # maximum room size (in tiles) - 16
-var hspread = 80  # horizontal spread (in pixels) - 400
-var cull = 0.20  # chance to cull room - 0.35
+var hspread = 400  # horizontal spread (in pixels) - 400
+var vspread = 400
+var cull = 0.35  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
@@ -35,7 +36,8 @@ func _ready():
 
 func make_rooms():
 	for i in range(num_rooms):
-		var pos = Vector2(rand_range(-hspread, hspread), 0)
+#		var pos = Vector2(rand_range(-hspread, hspread), 0)
+		var pos = Vector2(rand_range(-hspread, hspread), rand_range(-vspread, vspread))
 		var r = Room.instance()
 		var w = min_size + randi() % (max_size - min_size)
 		var h = min_size + randi() % (max_size - min_size)
@@ -181,8 +183,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-#	add_npcs()
-	add_test_npc()
+	add_npcs()
+#	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
@@ -197,6 +199,7 @@ func buildAStarNavigation() -> void:
 		}
 		cell_coords.push_back(new_cell_coord)
 		count += 1
+		
 		GameState.astar.add_point(new_cell_coord["id"], $TileMap.map_to_world(new_cell_coord["cell"]))
 
 func findCellFromCoordinates(cell) -> Dictionary:
@@ -217,16 +220,6 @@ func connectAStarNavPoints() -> void:
 					findCellFromCoordinates(cell)["id"],
 					findCellFromCoordinates(next_cell)["id"]
 				)
-
-# cantor id generation from vector coords
-func cellId(point) -> int:
-	var a = point.x
-	var b = point.y
-	var cantorised_int = (a + b) * (a + b + 1) * 2 + b
-#	if cantorised_int < 1:
-#		cantorised_int *= 1
-#	print("cantorised_int: ", cantorised_int)
-	return cantorised_int
 
 func carve_path(pos1, pos2):
 	# Carve a path between two points

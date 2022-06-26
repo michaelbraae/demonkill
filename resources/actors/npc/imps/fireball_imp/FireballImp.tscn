@@ -103,10 +103,11 @@ radius = 154.201
 
 [node name="FireballImp" type="KinematicBody2D"]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+scale = Vector2( 0.720331, 0.720331 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -116,7 +117,7 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 2
+frame = 3
 speed_scale = 2.0
 playing = true
 

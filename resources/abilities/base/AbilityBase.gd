@@ -51,6 +51,7 @@ func damageOverlappingAreas() -> void:
 			and area.get_name() == 'HitBox'
 			and not damaged_actors.has(area_parent.get_instance_id())
 			and ensureTarget(area_parent)
+			# check the current frames of the animation sprite are in the damage frames
 		):
 			damaged_actors.push_front(area_parent.get_instance_id())
 			FeedbackHandler.shakeCamera()

@@ -62,9 +62,12 @@ var target_actor
 # if the  reaches the 
 
 var nav_line: Line2D = Line2D.new()
+var nav_line_2: Line2D = Line2D.new()
 
 
 func _ready() -> void:
+	nav_line_2.set_default_color(Color(1, 0.9, 1, 1))
+	get_parent().add_child(nav_line_2)
 	get_parent().add_child(nav_line)
 	spawn_position = get_position()
 	interest.resize(detection_ray_count)
@@ -183,7 +186,6 @@ var spawn_position
 var max_wander_distance = 400
 
 func decideContinueChasingTarget() -> bool:
-	return true
 	# if the target has line of sight then it's okay to continue
 	if hasLineOfSight():
 		return true
@@ -196,21 +198,24 @@ const navigation_reset: float = 1.0
 var navigation_path: PoolVector2Array = []
 var next_position = Vector2.ZERO
 
-
-
 func navigateAlongPath(target_position) -> void:
 	if navigation_path.size() > 1:
 		next_position = next_position.linear_interpolate(navigation_path[1], 0.8)
 		if position.distance_to(navigation_path[1]) < 1:
 			navigation_path.remove(0)
 	else:
+		# reset the navigation path if the length is very short
 		navigation_path = calculate_point_path(target_position)
 	
-	nav_line.clear_points()
-	for nav_location in navigation_path:
-		nav_line.add_point(Vector2(nav_location.x, nav_location.y))
 	# draw a line here to show the intention of the AI
-	next_position = Vector2(next_position.x + 0.5, next_position.y + 0.5)
+	nav_line.clear_points()
+	nav_line_2.clear_points()
+	for nav_location in navigation_path:
+#		nav_line.add_point(Vector2(nav_location.x, nav_location.y))
+#		nav_line_2.add_point(Vector2(nav_location.x + 8, nav_location.y + 8))
+		pass
+	
+#	next_position = Vector2(next_position.x + 8, next_position.y + 8)
 	var angle_to_navigation_point = get_angle_to(next_position)
 	
 	velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))

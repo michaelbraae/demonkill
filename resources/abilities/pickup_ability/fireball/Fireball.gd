@@ -9,10 +9,14 @@ var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteIm
 func setCollideWithEnemies() -> void:
 	set_collision_mask(4)
 	set_collision_layer(4)
+#	set_collision_layer_bit(0, true)
+	set_collision_mask_bit(0, true)
 
 func setCollideWithPlayer() -> void:
 	set_collision_mask(2)
 	set_collision_layer(2)
+#	set_collision_layer_bit(0, true)
+	set_collision_mask_bit(0, true)
 
 func _physics_process(delta):
 	var collision = move_and_collide(target_vector * projectile_speed * delta)
