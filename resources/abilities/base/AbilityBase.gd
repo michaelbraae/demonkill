@@ -68,10 +68,8 @@ func collisionEffect(_target_actor) -> void:
 func bang(attack_direction : Vector2, source) -> void:
 	source_actor = source
 	if source_actor == GameState.player or source_actor.isPossessed():
-		print("setCollideWithEnemies")
 		setCollideWithEnemies()
 	else:
-		print("setCollideWithPlayer")
 		setCollideWithPlayer()
 	vector = attack_direction
 	look_at(to_global(vector))
