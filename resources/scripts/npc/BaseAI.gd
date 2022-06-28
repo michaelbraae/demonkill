@@ -2,8 +2,6 @@ extends CharacterBase
 
 class_name BaseAI
 
-var state
-
 onready var animatedSprite = $AnimatedSprite
 onready var camera2D = $Camera2D
 
@@ -13,11 +11,15 @@ func isPossessed() -> bool:
 func nodeIsPossessed(node_arg : KinematicBody2D) -> bool:
 	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.current_possession == node_arg
 
-# STATES:
+func _unhandled_input(event):
+	if event.is_action_pressed("freeze"):
+		animatedSprite.self_modulate = COLOR.FREEZE
+		# modulate the sprite.
+		state = FROZEN
+
+# ENEMY SPECIFIC STATES:
 enum {
-	IDLE,
 	WANDERING,
-	NAVIGATING,
 	DASH,
 	FOLLOWING_PLAYER,
 	PRE_ATTACK,
@@ -31,7 +33,7 @@ enum {
 	DEAD,
 	POSSESSED,
 	POSSESSION_TARGETING,
-	POSSESSION_RECOVERY
+	POSSESSION_RECOVERY,
 }
 
 func getStateString() -> String:

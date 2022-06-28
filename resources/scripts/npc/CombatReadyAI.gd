@@ -56,7 +56,6 @@ func addHealth(health_add: int) -> void:
 		health = max_health
 	else:
 		health += health_add
-	
 
 func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health

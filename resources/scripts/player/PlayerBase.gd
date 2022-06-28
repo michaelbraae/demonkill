@@ -9,13 +9,9 @@ onready var possession_hitbox = $PossessionHitBox
 
 const IS_PLAYER = true
 
-var state
-
 var flashTimer: Timer
 
 enum {
-	IDLE,
-	NAVIGATING,
 	ATTACK_WARMUP,
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,

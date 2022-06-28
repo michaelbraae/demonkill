@@ -10,6 +10,7 @@ const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp
 const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
 const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
 const FREEZE_IMP_SCENE = preload("res://resources/actors/npc/imps/freeze_imp/FreezeImp.tscn")
+const BASE_IMP_SCENE = preload("res://resources/actors/npc/imps/base_imp/BaseImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
@@ -274,7 +275,7 @@ func find_end_room():
 			max_x = room.position.x
 
 func add_test_npc() -> void:
-	var npc = FREEZE_IMP_SCENE.instance()
+	var npc = BASE_IMP_SCENE.instance()
 	npc.set_position(start_room.get_position())
 	add_child(npc)
 
