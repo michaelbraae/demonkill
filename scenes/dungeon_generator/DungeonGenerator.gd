@@ -9,6 +9,7 @@ onready var Map: TileMap = $TileMap
 const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
 const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
 const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
+const FREEZE_IMP_SCENE = preload("res://resources/actors/npc/imps/freeze_imp/FreezeImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
@@ -36,7 +37,6 @@ func _ready():
 
 func make_rooms():
 	for i in range(num_rooms):
-#		var pos = Vector2(rand_range(-hspread, hspread), 0)
 		var pos = Vector2(rand_range(-hspread, hspread), rand_range(-vspread, vspread))
 		var r = Room.instance()
 		var w = min_size + randi() % (max_size - min_size)
@@ -47,6 +47,10 @@ func make_rooms():
 	yield(get_tree().create_timer(1.1), 'timeout')
 	# cull rooms
 	for room in $Rooms.get_children():
+#		var overlapping_rooms = room.getOverlappingRooms()
+#		if overlapping_rooms:
+#			for overlapping_room in overlapping_rooms:
+#				overlapping_room.queue_free()
 		if randf() < cull:
 			room.queue_free()
 		else:
@@ -270,9 +274,8 @@ func find_end_room():
 			end_room = room
 			max_x = room.position.x
 
-
 func add_test_npc() -> void:
-	var npc = SWIPE_IMP_SCENE.instance()
+	var npc = FREEZE_IMP_SCENE.instance()
 	npc.set_position(start_room.get_position())
 	add_child(npc)
 
@@ -295,8 +298,6 @@ func spawnNpcs(spawn_origin) -> void:
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		else:
-			rand_npc = ELITE_IMP_SCENE.instance()
+			rand_npc = FREEZE_IMP_SCENE.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
-
-

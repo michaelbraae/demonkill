@@ -227,6 +227,7 @@ func readyForPreAttack() -> bool:
 	)
 
 func handlePreAttack() -> void:
+	print('handlePreAttack')
 	attack_cooldown_timer.start(attack_cooldown)
 	attack_started = true
 	state = PRE_ATTACK
