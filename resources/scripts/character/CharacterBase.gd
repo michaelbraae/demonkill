@@ -16,7 +16,6 @@ var state
 # Elemental states
 enum {
 	IDLE,
-	NAVIGATING,
 	FROZEN
 }
 

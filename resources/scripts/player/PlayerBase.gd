@@ -12,6 +12,7 @@ const IS_PLAYER = true
 var flashTimer: Timer
 
 enum {
+	NAVIGATING,
 	ATTACK_WARMUP,
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,

@@ -19,6 +19,7 @@ func _unhandled_input(event):
 
 # ENEMY SPECIFIC STATES:
 enum {
+	NAVIGATING,
 	WANDERING,
 	DASH,
 	FOLLOWING_PLAYER,

@@ -66,9 +66,9 @@ var nav_line_2: Line2D = Line2D.new()
 
 
 func _ready() -> void:
-	nav_line_2.set_default_color(Color(1, 0.9, 1, 1))
-	get_parent().add_child(nav_line_2)
-	get_parent().add_child(nav_line)
+#	nav_line_2.set_default_color(Color(1, 0.9, 1, 1))
+#	get_parent().add_child(nav_line_2)
+#	get_parent().add_child(nav_line)
 	spawn_position = get_position()
 	interest.resize(detection_ray_count)
 	danger.resize(detection_ray_count)
