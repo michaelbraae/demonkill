@@ -187,8 +187,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-	add_npcs()
-#	add_test_npc()
+#	add_npcs()
+	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
@@ -203,7 +203,6 @@ func buildAStarNavigation() -> void:
 		}
 		cell_coords.push_back(new_cell_coord)
 		count += 1
-		
 		GameState.astar.add_point(new_cell_coord["id"], $TileMap.map_to_world(new_cell_coord["cell"]))
 
 func findCellFromCoordinates(cell) -> Dictionary:

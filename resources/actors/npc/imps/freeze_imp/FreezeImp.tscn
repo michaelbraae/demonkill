@@ -8,4 +8,4 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 self_modulate = Color( 0, 0.764706, 1, 1 )
-frame = 2
+frame = 0
