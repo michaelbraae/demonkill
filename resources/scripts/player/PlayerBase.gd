@@ -2,7 +2,6 @@ extends CharacterBase
 
 class_name PlayerBase
 
-onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
 onready var possession_hitbox = $PossessionHitBox
@@ -69,4 +68,5 @@ func damage(damage : int) -> void:
 	flash()
 	if PlayerState.health <= 0:
 		animatedSprite.material.set_shader_param("flash_modifier", 0)
+		# replace this with the on death logic when the time comes
 		LevelManager.goto_scene('res://scenes/levels/Town.tscn')

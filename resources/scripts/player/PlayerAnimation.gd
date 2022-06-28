@@ -119,7 +119,9 @@ func getAnimation() -> String:
 	return animation + facing_direction
 
 func _on_AnimatedSprite_animation_finished():
-	if state == POSSESSION_TARGETING:
+	if state == FROZEN:
+		pass
+	elif state == POSSESSION_TARGETING:
 		pass
 	elif [DASH_RECOVERY, ATTACK_RECOVERY, AXE_THROW].has(state):
 		state = IDLE

@@ -344,6 +344,8 @@ func runDecisionTree() -> void:
 
 func handlePostAnimState() -> void:
 	match state:
+		FROZEN:
+			pass
 		POSSESSION_RECOVERY:
 			state = IDLE
 			$CollisionShape2D.disabled = false

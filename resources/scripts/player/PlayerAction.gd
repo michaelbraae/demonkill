@@ -83,7 +83,9 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if Input.is_action_just_pressed('dash') and dash_available:
+	if state == FROZEN:
+		pass
+	elif Input.is_action_just_pressed('dash') and dash_available:
 		initiateDash()
 	elif state == DASH or state == POSSESSION_DASH:
 		continueDash()
