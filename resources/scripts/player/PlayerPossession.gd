@@ -20,7 +20,7 @@ func _process(_delta):
 			state = POSSESSION_TARGETING
 			Engine.time_scale = 0.3
 	elif Input.is_action_just_released("possess") and dash_available and possession_targeting_started:
-		initiateDash()
+		movement_ability()
 		possession_dash_vector = getAttackDirection()
 		state = POSSESSION_DASH
 		if is_instance_valid(possession_arrow_instance):

@@ -11,6 +11,7 @@ var speed = 300
 var speed_current = speed
 var decay
 
+# these functions are called by signals emitted by InputEmitter
 func basic_attack() -> void:
 	pass
 

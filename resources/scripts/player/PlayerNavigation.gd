@@ -44,14 +44,18 @@ func dash_cooldown_timeout() -> void:
 	dash_cooldown_timer.stop()
 	dash_available = true
 
+func movement_ability() -> void:
+	initiateDash()
+
 func initiateDash() -> void:
-	set_collision_layer_bit(1, false)
-	set_collision_mask_bit(1, false)
-	dash_available = false
-	state = DASH
-	dash_cooldown_timer.start(0.4)
-	dash_timer.start(0.15)
-	dash_vector = InputHandler.getMovementVector()
+	if dash_available:
+		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(1, false)
+		dash_available = false
+		state = DASH
+		dash_cooldown_timer.start(0.4)
+		dash_timer.start(0.15)
+		dash_vector = InputHandler.getMovementVector()
 
 func continueDash() -> void:
 	on_dash_continuous()

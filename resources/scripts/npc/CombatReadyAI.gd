@@ -403,7 +403,6 @@ func basicAttackAvailable() -> bool:
 	return true
 
 func basic_attack() -> void:
-	print('basic_attack -> CombatReadyAI')
 	if basicAttackAvailable() or state == POSSESSED:
 		state = ATTACKING
 		perAttackAction()
