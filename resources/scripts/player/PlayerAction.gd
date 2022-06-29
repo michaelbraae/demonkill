@@ -14,6 +14,7 @@ var sprint_timer: Timer
 
 func _ready() -> void:
 	sprint_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 	restartSprintTimer()
@@ -24,6 +25,7 @@ func sprint_timeout() -> void:
 func basic_attack() -> void:
 	if basicAttackAvailable():
 		if velocity:
+			# warning-ignore:narrowing_conversion
 			setFacingDirection(round(rad2deg(velocity.angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
@@ -94,7 +96,6 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-
 	if state == DASH or state == POSSESSION_DASH:
 		continueDash()
 	elif state == DASH_RECOVERY:
@@ -108,6 +109,7 @@ func handlePlayerAction() -> void:
 			and basicAttackAvailable()
 		):
 			if velocity:
+				# warning-ignore:narrowing_conversion
 				setFacingDirection(round(rad2deg(velocity.angle())))
 			attack_order = !attack_order
 			noWeaponMelee()

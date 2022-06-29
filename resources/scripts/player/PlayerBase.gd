@@ -49,13 +49,13 @@ func getStateString() -> String:
 	return state_string
 
 func _enter_tree() -> void:
-	print("Player enter_tree()")
 	PossessionState.connectToInputSignals(self)
 
 func _ready() -> void:
 	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)
+	# warning-ignore:return_value_discarded
 	flashTimer.connect('timeout', self, 'flash_timeout')
 	
 	InputHandler.current_actor = self

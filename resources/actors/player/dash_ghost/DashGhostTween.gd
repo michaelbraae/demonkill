@@ -1,6 +1,7 @@
 extends Sprite
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	$Tween.connect("tween_all_completed", self, "on_tween_completed")
 	$Tween.interpolate_property(
 		self,

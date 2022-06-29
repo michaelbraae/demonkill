@@ -13,10 +13,12 @@ var sprint: bool = false
 
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
 	add_child(dash_ghost_cooldown_timer)
 	
 	sprint_ghost_cooldown_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	sprint_ghost_cooldown_timer.connect("timeout", self, "sprint_ghost_timeout")
 	add_child(sprint_ghost_cooldown_timer)
 
@@ -113,6 +115,7 @@ func getAnimation() -> String:
 	elif ATTACK_STATES.has(state):
 		return getAttackAnimation()
 	elif velocity:
+		# warning-ignore:narrowing_conversion
 		return getAnimationFromAngleOfFocus(round(rad2deg(velocity.angle())))
 	else:
 		return animation + facing_direction + getAnimationWeaponModifier()

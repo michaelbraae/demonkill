@@ -68,7 +68,6 @@ func setHealth() -> void:
 		else:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
-			var cooldown_as_percentage = possession_duration_timer.get_time_left() / possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
 
 	if is_instance_valid(ability_cooldown_timer):
@@ -97,6 +96,7 @@ func _ready():
 
 	possession_duration_timer = Timer.new()
 	add_child(possession_duration_timer)
+	# warning-ignore:return_value_discarded
 	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
 
 func stun_duration_timeout() -> void:
