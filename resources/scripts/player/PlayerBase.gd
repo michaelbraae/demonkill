@@ -2,7 +2,6 @@ extends CharacterBase
 
 class_name PlayerBase
 
-onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
 onready var possession_hitbox = $PossessionHitBox

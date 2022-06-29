@@ -11,9 +11,7 @@ func ui_accept() -> void:
 		emit_signal("movement_ability")
 
 func action_1() -> void:
-	print('action_1')
 	if GameState.is_paused:
-		print('action_1 is paused')
 		pass
 	else:
 		emit_signal("basic_attack")

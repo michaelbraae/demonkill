@@ -71,14 +71,7 @@ func _unhandled_input(event) -> void:
 	
 
 func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-#		pause_mode = Node.PAUSE_MODE_PROCESS
-		pass	
-		# instantiate the pause menu UI
-		# create a reference to it in global scope
-		# pause the games operation
-		# the pause menu and the pause button should apply the same logic
-		# create an event listener and bind it to the pause button or the pause event
+
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 #	if Input.is_action_just_pressed("reload_town"):
