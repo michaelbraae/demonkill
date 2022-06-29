@@ -303,7 +303,7 @@ func possessedDecisionLogic() -> void:
 var has_outline: bool = false
 
 func runDecisionTree() -> void:
-	if state == POSSESSION_RECOVERY:
+	if [FROZEN, POSSESSION_RECOVERY].has(state):
 		pass
 	elif isPossessed():
 		possessedDecisionLogic()
@@ -376,11 +376,11 @@ func _process(_delta):
 	else:
 		if is_instance_valid(axeOutlineShader):
 			axeOutlineShader.queue_free()
-	$AnimatedSprite/LightOccluder2D.visible = true
-	animatedSprite.light_mask = 2
-	if state == STUNNED:
-		$AnimatedSprite/LightOccluder2D.visible = false
-		animatedSprite.light_mask = 1
+#	$AnimatedSprite/LightOccluder2D.visible = true
+#	animatedSprite.light_mask = 2
+#	if state == STUNNED:
+#		$AnimatedSprite/LightOccluder2D.visible = false
+#		animatedSprite.light_mask = 1
 
 func beforeDeath() -> void:
 	pass

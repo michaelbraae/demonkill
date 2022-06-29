@@ -28,7 +28,6 @@ var interest = []
 var danger = []
 
 var chosen_direction = Vector2.ZERO
-var velocity = Vector2.ZERO
 
 # dodge logic
 var dodge_timer
@@ -221,20 +220,23 @@ func navigateAlongPath(target_position) -> void:
 	velocity = Vector2(cos(angle_to_navigation_point), sin(angle_to_navigation_point))
 
 func runDecisionTree() -> void:
-	state = NAVIGATING
-	if not decideContinueChasingTarget():
-		navigation_path = calculate_point_path(spawn_position)
-		navigateAlongPath(spawn_position)
-	elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
-		if navigation_reset_timer.is_stopped() or !navigation_path:
-			navigation_reset_timer.start(navigation_reset)
-			navigation_path = calculate_point_path(target_actor.get_position())
-		navigateAlongPath(target_actor.get_position())
-		# read the path coordinates as the center of the tile (tile_size = 16)
+	if state == FROZEN:
+		pass
 	else:
-		setInterest()
-		setDanger()
-		chooseDirection()
+		state = NAVIGATING
+		if not decideContinueChasingTarget():
+			navigation_path = calculate_point_path(spawn_position)
+			navigateAlongPath(spawn_position)
+		elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
+			if navigation_reset_timer.is_stopped() or !navigation_path:
+				navigation_reset_timer.start(navigation_reset)
+				navigation_path = calculate_point_path(target_actor.get_position())
+			navigateAlongPath(target_actor.get_position())
+			# read the path coordinates as the center of the tile (tile_size = 16)
+		else:
+			setInterest()
+			setDanger()
+			chooseDirection()
 	$InterestVector.look_at(to_global(velocity))
 	move_and_slide(velocity * getMoveSpeed())
 

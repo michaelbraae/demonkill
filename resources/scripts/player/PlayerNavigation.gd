@@ -2,7 +2,6 @@ extends PlayerBase
 
 class_name PlayerNavigation
 
-var velocity = Vector2()
 
 const SPEED = 100
 var speed_actual
