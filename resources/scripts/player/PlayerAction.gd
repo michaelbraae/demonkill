@@ -21,6 +21,16 @@ func _ready() -> void:
 func sprint_timeout() -> void:
 	sprint = true
 
+func basic_attack() -> void:
+	if basicAttackAvailable():
+		if velocity:
+			setFacingDirection(round(rad2deg(velocity.angle())))
+		attack_order = !attack_order
+		state = ATTACK_WARMUP
+		var attack_instance = SWIPE_SCENE.instance()
+		add_child(attack_instance)
+		attack_instance.bang(getAttackDirection(), self)
+
 func noWeaponMelee() -> void:
 	var attack_instance
 	if next_spell:
@@ -68,6 +78,7 @@ func basicAttackAvailable() -> bool:
 func hasPlayerPerformedAction() -> bool:
 	if (
 		Input.is_action_just_pressed("melee_attack") ||
+		Input.is_action_just_pressed("basic_attack") ||
 		Input.is_action_just_pressed("use_ability") ||
 		Input.is_action_just_pressed("dash") ||
 		Input.is_action_just_pressed("possess")

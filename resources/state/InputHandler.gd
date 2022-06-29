@@ -61,6 +61,15 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("spell_slot_4"):
 		GameState.player.castSpell(3)
 
+func _unhandled_input(event) -> void:
+	if event.is_action_pressed("reload_town"):
+		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
+	if event.is_action_pressed("ui_accept"):
+		InputEmitter.ui_accept()
+	if event.is_action_pressed("action_1"):
+		InputEmitter.action_1()
+	
+
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
 #		pause_mode = Node.PAUSE_MODE_PROCESS
@@ -72,7 +81,7 @@ func _process(_delta):
 		# create an event listener and bind it to the pause button or the pause event
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	if Input.is_action_just_pressed("reload_town"):
-		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
+#	if Input.is_action_just_pressed("reload_town"):
+#		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
 	if Input.is_action_just_pressed("dev_tool"):
 		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")

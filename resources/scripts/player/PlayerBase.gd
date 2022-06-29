@@ -49,6 +49,10 @@ func getStateString() -> String:
 			state_string = "POSSESSION_DASH"
 	return state_string
 
+func _enter_tree() -> void:
+	print("Player enter_tree()")
+	PossessionState.connectToInputSignals(self)
+
 func _ready() -> void:
 	# white flash when taking damage
 	flashTimer = Timer.new()

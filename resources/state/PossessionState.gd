@@ -11,7 +11,7 @@ var possessedNPC
 var possession_duration = 5.0
 
 func getCurrentPossession():
-	if GameState.CONTROLLING_NPC and current_possession:
+	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
 	return GameState.player
 
@@ -72,6 +72,7 @@ func exitPossession(spawn_position) -> void:
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
+	rebindInputSignals(current_possession, new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
 	GameState.state = GameState.CONTROLLING_NPC
@@ -89,3 +90,16 @@ func possessEntity(new_possession) -> void:
 	new_possession.resetAbilityCooldown()
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
+
+func rebindInputSignals(prev_possession, new_possession) -> void:
+	connectToInputSignals(new_possession)
+	disconnectFromInputSignals(prev_possession)
+
+
+func connectToInputSignals(signal_target) -> void:
+	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
+	InputEmitter.connect("movement_ability", signal_target, "movement_ability")
+
+func disconnectFromInputSignals(signal_target) -> void:
+	InputEmitter.disconnect("basic_attack", signal_target, "basic_attack")
+	InputEmitter.disconnect("movement_ability", signal_target, "movement_ability")

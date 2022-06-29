@@ -392,3 +392,18 @@ func hitByAxe(damage) -> void:
 	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
+
+func basicAttackAvailable() -> bool:
+	if [
+		PRE_ATTACK,
+		ATTACKING,
+		POST_ATTACK
+	].has(state):
+		return false
+	return true
+
+func basic_attack() -> void:
+	print('basic_attack -> CombatReadyAI')
+	if basicAttackAvailable() or state == POSSESSED:
+		state = ATTACKING
+		perAttackAction()

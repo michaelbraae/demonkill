@@ -11,6 +11,12 @@ var speed = 300
 var speed_current = speed
 var decay
 
+func basic_attack() -> void:
+	pass
+
+func movement_ability() -> void:
+	pass
+
 func getKnockBackProcessVector() -> Vector2:
 	if speed_current < 10:
 		speed_current = speed
