@@ -279,24 +279,6 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	elif (
-		Input.is_action_just_pressed("melee_attack")
-		or Input.is_action_just_pressed("use_ability")
-		or state == ATTACKING
-	):
-		if not attack_started:
-			attack_started = true
-			if Input.is_action_just_pressed("melee_attack"):
-				perAttackAction()
-				state = ATTACKING
-			elif Input.is_action_just_pressed("use_ability"):
-				if not ability_on_cooldown:
-					ability_cooldown_timer.start(ability_cooldown)
-					ability_on_cooldown = true
-					useAbility()
-				else:
-					perAttackAction()
-				state = ATTACKING
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
@@ -406,3 +388,15 @@ func basic_attack() -> void:
 	if basicAttackAvailable() or state == POSSESSED:
 		state = ATTACKING
 		perAttackAction()
+
+func is_ability_available() -> bool:
+	return true
+
+func use_ability() -> void:
+	if is_ability_available() or state == POSSESSED:
+		if not ability_on_cooldown:
+			ability_cooldown_timer.start(ability_cooldown)
+			ability_on_cooldown = true
+			useAbility()
+		state = ATTACKING
+		print("cast spell")

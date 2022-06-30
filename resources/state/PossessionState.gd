@@ -8,7 +8,7 @@ var current_possession
 
 var possessedNPC
 
-var possession_duration = 5.0
+var possession_duration = 15.0
 
 func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
@@ -16,6 +16,11 @@ func getCurrentPossession():
 	return GameState.player
 
 func onPossessionExit() -> void:
+	
+#	rebindInputSignals(current_possession, )
+	
+	# give the player back the axe if they possessed the enemy with axe
+	# could be moved to an "possessed" signal that emits when the player or an NPC is possessed
 	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
 	if is_instance_valid(GameState.npc_with_axe) && current_possession == GameState.npc_with_axe:
 		GameState.player.has_axe = true

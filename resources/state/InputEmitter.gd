@@ -2,7 +2,7 @@ extends Node
 
 signal ui_accept
 
-
+# docs say use past tense to name signals :hmmm:
 signal movement_ability
 signal basic_attack
 signal use_ability

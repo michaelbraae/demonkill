@@ -4,8 +4,6 @@ class_name CharacterBase
 
 onready var animatedSprite = $AnimatedSprite
 
-# this script handles the knockback functionality and other things 
-
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector
@@ -21,6 +19,9 @@ func basic_attack() -> void:
 	pass
 
 func movement_ability() -> void:
+	pass
+
+func use_ability() -> void:
 	pass
 
 func getKnockBackProcessVector() -> Vector2:
