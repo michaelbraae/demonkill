@@ -68,6 +68,8 @@ func _unhandled_input(event) -> void:
 		InputEmitter.ui_accept()
 	if event.is_action_pressed("action_1"):
 		InputEmitter.action_1()
+	if event.is_action_pressed("action_2"):
+		InputEmitter.action_2()
 	
 
 func _process(_delta):

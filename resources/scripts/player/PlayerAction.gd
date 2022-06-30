@@ -33,21 +33,17 @@ func basic_attack() -> void:
 		add_child(attack_instance)
 		attack_instance.bang(getAttackDirection(), self)
 
-func noWeaponMelee() -> void:
-	var attack_instance
-	if next_spell:
-		attack_instance = next_spell["scene"].instance()
-		next_spell = {}
+func use_ability() -> void:
+	if has_axe:
+		throwAxe()
 	else:
-		attack_instance = SWIPE_SCENE.instance()
-	add_child(attack_instance)
-	attack_instance.bang(getAttackDirection(), self)
+		recallAxe()
 
 func throwAxe() -> void:
 	if PlayerState.mana >= 1:
 		has_axe = false
 		PlayerState.useMana(2)
-		state = AXE_THROW
+		state = ABILITY_CAST
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)
 		axe_recall_available = false
@@ -79,9 +75,8 @@ func basicAttackAvailable() -> bool:
 
 func hasPlayerPerformedAction() -> bool:
 	if (
-		Input.is_action_just_pressed("melee_attack") ||
-		Input.is_action_just_pressed("basic_attack") ||
-		Input.is_action_just_pressed("use_ability") ||
+		Input.is_action_just_pressed("action_1") ||
+		Input.is_action_just_pressed("action_2") ||
 		Input.is_action_just_pressed("dash") ||
 		Input.is_action_just_pressed("possess")
 	):
@@ -100,25 +95,15 @@ func handlePlayerAction() -> void:
 		continueDash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
-	elif state == AXE_THROW:
+	elif state == ABILITY_CAST:
 		pass
 	else:
 		setVelocity()
-		if (
-			Input.is_action_just_pressed("melee_attack")
-			and basicAttackAvailable()
-		):
-			if velocity:
-				# warning-ignore:narrowing_conversion
-				setFacingDirection(round(rad2deg(velocity.angle())))
-			attack_order = !attack_order
-			noWeaponMelee()
-			state = ATTACK_WARMUP
-		if Input.is_action_just_pressed("use_ability"):
-			if has_axe:
-				throwAxe()
-			else:
-				recallAxe()
+#		if Input.is_action_just_pressed("use_ability"):
+#			if has_axe:
+#				throwAxe()
+#			else:
+#				recallAxe()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
 		restartSprintTimer()

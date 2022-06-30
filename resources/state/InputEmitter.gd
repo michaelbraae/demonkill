@@ -1,8 +1,11 @@
 extends Node
 
 signal ui_accept
-signal basic_attack
+
+
 signal movement_ability
+signal basic_attack
+signal use_ability
 
 func ui_accept() -> void:
 	if GameState.is_paused:
@@ -15,3 +18,9 @@ func action_1() -> void:
 		pass
 	else:
 		emit_signal("basic_attack")
+
+func action_2() -> void:
+	if GameState.is_paused:
+		pass
+	else:
+		emit_signal("use_ability")
