@@ -375,7 +375,7 @@ func hitByAxe(damage) -> void:
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
 
-func basicAttackAvailable() -> bool:
+func basic_attack_available() -> bool:
 	if [
 		PRE_ATTACK,
 		ATTACKING,
@@ -385,18 +385,17 @@ func basicAttackAvailable() -> bool:
 	return true
 
 func basic_attack() -> void:
-	if basicAttackAvailable() or state == POSSESSED:
+	if basic_attack_available():
 		state = ATTACKING
 		perAttackAction()
 
-func is_ability_available() -> bool:
+func ability_available() -> bool:
 	return true
 
 func use_ability() -> void:
-	if is_ability_available() or state == POSSESSED:
+	if ability_available():
 		if not ability_on_cooldown:
+			state = ATTACKING
 			ability_cooldown_timer.start(ability_cooldown)
 			ability_on_cooldown = true
 			useAbility()
-		state = ATTACKING
-		print("cast spell")

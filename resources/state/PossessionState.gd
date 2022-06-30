@@ -15,10 +15,7 @@ func getCurrentPossession():
 		return current_possession
 	return GameState.player
 
-func onPossessionExit() -> void:
-	
-#	rebindInputSignals(current_possession, )
-	
+func onPossessionExit() -> void:	
 	# give the player back the axe if they possessed the enemy with axe
 	# could be moved to an "possessed" signal that emits when the player or an NPC is possessed
 	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
@@ -28,7 +25,6 @@ func onPossessionExit() -> void:
 
 func handlePossessionDeath(spawn_position) -> void:
 	FeedbackHandler.warp()
-	current_possession.queue_free()
 	
 	# intantiate the player scene and add to scene
 	GameState.state = GameState.CONTROLLING_PLAYER
@@ -37,6 +33,8 @@ func handlePossessionDeath(spawn_position) -> void:
 	GameState.player = player_instance
 	current_scene.add_child(player_instance)
 	
+	current_possession.queue_free()
+	rebindInputSignals(current_possession, player_instance)
 	# assign the player as the current_actor
 	InputHandler.current_actor = player_instance
 	FeedbackHandler.current_camera = player_instance.camera2D
@@ -65,7 +63,9 @@ func exitPossession(spawn_position) -> void:
 	player_instance.initiateDash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
+	
 	onPossessionExit()
+	rebindInputSignals(current_possession, player_instance)
 	
 	# assign the player as the current_actor
 	InputHandler.current_actor = player_instance
@@ -77,7 +77,8 @@ func exitPossession(spawn_position) -> void:
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
-	rebindInputSignals(current_possession, new_possession)
+	print("possessEntity")
+	rebindInputSignals(getCurrentPossession(), new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
 	GameState.state = GameState.CONTROLLING_NPC
@@ -97,15 +98,17 @@ func possessEntity(new_possession) -> void:
 	new_possession.onPossess(possession_duration)
 
 func rebindInputSignals(prev_possession, new_possession) -> void:
-	connectToInputSignals(new_possession)
 	disconnectFromInputSignals(prev_possession)
+	connectToInputSignals(new_possession)
 
 func connectToInputSignals(signal_target) -> void:
+	print("connect to: ", signal_target.get_name())
 	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
 	InputEmitter.connect("movement_ability", signal_target, "movement_ability")
 	InputEmitter.connect("use_ability", signal_target, "use_ability")
 
 func disconnectFromInputSignals(signal_target) -> void:
+	print("Disconnect from: ", signal_target.get_name())
 	InputEmitter.disconnect("basic_attack", signal_target, "basic_attack")
 	InputEmitter.disconnect("movement_ability", signal_target, "movement_ability")
 	InputEmitter.disconnect("use_ability", signal_target, "use_ability")

@@ -23,7 +23,7 @@ func sprint_timeout() -> void:
 	sprint = true
 
 func basic_attack() -> void:
-	if basicAttackAvailable():
+	if basic_attack_available():
 		if velocity:
 			# warning-ignore:narrowing_conversion
 			setFacingDirection(round(rad2deg(velocity.angle())))
@@ -63,7 +63,7 @@ func recallAxe() -> void:
 		GameState.axe_instance.returnToPlayer(GameState.npc_with_axe)
 		GameState.npc_with_axe = null
 
-func basicAttackAvailable() -> bool:
+func basic_attack_available() -> bool:
 	if [
 		DASH,
 		DASH_RECOVERY,
