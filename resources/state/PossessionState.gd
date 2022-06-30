@@ -102,13 +102,11 @@ func rebindInputSignals(prev_possession, new_possession) -> void:
 	connectToInputSignals(new_possession)
 
 func connectToInputSignals(signal_target) -> void:
-	print("connect to: ", signal_target.get_name())
 	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
 	InputEmitter.connect("movement_ability", signal_target, "movement_ability")
 	InputEmitter.connect("use_ability", signal_target, "use_ability")
 
 func disconnectFromInputSignals(signal_target) -> void:
-	print("Disconnect from: ", signal_target.get_name())
 	InputEmitter.disconnect("basic_attack", signal_target, "basic_attack")
 	InputEmitter.disconnect("movement_ability", signal_target, "movement_ability")
 	InputEmitter.disconnect("use_ability", signal_target, "use_ability")

@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.gd"
 }, {
-"base": "PlayerSpell",
+"base": "PlayerPossession",
 "class": "Player",
 "language": "GDScript",
 "path": "res://resources/actors/player/Player.gd"
@@ -93,11 +93,6 @@ _global_script_classes=[ {
 "class": "PlayerPossession",
 "language": "GDScript",
 "path": "res://resources/scripts/player/PlayerPossession.gd"
-}, {
-"base": "PlayerPossession",
-"class": "PlayerSpell",
-"language": "GDScript",
-"path": "res://resources/scripts/player/PlayerSpell.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerWeapon",
@@ -142,7 +137,6 @@ _global_script_class_icons={
 "PlayerBase": "",
 "PlayerNavigation": "",
 "PlayerPossession": "",
-"PlayerSpell": "",
 "PlayerWeapon": "",
 "PossessableAI": "",
 "ProjectileBase": "",
