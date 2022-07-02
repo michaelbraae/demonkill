@@ -59,5 +59,10 @@ func _unhandled_input(event) -> void:
 		InputEmitter.action_1()
 	if event.is_action_pressed("action_2"):
 		InputEmitter.action_2()
+	if event.is_action("action_3"):
+		if event.is_pressed():
+			InputEmitter.action_3_pressed()
+		else:
+			InputEmitter.action_3_released()
 	if event.is_action_pressed("dev_tool"):
 		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")

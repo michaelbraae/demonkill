@@ -24,6 +24,12 @@ func movement_ability() -> void:
 func use_ability() -> void:
 	pass
 
+func possession_cast_begun() -> void:
+	pass
+
+func possession_cast_ended() -> void:
+	pass
+
 func getKnockBackProcessVector() -> Vector2:
 	if speed_current < 10:
 		speed_current = speed
