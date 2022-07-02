@@ -77,7 +77,6 @@ func exitPossession(spawn_position) -> void:
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
-	print("possessEntity")
 	rebindInputSignals(getCurrentPossession(), new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
