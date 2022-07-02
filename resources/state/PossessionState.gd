@@ -13,7 +13,6 @@ var possession_duration = 15.0
 func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
-	return GameState.player
 
 func onPossessionExit() -> void:	
 	# give the player back the axe if they possessed the enemy with axe
@@ -34,7 +33,8 @@ func handlePossessionDeath(spawn_position) -> void:
 	current_scene.add_child(player_instance)
 	
 	current_possession.queue_free()
-	rebindInputSignals(current_possession, player_instance)
+	disconnectFromInputSignals(current_possession)
+	
 	# assign the player as the current_actor
 	InputHandler.current_actor = player_instance
 	FeedbackHandler.current_camera = player_instance.camera2D
@@ -65,7 +65,7 @@ func exitPossession(spawn_position) -> void:
 	player_instance.possession_targets_to_ignore = [current_possession]
 	
 	onPossessionExit()
-	rebindInputSignals(current_possession, player_instance)
+	disconnectFromInputSignals(current_possession)
 	
 	# assign the player as the current_actor
 	InputHandler.current_actor = player_instance
@@ -77,7 +77,7 @@ func exitPossession(spawn_position) -> void:
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
-	rebindInputSignals(getCurrentPossession(), new_possession)
+	connectToInputSignals(new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
 	GameState.state = GameState.CONTROLLING_NPC
@@ -95,10 +95,6 @@ func possessEntity(new_possession) -> void:
 	new_possession.resetAbilityCooldown()
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
-
-func rebindInputSignals(prev_possession, new_possession) -> void:
-	disconnectFromInputSignals(prev_possession)
-	connectToInputSignals(new_possession)
 
 func connectToInputSignals(signal_target) -> void:
 	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
