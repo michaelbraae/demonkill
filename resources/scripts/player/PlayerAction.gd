@@ -77,7 +77,7 @@ func hasPlayerPerformedAction() -> bool:
 	if (
 		Input.is_action_just_pressed("action_1") ||
 		Input.is_action_just_pressed("action_2") ||
-		Input.is_action_just_pressed("dash") ||
+		Input.is_action_just_pressed("action_3") ||
 		Input.is_action_just_pressed("possess")
 	):
 		return true
@@ -99,11 +99,6 @@ func handlePlayerAction() -> void:
 		pass
 	else:
 		setVelocity()
-#		if Input.is_action_just_pressed("use_ability"):
-#			if has_axe:
-#				throwAxe()
-#			else:
-#				recallAxe()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
 		restartSprintTimer()
