@@ -279,6 +279,8 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
+	elif state == ATTACKING:
+		pass
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
