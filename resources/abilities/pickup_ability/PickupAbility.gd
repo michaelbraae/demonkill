@@ -3,6 +3,7 @@ extends Node
 class_name PickupAbility
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	$Area2D.connect('area_entered', self, 'on_area_entered')
 
 func getPickupSpellConfig() -> Dictionary:

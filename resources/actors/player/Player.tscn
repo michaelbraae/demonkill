@@ -1057,5 +1057,3 @@ texture = ExtResource( 29 )
 texture_scale = 0.5
 color = Color( 1, 1, 1, 0.588235 )
 shadow_enabled = true
-
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

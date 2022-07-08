@@ -13,10 +13,12 @@ var sprint: bool = false
 
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
 	add_child(dash_ghost_cooldown_timer)
 	
 	sprint_ghost_cooldown_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	sprint_ghost_cooldown_timer.connect("timeout", self, "sprint_ghost_timeout")
 	add_child(sprint_ghost_cooldown_timer)
 
@@ -104,7 +106,7 @@ func getAnimation() -> String:
 	var animation = 'idle_'
 	if state == POSSESSION_TARGETING:
 		return getAttackAnimation()
-	if state == AXE_THROW:
+	if state == ABILITY_CAST:
 		return 'axe_throw_' + facing_direction
 	if state == DASH:
 		animation = 'dash_'
@@ -113,6 +115,7 @@ func getAnimation() -> String:
 	elif ATTACK_STATES.has(state):
 		return getAttackAnimation()
 	elif velocity:
+		# warning-ignore:narrowing_conversion
 		return getAnimationFromAngleOfFocus(round(rad2deg(velocity.angle())))
 	else:
 		return animation + facing_direction + getAnimationWeaponModifier()
@@ -121,7 +124,7 @@ func getAnimation() -> String:
 func _on_AnimatedSprite_animation_finished():
 	if state == POSSESSION_TARGETING:
 		pass
-	elif [DASH_RECOVERY, ATTACK_RECOVERY, AXE_THROW].has(state):
+	elif [DASH_RECOVERY, ATTACK_RECOVERY, ABILITY_CAST].has(state):
 		state = IDLE
 		animatedSprite.play(str('idle_', facing_direction))
 	elif state == ATTACK_WARMUP:

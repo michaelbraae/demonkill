@@ -4,6 +4,8 @@ var state = MAIN_MENU
 
 onready var PlayerUI = load('res://scenes/ui/player_ui/PlayerUI.tscn').instance()
 
+var is_paused: bool = false
+
 var axe_instance
 
 var npc_with_axe

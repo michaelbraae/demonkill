@@ -66,9 +66,9 @@ var nav_line_2: Line2D = Line2D.new()
 
 
 func _ready() -> void:
-	nav_line_2.set_default_color(Color(1, 0.9, 1, 1))
-	get_parent().add_child(nav_line_2)
-	get_parent().add_child(nav_line)
+#	nav_line_2.set_default_color(Color(1, 0.9, 1, 1))
+##	get_parent().add_child(nav_line_2)
+#	get_parent().add_child(nav_line)
 	spawn_position = get_position()
 	interest.resize(detection_ray_count)
 	danger.resize(detection_ray_count)
@@ -85,7 +85,8 @@ func _ready() -> void:
 	add_child(dodge_cooldown_timer)
 	
 	navigation_reset_timer = Timer.new()
-	navigation_reset_timer.connect('timeout', self, 'navigation_reset_timer')
+	# warning-ignore:return_value_discarded
+	navigation_reset_timer.connect('timeout', self, 'navigation_reset_timeout')
 	add_child(navigation_reset_timer)
 
 func dodge_timeout() -> void:
@@ -95,7 +96,7 @@ func dodge_timeout() -> void:
 func dodge_cooldown_timeout() -> void:
 	dodge_cooldown_timer.stop()
 
-func navigation_reset_timer() -> void:
+func navigation_reset_timeout() -> void:
 	navigation_reset_timer.stop()
 
 func detectTarget() -> void:
@@ -148,7 +149,6 @@ func detectTargetAggression() -> void:
 					dodge_timer.start(0.3)
 
 func chooseDirection():
-	var wr = weakref(target_actor)
 	# Eliminate interest in slots with danger
 	for i in detection_ray_count:
 		if danger[i] > 0.0:
@@ -208,8 +208,8 @@ func navigateAlongPath(target_position) -> void:
 		navigation_path = calculate_point_path(target_position)
 	
 	# draw a line here to show the intention of the AI
-	nav_line.clear_points()
-	nav_line_2.clear_points()
+#	nav_line.clear_points()
+#	nav_line_2.clear_points()
 	for nav_location in navigation_path:
 #		nav_line.add_point(Vector2(nav_location.x, nav_location.y))
 #		nav_line_2.add_point(Vector2(nav_location.x + 8, nav_location.y + 8))
@@ -236,6 +236,7 @@ func runDecisionTree() -> void:
 		setDanger()
 		chooseDirection()
 	$InterestVector.look_at(to_global(velocity))
+	# warning-ignore:return_value_discarded
 	move_and_slide(velocity * getMoveSpeed())
 
 func calculate_point_path(target_position) -> PoolVector2Array:

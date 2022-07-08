@@ -2,7 +2,6 @@ extends CharacterBase
 
 class_name PlayerBase
 
-onready var animatedSprite = $AnimatedSprite
 onready var collisionShape = $CollisionShape2D
 onready var camera2D = $Camera2D
 onready var possession_hitbox = $PossessionHitBox
@@ -20,7 +19,8 @@ enum {
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,
 	ATTACKING,
-	AXE_THROW,
+#	AXE_THROW,
+	ABILITY_CAST,
 	AXE_RECALL,
 	DASH,
 	DASH_RECOVERY,
@@ -49,10 +49,14 @@ func getStateString() -> String:
 			state_string = "POSSESSION_DASH"
 	return state_string
 
+func _enter_tree() -> void:
+	PossessionState.connectToInputSignals(self)
+
 func _ready() -> void:
 	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)
+	# warning-ignore:return_value_discarded
 	flashTimer.connect('timeout', self, 'flash_timeout')
 	
 	InputHandler.current_actor = self

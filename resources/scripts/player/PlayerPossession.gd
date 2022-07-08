@@ -10,17 +10,18 @@ var possession_arrow_instance
 var possession_targeting_started: bool = false
 var possession_targets_to_ignore: Array = []
 
-func _process(_delta):
-	if Input.is_action_just_pressed("possess") and dash_available and PlayerState.mana >= 1:
-		possession_targets_to_ignore = []
-		if not possession_targeting_started:
-			possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()
-			add_child(possession_arrow_instance)
-			possession_targeting_started = true
-			state = POSSESSION_TARGETING
-			Engine.time_scale = 0.3
-	elif Input.is_action_just_released("possess") and dash_available and possession_targeting_started:
-		initiateDash()
+func possession_cast_begun() -> void:
+	possession_targets_to_ignore = []
+	if not possession_targeting_started and dash_available and PlayerState.mana >= 1:
+		possession_arrow_instance = POSSESSION_ARROW_SCENE.instance()
+		add_child(possession_arrow_instance)
+		possession_targeting_started = true
+		state = POSSESSION_TARGETING
+		Engine.time_scale = 0.3
+
+func possession_cast_ended() -> void:
+	if dash_available and possession_targeting_started:
+		movement_ability()
 		possession_dash_vector = getAttackDirection()
 		state = POSSESSION_DASH
 		if is_instance_valid(possession_arrow_instance):

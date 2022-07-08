@@ -68,7 +68,6 @@ func setHealth() -> void:
 		else:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
-			var cooldown_as_percentage = possession_duration_timer.get_time_left() / possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
 
 	if is_instance_valid(ability_cooldown_timer):
@@ -97,6 +96,7 @@ func _ready():
 
 	possession_duration_timer = Timer.new()
 	add_child(possession_duration_timer)
+	# warning-ignore:return_value_discarded
 	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
 
 func stun_duration_timeout() -> void:
@@ -279,24 +279,8 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	elif (
-		Input.is_action_just_pressed("melee_attack")
-		or Input.is_action_just_pressed("use_ability")
-		or state == ATTACKING
-	):
-		if not attack_started:
-			attack_started = true
-			if Input.is_action_just_pressed("melee_attack"):
-				perAttackAction()
-				state = ATTACKING
-			elif Input.is_action_just_pressed("use_ability"):
-				if not ability_on_cooldown:
-					ability_cooldown_timer.start(ability_cooldown)
-					ability_on_cooldown = true
-					useAbility()
-				else:
-					perAttackAction()
-				state = ATTACKING
+	elif state == ATTACKING:
+		pass
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
@@ -392,3 +376,28 @@ func hitByAxe(damage) -> void:
 	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
+
+func basic_attack_available() -> bool:
+	if [
+		PRE_ATTACK,
+		ATTACKING,
+		POST_ATTACK
+	].has(state):
+		return false
+	return true
+
+func basic_attack() -> void:
+	if basic_attack_available():
+		state = ATTACKING
+		perAttackAction()
+
+func ability_available() -> bool:
+	return true
+
+func use_ability() -> void:
+	if ability_available():
+		if not ability_on_cooldown:
+			state = ATTACKING
+			ability_cooldown_timer.start(ability_cooldown)
+			ability_on_cooldown = true
+			useAbility()

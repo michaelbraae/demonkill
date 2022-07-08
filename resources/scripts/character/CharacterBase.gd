@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name CharacterBase
 
-# this script handles the knockback functionality and other things 
+onready var animatedSprite = $AnimatedSprite
 
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
@@ -10,6 +10,25 @@ var knockback_vector
 var speed = 300
 var speed_current = speed
 var decay
+
+func _ready() -> void:
+	animatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
+
+# these functions are called by signals emitted by InputEmitter
+func basic_attack() -> void:
+	pass
+
+func movement_ability() -> void:
+	pass
+
+func use_ability() -> void:
+	pass
+
+func possession_cast_begun() -> void:
+	pass
+
+func possession_cast_ended() -> void:
+	pass
 
 func getKnockBackProcessVector() -> Vector2:
 	if speed_current < 10:

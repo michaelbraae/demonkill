@@ -14,6 +14,7 @@ var sprint_timer: Timer
 
 func _ready() -> void:
 	sprint_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 	restartSprintTimer()
@@ -21,21 +22,28 @@ func _ready() -> void:
 func sprint_timeout() -> void:
 	sprint = true
 
-func noWeaponMelee() -> void:
-	var attack_instance
-	if next_spell:
-		attack_instance = next_spell["scene"].instance()
-		next_spell = {}
+func basic_attack() -> void:
+	if basic_attack_available():
+		if velocity:
+			# warning-ignore:narrowing_conversion
+			setFacingDirection(round(rad2deg(velocity.angle())))
+		attack_order = !attack_order
+		state = ATTACK_WARMUP
+		var attack_instance = SWIPE_SCENE.instance()
+		add_child(attack_instance)
+		attack_instance.bang(getAttackDirection(), self)
+
+func use_ability() -> void:
+	if has_axe:
+		throwAxe()
 	else:
-		attack_instance = SWIPE_SCENE.instance()
-	add_child(attack_instance)
-	attack_instance.bang(getAttackDirection(), self)
+		recallAxe()
 
 func throwAxe() -> void:
 	if PlayerState.mana >= 1:
 		has_axe = false
 		PlayerState.useMana(2)
-		state = AXE_THROW
+		state = ABILITY_CAST
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)
 		axe_recall_available = false
@@ -55,7 +63,7 @@ func recallAxe() -> void:
 		GameState.axe_instance.returnToPlayer(GameState.npc_with_axe)
 		GameState.npc_with_axe = null
 
-func basicAttackAvailable() -> bool:
+func basic_attack_available() -> bool:
 	if [
 		DASH,
 		DASH_RECOVERY,
@@ -67,9 +75,10 @@ func basicAttackAvailable() -> bool:
 
 func hasPlayerPerformedAction() -> bool:
 	if (
-		Input.is_action_just_pressed("melee_attack") ||
-		Input.is_action_just_pressed("use_ability") ||
-		Input.is_action_just_pressed("dash") ||
+		Input.is_action_just_pressed("action_1") ||
+		Input.is_action_just_pressed("action_2") ||
+		Input.is_action_just_pressed("action_3") ||
+		Input.is_action_just_pressed("ui_accept") ||
 		Input.is_action_just_pressed("possess")
 	):
 		return true
@@ -83,30 +92,14 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if Input.is_action_just_pressed('dash') and dash_available:
-		initiateDash()
-	elif state == DASH or state == POSSESSION_DASH:
+	if state == DASH or state == POSSESSION_DASH:
 		continueDash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
-	elif state == AXE_THROW:
+	elif state == ABILITY_CAST:
 		pass
 	else:
 		setVelocity()
-		if (
-			Input.is_action_just_pressed("melee_attack")
-			and basicAttackAvailable()
-		):
-			if velocity:
-				setFacingDirection(round(rad2deg(velocity.angle())))
-			attack_order = !attack_order
-			noWeaponMelee()
-			state = ATTACK_WARMUP
-		if Input.is_action_just_pressed("use_ability"):
-			if has_axe:
-				throwAxe()
-			else:
-				recallAxe()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
 		restartSprintTimer()

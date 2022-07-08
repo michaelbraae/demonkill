@@ -36,7 +36,7 @@ func _ready():
 	make_rooms()
 
 func make_rooms():
-	for i in range(num_rooms):
+	for _i in range(num_rooms):
 		var pos = Vector2(rand_range(-hspread, hspread), rand_range(-vspread, vspread))
 		var r = Room.instance()
 		var w = min_size + randi() % (max_size - min_size)
@@ -78,7 +78,7 @@ func _draw():
 				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y),
 						  Color(1, 1, 0), 15, true)
 
-func _process(delta):
+func _process(_delta):
 	update()
 	
 func _input(event):
@@ -115,7 +115,7 @@ func find_mst(nodes):
 	# Returns an AStar object
 	
 	# Initialize the AStar and add the first point
-	var path = AStar.new()
+	path = AStar.new()
 	path.add_point(path.get_available_point_id(), nodes.pop_front())
 	
 	# Repeat until no more nodes remain
@@ -154,7 +154,7 @@ func make_map():
 	for room in $Rooms.get_children():
 		room.get_node('CollisionShape2D').queue_free()
 		var s = (room.size / tile_size).floor()
-		var pos = Map.world_to_map(room.position)
+#		var pos = Map.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
 		for x in range(2, s.x * 2 - 1):
 			for y in range(2, s.y * 2 - 1):

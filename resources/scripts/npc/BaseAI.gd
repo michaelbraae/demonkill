@@ -4,7 +4,6 @@ class_name BaseAI
 
 var state
 
-onready var animatedSprite = $AnimatedSprite
 onready var camera2D = $Camera2D
 
 func isPossessed() -> bool:
@@ -73,7 +72,6 @@ func getStateString() -> String:
 
 func _ready():
 	initialiseConfig()
-	animatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 
 func initialiseConfig() -> void:
 	pass

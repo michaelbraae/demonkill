@@ -39,7 +39,6 @@ func setMouseMode() -> void:
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-
 func getAttackDirection() -> Vector2:
 	if using_mouse:
 		return Vector2(current_actor.get_local_mouse_position().normalized())
@@ -51,28 +50,19 @@ func getAttackDirection() -> Vector2:
 		return aim_vector
 	return getMovementVector()
 
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("spell_slot_1"):
-		GameState.player.castSpell(0)
-	if Input.is_action_just_pressed("spell_slot_2"):
-		GameState.player.castSpell(1)
-	if Input.is_action_just_pressed("spell_slot_3"):
-		GameState.player.castSpell(2)
-	if Input.is_action_just_pressed("spell_slot_4"):
-		GameState.player.castSpell(3)
-
-func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-#		pause_mode = Node.PAUSE_MODE_PROCESS
-		pass	
-		# instantiate the pause menu UI
-		# create a reference to it in global scope
-		# pause the games operation
-		# the pause menu and the pause button should apply the same logic
-		# create an event listener and bind it to the pause button or the pause event
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
-	if Input.is_action_just_pressed("reload_town"):
+func _unhandled_input(event) -> void:
+	if event.is_action_pressed("reload_town"):
 		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
-	if Input.is_action_just_pressed("dev_tool"):
+	if event.is_action_pressed("ui_accept"):
+		InputEmitter.ui_accept()
+	if event.is_action_pressed("action_1"):
+		InputEmitter.action_1()
+	if event.is_action_pressed("action_2"):
+		InputEmitter.action_2()
+	if event.is_action("action_3"):
+		if event.is_pressed():
+			InputEmitter.action_3_pressed()
+		else:
+			InputEmitter.action_3_released()
+	if event.is_action_pressed("dev_tool"):
 		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")
