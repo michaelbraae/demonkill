@@ -118,6 +118,11 @@ _global_script_classes=[ {
 "class": "TelegraphedAOE",
 "language": "GDScript",
 "path": "res://resources/scripts/ability/TelegraphedAOE.gd"
+}, {
+"base": "Node",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://scenes/weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
 "AbilityBase": "",
@@ -141,7 +146,8 @@ _global_script_class_icons={
 "PossessableAI": "",
 "ProjectileBase": "",
 "RotatingWeapon": "",
-"TelegraphedAOE": ""
+"TelegraphedAOE": "",
+"Weapon": ""
 }
 
 [application]
