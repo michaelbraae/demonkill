@@ -6,16 +6,22 @@ export(int, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var ar
 
 export(int, "STRENGTH", "INTELLIGENCE", "SURVIVAL") var affinity
 
+onready var animatedSprite = $AnimatedSprite
 
+export(Resource) var attack_ability
 
-# weapon affinity
-
-# effects should have damage frames
-
-# attack effect
-
-# animatedSprite - for looping through environmental effects (fire)
-# for v1 a Sprite is fine
+# called by the player
+# instantiates the attack_effect with the relevant params
+func attack(
+	target_direction: Vector2,
+	animation: String,
+	source_actor: KinematicBody2D
+) -> void:
+	attack_ability.instance()
+	attack_ability.target_direction = target_direction
+	source_actor.get_parent().add_child(attack_ability)
+	attack_ability.doEffect()
+	animatedSprite.play(animation)
 
 # how can this be tied to the player's animation
 # by generalising the player's animation names for the weapons aswell, we can set the same animation
