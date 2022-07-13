@@ -21,7 +21,7 @@ export var damage: int = 0
 export var speed: int = 10
 export var player_relative_spawn_position: int = 15
 
-export(Resource) var on_hit_effect
+export(Array, Resource) var on_hit_effects
 
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")
