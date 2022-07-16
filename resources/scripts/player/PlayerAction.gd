@@ -40,17 +40,6 @@ func basic_attack() -> void:
 		state = ATTACK_WARMUP
 		weapon_slot_1.attack(getAttackDirection(), self)
 
-func basic_attack2() -> void:
-	if basic_attack_available():
-		if velocity:
-			# warning-ignore:narrowing_conversion
-			setFacingDirection(round(rad2deg(velocity.angle())))
-		attack_order = !attack_order
-		state = ATTACK_WARMUP
-		var attack_instance = SWIPE_SCENE.instance()
-		add_child(attack_instance)
-		attack_instance.bang(getAttackDirection(), self)
-
 func use_ability() -> void:
 	if has_axe:
 		throwAxe()

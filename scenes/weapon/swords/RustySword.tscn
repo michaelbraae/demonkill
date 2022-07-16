@@ -5,7 +5,9 @@
 
 [node name="RustySword" instance=ExtResource( 1 )]
 rarity = 3
+affinity = 0
 attack_speed = 2.0
 combo_finish_index = 3
-combo_window_time = 1.0
+combo_window_time = 0.6
 attack_abilities = [ ExtResource( 3 ) ]
+combo_finisher_abilites = [ ExtResource( 3 ) ]

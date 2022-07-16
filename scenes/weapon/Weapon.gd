@@ -24,10 +24,8 @@ export var combo_window_time: float
 var current_combo_attack: int = 1
 var combo_finish_timer: Timer
 
-#export var attack_1: PackedScene
-
 export(Array, PackedScene) var attack_abilities
-#export(Array, Resource) var combo_finisher_abilites
+export(Array, PackedScene) var combo_finisher_abilites
 
 # warning-ignore-all:return_value_discarded
 
@@ -52,14 +50,15 @@ func attack(
 	target_direction: Vector2,
 	source_actor: KinematicBody2D
 ) -> void:
-	use_weapon_abilities(target_direction, get_parent(), attack_abilities)
-#	if current_combo_attack == combo_finish_index:
+#	use_weapon_abilities(target_direction, get_parent(), attack_abilities)
+	if current_combo_attack == combo_finish_index:
 		# use the combo finisher abilities and reset the combo finish logic
-#		use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
-#		current_combo_attack = 1
-#		combo_finish_timer.stop()
-#	else:
-#		use_weapon_abilities(target_direction, source_actor, attack_abilities)
+		use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
+		current_combo_attack = 1
+		combo_finish_timer.stop()
+		print('use_combo_finisher')
+	else:
+		use_weapon_abilities(target_direction, source_actor, attack_abilities)
 	current_combo_attack += 1
 	if combo_finish_timer.is_stopped():
 		combo_finish_timer.start(combo_window_time)
@@ -69,11 +68,6 @@ func use_weapon_abilities(
 	_source_actor: KinematicBody2D,
 	abilities
 ) -> void:
-#	var attack_instance = attack_1.instance()
-#	attack_instance.target_vector = target_direction
-#	get_parent().add_child(attack_instance)
-##	attack_instance.doEffect()
-#	attack_instance.animatedSprite.play()
 	for ability in abilities:
 		var attack_instance = ability.instance()
 		attack_instance.target_vector = target_direction
