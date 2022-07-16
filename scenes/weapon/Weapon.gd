@@ -23,7 +23,6 @@ export var combo_window_time: float
 var current_combo_attack: int = 1
 var combo_finish_timer: Timer
 
-
 # attack speed logic - attacks per second
 export var attack_speed: float
 var attack_speed_timer: Timer
@@ -58,13 +57,11 @@ func attack(
 ) -> void:
 	attack_available = false
 	attack_speed_timer.start(1.0 / attack_speed)
-#	use_weapon_abilities(target_direction, get_parent(), attack_abilities)
 	if current_combo_attack == combo_finish_index:
 		# use the combo finisher abilities and reset the combo finish logic
 		use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
 		current_combo_attack = 1
 		combo_finish_timer.stop()
-		print('use_combo_finisher')
 	else:
 		use_weapon_abilities(target_direction, source_actor, attack_abilities)
 	current_combo_attack += 1
