@@ -2,6 +2,8 @@ extends Node
 
 class_name Weapon
 
+# warning-ignore-all:return_value_discarded
+
 export var weapon_name: String
 
 export var weapon_description: String
@@ -12,9 +14,6 @@ export(int, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var ar
 
 export(int, "STRENGTH", "INTELLIGENCE", "SURVIVAL") var affinity
 
-# how many attacks per second can the player perform with this weapon
-export var attack_speed: float
-
 # the index of the attack sequence which is considered a combo finisher
 # ie: the third attack within a combo
 export var combo_finish_index: int
@@ -24,25 +23,32 @@ export var combo_window_time: float
 var current_combo_attack: int = 1
 var combo_finish_timer: Timer
 
+
+# attack speed logic - attacks per second
+export var attack_speed: float
+var attack_speed_timer: Timer
+var attack_available: bool = true
+
 export(Array, PackedScene) var attack_abilities
 export(Array, PackedScene) var combo_finisher_abilites
-
-# warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
 	combo_finish_timer = Timer.new()
 	combo_finish_timer.connect("timeout", self, "combo_finisher_timeout")
 	add_child(combo_finish_timer)
-
+	
+	attack_speed_timer = Timer.new()
+	attack_speed_timer.connect("timeout", self, "attack_speed_timeout")
+	add_child(attack_speed_timer)
 
 # the time between each attack in the chain. if the combo continues
 func combo_finisher_timeout() -> void:
-	current_combo_attack = 1
 	combo_finish_timer.stop()
+	current_combo_attack = 1
 
-func can_attack() -> bool:
-	# use the attack_speed variable to determine if the player is able to attack
-	return true
+func attack_speed_timeout() -> void:
+	attack_speed_timer.stop()
+	attack_available = true
 
 # called by the player
 # instantiates the attack_effect with the relevant params
@@ -50,6 +56,8 @@ func attack(
 	target_direction: Vector2,
 	source_actor: KinematicBody2D
 ) -> void:
+	attack_available = false
+	attack_speed_timer.start(1.0 / attack_speed)
 #	use_weapon_abilities(target_direction, get_parent(), attack_abilities)
 	if current_combo_attack == combo_finish_index:
 		# use the combo finisher abilities and reset the combo finish logic
@@ -61,7 +69,7 @@ func attack(
 		use_weapon_abilities(target_direction, source_actor, attack_abilities)
 	current_combo_attack += 1
 	if combo_finish_timer.is_stopped():
-		combo_finish_timer.start(combo_window_time)
+		combo_finish_timer.start(1.0 / attack_speed + 0.5)
 
 func use_weapon_abilities(
 	target_direction: Vector2,

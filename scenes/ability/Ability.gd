@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Ability
 
+# warning-ignore-all:return_value_discarded
+
 var source_actor: KinematicBody2D
 
 var target_actor: KinematicBody2D
@@ -25,6 +27,8 @@ export var player_relative_spawn_position: int = 15
 export(Array, Resource) var on_hit_effects
 
 export(Resource) var collision_effect
+
+
 
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")

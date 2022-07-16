@@ -16,7 +16,6 @@ collision_effect = SubResource( 1 )
 rotation = 1.5708
 scale = Vector2( 0.6, 0.6 )
 frames = ExtResource( 2 )
-frame = 1
 speed_scale = 2.5
 playing = true
 
