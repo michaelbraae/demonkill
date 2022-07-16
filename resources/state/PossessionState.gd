@@ -96,6 +96,7 @@ func possessEntity(new_possession) -> void:
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
 
+# warning-ignore-all:return_value_discarded
 func connectToInputSignals(signal_target) -> void:
 	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
 	InputEmitter.connect("movement_ability", signal_target, "movement_ability")

@@ -11,14 +11,15 @@ var sprint_ghost_cooldown_timer: Timer
 
 var sprint: bool = false
 
+# warning-ignore-all:return_value_discarded
+
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
-	# warning-ignore:return_value_discarded
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
 	add_child(dash_ghost_cooldown_timer)
 	
 	sprint_ghost_cooldown_timer = Timer.new()
-	# warning-ignore:return_value_discarded
+
 	sprint_ghost_cooldown_timer.connect("timeout", self, "sprint_ghost_timeout")
 	add_child(sprint_ghost_cooldown_timer)
 

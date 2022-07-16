@@ -4,15 +4,23 @@ class_name PlayerAction
 
 var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
 var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
+onready var RUSTY_SWORD_SCENE = preload("res://scenes/weapon/swords/RustySword.tscn")
 
 var next_spell : Dictionary
 
 var axe_recall_available = false
 
+var weapon_slot_1: Weapon
+var weapon_slot_2: Weapon
 
 var sprint_timer: Timer
 
 func _ready() -> void:
+	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
+	add_child(weapon_slot_1)
+	
+	
+	
 	sprint_timer = Timer.new()
 	# warning-ignore:return_value_discarded
 	sprint_timer.connect("timeout", self, "sprint_timeout")
@@ -22,7 +30,17 @@ func _ready() -> void:
 func sprint_timeout() -> void:
 	sprint = true
 
+
 func basic_attack() -> void:
+	if weapon_slot_1.can_attack():
+		if velocity:
+			# warning-ignore:narrowing_conversion
+			setFacingDirection(round(rad2deg(velocity.angle())))
+		attack_order = !attack_order
+		state = ATTACK_WARMUP
+		weapon_slot_1.attack(getAttackDirection(), self)
+
+func basic_attack2() -> void:
 	if basic_attack_available():
 		if velocity:
 			# warning-ignore:narrowing_conversion
