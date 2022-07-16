@@ -74,7 +74,6 @@ func area_entered(area) -> void:
 			20
 		)
 		collisionEffect(area_parent)
-		
 
 # on create effect, so that we can make a small animation occur when the effect is first initialised ie: Muzzle flash
 

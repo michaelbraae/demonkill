@@ -11,14 +11,12 @@ collision_effect = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 rotation = 1.5708
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 0.7, 0.7 )
 frames = ExtResource( 2 )
-frame = 3
 speed_scale = 2.5
-playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
 position = Vector2( 0.0190758, -0.0304814 )
 rotation = 1.5708
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 0.7, 0.7 )
 polygon = PoolVector2Array( 9.90373, -11.8971, 0, -15, -10.3586, -11.1558, -16.211, -5.85611, -19.1958, 0.815651, -19.7485, 14.8615, -10.1246, 0.913191, 0.0196419, -2.9234, 9.61111, 0.0353279, 19.9829, 14.7314, 18.9425, 0.620569, 16.0748, -7.22168 )
