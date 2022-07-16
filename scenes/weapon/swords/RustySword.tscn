@@ -8,4 +8,4 @@ rarity = 3
 attack_speed = 2.0
 combo_finish_index = 3
 combo_window_time = 1.0
-attack_1 = ExtResource( 3 )
+attack_abilities = [ ExtResource( 3 ) ]

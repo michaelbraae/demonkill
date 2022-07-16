@@ -81,23 +81,23 @@ func _physics_process(_delta) -> void:
 func animation_finished():
 	queue_free()
 
-func area_entered() -> void:
-	for area in area2D.get_overlapping_areas():
-		var area_parent = area.get_parent()
-		if (
-			area_parent != source_actor
-			and area.get_name() == 'HitBox'
-			and not damaged_actors.has(area_parent.get_instance_id())
-			and damage_frames.has(animatedSprite.get_frame())
-		):
-			damaged_actors.push_front(area_parent.get_instance_id())
-			area_parent.damage(damage)
-			area_parent.knockBack(
-				source_actor.get_angle_to(area_parent.get_global_position()),
-				200,
-				20
-			)
-			collisionEffect()
+func area_entered(area) -> void:
+	var area_parent = area.get_parent()
+	if (
+		area_parent != source_actor
+		and area.get_name() == 'HitBox'
+		and not damaged_actors.has(area_parent.get_instance_id())
+		and damage_frames.has(animatedSprite.get_frame())
+	):
+		damaged_actors.push_front(area_parent.get_instance_id())
+		area_parent.damage(damage)
+		area_parent.knockBack(
+			source_actor.get_angle_to(area_parent.get_global_position()),
+			200,
+			20
+		)
+		collisionEffect()
+		
 
 # on create effect, so that we can make a small animation occur when the effect is first initialised ie: Muzzle flash
 

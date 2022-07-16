@@ -24,9 +24,9 @@ export var combo_window_time: float
 var current_combo_attack: int = 1
 var combo_finish_timer: Timer
 
-export var attack_1: PackedScene
+#export var attack_1: PackedScene
 
-#export(Array, PackedScene) var attack_abilities
+export(Array, PackedScene) var attack_abilities
 #export(Array, Resource) var combo_finisher_abilites
 
 # warning-ignore-all:return_value_discarded
@@ -52,7 +52,7 @@ func attack(
 	target_direction: Vector2,
 	source_actor: KinematicBody2D
 ) -> void:
-	use_weapon_abilities(target_direction, get_parent())
+	use_weapon_abilities(target_direction, get_parent(), attack_abilities)
 #	if current_combo_attack == combo_finish_index:
 		# use the combo finisher abilities and reset the combo finish logic
 #		use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
@@ -66,28 +66,20 @@ func attack(
 
 func use_weapon_abilities(
 	target_direction: Vector2,
-	_source_actor: KinematicBody2D
-#	abilities
+	_source_actor: KinematicBody2D,
+	abilities
 ) -> void:
-	var attack_instance = attack_1.instance()
-	attack_instance.target_vector = target_direction
-	get_parent().add_child(attack_instance)
-#	attack_instance.doEffect()
-	attack_instance.animatedSprite.play()
-#	for ability in abilities:
-#		var result = load(ability.resource_path)
-#		result = result.instance()
-#		if is_instance_valid(result):
-#			result.target_direction = target_direction
-#			get_parent().add_child(result)
-#			result.doEffect()
-#			result.animatedSprite.play()
-#		ability.instance()
-#		ability.target_direction = target_direction
-#		source_actor.get_parent().add_child(ability)
-#		get_parent().add_child(ability)
-#		ability.doEffect()
-#		ability.animatedSprite.play()
+#	var attack_instance = attack_1.instance()
+#	attack_instance.target_vector = target_direction
+#	get_parent().add_child(attack_instance)
+##	attack_instance.doEffect()
+#	attack_instance.animatedSprite.play()
+	for ability in abilities:
+		var attack_instance = ability.instance()
+		attack_instance.target_vector = target_direction
+		get_parent().add_child(attack_instance)
+		attack_instance.doAbility(target_direction, get_parent())
+		attack_instance.animatedSprite.play()
 
 # how can this be tied to the player's animation
 # by generalising the player's animation names for the weapons aswell, we can set the same animation
