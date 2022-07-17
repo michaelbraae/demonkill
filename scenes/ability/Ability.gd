@@ -16,9 +16,11 @@ onready var animatedSprite: AnimatedSprite = $AnimatedSprite
 # only certain frames of the animation should be considered damage frames
 export var damage_frames: Array = []
 
+export var continuous: bool = false
+
 # exposed variables
-export var damage: int = 0
 export var speed: int = 10
+# how far away from the player will this ability spawn
 export var player_relative_spawn_position: int = 15
 
 export(Array, PackedScene) var on_hit_effects
@@ -58,7 +60,8 @@ func _physics_process(_delta) -> void:
 		target_vector = move_and_slide(target_vector.normalized() * speed)
 
 func animation_finished():
-	queue_free()
+	if not continuous:
+		queue_free()
 
 func area_entered(area) -> void:
 	var area_parent = area.get_parent()

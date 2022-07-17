@@ -39,6 +39,9 @@ func addHealth(health_add: int) -> void:
 	else:
 		health += health_add
 
+func _process(_delta) -> void:
+	setHealth()
+
 func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
 	$EnemyUI/HealthBar.value = health
@@ -239,7 +242,7 @@ func runDecisionTree() -> void:
 		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
 		if is_instance_valid(target_actor):
-			if isTargetInRange() and attack_cooldown_timer.is_stopped() and not isTargetTooClose() or attack_started:
+			if isTargetInRange() and weapon.attack_available and not isTargetTooClose() or attack_started:
 				if readyForPreAttack():
 					handlePreAttack()
 				elif state == ATTACKING:

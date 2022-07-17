@@ -24,7 +24,7 @@ var current_combo_attack: int = 1
 var combo_finish_timer: Timer
 
 # attack speed logic - attacks per second
-export var attack_speed: float
+export var attack_speed: float = 0.5
 var attack_speed_timer: Timer
 var attack_available: bool = true
 
@@ -57,16 +57,20 @@ func attack(
 ) -> void:
 	attack_available = false
 	attack_speed_timer.start(1.0 / attack_speed)
-	if current_combo_attack == combo_finish_index:
-		# use the combo finisher abilities and reset the combo finish logic
-		use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
-		current_combo_attack = 1
-		combo_finish_timer.stop()
-	else:
+	# only use the combo finisher logic if the index is greater than 0
+	if not combo_finish_index:
 		use_weapon_abilities(target_direction, source_actor, attack_abilities)
-	current_combo_attack += 1
-	if combo_finish_timer.is_stopped():
-		combo_finish_timer.start(1.0 / attack_speed + 0.5)
+	else:
+		if current_combo_attack == combo_finish_index:
+			# use the combo finisher abilities and reset the combo finish logic
+			use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
+			current_combo_attack = 1
+			combo_finish_timer.stop()
+		else:
+			use_weapon_abilities(target_direction, source_actor, attack_abilities)
+		current_combo_attack += 1
+		if combo_finish_timer.is_stopped():
+			combo_finish_timer.start(1.0 / attack_speed + 0.5)
 
 func use_weapon_abilities(
 	target_direction: Vector2,

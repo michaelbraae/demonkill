@@ -42,11 +42,6 @@ region = Rect2( 0, 0, 18, 25 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "attack_loop",
@@ -72,11 +67,6 @@ animations = [ {
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "run",
@@ -85,6 +75,16 @@ animations = [ {
 "frames": [ SubResource( 11 ) ],
 "loop": true,
 "name": "take_hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -117,7 +117,6 @@ position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 speed_scale = 2.0
 playing = true
 
