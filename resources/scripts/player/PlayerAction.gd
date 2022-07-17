@@ -30,7 +30,6 @@ func _ready() -> void:
 func sprint_timeout() -> void:
 	sprint = true
 
-
 func basic_attack() -> void:
 	if weapon_slot_1.attack_available:
 		if velocity:

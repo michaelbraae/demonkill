@@ -66,9 +66,15 @@ func setHealth() -> void:
 			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
 			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
 
+var weapon_slot_1: Weapon
+onready var RUSTY_SWORD_SCENE = preload("res://scenes/weapon/swords/RustySword.tscn")
+
 func _ready():
 	health = max_health
-
+	
+	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
+	add_child(weapon_slot_1)
+	
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
@@ -202,6 +208,10 @@ func getAttackAngle() -> float:
 		return get_angle_to(target_actor.get_global_position())
 	return 0.0
 
+func getAttackDirection() -> Vector2:
+	var angle = getAttackAngle()
+	return Vector2(cos(angle), sin(angle))
+
 func readyForPreAttack() -> bool:
 	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
@@ -213,11 +223,10 @@ func handlePreAttack() -> void:
 	attack_started = true
 	state = PRE_ATTACK
 
-func perAttackAction() -> void:
-	pass
-
-func useAbility() -> void:
-	pass
+func attack() -> void:
+	if weapon_slot_1.attack_available:
+		state = ATTACKING
+		weapon_slot_1.attack(getAttackDirection(), self)
 
 var outline_shader
 var possession_duration
@@ -269,31 +278,18 @@ func runDecisionTree() -> void:
 		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
 		if is_instance_valid(target_actor):
-			if (
-				isTargetInRange()
-				or (isTargetInAbilityRange() and not ability_on_cooldown and hasLineOfSight())
-				or attack_started
-				or state == POST_ATTACK
-			):
-				if isTargetInAbilityRange() and not ability_on_cooldown and not isTargetTooClose():
-					if readyForPreAttack():
-						handlePreAttack()
-					elif state == ATTACKING and not attack_landed:
-						useAbility()
-						ability_cooldown_timer.start(ability_cooldown)
-						ability_on_cooldown = true
-						attack_landed = true
-				else:
-					if isTargetInRange() or attack_started:
-						if readyForPreAttack():
-							handlePreAttack()
-						elif state == ATTACKING and not attack_landed:
-							perAttackAction()
-							attack_landed = true
-					else:
-						.runDecisionTree()
+			if isTargetInAbilityRange() and not ability_on_cooldown and not isTargetTooClose() or attack_started:
+				if readyForPreAttack():
+					handlePreAttack()
+				elif state == ATTACKING and not attack_landed:
+					attack()
+					ability_cooldown_timer.start(ability_cooldown)
+					ability_on_cooldown = true
+					attack_landed = true
 			else:
 				.runDecisionTree()
+		else:
+			.runDecisionTree()
 	animatedSprite.play(getAnimation())
 
 func handlePostAnimState() -> void:
@@ -328,11 +324,6 @@ func _process(_delta):
 	else:
 		if is_instance_valid(axeOutlineShader):
 			axeOutlineShader.queue_free()
-#	$AnimatedSprite/LightOccluder2D.visible = true
-#	animatedSprite.light_mask = 2
-#	if state == STUNNED:
-#		$AnimatedSprite/LightOccluder2D.visible = false
-#		animatedSprite.light_mask = 1
 
 func beforeDeath() -> void:
 	pass
@@ -346,27 +337,9 @@ func hitByAxe(damage) -> void:
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
 
-func basic_attack_available() -> bool:
-	if [
-		PRE_ATTACK,
-		ATTACKING,
-		POST_ATTACK
-	].has(state):
-		return false
-	return true
-
 func basic_attack() -> void:
-	if basic_attack_available():
+	if not ability_on_cooldown:
 		state = ATTACKING
-		perAttackAction()
-
-func ability_available() -> bool:
-	return true
-
-func use_ability() -> void:
-	if ability_available():
-		if not ability_on_cooldown:
-			state = ATTACKING
-			ability_cooldown_timer.start(ability_cooldown)
-			ability_on_cooldown = true
-			useAbility()
+		ability_cooldown_timer.start(ability_cooldown)
+		ability_on_cooldown = true
+		attack()

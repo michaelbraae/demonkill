@@ -80,7 +80,7 @@ func _draw():
 
 func _process(_delta):
 	update()
-	
+
 func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
 		if play_mode:

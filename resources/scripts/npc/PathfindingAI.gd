@@ -176,6 +176,8 @@ func getMoveSpeed() -> float:
 	return move_speed
 
 func hasLineOfSight() -> bool:
+	if !is_instance_valid(target_actor):
+		return false
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
 	if result and result['collider'] == target_actor:
