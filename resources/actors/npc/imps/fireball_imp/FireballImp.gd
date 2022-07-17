@@ -9,8 +9,6 @@ func initialiseConfig() -> void:
 	move_speed = 30
 	attack_range = 30
 	attack_cooldown = 1
-#	ability_range = 300
-#	ability_cooldown = 1
 	too_close_range = 70
 
 func useAbility() -> void:

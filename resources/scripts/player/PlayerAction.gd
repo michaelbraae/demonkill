@@ -15,14 +15,13 @@ var weapon_slot_2: Weapon
 
 var sprint_timer: Timer
 
+# warning-ignore-all:return_value_discarded
+
 func _ready() -> void:
 	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
 	add_child(weapon_slot_1)
 	
-	
-	
 	sprint_timer = Timer.new()
-	# warning-ignore:return_value_discarded
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 	restartSprintTimer()

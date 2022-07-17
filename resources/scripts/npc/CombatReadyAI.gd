@@ -274,11 +274,7 @@ func handlePostAnimState() -> void:
 		PRE_DEATH:
 			queue_free()
 
-func beforeDeath() -> void:
-	pass
-
 func kill() -> void:
-	beforeDeath()
 	state = PRE_DEATH
 
 func hitByAxe(damage) -> void:
@@ -288,9 +284,6 @@ func hitByAxe(damage) -> void:
 
 func basic_attack() -> void:
 	if attack_cooldown_timer.is_stopped():
-#	if not ability_on_cooldown:
 		state = ATTACKING
 		attack_cooldown_timer.start(attack_cooldown)
-#		ability_cooldown_timer.start(ability_cooldown)
-#		ability_on_cooldown = true
 		attack()

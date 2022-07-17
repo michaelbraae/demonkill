@@ -15,6 +15,7 @@ export var damage_per_tick: int
 # Apply poison effect to the Character, the character is already poisoned.
 # Character asks the poisonEffect, what to do if already poisoned
 # The PoisonEffect then returns the result. IE:
+# this logic should not reset the original poison stack's duration
 # Poison effect with X duration, X stacks, X Damage per tick, X Tick per second
 
 
