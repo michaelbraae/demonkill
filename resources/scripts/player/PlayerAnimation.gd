@@ -19,7 +19,7 @@ func _ready() -> void:
 	add_child(dash_ghost_cooldown_timer)
 	
 	sprint_ghost_cooldown_timer = Timer.new()
-
+	
 	sprint_ghost_cooldown_timer.connect("timeout", self, "sprint_ghost_timeout")
 	add_child(sprint_ghost_cooldown_timer)
 

@@ -74,14 +74,12 @@ func use_weapon_abilities(
 	abilities
 ) -> void:
 	for ability in abilities:
-		var attack_instance = ability.instance()
-		attack_instance.target_vector = target_direction
-		get_parent().add_child(attack_instance)
-		attack_instance.doAbility(target_direction, get_parent())
-		attack_instance.animatedSprite.play()
+		var ability_instance = ability.instance()
+		ability_instance.target_vector = target_direction
+		get_parent().add_child(ability_instance)
+		ability_instance.doAbility(target_direction, get_parent())
+		ability_instance.animatedSprite.play()
 
 # how can this be tied to the player's animation
-# by generalising the player's animation names for the weapons aswell, we can set the same animation
-# for both player and weapon, ie: attack_right. exporting only the layers of the weapon we want to use
-
-# we can then quickly produce new weapons by copying the animation frames to a new weapon directory and filling in the frames.
+# USING THE WEAPON TYPE and the players facing direction
+# if the weapon is a SWORD, use the sword animation duh
