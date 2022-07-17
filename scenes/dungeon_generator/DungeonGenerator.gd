@@ -9,7 +9,7 @@ onready var Map: TileMap = $TileMap
 const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
 const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
 const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
-const FREEZE_IMP_SCENE = preload("res://scenes/character/freeze_imp/FreezeImp.tscn")
+const FREEZE_IMP_SCENE = preload("res://scenes/character/npc/freeze_imp/FreezeImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50

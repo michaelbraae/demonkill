@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/character/npc/base_imp/BaseImpSpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/character/npc/base_imp/BaseImp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.gd" type="Script" id=3]
+
+[node name="SwipeImp" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+move_speed = 80.0
+attack_range = 30.0
+ability_range = 50.0
+attack_cooldown = 1.0
+ability_cooldown = 5.0
+max_health = 3
+
+[node name="AnimatedSprite" parent="." index="2"]
+frames = ExtResource( 1 )
+animation = "idle"
