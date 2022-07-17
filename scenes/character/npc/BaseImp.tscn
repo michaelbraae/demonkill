@@ -84,9 +84,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="OccluderPolygon2D" id=8]
-polygon = PoolVector2Array( -2, -0.95314, -0.666672, -6.28647, 0.333328, -9.95314, 1.66666, -5.95314, 3, 0.380196, 3.16666, 3.04686, 3.16666, 7.38019, 1, 2.71353, -1.33334, 2.71353, -4.66667, 6.21353, -3.5, 2.3802 )
-
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 11.5585
 height = 7.24638
@@ -96,6 +93,9 @@ radius = 24.2581
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 154.201
+
+[sub_resource type="OccluderPolygon2D" id=8]
+polygon = PoolVector2Array( -2, -0.95314, -0.666672, -6.28647, 0.333328, -9.95314, 1.66666, -5.95314, 3, 0.380196, 3.16666, 3.04686, 3.16666, 7.38019, 1, 2.71353, -1.33334, 2.71353, -4.66667, 6.21353, -3.5, 2.3802 )
 
 [node name="BaseImp" instance=ExtResource( 2 )]
 
@@ -107,17 +107,12 @@ shape = SubResource( 6 )
 light_mask = 2
 position = Vector2( -2.38419e-07, 0 )
 rotation = 0.00808018
+scale = Vector2( 1, 1 )
 frames = SubResource( 7 )
 animation = "idle"
 frame = 1
 speed_scale = 2.0
 playing = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite" index="0"]
-show_behind_parent = true
-position = Vector2( 2.38411e-07, -1.92645e-09 )
-rotation = -0.00808018
-occluder = SubResource( 8 )
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="3"]
 visible = false
@@ -152,3 +147,9 @@ cast_to = Vector2( 50, 0 )
 [node name="Camera2D" parent="." index="8" instance=ExtResource( 1 )]
 
 [node name="EnemyUI" parent="." index="9" instance=ExtResource( 4 )]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="10"]
+show_behind_parent = true
+position = Vector2( -2.27374e-13, -4.44089e-15 )
+scale = Vector2( 1, 1 )
+occluder = SubResource( 8 )

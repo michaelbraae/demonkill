@@ -45,7 +45,6 @@ func addHealth(health_add: int) -> void:
 		health = max_health
 	else:
 		health += health_add
-	
 
 func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
@@ -58,7 +57,6 @@ func setHealth() -> void:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
-
 	if is_instance_valid(ability_cooldown_timer):
 		if ability_cooldown_timer.is_stopped():
 			$EnemyUI/AbilityCooldown.visible = false
@@ -126,9 +124,6 @@ func damage(damage : int) -> void:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= 0:
 		kill()
-
-func readyForDamage() -> bool:
-	return true
 
 func isTargetInRange() -> bool:
 	if is_instance_valid(target_actor):
@@ -333,11 +328,11 @@ func _process(_delta):
 	else:
 		if is_instance_valid(axeOutlineShader):
 			axeOutlineShader.queue_free()
-	$AnimatedSprite/LightOccluder2D.visible = true
-	animatedSprite.light_mask = 2
-	if state == STUNNED:
-		$AnimatedSprite/LightOccluder2D.visible = false
-		animatedSprite.light_mask = 1
+#	$AnimatedSprite/LightOccluder2D.visible = true
+#	animatedSprite.light_mask = 2
+#	if state == STUNNED:
+#		$AnimatedSprite/LightOccluder2D.visible = false
+#		animatedSprite.light_mask = 1
 
 func beforeDeath() -> void:
 	pass

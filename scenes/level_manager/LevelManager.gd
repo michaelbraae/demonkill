@@ -2,7 +2,6 @@ extends Node
 
 var current_scene = null
 const PLAYER_SCENE = preload('res://scenes/character/player/Player.tscn')
-const PLAYER_2_SCENE = preload('res://resources/actors/player/Player.tscn')
 
 func _ready():
 	var root = get_tree().get_root()

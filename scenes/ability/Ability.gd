@@ -67,7 +67,6 @@ func area_entered(area) -> void:
 		and area.get_name() == 'HitBox'
 		and damage_frames.has(animatedSprite.get_frame())
 	):
-		area_parent.damage(damage)
 		area_parent.knockBack(
 			source_actor.get_angle_to(area_parent.get_global_position()),
 			200,
