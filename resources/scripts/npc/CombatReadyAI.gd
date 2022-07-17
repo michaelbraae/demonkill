@@ -57,23 +57,23 @@ func setHealth() -> void:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
-	if is_instance_valid(ability_cooldown_timer):
-		if ability_cooldown_timer.is_stopped():
-			$EnemyUI/AbilityCooldown.visible = false
-			$EnemyUI/AbilityCooldown.value = ability_cooldown
-		else:
-			$EnemyUI/AbilityCooldown.visible = true
-			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
-			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
+#	if is_instance_valid(ability_cooldown_timer):
+#		if ability_cooldown_timer.is_stopped():
+#			$EnemyUI/AbilityCooldown.visible = false
+#			$EnemyUI/AbilityCooldown.value = ability_cooldown
+#		else:
+#			$EnemyUI/AbilityCooldown.visible = true
+#			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
+#			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
 
-var weapon_slot_1: Weapon
+var weapon: Weapon
 onready var RUSTY_SWORD_SCENE = preload("res://scenes/weapon/swords/RustySword.tscn")
 
 func _ready():
 	health = max_health
 	
-	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
-	add_child(weapon_slot_1)
+	weapon = RUSTY_SWORD_SCENE.instance()
+	add_child(weapon)
 	
 	stun_duration_timer = Timer.new()
 	add_child(stun_duration_timer)
@@ -83,10 +83,6 @@ func _ready():
 	add_child(attack_cooldown_timer)
 	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
 	
-	ability_cooldown_timer = Timer.new()
-	add_child(ability_cooldown_timer)
-	ability_cooldown_timer.connect('timeout', self, 'ability_cooldown_timeout')
-
 	possession_duration_timer = Timer.new()
 	add_child(possession_duration_timer)
 	# warning-ignore:return_value_discarded
@@ -97,15 +93,6 @@ func stun_duration_timeout() -> void:
 
 func attack_cooldown_timeout() -> void:
 	attack_cooldown_timer.stop()
-
-func resetAbilityCooldown() -> void:
-	if is_instance_valid(ability_cooldown_timer):
-		ability_cooldown_timer.stop()
-	ability_on_cooldown = false
-
-func ability_cooldown_timeout() -> void:
-	ability_cooldown_timer.stop()
-	ability_on_cooldown = false
 
 func possession_duration_timeout() -> void:
 	onPossessEnd()
@@ -219,19 +206,20 @@ func readyForPreAttack() -> bool:
 	)
 
 func handlePreAttack() -> void:
-	attack_cooldown_timer.start(attack_cooldown)
+#	attack_cooldown_timer.start(attack_cooldown)
 	attack_started = true
 	state = PRE_ATTACK
 
 func attack() -> void:
-	if weapon_slot_1.attack_available:
+	if weapon.attack_available:
 		state = ATTACKING
-		weapon_slot_1.attack(getAttackDirection(), self)
+		weapon.attack(getAttackDirection(), self)
 
 var outline_shader
 var possession_duration
 
 func onPossess(new_possession_duration: float = -1) -> void:
+	attack_cooldown_timer.stop()
 	outline_shader = OUTLINE_SHADER.instance()
 	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 	add_child(outline_shader)
@@ -278,13 +266,13 @@ func runDecisionTree() -> void:
 		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
 		if is_instance_valid(target_actor):
-			if isTargetInAbilityRange() and not ability_on_cooldown and not isTargetTooClose() or attack_started:
+			if isTargetInRange() and attack_cooldown_timer.is_stopped() and not isTargetTooClose() or attack_started:
 				if readyForPreAttack():
 					handlePreAttack()
-				elif state == ATTACKING and not attack_landed:
+				elif state == ATTACKING:
 					attack()
-					ability_cooldown_timer.start(ability_cooldown)
-					ability_on_cooldown = true
+					attack_cooldown_timer.start(attack_cooldown)
+#					ability_on_cooldown = true
 					attack_landed = true
 			else:
 				.runDecisionTree()
@@ -338,8 +326,10 @@ func hitByAxe(damage) -> void:
 	animatedSprite.play('with_axe')
 
 func basic_attack() -> void:
-	if not ability_on_cooldown:
+	if attack_cooldown_timer.is_stopped():
+#	if not ability_on_cooldown:
 		state = ATTACKING
-		ability_cooldown_timer.start(ability_cooldown)
-		ability_on_cooldown = true
+		attack_cooldown_timer.start(attack_cooldown)
+#		ability_cooldown_timer.start(ability_cooldown)
+#		ability_on_cooldown = true
 		attack()
