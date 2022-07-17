@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/effect/effect_handler/EffectHandler.tscn" type="PackedScene" id=1]
+
+[node name="Character" type="KinematicBody2D"]
+
+[node name="EffectHandler" parent="." instance=ExtResource( 1 )]

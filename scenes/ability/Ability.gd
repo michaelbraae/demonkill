@@ -21,7 +21,7 @@ export var damage: int = 0
 export var speed: int = 10
 export var player_relative_spawn_position: int = 15
 
-export(Array, Resource) var on_hit_effects
+export(Array, PackedScene) var on_hit_effects
 
 export(PackedScene) var collision_effect
 
@@ -68,6 +68,7 @@ func area_entered(area) -> void:
 		and damage_frames.has(animatedSprite.get_frame())
 	):
 		area_parent.damage(damage)
+		# apply effect
 		area_parent.knockBack(
 			source_actor.get_angle_to(area_parent.get_global_position()),
 			200,

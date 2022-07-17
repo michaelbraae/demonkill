@@ -36,22 +36,6 @@ shader = ExtResource( 30 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
-[sub_resource type="AtlasTexture" id=347]
-atlas = ExtResource( 24 )
-region = Rect2( 0, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=348]
-atlas = ExtResource( 24 )
-region = Rect2( 46, 0, 46, 33 )
-
-[sub_resource type="AtlasTexture" id=293]
-atlas = ExtResource( 22 )
-region = Rect2( 0, 0, 45, 55 )
-
-[sub_resource type="AtlasTexture" id=294]
-atlas = ExtResource( 22 )
-region = Rect2( 45, 0, 45, 55 )
-
 [sub_resource type="AtlasTexture" id=357]
 atlas = ExtResource( 27 )
 region = Rect2( 0, 0, 46, 33 )
@@ -151,6 +135,14 @@ region = Rect2( 136, 0, 34, 26 )
 [sub_resource type="AtlasTexture" id=344]
 atlas = ExtResource( 28 )
 region = Rect2( 170, 0, 34, 26 )
+
+[sub_resource type="AtlasTexture" id=347]
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 46, 33 )
+
+[sub_resource type="AtlasTexture" id=348]
+atlas = ExtResource( 24 )
+region = Rect2( 46, 0, 46, 33 )
 
 [sub_resource type="AtlasTexture" id=333]
 atlas = ExtResource( 27 )
@@ -668,6 +660,14 @@ region = Rect2( 160, 0, 16, 27 )
 atlas = ExtResource( 4 )
 region = Rect2( 176, 0, 16, 27 )
 
+[sub_resource type="AtlasTexture" id=293]
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 45, 55 )
+
+[sub_resource type="AtlasTexture" id=294]
+atlas = ExtResource( 22 )
+region = Rect2( 45, 0, 45, 55 )
+
 [sub_resource type="AtlasTexture" id=351]
 atlas = ExtResource( 27 )
 region = Rect2( 92, 0, 46, 33 )
@@ -774,16 +774,6 @@ region = Rect2( 238, 0, 34, 26 )
 
 [sub_resource type="SpriteFrames" id=169]
 animations = [ {
-"frames": [ SubResource( 347 ), SubResource( 348 ) ],
-"loop": true,
-"name": "attack_warmup_down",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 293 ), SubResource( 294 ) ],
-"loop": true,
-"name": "attack_axe_warmup_up",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 357 ), SubResource( 358 ), SubResource( 359 ), SubResource( 360 ), SubResource( 361 ), SubResource( 362 ), SubResource( 363 ), SubResource( 364 ) ],
 "loop": true,
 "name": "axe_throw_up",
@@ -802,6 +792,11 @@ animations = [ {
 "frames": [ SubResource( 341 ), SubResource( 342 ), SubResource( 343 ), SubResource( 344 ) ],
 "loop": true,
 "name": "attack_contact_right_2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 347 ), SubResource( 348 ) ],
+"loop": true,
+"name": "attack_warmup_down",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 333 ), SubResource( 334 ) ],
@@ -942,6 +937,11 @@ animations = [ {
 "frames": [ SubResource( 221 ), SubResource( 222 ), SubResource( 223 ), SubResource( 224 ), SubResource( 225 ), SubResource( 226 ), SubResource( 227 ), SubResource( 228 ), SubResource( 229 ), SubResource( 230 ), SubResource( 231 ), SubResource( 232 ) ],
 "loop": true,
 "name": "run_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 293 ), SubResource( 294 ) ],
+"loop": true,
+"name": "attack_axe_warmup_up",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 351 ), SubResource( 352 ), SubResource( 353 ), SubResource( 354 ) ],
