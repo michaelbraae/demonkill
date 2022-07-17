@@ -13,4 +13,4 @@ ability_cooldown = 5.0
 max_health = 3
 
 [node name="AnimatedSprite" parent="." index="2"]
-frame = 3
+frame = 4
