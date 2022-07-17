@@ -38,14 +38,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "stunned",
+"name": "post_attack",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
@@ -53,14 +48,14 @@ animations = [ {
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "post_attack",
+"name": "take_hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "pre_attack",
+"name": "stunned",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 9 ) ],
@@ -68,9 +63,14 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "pre_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "attack_loop",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
