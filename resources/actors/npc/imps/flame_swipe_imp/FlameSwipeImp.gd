@@ -9,8 +9,8 @@ func initialiseConfig() -> void:
 	move_speed = 70
 	attack_range = 30
 	attack_cooldown = 1
-	ability_range = 50
-	ability_cooldown = 5
+#	ability_range = 50
+#	ability_cooldown = 5
 
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()

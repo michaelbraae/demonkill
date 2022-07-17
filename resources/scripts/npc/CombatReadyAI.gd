@@ -16,23 +16,16 @@ var attack_landed = false
 
 # units between player and self before considered in range
 export var attack_range: float
-export var ability_range: float
+#export var ability_range: float
 export var too_close_range = -1
 
 # time in seconds (float) before the AI can attack again
 export var attack_cooldown: float
 var attack_cooldown_timer
 
-# abilty cooldown handler
-export var ability_cooldown: float
-var ability_cooldown_timer
-var ability_on_cooldown = false
-
 # starting health
 export var max_health: int
 var health
-
-var axeOutlineShader
 
 # POSSESSION DURATION
 var possession_duration_timer: Timer
@@ -49,7 +42,6 @@ func addHealth(health_add: int) -> void:
 func setHealth() -> void:
 	$EnemyUI/HealthBar.max_value = max_health
 	$EnemyUI/HealthBar.value = health
-	$EnemyUI/AbilityCooldown.max_value = ability_cooldown
 	if is_instance_valid(possession_duration_timer):
 		if possession_duration_timer.is_stopped():
 			$EnemyUI/PossessionCooldownBar.visible = false
@@ -57,22 +49,14 @@ func setHealth() -> void:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
-#	if is_instance_valid(ability_cooldown_timer):
-#		if ability_cooldown_timer.is_stopped():
-#			$EnemyUI/AbilityCooldown.visible = false
-#			$EnemyUI/AbilityCooldown.value = ability_cooldown
-#		else:
-#			$EnemyUI/AbilityCooldown.visible = true
-#			var cooldown_as_percentage = ability_cooldown_timer.get_time_left() / ability_cooldown
-#			$EnemyUI/AbilityCooldown.value = (cooldown_as_percentage * -1 + 1) * ability_cooldown
 
+export(PackedScene) var weapon_selection
 var weapon: Weapon
-onready var RUSTY_SWORD_SCENE = preload("res://scenes/weapon/swords/RustySword.tscn")
 
 func _ready():
 	health = max_health
 	
-	weapon = RUSTY_SWORD_SCENE.instance()
+	weapon = weapon_selection.instance()
 	add_child(weapon)
 	
 	stun_duration_timer = Timer.new()
@@ -100,8 +84,6 @@ func possession_duration_timeout() -> void:
 		PossessionState.exitPossession(position)
 
 func dropAxe() -> void:
-	if is_instance_valid(axeOutlineShader):
-		axeOutlineShader.queue_free()
 	state = IDLE
 	GameState.npc_with_axe = null
 	GameState.axe_instance = AXE_SCENE.instance()
@@ -124,15 +106,6 @@ func isTargetInRange() -> bool:
 			target_actor.get_global_position()
 		)
 		if distance_to_target <= attack_range:
-			return true
-	return false
-
-func isTargetInAbilityRange() -> bool:
-	if is_instance_valid(target_actor):
-		var distance_to_target = get_global_position().distance_to(
-			target_actor.get_global_position()
-		)
-		if distance_to_target <= ability_range:
 			return true
 	return false
 
@@ -300,18 +273,6 @@ func handlePostAnimState() -> void:
 				state = IDLE
 		PRE_DEATH:
 			queue_free()
-
-func _process(_delta):
-	if state == WITH_AXE:
-		if not is_instance_valid(axeOutlineShader):
-			axeOutlineShader = OUTLINE_SHADER.instance()
-			add_child(axeOutlineShader)
-		axeOutlineShader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
-		axeOutlineShader.flip_h = animatedSprite.flip_h
-		axeOutlineShader.self_modulate = animatedSprite.self_modulate
-	else:
-		if is_instance_valid(axeOutlineShader):
-			axeOutlineShader.queue_free()
 
 func beforeDeath() -> void:
 	pass
