@@ -10,37 +10,26 @@ var stun_damage_threshold = 1
 var stun_duration_timer
 var stun_duration = 3
 
-# number of attacks to run before moving to POST_ATTACK
-var attacks_in_sequence = 1
-var current_attack_in_sequence = 1
-
 # used to ensure the attack_sequence is completed
 var attack_started = false
 var attack_landed = false
 
-# if each 'attacks_in_sequence' uses the same 'attack' animation
-var repeat_attacks = false
-
 # units between player and self before considered in range
-var attack_range
-var ability_range
-var too_close_range = -1
-
-# determines if the AI should complete the entire sequence,
-# before moving to POST_ATTACK
-var complete_attack_sequence = false
+export var attack_range: float
+export var ability_range: float
+export var too_close_range = -1
 
 # time in seconds (float) before the AI can attack again
-var attack_cooldown
+export var attack_cooldown: float
 var attack_cooldown_timer
 
 # abilty cooldown handler
-var ability_cooldown
+export var ability_cooldown: float
 var ability_cooldown_timer
 var ability_on_cooldown = false
 
 # starting health
-var max_health = 3
+export var max_health: int
 var health
 
 var axeOutlineShader
@@ -205,9 +194,7 @@ func getAttackAnimation() -> String:
 		PRE_ATTACK:
 			return 'pre_attack'
 		ATTACKING:
-			if repeat_attacks:
-				return 'attack'
-			return 'attack_' + str(attacks_in_sequence)
+			return 'attack'
 		POST_ATTACK:
 			return 'post_attack'
 	return 'idle'
@@ -236,19 +223,6 @@ func perAttackAction() -> void:
 
 func useAbility() -> void:
 	pass
-
-func readyForPostAttack() -> bool:
-	if complete_attack_sequence:
-		if current_attack_in_sequence > attacks_in_sequence:
-			return true
-	else:
-		if (
-			current_attack_in_sequence > 1
-			and not isTargetInRange()
-			or current_attack_in_sequence > attacks_in_sequence
-		):
-			return true
-	return false
 
 var outline_shader
 var possession_duration

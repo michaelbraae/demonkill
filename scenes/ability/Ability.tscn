@@ -10,3 +10,5 @@ collision_effect = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
+
+[node name="Effects" type="Node2D" parent="."]

@@ -7,13 +7,10 @@ var PICKUP_ABILITY_SCENE = preload('res://resources/abilities/pickup_ability/fla
 func initialiseConfig() -> void:
 	max_health = 5
 	move_speed = 70
-	attacks_in_sequence = 1
-	repeat_attacks = true
 	attack_range = 30
 	attack_cooldown = 1
 	ability_range = 50
 	ability_cooldown = 3
-	complete_attack_sequence = true
 
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()

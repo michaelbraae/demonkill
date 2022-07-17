@@ -1,3 +1,3 @@
 extends PlayerPossession
 
-class_name Player2
+class_name Player

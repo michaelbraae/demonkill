@@ -7,14 +7,11 @@ var PICKUP_FIREBALL_SCENE = preload('res://resources/abilities/pickup_ability/fi
 func initialiseConfig() -> void:
 	max_health = 2
 	move_speed = 30
-	attacks_in_sequence = 1
-	repeat_attacks = true
 	attack_range = 30
 	attack_cooldown = 1
 	ability_range = 300
 	ability_cooldown = 1
 	too_close_range = 70
-	complete_attack_sequence = true
 
 func useAbility() -> void:
 	var fireball = FIREBALL_SCENE.instance()

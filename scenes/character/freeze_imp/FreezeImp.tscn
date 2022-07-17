@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/character/npc/BaseImp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/character/freeze_imp/FreezeImp.gd" type="Script" id=2]
+
+[node name="FreezeImp" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+move_speed = 80.0
+attack_range = 30.0
+ability_range = 50.0
+attack_cooldown = 1.0
+ability_cooldown = 5.0
+max_health = 3
+
+[node name="AnimatedSprite" parent="." index="2"]
+frame = 3

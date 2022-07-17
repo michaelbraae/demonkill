@@ -40,7 +40,7 @@ var dodge_vector
 var dodge_cooldown = 2
 
 # default move_speed for all PathFindingAI
-var move_speed = 120
+export var move_speed: float = 120.0
 
 # The AI's current target
 var target_actor
@@ -170,7 +170,7 @@ func chooseDirection():
 		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()
 
-func getMoveSpeed() -> int:
+func getMoveSpeed() -> float:
 	if in_dodge:
 		return move_speed * 2
 	return move_speed

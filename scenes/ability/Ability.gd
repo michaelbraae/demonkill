@@ -68,13 +68,15 @@ func area_entered(area) -> void:
 		and damage_frames.has(animatedSprite.get_frame())
 	):
 		area_parent.damage(damage)
-		# apply effect
 		area_parent.knockBack(
 			source_actor.get_angle_to(area_parent.get_global_position()),
 			200,
 			20
 		)
 		collisionEffect(area_parent)
+		# apply effect
+		for effect in get_node("Effects").get_children():
+			area_parent.get_node("EffectHandler").applyEffect(effect)
 
 # on create effect, so that we can make a small animation occur when the effect is first initialised ie: Muzzle flash
 
