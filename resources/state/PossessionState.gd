@@ -56,7 +56,6 @@ func exitPossession(spawn_position) -> void:
 	
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()
-#	current_possession.resetAbilityCooldown()
 	
 	# handle the possession dash 
 	player_instance.possession_dash_vector = player_instance.getAttackDirection()
