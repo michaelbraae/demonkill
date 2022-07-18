@@ -9,7 +9,8 @@ enum {
 	POISON,
 	BURN,
 	FREEZE,
-	ON_DEATH
+	ON_DEATH,
+	KNOCKBACK,
 }
 
 func applyEffect(effect: Effect) -> void:
@@ -20,6 +21,8 @@ func applyEffect(effect: Effect) -> void:
 			healEffect(effect)
 		POISON:
 			poisonEffect(effect)
+		KNOCKBACK:
+			knockbackEffect(effect)
 
 func damageEffect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
@@ -29,3 +32,6 @@ func healEffect(effect: HealEffect) -> void:
 
 func poisonEffect(effect: PoisonEffect) -> void:
 	pass
+
+func knockbackEffect(effect: KnockbackEffect) -> void:
+	owner.knockBack(effect.hit_direction, effect.speed, effect.decay)
