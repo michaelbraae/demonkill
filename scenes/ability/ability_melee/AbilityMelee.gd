@@ -21,14 +21,15 @@ func area_entered(area) -> void:
 			200,
 			20
 		)
-		collisionEffect(area_parent)
-		# apply effect
+		collisionEffect(area_parent.get_global_position())
+		# apply effects
 		for effect in get_node("Effects").get_children():
 			area_parent.get_node("EffectHandler").applyEffect(effect)
 
 func _physics_process(_delta) -> void:
 	if target_vector:
 		target_vector = move_and_slide(target_vector.normalized() * speed)
+
 # on create effect, so that we can make a small animation occur when the effect is first initialised ie: Muzzle flash
 
 # the effect itelf, the swipe, the fireball etc.

@@ -275,8 +275,8 @@ func find_end_room():
 			max_x = room.position.x
 
 func add_test_npc() -> void:
-#	var npc = FIREBALL_IMP.instance()
-	var npc = FREEZE_IMP_SCENE.instance()
+	var npc = FIREBALL_IMP.instance()
+#	var npc = FREEZE_IMP_SCENE.instance()
 	npc.set_position(start_room.get_position())
 	add_child(npc)
 

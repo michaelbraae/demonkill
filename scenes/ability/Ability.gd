@@ -45,15 +45,17 @@ func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
 
 func setCollideWithEnemies() -> void:
 	$Area2D.set_collision_mask_bit(2, true)
+	set_collision_mask_bit(2, true)
 
 func setCollideWithPlayer() -> void:
-	$Area2D.set_collision_mask_bit(1, true)
+	$Area2D.set_collision_mask_bit(2, true)
+	set_collision_mask_bit(2, true)
 
-func collisionEffect(collision_target) -> void:
+func collisionEffect(collision_position) -> void:
 	if is_instance_valid(collision_effect):
 		var collision_effect_instance = collision_effect.instance()
 		get_tree().get_root().add_child(collision_effect_instance)
-		collision_effect_instance.position = collision_target.get_global_position()
+		collision_effect_instance.position = collision_position
 		collision_effect_instance.play()
 
 func animation_finished():
