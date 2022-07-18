@@ -2,6 +2,8 @@ extends PathfindingAI
 
 class_name CombatReadyAI
 
+# warning-ignore-all:return_value_discarded
+
 var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
 
 onready var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
@@ -18,10 +20,6 @@ var attack_landed = false
 export var attack_range: float
 #export var ability_range: float
 export var too_close_range = -1
-
-# time in seconds (float) before the AI can attack again
-export var attack_cooldown: float
-var attack_cooldown_timer
 
 # starting health
 export var max_health: int
@@ -66,20 +64,12 @@ func _ready():
 	add_child(stun_duration_timer)
 	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
 	
-	attack_cooldown_timer = Timer.new()
-	add_child(attack_cooldown_timer)
-	attack_cooldown_timer.connect('timeout', self, 'attack_cooldown_timeout')
-	
 	possession_duration_timer = Timer.new()
 	add_child(possession_duration_timer)
-	# warning-ignore:return_value_discarded
 	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
-
-func attack_cooldown_timeout() -> void:
-	attack_cooldown_timer.stop()
 
 func possession_duration_timeout() -> void:
 	onPossessEnd()
@@ -178,11 +168,9 @@ func getAttackDirection() -> Vector2:
 func readyForPreAttack() -> bool:
 	return (
 		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
-		and attack_cooldown_timer.is_stopped()
 	)
 
 func handlePreAttack() -> void:
-#	attack_cooldown_timer.start(attack_cooldown)
 	attack_started = true
 	state = PRE_ATTACK
 
@@ -195,8 +183,8 @@ var outline_shader
 var possession_duration
 
 func onPossess(new_possession_duration: float = -1) -> void:
-	attack_cooldown_timer.stop()
 	outline_shader = OUTLINE_SHADER.instance()
+	weapon.attack_available = true
 	outline_shader.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.frame)
 	add_child(outline_shader)
 	animatedSprite.visible = false
@@ -242,13 +230,17 @@ func runDecisionTree() -> void:
 		knockback_vector = move_and_slide(getKnockBackProcessVector())
 	else:
 		if is_instance_valid(target_actor):
-			if isTargetInRange() and weapon.attack_available and not isTargetTooClose() or attack_started:
+			if (
+				isTargetInRange()
+				and weapon.attack_available
+				and not isTargetTooClose()
+				and hasLineOfSight()
+				or attack_started
+			):
 				if readyForPreAttack():
 					handlePreAttack()
 				elif state == ATTACKING:
 					attack()
-					attack_cooldown_timer.start(attack_cooldown)
-#					ability_on_cooldown = true
 					attack_landed = true
 			else:
 				.runDecisionTree()
@@ -286,7 +278,6 @@ func hitByAxe(damage) -> void:
 	animatedSprite.play('with_axe')
 
 func basic_attack() -> void:
-	if attack_cooldown_timer.is_stopped():
+	if weapon.attack_available:
 		state = ATTACKING
-		attack_cooldown_timer.start(attack_cooldown)
 		attack()

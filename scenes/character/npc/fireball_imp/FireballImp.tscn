@@ -8,6 +8,8 @@
 script = ExtResource( 2 )
 move_speed = 60.0
 attack_range = 200.0
-attack_cooldown = 1.0
 max_health = 2
 weapon_selection = ExtResource( 3 )
+
+[node name="AnimatedSprite" parent="." index="2"]
+self_modulate = Color( 0.992157, 0.141176, 0.141176, 1 )

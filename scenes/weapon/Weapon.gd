@@ -80,7 +80,7 @@ func use_weapon_abilities(
 	for ability in abilities:
 		var ability_instance = ability.instance()
 		ability_instance.target_vector = target_direction
-		get_parent().add_child(ability_instance)
+		get_tree().get_root().add_child(ability_instance)
 		ability_instance.doAbility(target_direction, get_parent())
 		ability_instance.animatedSprite.play()
 

@@ -8,7 +8,6 @@ func initialiseConfig() -> void:
 	max_health = 3
 	move_speed = 70
 	attack_range = 30
-	attack_cooldown = 1
 
 func useAbility() -> void:
 	var ability_instance = ABILITY_SCENE.instance()

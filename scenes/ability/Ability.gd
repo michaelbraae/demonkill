@@ -40,7 +40,7 @@ func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
 	target_vector = attack_direction
 	look_at(to_global(target_vector))
 	animatedSprite.play()
-	position = attack_direction.normalized() * player_relative_spawn_position
+	position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
 
 func setCollideWithEnemies() -> void:
 	$Area2D.set_collision_mask_bit(2, true)
