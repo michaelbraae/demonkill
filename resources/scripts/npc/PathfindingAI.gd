@@ -156,7 +156,8 @@ func chooseDirection():
 	# Choose direction based on remaining interest
 	chosen_direction = Vector2.ZERO
 	for i in detection_ray_count:
-		chosen_direction += ray_directions[i] * interest[i]
+		if is_instance_valid(ray_directions[i]) and is_instance_valid(interest[i]):
+			chosen_direction += ray_directions[i] * interest[i]
 	
 	if not in_dodge and not dodge_cooldown_timer.is_stopped():
 		# once the dodge has finished, but it's still on cooldown
