@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/abilities/base/AbilityBase.gd"
 }, {
+"base": "Ability",
+"class": "AbilityMelee",
+"language": "GDScript",
+"path": "res://scenes/ability/ability_melee/AbilityMelee.gd"
+}, {
+"base": "Ability",
+"class": "AbilityProjectile",
+"language": "GDScript",
+"path": "res://scenes/ability/ability_projectile/AbilityProjectile.gd"
+}, {
 "base": "CharacterBase",
 "class": "BaseAI",
 "language": "GDScript",
@@ -162,6 +172,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Ability": "",
 "AbilityBase": "",
+"AbilityMelee": "",
+"AbilityProjectile": "",
 "BaseAI": "",
 "CasterAI": "",
 "CharacterBase": "",

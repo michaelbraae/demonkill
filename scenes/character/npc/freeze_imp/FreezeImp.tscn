@@ -9,10 +9,7 @@
 script = ExtResource( 2 )
 move_speed = 80.0
 attack_range = 30.0
-ability_range = 50.0
-attack_cooldown = 1.0
-ability_cooldown = 1.0
-max_health = 3
+max_health = 20
 weapon_selection = ExtResource( 4 )
 
 [node name="AnimatedSprite" parent="." index="2"]

@@ -33,6 +33,11 @@ region = Rect2( 66, 0, 22, 29 )
 
 [resource]
 animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "attack_loop",
@@ -71,10 +76,5 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 14 ) ],
-"loop": true,
-"name": "idle",
 "speed": 5.0
 } ]
