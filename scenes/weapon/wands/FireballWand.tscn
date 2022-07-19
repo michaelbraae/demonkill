@@ -8,4 +8,5 @@ weapon_name = "Fireball Wand"
 rarity = 3
 archetype = 6
 affinity = 1
+attack_speed = 1.0
 attack_abilities = [ ExtResource( 2 ) ]

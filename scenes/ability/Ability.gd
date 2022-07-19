@@ -35,23 +35,22 @@ func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")
 
 # a VFX can be instantiated when the ability fires, ie: muzzle flash
-func onCreateAbility(target_vector: Vector2) -> void:
+func onCreateAbility(attack_direction: Vector2) -> void:
 	if is_instance_valid(on_create_effect):
 		var effect_instance = on_create_effect.instance()
-		get_tree().get_root().add_child(on_create_effect)
-		effect_instance.position = get_global_position()
-		effect_instance.look_at(to_global(target_vector))
+		effect_instance.look_at(attack_direction)
 		effect_instance.play()
+		effect_instance.position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
+		get_tree().get_root().add_child(effect_instance)
 
 func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
-	onCreateAbility(attack_direction)
 	source_actor = source
+	onCreateAbility(attack_direction)
 	if source_actor == GameState.player or source_actor.isPossessed():
 		setCollideWithEnemies()
 	else:
 		setCollideWithPlayer()
-	target_vector = attack_direction
-	look_at(to_global(target_vector))
+	look_at(attack_direction)
 	animatedSprite.play()
 	position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
 

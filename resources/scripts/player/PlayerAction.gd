@@ -10,16 +10,20 @@ var next_spell : Dictionary
 
 var axe_recall_available = false
 
-var weapon_slot_1: Weapon
-var weapon_slot_2: Weapon
+
+export(PackedScene) var weapon_slot_1
+export(PackedScene) var weapon_slot_2
+
+var weapon_slot_1_instance
 
 var sprint_timer: Timer
 
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
-	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
-	add_child(weapon_slot_1)
+#	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
+	weapon_slot_1_instance = weapon_slot_1.instance()
+	add_child(weapon_slot_1_instance)
 	
 	sprint_timer = Timer.new()
 	sprint_timer.connect("timeout", self, "sprint_timeout")
@@ -30,13 +34,13 @@ func sprint_timeout() -> void:
 	sprint = true
 
 func basic_attack() -> void:
-	if weapon_slot_1.attack_available:
+	if weapon_slot_1_instance.attack_available:
 		if velocity:
 			# warning-ignore:narrowing_conversion
 			setFacingDirection(round(rad2deg(velocity.angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
-		weapon_slot_1.attack(getAttackDirection(), self)
+		weapon_slot_1_instance.attack(getAttackDirection(), self)
 
 func use_ability() -> void:
 	if has_axe:

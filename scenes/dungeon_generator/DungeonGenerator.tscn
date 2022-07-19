@@ -21,8 +21,12 @@ cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 format = 1
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0, 0, 0, 1 )
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0.00392157, 0.0784314, 1 )
 
 [node name="YSort" type="YSort" parent="."]

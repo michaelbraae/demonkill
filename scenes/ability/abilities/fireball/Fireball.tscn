@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/ability/ability_projectile/AbilityProjectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/effects/impacts/white_impact/WhiteImpact.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/sprites/abilities/projectiles/fireball.png" type="Texture" id=3]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/vfx/muzzle_flash/MuzzleFlash.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -37,13 +38,13 @@ radius = 3.0
 collision_layer = 0
 continuous = true
 speed = 4
-on_hit_effects = [ null ]
+on_create_effect = ExtResource( 6 )
 collision_effect = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 

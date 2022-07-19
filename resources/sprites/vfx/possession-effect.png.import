@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/possession-effect.png-4f184d744ce75d471dab747255b2eccf.stex"
+path="res://.import/possession-effect.png-a3c5e767b4812d09fc838747f2c95a49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/effects/possession_effects/possession-effect.png"
-dest_files=[ "res://.import/possession-effect.png-4f184d744ce75d471dab747255b2eccf.stex" ]
+source_file="res://resources/sprites/vfx/possession-effect.png"
+dest_files=[ "res://.import/possession-effect.png-a3c5e767b4812d09fc838747f2c95a49.stex" ]
 
 [params]
 
