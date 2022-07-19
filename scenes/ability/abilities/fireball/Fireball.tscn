@@ -34,14 +34,16 @@ animations = [ {
 radius = 3.0
 
 [node name="Fireball" instance=ExtResource( 1 )]
+collision_layer = 0
 continuous = true
-speed = 3
+speed = 4
 on_hit_effects = [ null ]
 collision_effect = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
+frame = 1
 speed_scale = 2.5
 playing = true
 

@@ -25,6 +25,8 @@ export var player_relative_spawn_position: int = 15
 
 export(Array, PackedScene) var on_hit_effects
 
+export(PackedScene) var on_create_effect
+
 export(PackedScene) var collision_effect
 
 var damaged_characters: Array = []
@@ -32,7 +34,17 @@ var damaged_characters: Array = []
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")
 
+# a VFX can be instantiated when the ability fires, ie: muzzle flash
+func onCreateAbility(target_vector: Vector2) -> void:
+	if is_instance_valid(on_create_effect):
+		var effect_instance = on_create_effect.instance()
+		get_tree().get_root().add_child(on_create_effect)
+		effect_instance.position = get_global_position()
+		effect_instance.look_at(to_global(target_vector))
+		effect_instance.play()
+
 func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
+	onCreateAbility(attack_direction)
 	source_actor = source
 	if source_actor == GameState.player or source_actor.isPossessed():
 		setCollideWithEnemies()
@@ -48,8 +60,8 @@ func setCollideWithEnemies() -> void:
 	set_collision_mask_bit(2, true)
 
 func setCollideWithPlayer() -> void:
-	$Area2D.set_collision_mask_bit(2, true)
-	set_collision_mask_bit(2, true)
+	$Area2D.set_collision_mask_bit(1, true)
+	set_collision_mask_bit(1, true)
 
 func collisionEffect(collision_position) -> void:
 	if is_instance_valid(collision_effect):

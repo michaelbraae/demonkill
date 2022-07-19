@@ -8,7 +8,6 @@
 script = ExtResource( 3 )
 move_speed = 80.0
 attack_range = 30.0
-attack_cooldown = 1.0
 max_health = 3
 weapon_selection = ExtResource( 1 )
 
