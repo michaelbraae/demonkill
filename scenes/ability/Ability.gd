@@ -47,6 +47,7 @@ func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
 	source_actor = source
 	onCreateAbility(attack_direction)
 	if source_actor == GameState.player or source_actor.isPossessed():
+		print('setColliderWithEnemies')
 		setCollideWithEnemies()
 	else:
 		setCollideWithPlayer()

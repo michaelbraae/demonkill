@@ -16,6 +16,8 @@ func area_entered(area) -> void:
 		and not damaged_characters.has(area_parent)
 	):
 		collisionEffect(area_parent.get_global_position())
+		damaged_characters.push_front(area_parent)
+		# TODO test damaged_characters
 		# apply effects
 		for effect in get_node("Effects").get_children():
 			area_parent.get_node("EffectHandler").applyEffect(effect)
