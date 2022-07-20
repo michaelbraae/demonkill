@@ -5,6 +5,7 @@
 [ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.gd" type="Script" id=3]
 
 [node name="SwipeImp" instance=ExtResource( 2 )]
+collision_layer = 0
 script = ExtResource( 3 )
 move_speed = 80.0
 attack_range = 30.0

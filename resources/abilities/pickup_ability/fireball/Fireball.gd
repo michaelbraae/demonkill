@@ -23,4 +23,3 @@ func _physics_process(delta):
 		impact_instance.position = position
 		impact_instance.play()
 		queue_free()
-

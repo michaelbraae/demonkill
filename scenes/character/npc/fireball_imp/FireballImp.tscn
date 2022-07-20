@@ -5,10 +5,11 @@
 [ext_resource path="res://scenes/weapon/wands/FireballWand.tscn" type="PackedScene" id=3]
 
 [node name="FireballImp" instance=ExtResource( 1 )]
+collision_layer = 0
 script = ExtResource( 2 )
 move_speed = 60.0
 attack_range = 200.0
-max_health = 2
+max_health = 5
 weapon_selection = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="2"]

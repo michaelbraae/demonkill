@@ -15,12 +15,6 @@ func area_entered(area) -> void:
 		and damage_frames.has(animatedSprite.get_frame())
 		and not damaged_characters.has(area_parent)
 	):
-		damaged_characters.push_front(area_parent)
-		area_parent.knockBack(
-			source_actor.get_angle_to(area_parent.get_global_position()),
-			200,
-			20
-		)
 		collisionEffect(area_parent.get_global_position())
 		# apply effects
 		for effect in get_node("Effects").get_children():

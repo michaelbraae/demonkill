@@ -27,10 +27,10 @@ func applyEffect(effect: Effect) -> void:
 func damageEffect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
 
-func healEffect(effect: HealEffect) -> void:
+func healEffect(_effect: HealEffect) -> void:
 	pass
 
-func poisonEffect(effect: PoisonEffect) -> void:
+func poisonEffect(_effect: PoisonEffect) -> void:
 	pass
 
 func knockbackEffect(effect: KnockbackEffect) -> void:

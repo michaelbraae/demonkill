@@ -1014,6 +1014,7 @@ height = 12.7013
 radius = 43.2871
 
 [node name="Player" instance=ExtResource( 2 )]
+collision_layer = 0
 script = ExtResource( 31 )
 weapon_slot_1 = ExtResource( 32 )
 
