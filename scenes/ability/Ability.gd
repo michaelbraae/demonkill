@@ -38,7 +38,7 @@ func _ready() -> void:
 func onCreateAbility(attack_direction: Vector2) -> void:
 	if is_instance_valid(on_create_effect):
 		var effect_instance = on_create_effect.instance()
-		effect_instance.look_at(attack_direction)
+		effect_instance.look_at(to_global(attack_direction))
 		effect_instance.play()
 		effect_instance.position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
 		get_tree().get_root().add_child(effect_instance)
@@ -51,7 +51,7 @@ func doAbility(attack_direction : Vector2, source: KinematicBody2D) -> void:
 		setCollideWithEnemies()
 	else:
 		setCollideWithPlayer()
-	look_at(attack_direction)
+	look_at(to_global(attack_direction))
 	animatedSprite.play()
 	position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
 
