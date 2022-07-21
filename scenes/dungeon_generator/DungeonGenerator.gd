@@ -6,9 +6,7 @@ var font = preload("res://assets/RobotoBold120.tres")
 onready var Map: TileMap = $TileMap
 
 # npc scenes
-const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
-const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
-const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
+const SWIPE_IMP = preload("res://scenes/character/npc/swipe_imp/SwipeImp.tscn")
 const FREEZE_IMP_SCENE = preload("res://scenes/character/npc/freeze_imp/FreezeImp.tscn")
 const FIREBALL_IMP = preload("res://scenes/character/npc/fireball_imp/FireballImp.tscn")
 
@@ -188,8 +186,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-#	add_npcs()
-	add_test_npc()
+	add_npcs()
+#	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
@@ -291,11 +289,11 @@ func spawnNpcs(spawn_origin) -> void:
 		var rand_npc
 		spawn_origin.x += i * 15
 		if random_npc < 0.33:
-			rand_npc = FIREBALL_IMP_SCENE.instance()
+			rand_npc = FIREBALL_IMP.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		elif random_npc < 0.66:
-			rand_npc = SWIPE_IMP_SCENE.instance()
+			rand_npc = SWIPE_IMP.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		else:
