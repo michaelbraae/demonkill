@@ -1,15 +1,14 @@
 extends Node2D
 
 var Room = preload("res://Room.tscn")
-var PLAYER_SCENE = preload("res://resources/actors/player/Player.tscn")
+var PLAYER_SCENE = preload("res://scenes/character/player/Player.tscn")
 var font = preload("res://assets/RobotoBold120.tres")
 onready var Map: TileMap = $TileMap
 
 # npc scenes
-const FIREBALL_IMP_SCENE = preload("res://resources/actors/npc/imps/fireball_imp/FireballImp.tscn")
-const SWIPE_IMP_SCENE = preload("res://resources/actors/npc/imps/flame_swipe_imp/FlameSwipeImp.tscn")
-const ELITE_IMP_SCENE = preload("res://resources/actors/npc/imps/elite_imp/EliteImp.tscn")
-const FREEZE_IMP_SCENE = preload("res://resources/actors/npc/imps/freeze_imp/FreezeImp.tscn")
+const SWIPE_IMP = preload("res://scenes/character/npc/swipe_imp/SwipeImp.tscn")
+const FREEZE_IMP_SCENE = preload("res://scenes/character/npc/freeze_imp/FreezeImp.tscn")
+const FIREBALL_IMP = preload("res://scenes/character/npc/fireball_imp/FireballImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
 var num_rooms = 15  # number of rooms to generate - 50
@@ -80,7 +79,7 @@ func _draw():
 
 func _process(_delta):
 	update()
-	
+
 func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
 		if play_mode:
@@ -187,8 +186,8 @@ func make_map():
 	connectAStarNavPoints()
 	
 	# iterate over the rooms and add npcs to each
-#	add_npcs()
-	add_test_npc()
+	add_npcs()
+#	add_test_npc()
 	ready_for_player = true
 
 var cell_coords = []
@@ -274,7 +273,8 @@ func find_end_room():
 			max_x = room.position.x
 
 func add_test_npc() -> void:
-	var npc = FREEZE_IMP_SCENE.instance()
+	var npc = FIREBALL_IMP.instance()
+#	var npc = FREEZE_IMP_SCENE.instance()
 	npc.set_position(start_room.get_position())
 	add_child(npc)
 
@@ -289,11 +289,11 @@ func spawnNpcs(spawn_origin) -> void:
 		var rand_npc
 		spawn_origin.x += i * 15
 		if random_npc < 0.33:
-			rand_npc = FIREBALL_IMP_SCENE.instance()
+			rand_npc = FIREBALL_IMP.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		elif random_npc < 0.66:
-			rand_npc = SWIPE_IMP_SCENE.instance()
+			rand_npc = SWIPE_IMP.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
 		else:

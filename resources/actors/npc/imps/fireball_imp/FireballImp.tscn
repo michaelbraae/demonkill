@@ -42,9 +42,9 @@ region = Rect2( 0, 0, 18, 25 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "idle",
+"name": "post_attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 12 ) ],
@@ -52,19 +52,14 @@ animations = [ {
 "name": "attack_loop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "stunned",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "with_axe",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 17 ) ],
 "loop": true,
-"name": "post_attack",
+"name": "stunned",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 6 ) ],
@@ -72,9 +67,9 @@ animations = [ {
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "attack",
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 10 ) ],
@@ -82,9 +77,14 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 

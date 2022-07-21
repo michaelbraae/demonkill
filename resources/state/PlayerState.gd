@@ -29,6 +29,12 @@ func addHealth(health_add: int) -> void:
 	if health + health_add <= max_health:
 		health += health_add
 
+func weapon_slot_1() -> Weapon:
+	return Weapon.instance()
+
+func weapon_slot_2() -> Weapon:
+	return Weapon.instance()
+
 var SPELLS: Dictionary = {
 	"0": {},
 	"1": {},

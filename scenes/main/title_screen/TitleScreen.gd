@@ -1,9 +1,9 @@
 extends Control
 
-func _ready():
-# warning-ignore:return_value_discarded
+# warning-ignore-all:return_value_discarded
+
+func _ready() -> void:
 	$CenterContainer/VBoxContainer/DungeonButton.connect("pressed", self, "on_dungeon_button_pressed")
-# warning-ignore:return_value_discarded
 	$CenterContainer/VBoxContainer/QuitButton.connect("pressed", self, "on_quit_button_pressed")
 	GameState.state = GameState.MAIN_MENU
 

@@ -3,6 +3,7 @@ extends PlayerAction
 class_name PlayerPossession
 
 var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
+var POSSESSION_VFX_SCENE = preload("res://scenes/vfx/possession_vfx/PossessionVFX.tscn")
 
 onready var POSSESSION_ARROW_SCENE = preload("res://scenes/ui/possession_arrow/PossessionArrow.tscn")
 var possession_arrow_instance
@@ -40,6 +41,9 @@ func _physics_process(_delta):
 				impact_instance.position = area.get_parent().get_global_position()
 				impact_instance.play()
 				PossessionState.possessEntity(area.get_parent())
+				var possession_vfx = POSSESSION_VFX_SCENE.instance()
+				area.get_parent().add_child(possession_vfx)
+				possession_vfx.play()
 				PlayerState.useMana(2)
 				PlayerState.addHealth(2)
 				break

@@ -40,7 +40,7 @@ var dodge_vector
 var dodge_cooldown = 2
 
 # default move_speed for all PathFindingAI
-var move_speed = 120
+export var move_speed: float = 120.0
 
 # The AI's current target
 var target_actor
@@ -156,7 +156,8 @@ func chooseDirection():
 	# Choose direction based on remaining interest
 	chosen_direction = Vector2.ZERO
 	for i in detection_ray_count:
-		chosen_direction += ray_directions[i] * interest[i]
+		if is_instance_valid(target_actor):
+			chosen_direction += ray_directions[i] * interest[i]
 	
 	if not in_dodge and not dodge_cooldown_timer.is_stopped():
 		# once the dodge has finished, but it's still on cooldown
@@ -170,12 +171,14 @@ func chooseDirection():
 		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()
 
-func getMoveSpeed() -> int:
+func getMoveSpeed() -> float:
 	if in_dodge:
 		return move_speed * 2
 	return move_speed
 
 func hasLineOfSight() -> bool:
+	if !is_instance_valid(target_actor):
+		return false
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_ray(get_global_position(), target_actor.get_global_position(), [self])
 	if result and result['collider'] == target_actor:
@@ -185,7 +188,7 @@ func hasLineOfSight() -> bool:
 var spawn_position
 var max_wander_distance = 400
 
-func decideContinueChasingTarget() -> bool:
+func followTarget() -> bool:
 	# if the target has line of sight then it's okay to continue
 	if hasLineOfSight():
 		return true
@@ -210,10 +213,10 @@ func navigateAlongPath(target_position) -> void:
 	# draw a line here to show the intention of the AI
 #	nav_line.clear_points()
 #	nav_line_2.clear_points()
-	for nav_location in navigation_path:
+#	for nav_location in navigation_path:
 #		nav_line.add_point(Vector2(nav_location.x, nav_location.y))
 #		nav_line_2.add_point(Vector2(nav_location.x + 8, nav_location.y + 8))
-		pass
+#		pass
 	
 #	next_position = Vector2(next_position.x + 8, next_position.y + 8)
 	var angle_to_navigation_point = get_angle_to(next_position)
@@ -222,10 +225,10 @@ func navigateAlongPath(target_position) -> void:
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
-	if not decideContinueChasingTarget():
+	if not followTarget():
 		navigation_path = calculate_point_path(spawn_position)
 		navigateAlongPath(spawn_position)
-	elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
+	elif is_instance_valid(target_actor) and GameState.tilemap and not hasLineOfSight():
 		if navigation_reset_timer.is_stopped() or !navigation_path:
 			navigation_reset_timer.start(navigation_reset)
 			navigation_path = calculate_point_path(target_actor.get_position())
@@ -244,6 +247,6 @@ func calculate_point_path(target_position) -> PoolVector2Array:
 	var target_location_in_tilemap = GameState.astar.get_closest_point(target_position)
 	return GameState.astar.get_point_path(current_location_in_tilemap, target_location_in_tilemap)
 
-func _physics_process(_delta : float) -> void:
+func _physics_process(_delta: float) -> void:
 	detectTarget()
 	runDecisionTree()
