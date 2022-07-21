@@ -11,6 +11,7 @@ enum {
 	FREEZE,
 	ON_DEATH,
 	KNOCKBACK,
+	MANA_REGEN
 }
 
 func applyEffect(effect: Effect) -> void:
@@ -23,6 +24,8 @@ func applyEffect(effect: Effect) -> void:
 			poisonEffect(effect)
 		KNOCKBACK:
 			knockbackEffect(effect)
+		MANA_REGEN:
+			manaRegenEffect(effect)
 
 func damageEffect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
@@ -35,3 +38,6 @@ func poisonEffect(_effect: PoisonEffect) -> void:
 
 func knockbackEffect(effect: KnockbackEffect) -> void:
 	owner.knockBack(effect.hit_direction, effect.speed, effect.decay)
+
+func manaRegenEffect(effect: ManaRegenEffect) -> void:
+	PlayerState.addMana(effect.mana_regen_amount)
