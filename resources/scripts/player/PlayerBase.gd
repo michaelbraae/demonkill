@@ -61,6 +61,8 @@ func _ready() -> void:
 	
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
+	GameState.player = self
+	PlayerState
 	FeedbackHandler.current_camera = camera2D
 	PossessionState.bite_box = possession_hitbox
 

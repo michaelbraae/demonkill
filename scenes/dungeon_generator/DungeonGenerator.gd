@@ -16,7 +16,6 @@ var min_size = 8  # minimum room size (in tiles) - 6
 var max_size = 12  # maximum room size (in tiles) - 16
 var hspread = 400  # horizontal spread (in pixels) - 400
 var vspread = 400
-var cull = 0.35  # chance to cull room - 0.35
 
 var path  # AStar pathfinding object
 var start_room = null
@@ -46,16 +45,14 @@ func make_rooms():
 	yield(get_tree().create_timer(1.1), 'timeout')
 	# cull rooms
 	for room in $Rooms.get_children():
-#		var overlapping_rooms = room.getOverlappingRooms()
-#		if overlapping_rooms:
-#			for overlapping_room in overlapping_rooms:
-#				overlapping_room.queue_free()
-		if randf() < cull:
+		var overlapping_rooms = room.get_overlapping_rooms()
+		if overlapping_rooms.size() > 2:
 			room.queue_free()
 		else:
 			room.mode = RigidBody2D.MODE_STATIC
 			room_positions.append(Vector3(room.position.x, room.position.y, 0))
 	yield(get_tree(), 'idle_frame')
+	
 	# generate a minimum spanning tree connecting the rooms
 	path = find_mst(room_positions)
 
