@@ -27,7 +27,8 @@ func _deferred_goto_scene(path : String):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
-	var spawnPoint = current_scene.get_node('SpawnPoint')
+#	var spawnPoint = get_tree().get_root().find_node("SpawnPoint")
+	var spawnPoint = current_scene.find_node('SpawnPoint')
 	
 #	var player_ui = get_tree().get_root().get_node("root/PlayerUI")
 	if is_instance_valid(spawnPoint):

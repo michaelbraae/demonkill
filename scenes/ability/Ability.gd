@@ -36,12 +36,12 @@ func _ready() -> void:
 
 # a VFX can be instantiated when the ability fires, ie: muzzle flash
 func on_create_ability(attack_direction: Vector2) -> void:
-	if is_instance_valid(on_create_effect):
+	if is_instance_valid(on_create_effect) and attack_direction:
 		var effect_instance = on_create_effect.instance()
+		get_tree().get_root().add_child(effect_instance)
 		effect_instance.look_at(attack_direction)
 		effect_instance.play()
 		effect_instance.position = source_actor.position + attack_direction.normalized() * player_relative_spawn_position
-		get_tree().get_root().add_child(effect_instance)
 
 func do_ability(attack_direction : Vector2, source: KinematicBody2D) -> void:
 	source_actor = source
