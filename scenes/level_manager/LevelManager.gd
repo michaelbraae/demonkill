@@ -10,27 +10,36 @@ func _ready():
 func goto_scene(path):
 	call_deferred('_deferred_goto_scene', path)
 
-func _deferred_goto_scene(path : String):
+onready var thread: Thread = Thread.new()
+
+func _deferred_goto_scene(path : String) -> void:
 	# reset any slomo effects :D
 	Engine.time_scale = 1
 	# It is now safe to remove the current scene
 	current_scene.free()
+	thread.start(self, "prepare_scene", ResourceLoader.load_interactive(path))
 
-	# Load the new scene.
-	var scene_resource = ResourceLoader.load(path)
+func prepare_scene(interactive_ldr):
+	print("preparing scene...")
+	while true:
+		var err = interactive_ldr.poll()
+		if err == ERR_FILE_EOF:
+			print("load complete...")
+			call_deferred("load_complete")
+			return interactive_ldr.get_resource()
 
-	# Instance the new scene.
-	current_scene = scene_resource.instance()
-
-	# Add it to the active scene, as child of root.
+func load_complete() -> void:
+	var level_res = thread.wait_to_finish()
+	current_scene = level_res.instance();
+	
 	get_tree().get_root().add_child(current_scene)
-
+	
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
-#	var spawnPoint = get_tree().get_root().find_node("SpawnPoint")
+	
+	print("spawning player...")
 	var spawnPoint = current_scene.find_node('SpawnPoint')
 	
-#	var player_ui = get_tree().get_root().get_node("root/PlayerUI")
 	if is_instance_valid(spawnPoint):
 		var player_controlled_actor
 		if GameState.state == GameState.CONTROLLING_NPC:
