@@ -79,18 +79,8 @@ func _process(_delta):
 
 func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
-		if play_mode:
-			if is_instance_valid(player):
-				player.queue_free()
-			$Camera2D.make_current()
-			play_mode = false
-		for n in $Rooms.get_children():
-			n.queue_free()
-		Map.clear()
-		path = null
-		start_room = null
-		end_room = null
-		make_rooms()
+		LevelManager.goto_scene("res://scenes/dungeon_generator/DungeonGenerator.tscn")
+#
 	if event.is_action_pressed('dungeon_make_map') and ready_for_tilemap:
 		ready_for_tilemap = false
 		make_map()
