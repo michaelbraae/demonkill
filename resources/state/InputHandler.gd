@@ -11,6 +11,7 @@ const SPEED = 180
 
 func _ready():
 	setDeadzones()
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 func getVelocity(move_speed) -> Vector2: 
 	if mute_inputs:
@@ -66,3 +67,5 @@ func _unhandled_input(event) -> void:
 			InputEmitter.action_3_released()
 	if event.is_action_pressed("dev_tool"):
 		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")
+	if event.is_action_pressed("ui_cancel"):
+		InputEmitter.ui_cancel()

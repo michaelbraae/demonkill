@@ -21,7 +21,6 @@ var sprint_timer: Timer
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
-#	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
 	weapon_slot_1_instance = weapon_slot_1.instance()
 	add_child(weapon_slot_1_instance)
 	

@@ -1,6 +1,7 @@
 extends Node
 
 signal ui_accept
+signal ui_cancel
 
 # docs say use past tense to name signals :hmmm:
 signal movement_ability
@@ -8,6 +9,9 @@ signal basic_attack
 signal use_ability
 signal possession_cast_begun
 signal possession_cast_ended
+
+func _ready() -> void:
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 func ui_accept() -> void:
 	if GameState.is_paused:
@@ -38,3 +42,6 @@ func action_3_released() -> void:
 		pass
 	else:
 		emit_signal("possession_cast_ended")
+
+func ui_cancel() -> void:
+	emit_signal("ui_cancel")

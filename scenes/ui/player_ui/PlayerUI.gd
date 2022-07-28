@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var label = $Label
 onready var healthBar = $HealthBar

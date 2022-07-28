@@ -20,12 +20,8 @@ func resume() -> void:
 func set_is_paused(value: bool) -> void:
 	is_paused = value
 	GameState.is_paused = value
-	get_tree().paused = is_paused
-	visible = is_paused
-
-func _unhandled_input(event) -> void:
-	if event.is_action_pressed("pause"):
-		self.is_paused = !is_paused
+	get_tree().paused = value
+	visible = value
 
 func on_resume_pressed() -> void:
 	resume()

@@ -38,24 +38,9 @@ region = Rect2( 66, 0, 22, 29 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "attack_loop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "stunned",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "with_axe",
+"name": "attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 13 ) ],
@@ -63,14 +48,29 @@ animations = [ {
 "name": "post_attack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "attack_loop",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "with_axe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "stunned",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "pre_attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "attack",
+"name": "take_hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ) ],
@@ -78,9 +78,9 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "take_hit",
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -114,7 +114,7 @@ rotation = 0.00808018
 scale = Vector2( 1.3, 1.3 )
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
+frame = 3
 speed_scale = 2.0
 playing = true
 

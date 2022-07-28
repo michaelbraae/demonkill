@@ -37,9 +37,10 @@ func load_complete() -> void:
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 	
-	print("spawning player...")
 	var spawnPoint = current_scene.find_node('SpawnPoint')
 	
+	if is_instance_valid(GameState.player):
+		GameState.player.queue_free()
 	if is_instance_valid(spawnPoint):
 		var player_controlled_actor
 		if GameState.state == GameState.CONTROLLING_NPC:
