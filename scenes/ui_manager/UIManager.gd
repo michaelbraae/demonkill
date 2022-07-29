@@ -1,7 +1,5 @@
 extends Node
 
-class_name UIManager
-
 # list all the unique windows - THESE CANNOT BE ACTIVE AT THE SAME TIME
 enum {
 	PAUSE_SCREEN,

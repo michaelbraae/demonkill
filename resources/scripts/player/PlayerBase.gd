@@ -53,6 +53,7 @@ func _enter_tree() -> void:
 	PossessionState.connectToInputSignals(self)
 
 func _ready() -> void:
+	UIManager.get_node("PlayerUI").visible = true
 	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)

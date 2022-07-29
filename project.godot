@@ -175,11 +175,6 @@ _global_script_classes=[ {
 "path": "res://resources/scripts/ability/TelegraphedAOE.gd"
 }, {
 "base": "Node",
-"class": "UIManager",
-"language": "GDScript",
-"path": "res://scenes/ui_manager/UIManager.gd"
-}, {
-"base": "Node",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://scenes/weapon/Weapon.gd"
@@ -218,7 +213,6 @@ _global_script_class_icons={
 "ProjectileBase": "",
 "RotatingWeapon": "",
 "TelegraphedAOE": "",
-"UIManager": "",
 "Weapon": ""
 }
 
@@ -237,7 +231,7 @@ PossessionState="*res://resources/state/PossessionState.gd"
 InputHandler="*res://resources/state/InputHandler.gd"
 FeedbackHandler="*res://resources/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://resources/state/InputEmitter.gd"
-UiManager="*res://scenes/ui_manager/UIManager.tscn"
+UIManager="*res://scenes/ui_manager/UIManager.tscn"
 
 [display]
 

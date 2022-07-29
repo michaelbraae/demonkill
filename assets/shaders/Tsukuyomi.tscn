@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 WHITE: hint_color = vec4(1, 1, 1, 1);
+uniform vec4 BLACK: hint_color = vec4(0, 0, 0, 1);
+uniform vec4 DARK_SIENNA: hint_color = vec4(0.3, 0, 0, 1);
+uniform vec4 LIGHT_SIENNA: hint_color = vec4(0.5, 0, 0, 1);
+uniform vec4 DARK_RED: hint_color = vec4(0.6, 0, 0, 1);
+uniform vec4 ROSSO_CORSA: hint_color = vec4(0.8, 0, 0, 1);
+
+//uniform vec4 test_color = Col
+uniform vec4 tint_color: hint_color = vec4(0.0, 0.5,0.99, 1);
+
+vec3 rgb2hsv(vec3 c)
+{
+    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1.0e-10;
+    return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+}
+
+// manipulate the thresholds to change the level at which the colors change
+uniform float dark = 0.15;
+uniform float low = 0.25;
+uniform float mid = 0.35;
+uniform float high_mid = 0.55;
+uniform float high = 0.6;
+uniform float light = 1.0;
+
+void fragment() {
+	vec4 curr_color = texture(SCREEN_TEXTURE, SCREEN_UV); // Get current color of pixel
+	
+	vec3 hsvColor = rgb2hsv(vec3(curr_color.r, curr_color.g, curr_color.b));
+	
+	if (hsvColor.z < dark) {
+		COLOR = WHITE;
+	} else if (hsvColor.z >= dark && hsvColor.z < low) {
+		COLOR = ROSSO_CORSA
+	} else if (hsvColor.z >= low && hsvColor.z < mid) {
+		COLOR = DARK_RED
+	} else if (hsvColor.z >= mid && hsvColor.z < high_mid) {
+		COLOR = LIGHT_SIENNA
+	} else if (hsvColor.z >= high_mid && hsvColor.z < high) {
+		COLOR = DARK_SIENNA
+	} else if (hsvColor.z >= light) {
+		COLOR = BLACK;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/WHITE = Color( 1, 1, 1, 1 )
+shader_param/BLACK = Color( 0, 0, 0, 1 )
+shader_param/DARK_SIENNA = Color( 0.3, 0, 0, 1 )
+shader_param/LIGHT_SIENNA = Color( 0.5, 0, 0, 1 )
+shader_param/DARK_RED = Color( 0.6, 0, 0, 1 )
+shader_param/ROSSO_CORSA = Color( 0.8, 0, 0, 1 )
+shader_param/tint_color = Color( 0, 0.5, 0.99, 1 )
+shader_param/dark = 0.15
+shader_param/low = 0.25
+shader_param/mid = 0.35
+shader_param/high_mid = 0.55
+shader_param/high = 0.6
+shader_param/light = 1.0
+
+[node name="Tsukuyomi" type="Sprite"]
+material = SubResource( 8 )
+position = Vector2( 73, 280 )
+scale = Vector2( 5.58618, 3.50264 )
+texture = ExtResource( 1 )
