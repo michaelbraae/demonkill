@@ -4,9 +4,13 @@ class_name DotEffect
 
 export var effect_duration: float
 
-export var tick_per_second: float
+export var tick_rate: float
 
-export var damage_per_tick: int
+export var damage: int
+
+
+
+
 
 # the effect script should be able to handle what happens 
 # if the player is already poisoned

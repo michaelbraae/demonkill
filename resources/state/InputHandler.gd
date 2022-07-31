@@ -51,7 +51,7 @@ func getAttackDirection() -> Vector2:
 		return aim_vector
 	return getMovementVector()
 
-func _unhandled_input(event) -> void:
+func _input(event) -> void:
 	if event.is_action_pressed("reload_town"):
 		LevelManager.goto_scene("res://scenes/levels/Town.tscn")
 	if event.is_action_pressed("ui_accept"):

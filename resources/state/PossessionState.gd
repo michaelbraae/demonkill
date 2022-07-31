@@ -14,7 +14,8 @@ func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
 
-func onPossessionExit() -> void:	
+func onPossessionExit() -> void:
+	UIManager.get_node("Tsukuyomi").visible = false
 	# give the player back the axe if they possessed the enemy with axe
 	# could be moved to an "possessed" signal that emits when the player or an NPC is possessed
 	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
@@ -76,6 +77,7 @@ func exitPossession(spawn_position) -> void:
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
+	UIManager.get_node("Tsukuyomi").visible = true
 	connectToInputSignals(new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
@@ -89,6 +91,7 @@ func possessEntity(new_possession) -> void:
 		GameState.player.has_axe = true
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
+	FeedbackHandler.shakeCamera()
 	GameState.player.queue_free()
 	new_possession.setPossessionCollisions()
 #	new_possessiaon.resetAbilityCooldown()

@@ -33,8 +33,8 @@ func damageEffect(effect: DamageEffect) -> void:
 func healEffect(_effect: HealEffect) -> void:
 	pass
 
-func poisonEffect(_effect: PoisonEffect) -> void:
-	pass
+func poisonEffect(effect: PoisonEffect) -> void:
+	$PoisonHandler.beginEffect(effect)
 
 func knockbackEffect(effect: KnockbackEffect) -> void:
 	owner.knockBack(effect.hit_direction, effect.speed, effect.decay)

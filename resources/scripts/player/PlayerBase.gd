@@ -54,6 +54,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	UIManager.get_node("PlayerUI").visible = true
+	UIManager.get_node("PlayerUI").get_node("MiniMap/TileMap").set_up()
 	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)
@@ -63,7 +64,6 @@ func _ready() -> void:
 	InputHandler.current_actor = self
 	GameState.prepareHealthGUI()
 	GameState.player = self
-	PlayerState
 	FeedbackHandler.current_camera = camera2D
 	PossessionState.bite_box = possession_hitbox
 
@@ -79,4 +79,4 @@ func damage(damage : int) -> void:
 	flash()
 	if PlayerState.health <= 0:
 		animatedSprite.material.set_shader_param("flash_modifier", 0)
-		LevelManager.goto_scene('res://scenes/levels/Town.tscn')
+		LevelManager.goto_scene('res://scenes/main/title_screen/TitleScreen.tscn')
