@@ -30,7 +30,6 @@ func effect_duration_timeout() -> void:
 	if stacks:
 		effect_duration_timer.start(effect_duration)
 	else:
-		PlayerState.is_poisoned = false
 		tick_timer.stop()
 		emit_signal("poison_finished")
 
