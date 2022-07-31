@@ -1,6 +1,6 @@
 extends Node
 
-# list all the unique windows - THESE CANNOT BE ACTIVE AT THE SAME TIME
+# list all the unique windows
 enum {
 	PAUSE_SCREEN,
 	MAIN_MENU,

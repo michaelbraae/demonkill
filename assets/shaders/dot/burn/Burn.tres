@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://assets/shaders/dot/poison.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/shaders/dot/burn/burn.gdshader" type="Shader" id=1]
 
 [sub_resource type="OpenSimplexNoise" id=3]
 octaves = 9

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/shaders/dot/Poison.tres" type="Material" id=1]
+[ext_resource path="res://assets/shaders/dot/poison/Poison.tres" type="Material" id=1]
 [ext_resource path="res://resources/sprites/hero/v2/sheets/idle-down.png" type="Texture" id=2]
 [ext_resource path="res://horror.png" type="Texture" id=3]
+[ext_resource path="res://assets/shaders/dot/burn/Burn.tres" type="Material" id=4]
+[ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,5 +28,17 @@ texture = ExtResource( 3 )
 [node name="Idle-down" type="Sprite" parent="."]
 material = ExtResource( 1 )
 position = Vector2( 80, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Idle-down2" type="Sprite" parent="."]
+material = ExtResource( 4 )
+position = Vector2( 112, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Idle-down3" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( 144, -72 )
 scale = Vector2( 2.1, 2.17241 )
 texture = ExtResource( 2 )
