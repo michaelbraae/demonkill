@@ -17,27 +17,27 @@ enum {
 func applyEffect(effect: Effect) -> void:
 	match effect.effect_type:
 		DAMAGE:
-			damageEffect(effect)
+			damage_effect(effect)
 		HEAL:
-			healEffect(effect)
+			heal_effect(effect)
 		POISON:
-			poisonEffect(effect)
+			poison_effect(effect)
 		KNOCKBACK:
-			knockbackEffect(effect)
+			knockback_effect(effect)
 		MANA_REGEN:
-			manaRegenEffect(effect)
+			mana_regen_effect(effect)
 
-func damageEffect(effect: DamageEffect) -> void:
+func damage_effect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
 
-func healEffect(_effect: HealEffect) -> void:
+func heal_effect(_effect: HealEffect) -> void:
 	pass
 
-func poisonEffect(effect: PoisonEffect) -> void:
+func poison_effect(effect: PoisonEffect) -> void:
 	$PoisonHandler.beginEffect(effect)
 
-func knockbackEffect(effect: KnockbackEffect) -> void:
+func knockback_effect(effect: KnockbackEffect) -> void:
 	owner.knockBack(effect.hit_direction, effect.speed, effect.decay)
 
-func manaRegenEffect(effect: ManaRegenEffect) -> void:
+func mana_regen_effect(effect: ManaRegenEffect) -> void:
 	PlayerState.addMana(effect.mana_regen_amount)
