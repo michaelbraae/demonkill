@@ -29,13 +29,14 @@ func effect_duration_timeout() -> void:
 	if stacks:
 		effect_duration_timer.start(effect_duration)
 	else:
-		#remove the poison shader
+		get_parent().owner.get_node("ShaderHandler").clear_shaders()
 		tick_timer.stop()
 
 func tick_timeout() -> void:
 	get_parent().owner.damage(effect_damage * stacks)
 
 func beginEffect(effect: PoisonEffect) -> void:
+	get_parent().owner.get_node("ShaderHandler").poison_shader()
 	effect_duration = effect.effect_duration
 	effect_tick_rate = effect.tick_rate
 	effect_damage = effect.damage

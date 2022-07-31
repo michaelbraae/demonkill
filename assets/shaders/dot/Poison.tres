@@ -8,6 +8,7 @@ period = 74.7
 persistence = 0.218
 
 [sub_resource type="NoiseTexture" id=2]
+flags = 6
 width = 250
 seamless = true
 noise = SubResource( 3 )

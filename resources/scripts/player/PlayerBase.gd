@@ -68,8 +68,9 @@ func _ready() -> void:
 	PossessionState.bite_box = possession_hitbox
 
 func flash() -> void:
-	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
-	flashTimer.start(0.1)
+	pass
+#	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
+#	flashTimer.start(0.1)
 
 func flash_timeout() -> void:
 	animatedSprite.material.set_shader_param("flash_modifier", 0)
