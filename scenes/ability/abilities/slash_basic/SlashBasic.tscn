@@ -33,6 +33,6 @@ decay = 15
 mana_regen_amount = 2
 
 [node name="PoisonEffect" parent="Effects" index="3" instance=ExtResource( 6 )]
-effect_duration = 3.0
-tick_rate = 0.5
+effect_duration = 2.0
+tick_rate = 0.3
 damage = 1
