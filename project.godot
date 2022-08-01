@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/scripts/npc/CombatReadyAI.gd"
 }, {
+"base": "Node2D",
+"class": "DOTEffectHandler",
+"language": "GDScript",
+"path": "res://scenes/effect/effect_handler/DOTEffectHandler.gd"
+}, {
 "base": "Effect",
 "class": "DamageEffect",
 "language": "GDScript",
@@ -73,6 +78,11 @@ _global_script_classes=[ {
 "class": "EffectHandler",
 "language": "GDScript",
 "path": "res://scenes/effect/effect_handler/EffectHandler.gd"
+}, {
+"base": "DotEffect",
+"class": "FreezeEffect",
+"language": "GDScript",
+"path": "res://scenes/effect/dot_effects/freeze_effect/FreezeEffect.gd"
 }, {
 "base": "Effect",
 "class": "HealEffect",
@@ -194,10 +204,12 @@ _global_script_class_icons={
 "CasterAI": "",
 "CharacterBase": "",
 "CombatReadyAI": "",
+"DOTEffectHandler": "",
 "DamageEffect": "",
 "DotEffect": "",
 "Effect": "",
 "EffectHandler": "",
+"FreezeEffect": "",
 "HealEffect": "",
 "ImpactBase": "",
 "KnockbackEffect": "",

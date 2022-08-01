@@ -12,6 +12,3 @@ move_speed = 80.0
 attack_range = 30.0
 max_health = 50
 weapon_selection = ExtResource( 1 )
-
-[node name="AnimatedSprite" parent="." index="3"]
-self_modulate = Color( 0.121569, 1, 0.360784, 1 )

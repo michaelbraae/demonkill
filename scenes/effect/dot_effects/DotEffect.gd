@@ -8,10 +8,6 @@ export var tick_rate: float
 
 export var damage: int
 
-
-
-
-
 # the effect script should be able to handle what happens 
 # if the player is already poisoned
 

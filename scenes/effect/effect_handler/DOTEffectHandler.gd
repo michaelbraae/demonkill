@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name DOTEffectHandler
+
 var stacks: int = 0
 
 var effect_duration_timer: Timer
@@ -10,8 +12,19 @@ var effect_duration: float
 var effect_damage: int
 var effect_tick_rate: float
 
+# warning-ignore-all:unused_signal
+
 signal poison_started
 signal poison_finished
+
+signal burn_started
+signal burn_finished
+
+signal freeze_started
+signal freeze_finished
+
+export(String, "poison_started", "burn_started", "freeze_started") var started_signal
+export(String, "poison_finished", "burn_finished", "freeze_finished") var finished_signal
 
 # warning-ignore-all:return_value_discarded
 
@@ -31,13 +44,13 @@ func effect_duration_timeout() -> void:
 		effect_duration_timer.start(effect_duration)
 	else:
 		tick_timer.stop()
-		emit_signal("poison_finished")
+		emit_signal(finished_signal)
 
 func tick_timeout() -> void:
 	get_parent().owner.damage(effect_damage * stacks)
 
-func beginEffect(effect: PoisonEffect) -> void:
-	emit_signal("poison_started")
+func begin_effect(effect: DotEffect) -> void:
+	emit_signal(started_signal)
 	stacks += 1
 	
 	effect_duration = effect.effect_duration
