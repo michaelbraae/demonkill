@@ -13,7 +13,7 @@ void fragment() {
 	
 	float noise_r = 0.0;
 	float noise_g = 0.0; 
-	float noise_b = output_color.r * 1.5;
+	float noise_b = output_color.b * 1.7;
 	
 	vec3 new_color = vec3(noise_r, noise_g, noise_b);
 	
