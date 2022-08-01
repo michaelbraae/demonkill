@@ -14,6 +14,9 @@ var decay
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 
+func is_player() -> bool:
+	return false
+
 # these functions are called by signals emitted by InputEmitter
 func basic_attack() -> void:
 	pass

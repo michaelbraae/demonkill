@@ -19,7 +19,6 @@ enum {
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,
 	ATTACKING,
-#	AXE_THROW,
 	ABILITY_CAST,
 	AXE_RECALL,
 	DASH,
@@ -29,6 +28,9 @@ enum {
 }
 
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
+
+func is_player() -> bool:
+	return true
 
 func getStateString() -> String:
 	var state_string = 'NO_STATE'
