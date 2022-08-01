@@ -52,7 +52,7 @@ func movement_ability() -> void:
 
 func initiateDash() -> void:
 	if dash_available:
-		FeedbackHandler.shakeCamera()
+		FeedbackHandler.shakeCamera(0.2, 0.8)
 		set_collision_layer_bit(1, false)
 		set_collision_mask_bit(1, false)
 		dash_available = false

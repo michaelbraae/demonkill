@@ -19,3 +19,5 @@ finished_signal = "burn_finished"
 
 [node name="FreezeHandler" type="Node2D" parent="."]
 script = ExtResource( 4 )
+started_signal = "freeze_started"
+finished_signal = "freeze_finished"

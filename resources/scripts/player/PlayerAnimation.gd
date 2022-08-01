@@ -57,7 +57,7 @@ func getAnimationWeaponModifier() -> String:
 
 func dash_ghost() -> void:
 	if dash_ghost_cooldown_timer.is_stopped():
-		dash_ghost_cooldown_timer.start(0.03)
+		dash_ghost_cooldown_timer.start(0.05)
 		var ghost: Sprite = DASH_GHOST_SCENE.instance()
 		ghost.texture = animatedSprite.get_sprite_frames().get_frame(getAnimation(), animatedSprite.get_frame())
 		ghost.position = position
