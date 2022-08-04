@@ -17,12 +17,12 @@ onready var thread: Thread = Thread.new()
 func _deferred_goto_scene(path : String) -> void:
 	# reset any slomo effects :D
 	Engine.time_scale = 1
+	UIManager.get_node("LoadingScreen").visible = true
 	# It is now safe to remove the current scene
 	current_scene.free()
 	thread.start(self, "prepare_scene", ResourceLoader.load_interactive(path))
 
 func prepare_scene(interactive_ldr):
-	UIManager.get_node("LoadingScreen").visible = true
 	while true:
 		var err = interactive_ldr.poll()
 		if err == ERR_FILE_EOF:
