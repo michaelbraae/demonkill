@@ -15,7 +15,6 @@ func nodeIsPossessed(node_arg : KinematicBody2D) -> bool:
 # STATES:
 enum {
 	IDLE,
-	WANDERING,
 	NAVIGATING,
 	DASH,
 	FOLLOWING_PLAYER,
@@ -38,8 +37,6 @@ func getStateString() -> String:
 	match state:
 		IDLE:
 			state_string = 'IDLE'
-		WANDERING:
-			state_string = 'WANDERING'
 		NAVIGATING:
 			state_string = 'NAVIGATING'
 		DASH:
