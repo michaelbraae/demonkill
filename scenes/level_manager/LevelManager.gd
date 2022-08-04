@@ -22,11 +22,12 @@ func _deferred_goto_scene(path : String) -> void:
 	thread.start(self, "prepare_scene", ResourceLoader.load_interactive(path))
 
 func prepare_scene(interactive_ldr):
-	print("preparing scene...")
+	UIManager.get_node("LoadingScreen").visible = true
 	while true:
 		var err = interactive_ldr.poll()
 		if err == ERR_FILE_EOF:
 			print("load complete...")
+			UIManager.get_node("LoadingScreen").visible = false
 			call_deferred("load_complete")
 			return interactive_ldr.get_resource()
 
