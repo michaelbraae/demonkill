@@ -25,6 +25,12 @@ enum {
 	CONTROLLING_NPC,
 }
 
+func _ready() -> void:
+	if OS.is_debug_build():
+		OS.window_fullscreen = false
+	else:
+		OS.window_fullscreen = true
+
 func getStateString() -> String:
 	match state:
 		MAIN_MENU:

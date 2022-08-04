@@ -29,9 +29,6 @@ enum {
 
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
 
-func is_player() -> bool:
-	return true
-
 func getStateString() -> String:
 	var state_string = 'NO_STATE'
 	match state:
@@ -67,7 +64,6 @@ func _ready() -> void:
 	GameState.prepareHealthGUI()
 	GameState.player = self
 	FeedbackHandler.current_camera = camera2D
-	PossessionState.bite_box = possession_hitbox
 
 func flash() -> void:
 	pass

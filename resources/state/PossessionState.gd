@@ -2,8 +2,6 @@ extends Node
 
 const PLAYER_SCENE = preload('res://scenes/character/player/Player.tscn')
 
-var bite_box
-
 var current_possession
 
 var possessedNPC
@@ -13,6 +11,14 @@ var possession_duration = 15.0
 func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
+
+func is_controlling_player() -> bool:
+	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
+		return false
+	return true
+
+func is_player(character: KinematicBody2D) -> bool:
+	return GameState.player == character
 
 func onPossessionExit() -> void:
 	UIManager.get_node("Tsukuyomi").visible = false
@@ -44,7 +50,6 @@ func handlePossessionDeath(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func exitPossession(spawn_position) -> void:
@@ -73,7 +78,6 @@ func exitPossession(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:

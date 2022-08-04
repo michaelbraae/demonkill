@@ -4,26 +4,35 @@ var freeze_immunity_timer: Timer
 
 export var freeze_immunity_duration: float = 2.0
 
-# warning-ignor-all:return_value_discarded
+# warning-ignore-all:return_value_discarded
+
+onready var is_player = PossessionState.is_player(get_parent().owner)
 
 func _ready() -> void:
 	freeze_immunity_timer = Timer.new()
+	freeze_immunity_timer.one_shot = true
 	freeze_immunity_timer.connect("timeout", self, "freeze_immunity_timeout")
 	add_child(freeze_immunity_timer)
 
 func begin_effect(effect: DotEffect) -> void:
 	if stacks < 1:
-		if get_parent().owner.is_player() and freeze_immunity_timer.is_stopped():
+		if is_player and freeze_immunity_timer.is_stopped():
 			initiate_freeze(effect)
-		elif !get_parent().owner.is_player():
+		elif !is_player:
 			initiate_freeze(effect)
 
-# it's really toxic if you keep getting chain frozen, some i-frames from freezes have been added
+# it's really toxic if you keep getting chain frozen, so i-frames
 func freeze_immunity_timeout() -> void:
 	freeze_immunity_timer.stop()
 
 func effect_duration_timeout() -> void:
-	freeze_immunity_timer.start(freeze_immunity_duration)
+	stacks -= 1
+	if (
+		PossessionState.is_player(get_parent().owner)
+		and freeze_immunity_timer.is_stopped()
+	):
+		print("start immunity timer")
+		freeze_immunity_timer.start(freeze_immunity_duration)
 	emit_signal(finished_signal)
 
 func initiate_freeze(effect: DotEffect) -> void:
