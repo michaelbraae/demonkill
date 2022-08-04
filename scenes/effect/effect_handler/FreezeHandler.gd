@@ -31,7 +31,6 @@ func effect_duration_timeout() -> void:
 		PossessionState.is_player(get_parent().owner)
 		and freeze_immunity_timer.is_stopped()
 	):
-		print("start immunity timer")
 		freeze_immunity_timer.start(freeze_immunity_duration)
 	emit_signal(finished_signal)
 
