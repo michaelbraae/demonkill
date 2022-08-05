@@ -1021,6 +1021,9 @@ dash_cooldown = 1.5
 dash_duration = 0.2
 weapon_slot_1 = ExtResource( 32 )
 
+[node name="EffectHandler" parent="." index="0"]
+stun_immunity_duration = 10.0
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 material = SubResource( 373 )
 frames = SubResource( 374 )

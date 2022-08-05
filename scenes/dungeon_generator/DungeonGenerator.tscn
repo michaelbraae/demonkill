@@ -19,6 +19,7 @@ show_behind_parent = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_y_sort = true
 format = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]

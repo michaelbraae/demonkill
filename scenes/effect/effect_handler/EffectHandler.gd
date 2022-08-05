@@ -2,6 +2,8 @@ extends Node2D
 
 class_name EffectHandler
 
+export var stun_immunity_duration: float = 0.0
+
 # Effect types
 enum {
 	DAMAGE,
@@ -29,6 +31,8 @@ func applyEffect(effect: Effect) -> void:
 		knockback_effect(effect)
 	if effect is ManaRegenEffect:
 		mana_regen_effect(effect)
+	if effect is StunEffect:
+		stun_effect(effect)
 
 func damage_effect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
@@ -50,3 +54,6 @@ func knockback_effect(effect: KnockbackEffect) -> void:
 
 func mana_regen_effect(effect: ManaRegenEffect) -> void:
 	PlayerState.addMana(effect.mana_regen_amount)
+
+func stun_effect(effect: StunEffect) -> void:
+	$StunHandler.begin_effect(effect)

@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func begin_effect(effect: DotEffect) -> void:
 	if stacks < 1:
+		print("begin_effect, handler is player: ", is_player)
 		if is_player and freeze_immunity_timer.is_stopped():
 			initiate_freeze(effect)
 		elif !is_player:
@@ -37,5 +38,5 @@ func effect_duration_timeout() -> void:
 func initiate_freeze(effect: DotEffect) -> void:
 	stacks += 1
 	effect_duration_timer.start(effect.effect_duration)
-	get_parent().owner.freeze(effect.effect_duration)
+#	get_parent().owner.freeze(effect.effect_duration)
 	emit_signal(started_signal)

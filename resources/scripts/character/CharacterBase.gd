@@ -47,6 +47,13 @@ func freeze(freeze_duration) -> void:
 	set_physics_process(true)
 	animatedSprite.play()
 
+func stun(stun_duration: float) -> void:
+	set_physics_process(false)
+	animatedSprite.stop()
+	yield(get_tree().create_timer(stun_duration), "timeout")
+	set_physics_process(true)
+	animatedSprite.play()
+
 func knockBack(
 	hit_direction : float,
 	knock_back_speed : int,
