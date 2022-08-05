@@ -35,7 +35,7 @@ func warp() -> void:
 		slowdown_timer.start(0.3)
 		Engine.time_scale = 0.4
 
-func slowdown(time : int = 0.5, scale : int = 0.5) -> void:
+func slowdown(time : float = 0.5, scale : float = 0.5) -> void:
 	if not slowdown_enabled:
 		slowdown_enabled = true
 		slowdown_timer.start(time)

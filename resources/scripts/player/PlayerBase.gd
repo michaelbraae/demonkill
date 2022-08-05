@@ -55,7 +55,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	UIManager.get_node("PlayerUI").visible = true
 	UIManager.get_node("PlayerUI").get_node("MiniMap/TileMap").set_up()
-	# white flash when taking damage
 	flashTimer = Timer.new()
 	add_child(flashTimer)
 	# warning-ignore:return_value_discarded
@@ -70,6 +69,9 @@ func flash() -> void:
 	pass
 #	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
 #	flashTimer.start(0.1)
+
+func stun(stun_duration: float) -> void:
+	.stun(stun_duration)
 
 func flash_timeout() -> void:
 	animatedSprite.material.set_shader_param("flash_modifier", 0)

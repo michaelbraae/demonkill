@@ -2,6 +2,8 @@ extends Node2D
 
 class_name CCEffectHandler
 
+# warning-ignore-all:unused_signal
+
 signal stun_started
 signal stun_finished
 
@@ -24,6 +26,7 @@ var is_stunned: bool = false
 
 func _ready() -> void:
 	effect_duration_timer = Timer.new()
+	# warning-ignore:return_value_discarded
 	effect_duration_timer.connect("timeout", self, "effect_duration_timeout")
 	effect_duration_timer.one_shot = true
 	add_child(effect_duration_timer)

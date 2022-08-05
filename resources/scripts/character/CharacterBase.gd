@@ -40,13 +40,6 @@ func getKnockBackProcessVector() -> Vector2:
 func interruptAction() -> void:
 	pass
 
-func freeze(freeze_duration) -> void:
-	set_physics_process(false)
-	animatedSprite.stop()
-	yield(get_tree().create_timer(freeze_duration), "timeout")
-	set_physics_process(true)
-	animatedSprite.play()
-
 func stun(stun_duration: float) -> void:
 	set_physics_process(false)
 	animatedSprite.stop()
