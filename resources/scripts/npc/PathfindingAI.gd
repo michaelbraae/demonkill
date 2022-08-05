@@ -21,6 +21,8 @@ export var look_ahead = 30
 
 export var retreat_from_attacks: bool = true
 
+export var orbit_player: bool = true
+
 # 70 - feels aggressive
 # 100 - feels safer
 var target_engagement_range = 50
@@ -169,7 +171,8 @@ func chooseDirection():
 		# Orbit the target if in engagement range
 		if retreat_from_attacks:
 			detectTargetAggression()
-		chosen_direction = chosen_direction.rotated(1.5)
+		if orbit_player:
+			chosen_direction = chosen_direction.rotated(1.5)
 	if in_dodge:
 		chosen_direction = dodge_vector
 	velocity = chosen_direction.normalized()
