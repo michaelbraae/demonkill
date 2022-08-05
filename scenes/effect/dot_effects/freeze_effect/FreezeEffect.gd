@@ -1,3 +1,3 @@
-extends DotEffect
+extends CCEffect
 
 class_name FreezeEffect

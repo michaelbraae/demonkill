@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/effect/effect_handler/EffectHandler.gd"
 }, {
-"base": "DotEffect",
+"base": "CCEffect",
 "class": "FreezeEffect",
 "language": "GDScript",
 "path": "res://scenes/effect/dot_effects/freeze_effect/FreezeEffect.gd"

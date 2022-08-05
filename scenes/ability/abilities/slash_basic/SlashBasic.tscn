@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ability/abilities/slash_basic/SlashBasicFrames.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://scenes/effect/cc_effects/stun_effect/StunEffect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/effect/dot_effects/freeze_effect/FreezeEffect.tscn" type="PackedScene" id=6]
 
 [node name="SlashBasic" instance=ExtResource( 4 )]
 damage_frames = [ 0, 1 ]
@@ -27,4 +27,4 @@ damage = 3
 [node name="ManaRegenEffect" parent="Effects" index="1" instance=ExtResource( 5 )]
 mana_regen_amount = 2
 
-[node name="StunEffect" parent="Effects" index="2" instance=ExtResource( 2 )]
+[node name="FreezeEffect" parent="Effects" index="2" instance=ExtResource( 6 )]
