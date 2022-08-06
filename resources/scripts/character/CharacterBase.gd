@@ -4,6 +4,23 @@ class_name CharacterBase
 
 onready var animatedSprite = $AnimatedSprite
 
+enum {
+	IDLE,
+	NAVIGATING,
+	DASH,
+	DASH_RECOVERY,
+	ATTACK_WARMUP,
+	ATTACK_CONTACT,
+	ATTACK_RECOVERY,
+	AXE_INTERACTION,
+	KNOCKED_BACK,
+	STUNNED,
+	PRE_DEATH,
+	POSSESSION_TARGETING,
+	POSSESSION_DASH,
+	POSSESSION_RECOVERY,
+}
+
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector

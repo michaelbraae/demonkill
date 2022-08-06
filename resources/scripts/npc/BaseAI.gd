@@ -12,23 +12,6 @@ func isPossessed() -> bool:
 func nodeIsPossessed(node_arg : KinematicBody2D) -> bool:
 	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.current_possession == node_arg
 
-# STATES:
-enum {
-	IDLE,
-	NAVIGATING,
-	DASH,
-	DASH_RECOVERY,
-	ATTACK_WARMUP,
-	ATTACK_CONTACT,
-	ATTACK_RECOVERY,
-	AXE_INTERACTION,
-	KNOCKED_BACK,
-	STUNNED,
-	PRE_DEATH,
-	POSSESSION_TARGETING,
-	POSSESSION_RECOVERY
-}
-
 func getStateString() -> String:
 	var state_string = 'NO STATE'
 	match state:
