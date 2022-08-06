@@ -122,7 +122,7 @@ func getAnimation() -> String:
 		return getNavigationAnimation()
 	if state == NAVIGATING:
 		return getNavigationAnimation()
-	if [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY].has(state):
+	if ATTACK_STATES.has(state):
 		return getAttackAnimation()
 	if state == KNOCKED_BACK:
 		return 'take_hit'
@@ -168,9 +168,7 @@ func getAttackDirection() -> Vector2:
 	return Vector2(cos(angle), sin(angle))
 
 func readyForPreAttack() -> bool:
-	return (
-		not [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY].has(state)
-	)
+	return not ATTACK_STATES.has(state)
 
 func handlePreAttack() -> void:
 	attack_started = true

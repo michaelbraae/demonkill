@@ -2,8 +2,6 @@ extends CharacterBase
 
 class_name BaseAI
 
-var state
-
 onready var camera2D = $Camera2D
 
 func isPossessed() -> bool:
@@ -11,33 +9,6 @@ func isPossessed() -> bool:
 
 func nodeIsPossessed(node_arg : KinematicBody2D) -> bool:
 	return GameState.state == GameState.CONTROLLING_NPC and PossessionState.current_possession == node_arg
-
-func getStateString() -> String:
-	var state_string = 'NO STATE'
-	match state:
-		IDLE:
-			state_string = 'IDLE'
-		NAVIGATING:
-			state_string = 'NAVIGATING'
-		DASH:
-			state_string = 'DASH'
-		ATTACK_WARMUP:
-			state_string = 'ATTACK_WARMUP'
-		ATTACK_CONTACT:
-			state_string = 'ATTACK_CONTACT'
-		ATTACK_RECOVERY:
-			state_string = 'ATTACK_RECOVERY'
-		AXE_INTERACTION:
-			state_string = 'AXE_INTERACTION'
-		STUNNED:
-			state_string = 'STUNNED'
-		PRE_DEATH:
-			state_string = 'PRE_DEATH'
-		POSSESSION_TARGETING:
-			state_string = 'POSSESSION_TARGETING'
-		POSSESSION_RECOVERY:
-			state_string = 'POSSESSION_RECOVERY'
-	return state_string
 
 func _ready():
 	initialiseConfig()

@@ -15,6 +15,7 @@ export(PackedScene) var weapon_slot_1
 export(PackedScene) var weapon_slot_2
 
 var weapon_slot_1_instance
+var weapon_slot_2_instance
 
 var sprint_timer: Timer
 
@@ -28,6 +29,18 @@ func _ready() -> void:
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 	restartSprintTimer()
+
+func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
+	if slot == 1:
+		weapon_slot_1_instance.queue_free()
+		weapon_slot_1 = weapon
+		weapon_slot_1_instance = weapon.instance()
+		add_child(weapon_slot_1_instance)
+	elif slot == 2:
+		weapon_slot_2_instance.queue_free()
+		weapon_slot_2 = weapon
+		weapon_slot_2_instance = weapon.instance()
+		add_child(weapon_slot_2_instance)
 
 func sprint_timeout() -> void:
 	sprint = true

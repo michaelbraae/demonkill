@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=2]
+[gd_scene load_steps=223 format=2]
 
 [ext_resource path="res://resources/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character/Character.tscn" type="PackedScene" id=2]
@@ -31,7 +31,7 @@
 [ext_resource path="res://resources/sprites/hero/v2/sheets/attacks/unarmed/attack-up.png" type="Texture" id=29]
 [ext_resource path="res://resources/sprites/hero/v2/sheets/attacks/unarmed/attack-right-2.png" type="Texture" id=30]
 [ext_resource path="res://scenes/character/player/Player.gd" type="Script" id=31]
-[ext_resource path="res://scenes/weapon/swords/poison_sword/PoisonSword.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scenes/weapon/swords/RustySword.tscn" type="PackedScene" id=32]
 
 [sub_resource type="ShaderMaterial" id=373]
 shader = ExtResource( 20 )
@@ -1013,6 +1013,9 @@ height = 12.7013
 [sub_resource type="CircleShape2D" id=377]
 radius = 43.2871
 
+[sub_resource type="CircleShape2D" id=378]
+radius = 19.0
+
 [node name="Player" instance=ExtResource( 2 )]
 collision_layer = 2
 collision_mask = 3
@@ -1066,3 +1069,9 @@ texture_scale = 0.5
 color = Color( 1, 1, 1, 0.588235 )
 energy = 0.6
 shadow_enabled = true
+
+[node name="InteractionArea" type="Area2D" parent="." index="8"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" index="0"]
+shape = SubResource( 378 )

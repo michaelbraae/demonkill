@@ -8,28 +8,7 @@ onready var possession_hitbox = $PossessionHitBox
 
 const IS_PLAYER = true
 
-var state
-
 var flashTimer: Timer
-
-const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
-
-func getStateString() -> String:
-	var state_string = 'NO_STATE'
-	match state:
-		NAVIGATING:
-			state_string = 'NAVIGATING'
-		IDLE:
-			state_string = 'IDLE'
-		DASH:
-			state_string = 'DASH'
-		DASH_RECOVERY:
-			state_string = 'DASH_RECOVERY'
-		POSSESSION_TARGETING:
-			state_string = "POSSESSION_TARGETING"
-		POSSESSION_DASH:
-			state_string = "POSSESSION_DASH"
-	return state_string
 
 func _enter_tree() -> void:
 	PossessionState.connectToInputSignals(self)
