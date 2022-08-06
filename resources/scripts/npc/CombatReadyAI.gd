@@ -117,12 +117,12 @@ func getAnimation() -> String:
 	if state == POSSESSION_RECOVERY:
 		return "stunned"
 	if isPossessed():
-		if state == ATTACKING:
+		if state == ATTACK_CONTACT:
 			return 'attack_loop'
 		return getNavigationAnimation()
 	if [NAVIGATING, FOLLOWING_PLAYER].has(state):
 		return getNavigationAnimation()
-	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
+	if [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY].has(state):
 		return getAttackAnimation()
 	if state == KNOCKED_BACK:
 		return 'take_hit'
@@ -147,11 +147,11 @@ func getNavigationAnimation() -> String:
 
 func getAttackAnimation() -> String:
 	match state:
-		PRE_ATTACK:
+		ATTACK_WARMUP:
 			return 'pre_attack'
-		ATTACKING:
+		ATTACK_CONTACT:
 			return 'attack'
-		POST_ATTACK:
+		ATTACK_RECOVERY:
 			return 'post_attack'
 	return 'idle'
 
@@ -169,16 +169,19 @@ func getAttackDirection() -> Vector2:
 
 func readyForPreAttack() -> bool:
 	return (
-		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
+		not [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY].has(state)
 	)
 
 func handlePreAttack() -> void:
 	attack_started = true
-	state = PRE_ATTACK
+	state = ATTACK_WARMUP
+
+func basic_attack() -> void:
+	attack()
 
 func attack() -> void:
 	if weapon.attack_available:
-		state = ATTACKING
+		state = ATTACK_CONTACT
 		weapon.attack(getAttackDirection(), self)
 
 var outline_shader
@@ -211,7 +214,7 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	elif state == ATTACKING:
+	elif state == ATTACK_CONTACT:
 		pass
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
@@ -241,7 +244,7 @@ func runDecisionTree() -> void:
 			):
 				if readyForPreAttack():
 					handlePreAttack()
-				elif state == ATTACKING:
+				elif state == ATTACK_CONTACT:
 					attack()
 					attack_landed = true
 			else:
@@ -257,13 +260,13 @@ func handlePostAnimState() -> void:
 			$CollisionShape2D.disabled = false
 		KNOCKED_BACK:
 			state = IDLE
-		PRE_ATTACK:
-			state = ATTACKING
-		ATTACKING:
+		ATTACK_WARMUP:
+			state = ATTACK_CONTACT
+		ATTACK_CONTACT:
 			attack_started = false
 			attack_landed = false
-			state = POST_ATTACK
-		POST_ATTACK:
+			state = ATTACK_RECOVERY
+		ATTACK_RECOVERY:
 			state = IDLE
 		STUNNED:
 			if stun_duration_timer.is_stopped():
@@ -278,8 +281,3 @@ func hitByAxe(damage) -> void:
 	damage(damage)
 	state = WITH_AXE
 	animatedSprite.play('with_axe')
-
-func basic_attack() -> void:
-	if weapon.attack_available:
-		state = ATTACKING
-		attack()

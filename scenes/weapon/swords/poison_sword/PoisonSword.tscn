@@ -9,5 +9,5 @@ rarity = 2
 archetype = 0
 combo_finish_index = 3
 combo_window_time = 2.0
-attack_speed = 1.3
+attack_speed = 1.8
 attack_abilities = [ ExtResource( 2 ) ]

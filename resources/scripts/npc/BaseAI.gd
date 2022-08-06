@@ -19,9 +19,9 @@ enum {
 	DASH,
 	FROZEN,
 	FOLLOWING_PLAYER,
-	PRE_ATTACK,
-	ATTACKING,
-	POST_ATTACK,
+	ATTACK_WARMUP,
+	ATTACK_CONTACT,
+	ATTACK_RECOVERY,
 	WITH_AXE,
 	KNOCKED_BACK,
 	TAKING_DAMAGE,
@@ -44,12 +44,12 @@ func getStateString() -> String:
 			state_string = 'DASH'
 		FOLLOWING_PLAYER:
 			state_string = 'FOLLOWING_PLAYER'
-		PRE_ATTACK:
-			state_string = 'PRE_ATTACK'
-		ATTACKING:
-			state_string = 'ATTACKING'
-		POST_ATTACK:
-			state_string = 'POST_ATTACK'
+		ATTACK_WARMUP:
+			state_string = 'ATTACK_WARMUP'
+		ATTACK_CONTACT:
+			state_string = 'ATTACK_CONTACT'
+		ATTACK_RECOVERY:
+			state_string = 'ATTACK_RECOVERY'
 		WITH_AXE:
 			state_string = 'WITH_AXE'
 		TAKING_DAMAGE:

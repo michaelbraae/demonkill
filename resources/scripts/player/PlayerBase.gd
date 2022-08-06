@@ -21,7 +21,6 @@ enum {
 	ATTACK_WARMUP,
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,
-	ATTACKING,
 	ABILITY_CAST,
 	AXE_RECALL,
 	POSSESSION_TARGETING,
@@ -37,8 +36,6 @@ func getStateString() -> String:
 			state_string = 'NAVIGATING'
 		IDLE:
 			state_string = 'IDLE'
-		ATTACKING:
-			state_string = 'ATTACKING'
 		DASH:
 			state_string = 'DASH'
 		DASH_RECOVERY:
