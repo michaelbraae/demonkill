@@ -120,7 +120,7 @@ func getAnimation() -> String:
 		if state == ATTACK_CONTACT:
 			return 'attack_loop'
 		return getNavigationAnimation()
-	if [NAVIGATING, FOLLOWING_PLAYER].has(state):
+	if state == NAVIGATING:
 		return getNavigationAnimation()
 	if [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY].has(state):
 		return getAttackAnimation()

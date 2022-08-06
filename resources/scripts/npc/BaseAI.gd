@@ -17,8 +17,7 @@ enum {
 	IDLE,
 	NAVIGATING,
 	DASH,
-	FROZEN,
-	FOLLOWING_PLAYER,
+	DASH_RECOVERY,
 	ATTACK_WARMUP,
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,
@@ -28,7 +27,6 @@ enum {
 	STUNNED,
 	PRE_DEATH,
 	DEAD,
-	POSSESSED,
 	POSSESSION_TARGETING,
 	POSSESSION_RECOVERY
 }
@@ -42,8 +40,6 @@ func getStateString() -> String:
 			state_string = 'NAVIGATING'
 		DASH:
 			state_string = 'DASH'
-		FOLLOWING_PLAYER:
-			state_string = 'FOLLOWING_PLAYER'
 		ATTACK_WARMUP:
 			state_string = 'ATTACK_WARMUP'
 		ATTACK_CONTACT:
@@ -60,8 +56,6 @@ func getStateString() -> String:
 			state_string = 'PRE_DEATH'
 		DEAD:
 			state_string = 'DEAD'
-		POSSESSED:
-			state_string = 'POSSESSED'
 		POSSESSION_TARGETING:
 			state_string = 'POSSESSION_TARGETING'
 		POSSESSION_RECOVERY:
