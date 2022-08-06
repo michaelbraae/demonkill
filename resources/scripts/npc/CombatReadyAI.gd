@@ -93,7 +93,7 @@ func damage(damage : int) -> void:
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= 0:
-		kill()
+		state = PRE_DEATH
 
 func isTargetInRange() -> bool:
 	if is_instance_valid(target_actor):
@@ -273,9 +273,6 @@ func handlePostAnimState() -> void:
 				state = IDLE
 		PRE_DEATH:
 			queue_free()
-
-func kill() -> void:
-	state = PRE_DEATH
 
 func hitByAxe(damage) -> void:
 	damage(damage)
