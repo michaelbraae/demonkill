@@ -130,7 +130,7 @@ func getAnimation() -> String:
 		return 'stunned'
 	if state == PRE_DEATH:
 		return 'take_hit'
-	if state == WITH_AXE:
+	if state == AXE_INTERACTION:
 		return 'with_axe'
 	return 'idle'
 
@@ -227,7 +227,7 @@ func runDecisionTree() -> void:
 		pass
 	elif isPossessed():
 		possessedDecisionLogic()
-	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
+	elif [STUNNED, PRE_DEATH, AXE_INTERACTION].has(state):
 		if knocked_back:
 			knockback_vector = move_and_slide(getKnockBackProcessVector())
 	elif knocked_back:
@@ -276,5 +276,5 @@ func handlePostAnimState() -> void:
 
 func hitByAxe(damage) -> void:
 	damage(damage)
-	state = WITH_AXE
+	state = AXE_INTERACTION
 	animatedSprite.play('with_axe')

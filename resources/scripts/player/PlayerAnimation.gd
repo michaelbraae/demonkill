@@ -107,7 +107,7 @@ func getAnimation() -> String:
 	var animation = 'idle_'
 	if state == POSSESSION_TARGETING:
 		return getAttackAnimation()
-	if state == ABILITY_CAST:
+	if state == AXE_INTERACTION:
 		return 'axe_throw_' + facing_direction
 	if state == DASH:
 		animation = 'dash_'
@@ -125,7 +125,7 @@ func getAnimation() -> String:
 func _on_AnimatedSprite_animation_finished():
 	if state == POSSESSION_TARGETING:
 		pass
-	elif [DASH_RECOVERY, ATTACK_RECOVERY, ABILITY_CAST].has(state):
+	elif [DASH_RECOVERY, ATTACK_RECOVERY, AXE_INTERACTION].has(state):
 		state = IDLE
 		animatedSprite.play(str('idle_', facing_direction))
 	elif state == ATTACK_WARMUP:

@@ -51,7 +51,7 @@ func throwAxe() -> void:
 	if PlayerState.mana >= 1:
 		has_axe = false
 		PlayerState.useMana(2)
-		state = ABILITY_CAST
+		state = AXE_INTERACTION
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)
 		axe_recall_available = false
@@ -61,7 +61,6 @@ func interruptAction() -> void:
 	state = IDLE
 
 func recallAxe() -> void:
-	state = AXE_RECALL
 	if GameState.axe_instance:
 		GameState.axe_instance.earlyCallback()
 	else:
@@ -104,7 +103,7 @@ func handlePlayerAction() -> void:
 		continueDash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
-	elif state == ABILITY_CAST:
+	elif state == AXE_INTERACTION:
 		pass
 	else:
 		setVelocity()

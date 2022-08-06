@@ -21,12 +21,10 @@ enum {
 	ATTACK_WARMUP,
 	ATTACK_CONTACT,
 	ATTACK_RECOVERY,
-	WITH_AXE,
+	AXE_INTERACTION,
 	KNOCKED_BACK,
-	TAKING_DAMAGE,
 	STUNNED,
 	PRE_DEATH,
-	DEAD,
 	POSSESSION_TARGETING,
 	POSSESSION_RECOVERY
 }
@@ -46,16 +44,12 @@ func getStateString() -> String:
 			state_string = 'ATTACK_CONTACT'
 		ATTACK_RECOVERY:
 			state_string = 'ATTACK_RECOVERY'
-		WITH_AXE:
-			state_string = 'WITH_AXE'
-		TAKING_DAMAGE:
-			state_string = 'TAKING_DAMAGE'
+		AXE_INTERACTION:
+			state_string = 'AXE_INTERACTION'
 		STUNNED:
 			state_string = 'STUNNED'
 		PRE_DEATH:
 			state_string = 'PRE_DEATH'
-		DEAD:
-			state_string = 'DEAD'
 		POSSESSION_TARGETING:
 			state_string = 'POSSESSION_TARGETING'
 		POSSESSION_RECOVERY:
