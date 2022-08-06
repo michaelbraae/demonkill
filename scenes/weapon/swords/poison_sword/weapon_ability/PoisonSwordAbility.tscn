@@ -10,8 +10,9 @@
 damage_frames = [ 0, 1 ]
 
 [node name="AnimatedSprite" parent="." index="0"]
-self_modulate = Color( 0, 0.964706, 0.172549, 1 )
+self_modulate = Color( 0.752941, 0.968627, 0.572549, 1 )
 rotation = 1.5708
+scale = Vector2( 0.722811, 0.722811 )
 frames = ExtResource( 1 )
 animation = "anim"
 speed_scale = 2.5

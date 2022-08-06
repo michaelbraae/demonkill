@@ -12,8 +12,12 @@ onready var default_pos = icon.get_position()
 
 export(PackedScene) var weapon
 
+# warning-ignore-all:return_value_discarded
+
 func _ready() -> void:
 	$Area2D.connect("area_entered", self, "on_area_entered")
+#	var weapon_instance = weapon.instance()
+	
 	pass
 
 func _process(delta: float) -> void:
@@ -22,5 +26,7 @@ func _process(delta: float) -> void:
 
 func on_area_entered(body) -> void:
 	if body.get_name() == "InteractionArea" and body.get_parent() == GameState.player:
+		var bundled_properties = weapon._bundled
+		print(weapon._bundled)
 		body.get_parent().change_weapon_in_slot(weapon, 1)
 		queue_free()
