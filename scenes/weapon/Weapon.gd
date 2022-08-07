@@ -12,7 +12,7 @@ export(String, "EXOTIC", "LEGENDARY", "RARE", "COMMON") var rarity
 
 export(String, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var archetype
 
-export(String, "STRENGTH", "INTELLIGENCE", "SURVIVAL") var affinity
+export(String, "STRENGTH", "INTELLIGENCE", "VITALITY") var affinity
 
 # the index of the attack sequence which is considered a combo finisher
 # ie: the third attack within a combo
