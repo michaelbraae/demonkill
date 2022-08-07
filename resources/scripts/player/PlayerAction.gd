@@ -98,8 +98,7 @@ func hasPlayerPerformedAction() -> bool:
 		Input.is_action_just_pressed("action_1") ||
 		Input.is_action_just_pressed("action_2") ||
 		Input.is_action_just_pressed("action_3") ||
-		Input.is_action_just_pressed("ui_accept") ||
-		Input.is_action_just_pressed("possess")
+		Input.is_action_just_pressed("ui_accept")
 	):
 		return true
 	return false

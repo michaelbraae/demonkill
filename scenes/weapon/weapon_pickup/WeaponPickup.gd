@@ -14,6 +14,14 @@ export(PackedScene) var weapon
 
 # warning-ignore-all:return_value_discarded
 
+func _ready() -> void:
+	InputEmitter.connect("interacted", self, "interacted")
+
+func interacted() -> void:
+	if $WeaponCard.visible:
+		GameState.player.change_weapon_in_slot(weapon, 1)
+		queue_free()
+
 func _process(delta: float) -> void:
 	time += delta * frequency
 	icon.set_position(default_pos + Vector2(0, sin(time) * amplitude))

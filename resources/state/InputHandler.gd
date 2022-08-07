@@ -65,6 +65,8 @@ func _input(event) -> void:
 			InputEmitter.action_3_pressed()
 		else:
 			InputEmitter.action_3_released()
+	if event.is_action_pressed("action_4"):
+		InputEmitter.action_4()
 	if event.is_action_pressed("dev_tool"):
 		LevelManager.goto_scene("res://scenes/developer_tool/DeveloperTool.tscn")
 	if event.is_action_pressed("ui_cancel"):

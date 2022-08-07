@@ -7,6 +7,7 @@ signal ui_cancel
 signal movement_ability
 signal basic_attack
 signal use_ability
+signal interacted
 signal possession_cast_begun
 signal possession_cast_ended
 
@@ -42,6 +43,9 @@ func action_3_released() -> void:
 		pass
 	else:
 		emit_signal("possession_cast_ended")
+
+func action_4() -> void:
+	emit_signal("interacted")
 
 func ui_cancel() -> void:
 	emit_signal("ui_cancel")
