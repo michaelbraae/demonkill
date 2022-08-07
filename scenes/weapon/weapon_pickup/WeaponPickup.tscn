@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/sprites/weapons/poison_sword/poison-sword-icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/weapon/weapon_pickup/WeaponPickup.gd" type="Script" id=2]
 [ext_resource path="res://resources/sprites/lights/light.png" type="Texture" id=3]
 [ext_resource path="res://scenes/weapon/swords/poison_sword/PoisonSword.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapon_card/WeaponCard.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,7 +15,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 11.0
+radius = 23.0217
 
 [node name="WeaponPickup" type="Node2D"]
 script = ExtResource( 2 )
@@ -36,3 +37,10 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="WeaponCard" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = -37.0
+margin_top = -78.0
+margin_right = 213.0
+margin_bottom = 122.0

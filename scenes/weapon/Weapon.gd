@@ -29,6 +29,8 @@ var attack_available: bool = true
 export(Array, PackedScene) var attack_abilities
 export(Array, PackedScene) var combo_finisher_abilites
 
+export var weapon_icon: Texture
+
 func _ready() -> void:
 	combo_finish_timer = Timer.new()
 	combo_finish_timer.one_shot = true
@@ -73,7 +75,7 @@ func attack(
 		if combo_finish_timer.is_stopped():
 			# start the combo finish timer
 			# same length as window between attacks + extra to capture combo
-			combo_finish_timer.start(1.0 / attack_speed + 2.0)
+			combo_finish_timer.start(1.0 / attack_speed + 1.2)
 
 func use_weapon_abilities(
 	target_direction: Vector2,
