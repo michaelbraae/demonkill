@@ -8,11 +8,11 @@ export var weapon_name: String
 
 export var weapon_description: String
 
-export(int, "EXOTIC", "LEGENDARY", "RARE", "COMMON") var rarity
+export(String, "EXOTIC", "LEGENDARY", "RARE", "COMMON") var rarity
 
-export(int, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var archetype
+export(String, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var archetype
 
-export(int, "STRENGTH", "INTELLIGENCE", "SURVIVAL") var affinity
+export(String, "STRENGTH", "INTELLIGENCE", "SURVIVAL") var affinity
 
 # the index of the attack sequence which is considered a combo finisher
 # ie: the third attack within a combo

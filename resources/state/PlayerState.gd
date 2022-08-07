@@ -13,7 +13,10 @@ var coins = 0
 
 var facing_direction = "up"
 
-func useMana(mana_use: int) -> void:
+var weapon_slot_1: PackedScene
+var weapon_slot_2: PackedScene
+
+func useMana(mana_use: int) -> void:	
 	if mana - mana_use < 0:
 		mana = 0
 	else:
@@ -28,12 +31,12 @@ func addMana(mana_add: int) -> void:
 func addHealth(health_add: int) -> void:
 	if health + health_add <= max_health:
 		health += health_add
-
-func weapon_slot_1() -> Weapon:
-	return Weapon.instance()
-
-func weapon_slot_2() -> Weapon:
-	return Weapon.instance()
+#
+#func weapon_slot_1() -> Weapon:
+#	return Weapon.instance()
+#
+#func weapon_slot_2() -> Weapon:
+#	return Weapon.instance()
 
 var SPELLS: Dictionary = {
 	"0": {},

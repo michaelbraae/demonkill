@@ -16,6 +16,10 @@ export(PackedScene) var weapon
 
 func _ready() -> void:
 	InputEmitter.connect("interacted", self, "interacted")
+	var weapon_instance = weapon.instance()
+	$WeaponCard.weapon = weapon_instance
+	$WeaponCard.set_params()
+	weapon_instance.queue_free()
 
 func interacted() -> void:
 	if $WeaponCard.visible:

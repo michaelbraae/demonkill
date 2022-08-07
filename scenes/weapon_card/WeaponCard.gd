@@ -5,4 +5,6 @@ extends Control
 var weapon: Weapon
 
 func set_params() -> void:
-	pass
+	get_node("%Name").set_text(weapon.weapon_name)
+	get_node("%Rarity").set_text(weapon.rarity)
+	get_node("%Icon").set_texture(weapon.weapon_icon)
