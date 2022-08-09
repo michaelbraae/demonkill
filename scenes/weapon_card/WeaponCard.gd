@@ -45,13 +45,19 @@ func set_effect_data() -> void:
 		var ability_instance = ability.instance()
 		for ability_effect in ability_instance.get_node("Effects").get_children():
 			if ability_effect is DamageEffect:
-				get_node("%DPSLabel").set_text(str(ability_effect.damage * weapon.attack_speed) + " DPS")
+				set_damage_label(ability_effect.damage)
 			if ability_effect is HealEffect:
 				print("ability_effect", ability_effect)
 			if ability_effect is PoisonEffect:
-				var poison_effect_label = WEAPON_CARD_EFFECT.instance()
-				poison_effect_label.set_text("attacks POISON enemies")
-				effect_list.add_child(poison_effect_label)
+				set_poison_label()
+
+func set_damage_label(damage: int) -> void:
+	get_node("%DPSLabel").set_text(str(damage * weapon.attack_speed) + " DPS")
+
+func set_poison_label() -> void:
+	var poison_effect_label = WEAPON_CARD_EFFECT.instance()
+	poison_effect_label.set_text("attacks POISON enemies")
+	effect_list.add_child(poison_effect_label)
 
 func set_rarity(rarity: String) -> void:
 	get_node("%Rarity").set_text(rarity)
