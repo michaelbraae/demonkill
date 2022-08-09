@@ -115,7 +115,8 @@ margin_bottom = 16.0
 custom_fonts/font = ExtResource( 3 )
 text = "100 DPS"
 
-[node name="Label2" type="Label" parent="VBoxContainer/DetailsPanel/VBoxContainer"]
+[node name="BonusDamageLabel" type="Label" parent="VBoxContainer/DetailsPanel/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 19.0
 margin_right = 240.0
 margin_bottom = 35.0

@@ -16,7 +16,12 @@ var facing_direction = "up"
 var weapon_slot_1: PackedScene
 var weapon_slot_2: PackedScene
 
-func useMana(mana_use: int) -> void:	
+# how many points has the player put into each of these
+var strength_affinity: int = 0
+var intelligence_affinity: int = 0
+var vitality_affinity: int = 5
+
+func useMana(mana_use: int) -> void:
 	if mana - mana_use < 0:
 		mana = 0
 	else:
