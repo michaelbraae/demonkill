@@ -4,17 +4,6 @@ class_name EffectHandler
 
 export var stun_immunity_duration: float = 0.0
 
-# Effect types
-enum {
-	DAMAGE,
-	HEAL,
-	POISON,
-	BURN,
-	FREEZE,
-	ON_DEATH,
-	KNOCKBACK,
-	MANA_REGEN
-}
 
 func applyEffect(effect: Effect) -> void:
 	if effect is DamageEffect:

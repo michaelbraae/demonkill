@@ -2,6 +2,9 @@ extends Control
 
 var weapon: Weapon
 
+onready var WEAPON_CARD_EFFECT = preload("res://scenes/weapon_card/weapon_card_effect/WeaponCardEffect.tscn")
+onready var effect_list = get_node("%EffectList")
+
 var card_colors: Dictionary = {
 	"STRENGTH": {
 		"background": ColorGlobal.strength_background,
@@ -35,6 +38,20 @@ func set_params() -> void:
 	set_rarity(weapon.rarity)
 	set_colors(weapon.affinity)
 	get_node("%Icon").set_texture(weapon.weapon_icon)
+	set_effect_data()
+
+func set_effect_data() -> void:
+	for ability in weapon.attack_abilities:
+		var ability_instance = ability.instance()
+		for ability_effect in ability_instance.get_node("Effects").get_children():
+			if ability_effect is DamageEffect:
+				get_node("%DPSLabel").set_text(str(ability_effect.damage * weapon.attack_speed) + " DPS")
+			if ability_effect is HealEffect:
+				print("ability_effect", ability_effect)
+			if ability_effect is PoisonEffect:
+				var poison_effect_label = WEAPON_CARD_EFFECT.instance()
+				poison_effect_label.set_text("attacks POISON enemies")
+				effect_list.add_child(poison_effect_label)
 
 func set_rarity(rarity: String) -> void:
 	get_node("%Rarity").set_text(rarity)

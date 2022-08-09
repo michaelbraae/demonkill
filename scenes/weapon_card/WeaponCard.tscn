@@ -22,65 +22,57 @@ rect_scale = Vector2( 0.3, 0.3 )
 theme = SubResource( 2 )
 script = ExtResource( 4 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 250, 200 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Background" type="ColorRect" parent="ViewportContainer/Viewport"]
+[node name="Background" type="ColorRect" parent="."]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0196078, 0.101961, 0.129412, 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ViewportContainer/Viewport"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 0
 
-[node name="WeaponHeading" type="Control" parent="ViewportContainer/Viewport/VBoxContainer"]
+[node name="WeaponHeading" type="Control" parent="VBoxContainer"]
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 
-[node name="HeadingBackground" type="ColorRect" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading"]
+[node name="HeadingBackground" type="ColorRect" parent="VBoxContainer/WeaponHeading"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0196078, 0.101961, 0.129412, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WeaponHeading"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 
-[node name="Icon" type="TextureRect" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/WeaponHeading/HBoxContainer"]
 unique_name_in_owner = true
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 1 )
 expand = true
+stretch_mode = 4
 
-[node name="Title" type="Control" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading/HBoxContainer"]
+[node name="Title" type="Control" parent="VBoxContainer/WeaponHeading/HBoxContainer"]
 margin_left = 50.0
 margin_right = 250.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading/HBoxContainer/Title"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeaponHeading/HBoxContainer/Title"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 rect_min_size = Vector2( 200, 50 )
 
-[node name="Name" type="Label" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading/HBoxContainer/Title/VBoxContainer"]
+[node name="Name" type="Label" parent="VBoxContainer/WeaponHeading/HBoxContainer/Title/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 200.0
 margin_bottom = 16.0
@@ -88,7 +80,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Weapon Name"
 valign = 1
 
-[node name="Rarity" type="Label" parent="ViewportContainer/Viewport/VBoxContainer/WeaponHeading/HBoxContainer/Title/VBoxContainer"]
+[node name="Rarity" type="Label" parent="VBoxContainer/WeaponHeading/HBoxContainer/Title/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 20.0
 margin_right = 200.0
@@ -97,53 +89,54 @@ custom_colors/font_color = Color( 0.560784, 0, 1, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Legendary"
 
-[node name="DetailsPanel" type="Control" parent="ViewportContainer/Viewport/VBoxContainer"]
+[node name="DetailsPanel" type="Control" parent="VBoxContainer"]
 margin_top = 50.0
 margin_right = 250.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 250, 50 )
 
-[node name="DetailsBackground" type="ColorRect" parent="ViewportContainer/Viewport/VBoxContainer/DetailsPanel"]
+[node name="DetailsBackground" type="ColorRect" parent="VBoxContainer/DetailsPanel"]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0313726, 0.435294, 0.560784, 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ViewportContainer/Viewport/VBoxContainer/DetailsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DetailsPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 custom_constants/separation = 3
 
-[node name="DPSLabel" type="Label" parent="ViewportContainer/Viewport/VBoxContainer/DetailsPanel/VBoxContainer"]
+[node name="DPSLabel" type="Label" parent="VBoxContainer/DetailsPanel/VBoxContainer"]
+unique_name_in_owner = true
 margin_right = 240.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 3 )
 text = "100 DPS"
 
-[node name="Label2" type="Label" parent="ViewportContainer/Viewport/VBoxContainer/DetailsPanel/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/DetailsPanel/VBoxContainer"]
 margin_top = 19.0
 margin_right = 240.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 3 )
 text = "+30% Damage"
 
-[node name="Control" type="Control" parent="ViewportContainer/Viewport/VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer"]
 margin_top = 100.0
 margin_right = 250.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 250, 100 )
 
-[node name="Label" type="Label" parent="ViewportContainer/Viewport/VBoxContainer/Control"]
-margin_left = 60.0
-margin_top = 36.6667
-margin_right = 220.0
-margin_bottom = 69.6667
-custom_fonts/font = ExtResource( 3 )
-text = "Press E to equip"
+[node name="EffectList" type="VBoxContainer" parent="VBoxContainer/Control"]
+unique_name_in_owner = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 250.0
+margin_bottom = 100.0
+rect_clip_content = true
 
-[node name="Border" type="ReferenceRect" parent="ViewportContainer/Viewport"]
+[node name="Border" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
