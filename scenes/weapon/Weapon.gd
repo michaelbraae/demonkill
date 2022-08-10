@@ -61,7 +61,7 @@ func attack(
 	# attacks per second, so divide 1.0 by attack_speed
 	attack_speed_timer.start(1.0 / attack_speed)
 	# only use the combo finisher logic if the index is greater than 0
-	if not combo_finish_index:
+	if !combo_finish_index or !combo_finisher_abilites.size():
 		use_weapon_abilities(target_direction, source_actor, attack_abilities)
 	else:
 		if current_combo_attack == combo_finish_index:
