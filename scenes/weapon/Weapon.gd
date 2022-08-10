@@ -44,7 +44,6 @@ func _ready() -> void:
 
 # the time between each attack in the chain. if the combo continues
 func combo_finisher_timeout() -> void:
-	print("combo finish timeout")
 	current_combo_attack = 1
 
 func attack_speed_timeout() -> void:
@@ -75,7 +74,7 @@ func attack(
 			if combo_finish_timer.is_stopped():
 				# start the combo finish timer
 				# same length as window between attacks + extra to capture combo
-				combo_finish_timer.start(1.0 / attack_speed + 1.2)
+				combo_finish_timer.start(1.0 / attack_speed + 0.5)
 
 func use_weapon_abilities(
 	target_direction: Vector2,

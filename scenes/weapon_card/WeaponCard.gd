@@ -73,7 +73,6 @@ func set_damage_label(damage: int) -> void:
 func set_bonus_damage_label() -> void:
 	## calculate bonus damage by multtplying player affinity in correct column by 5 or 10?
 	var bonus_damage_multiplier: int = 0
-	weapon.affinity
 	match weapon.affinity:
 		"STRENGTH":
 			bonus_damage_multiplier = PlayerState.strength_affinity

@@ -18,6 +18,11 @@ script = ExtResource( 2 )
 started_signal = "burn_started"
 finished_signal = "burn_finished"
 
+[node name="BleedHandler" type="Node2D" parent="."]
+script = ExtResource( 2 )
+started_signal = "bleed_started"
+finished_signal = "bleed_finished"
+
 [node name="FreezeHandler" type="Node2D" parent="."]
 script = ExtResource( 4 )
 started_signal = "freeze_started"

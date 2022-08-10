@@ -35,9 +35,14 @@ _global_script_classes=[ {
 "path": "res://resources/scripts/npc/BaseAI.gd"
 }, {
 "base": "DotEffect",
+"class": "BleedEffect",
+"language": "GDScript",
+"path": "res://scenes/effect/dot_effects/burn_effect/BleedEffect.gd"
+}, {
+"base": "DotEffect",
 "class": "BurnEffect",
 "language": "GDScript",
-"path": "res://scenes/effect/dot_effects/burn_effect/BurnEffect.gd"
+"path": "res://scenes/effect/dot_effects/bleed_effect/BurnEffect.gd"
 }, {
 "base": "Effect",
 "class": "CCEffect",
@@ -215,6 +220,7 @@ _global_script_class_icons={
 "AbilityMelee": "",
 "AbilityProjectile": "",
 "BaseAI": "",
+"BleedEffect": "",
 "BurnEffect": "",
 "CCEffect": "",
 "CCEffectHandler": "",

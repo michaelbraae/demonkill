@@ -18,7 +18,7 @@ func area_entered(area) -> void:
 		collisionEffect(area_parent.get_global_position())
 		damaged_characters.push_front(area_parent)
 		for effect in get_node("Effects").get_children():
-			area_parent.get_node("EffectHandler").applyEffect(effect)
+			area_parent.get_node("EffectHandler").apply_effect(effect)
 
 func _physics_process(_delta) -> void:
 	if target_vector:

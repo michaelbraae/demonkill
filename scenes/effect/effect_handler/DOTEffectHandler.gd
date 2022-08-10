@@ -23,8 +23,11 @@ signal burn_finished
 signal freeze_started
 signal freeze_finished
 
-export(String, "poison_started", "burn_started", "freeze_started") var started_signal
-export(String, "poison_finished", "burn_finished", "freeze_finished") var finished_signal
+signal bleed_started
+signal bleed_finished
+
+export(String, "poison_started", "burn_started", "freeze_started", "bleed_started") var started_signal
+export(String, "poison_finished", "burn_finished", "freeze_finished", "bleed_finished") var finished_signal
 
 # warning-ignore-all:return_value_discarded
 

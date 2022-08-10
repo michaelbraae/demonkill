@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ability/abilities/slash_basic/SlashBasicFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/effect/dot_effects/burn_effect/BleedEffect.tscn" type="PackedScene" id=6]
 
 [node name="SlashBasic" instance=ExtResource( 4 )]
 damage_frames = [ 0, 1 ]
@@ -30,3 +31,8 @@ mana_regen_amount = 2
 [node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 2 )]
 speed = 100
 decay = 15
+
+[node name="BleedEffect" parent="Effects" index="3" instance=ExtResource( 6 )]
+effect_duration = 10.0
+tick_rate = 0.7
+damage = 5

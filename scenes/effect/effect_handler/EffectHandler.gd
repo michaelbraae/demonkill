@@ -5,7 +5,7 @@ class_name EffectHandler
 export var stun_immunity_duration: float = 0.0
 
 
-func applyEffect(effect: Effect) -> void:
+func apply_effect(effect: Effect) -> void:
 	if effect is DamageEffect:
 		damage_effect(effect)
 	if effect is HealEffect:
@@ -14,6 +14,8 @@ func applyEffect(effect: Effect) -> void:
 		poison_effect(effect)
 	if effect is BurnEffect:
 		burn_effect(effect)
+	if effect is BleedEffect:
+		bleed_effect(effect)
 	if effect is FreezeEffect:
 		freeze_effect(effect)
 	if effect is KnockbackEffect:
@@ -34,6 +36,9 @@ func poison_effect(effect: PoisonEffect) -> void:
 
 func burn_effect(effect: BurnEffect) -> void:
 	$BurnHandler.begin_effect(effect)
+
+func bleed_effect(effect: BleedEffect) -> void:
+	$BleedHandler.begin_effect(effect)
 
 func freeze_effect(effect: FreezeEffect) -> void:
 	$FreezeHandler.begin_effect(effect)
