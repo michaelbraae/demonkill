@@ -72,10 +72,10 @@ func attack(
 		else:
 			use_weapon_abilities(target_direction, source_actor, attack_abilities)
 			current_combo_attack += 1
-		if combo_finish_timer.is_stopped():
-			# start the combo finish timer
-			# same length as window between attacks + extra to capture combo
-			combo_finish_timer.start(1.0 / attack_speed + 1.2)
+			if combo_finish_timer.is_stopped():
+				# start the combo finish timer
+				# same length as window between attacks + extra to capture combo
+				combo_finish_timer.start(1.0 / attack_speed + 1.2)
 
 func use_weapon_abilities(
 	target_direction: Vector2,
