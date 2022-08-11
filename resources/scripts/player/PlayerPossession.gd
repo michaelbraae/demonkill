@@ -21,8 +21,8 @@ func possession_cast_begun() -> void:
 		Engine.time_scale = 0.3
 
 func possession_cast_ended() -> void:
-#	if dash_available and possession_targeting_started:
-	if  possession_targeting_started:
+	if dash_available and possession_targeting_started:
+#	if possession_targeting_started:
 		movement_ability()
 		possession_dash_vector = getAttackDirection()
 		state = POSSESSION_DASH
