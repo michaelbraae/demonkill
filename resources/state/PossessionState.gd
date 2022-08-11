@@ -59,6 +59,7 @@ func exitPossession(spawn_position) -> void:
 	var player_instance = PLAYER_SCENE.instance()
 	GameState.player = player_instance
 	current_scene.add_child(player_instance)
+	PlayerState.health += 10
 	
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()

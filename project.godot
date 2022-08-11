@@ -37,12 +37,12 @@ _global_script_classes=[ {
 "base": "DotEffect",
 "class": "BleedEffect",
 "language": "GDScript",
-"path": "res://scenes/effect/dot_effects/burn_effect/BleedEffect.gd"
+"path": "res://scenes/effect/dot_effects/bleed_effect/BleedEffect.gd"
 }, {
 "base": "DotEffect",
 "class": "BurnEffect",
 "language": "GDScript",
-"path": "res://scenes/effect/dot_effects/bleed_effect/BurnEffect.gd"
+"path": "res://scenes/effect/dot_effects/burn_effect/BurnEffect.gd"
 }, {
 "base": "Effect",
 "class": "CCEffect",

@@ -12,7 +12,7 @@ retreat_from_attacks = false
 orbit_player = false
 move_speed = 60.0
 attack_range = 200.0
-max_health = 10
+max_health = 20
 weapon_selection = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="2"]

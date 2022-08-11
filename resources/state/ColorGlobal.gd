@@ -21,4 +21,3 @@ export var exotic_color: Color = Color(1, 0.761, 0.149)
 export var legendary_color: Color = Color(0.561, 0, 1)
 export var rare_color: Color = Color(0.157, 1, 0.949)
 export var common_color: Color = Color(0.824, 0.824, 0.824)
-

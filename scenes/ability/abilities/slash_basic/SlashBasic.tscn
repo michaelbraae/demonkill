@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/effect/dot_effects/burn_effect/BleedEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/effect/dot_effects/bleed_effect/BleedEffect.tscn" type="PackedScene" id=6]
 
 [node name="SlashBasic" instance=ExtResource( 4 )]
 damage_frames = [ 0, 1 ]

@@ -1,9 +1,11 @@
 extends Node
 
+# warning-ignore-all:return_value_discarded
+
 var current_scene = null
 const PLAYER_SCENE = preload('res://scenes/character/player/Player.tscn')
 
-# warning-ignore-all:return_value_discarded
+onready var thread: Thread = Thread.new()
 
 func _ready():
 	var root = get_tree().get_root()
@@ -11,8 +13,6 @@ func _ready():
 
 func goto_scene(path):
 	call_deferred('_deferred_goto_scene', path)
-
-onready var thread: Thread = Thread.new()
 
 func _deferred_goto_scene(path : String) -> void:
 	# reset any slomo effects :D
@@ -22,7 +22,7 @@ func _deferred_goto_scene(path : String) -> void:
 	current_scene.free()
 	thread.start(self, "prepare_scene", ResourceLoader.load_interactive(path))
 
-func prepare_scene(interactive_ldr):
+func prepare_scene(interactive_ldr: ResourceInteractiveLoader):
 	while true:
 		var err = interactive_ldr.poll()
 		if err == ERR_FILE_EOF:

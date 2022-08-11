@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/weapon/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/weapon/swords/poison_sword/weapon_ability/PoisonSwordAbility.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ability/abilities/fireball/Fireball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ability/abilities/poison_projectile/PoisonProjectile.tscn" type="PackedScene" id=3]
 
 [node name="PoisonSword" instance=ExtResource( 1 )]
 weapon_name = "Poison Sword"
