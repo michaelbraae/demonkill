@@ -84,6 +84,8 @@ func dropAxe() -> void:
 	GameState.axe_instance.position = get_global_position()
 
 func damage(damage : int) -> void:
+	state = IDLE
+	attack_landed = false
 	attack_started = false
 	health -= damage
 	if GameState.npc_with_axe == self and not isPossessed():
@@ -91,7 +93,7 @@ func damage(damage : int) -> void:
 	if isPossessed() and health <= 0:
 		PossessionState.handlePossessionDeath(get_global_position())
 	elif health <= 0:
-		kill()
+		state = PRE_DEATH
 
 func isTargetInRange() -> bool:
 	if is_instance_valid(target_actor):
@@ -115,12 +117,12 @@ func getAnimation() -> String:
 	if state == POSSESSION_RECOVERY:
 		return "stunned"
 	if isPossessed():
-		if state == ATTACKING:
+		if state == ATTACK_CONTACT:
 			return 'attack_loop'
 		return getNavigationAnimation()
-	if [NAVIGATING, FOLLOWING_PLAYER, WANDERING].has(state):
+	if state == NAVIGATING:
 		return getNavigationAnimation()
-	if [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state):
+	if ATTACK_STATES.has(state):
 		return getAttackAnimation()
 	if state == KNOCKED_BACK:
 		return 'take_hit'
@@ -128,7 +130,7 @@ func getAnimation() -> String:
 		return 'stunned'
 	if state == PRE_DEATH:
 		return 'take_hit'
-	if state == WITH_AXE:
+	if state == AXE_INTERACTION:
 		return 'with_axe'
 	return 'idle'
 
@@ -145,11 +147,11 @@ func getNavigationAnimation() -> String:
 
 func getAttackAnimation() -> String:
 	match state:
-		PRE_ATTACK:
+		ATTACK_WARMUP:
 			return 'pre_attack'
-		ATTACKING:
+		ATTACK_CONTACT:
 			return 'attack'
-		POST_ATTACK:
+		ATTACK_RECOVERY:
 			return 'post_attack'
 	return 'idle'
 
@@ -166,17 +168,18 @@ func getAttackDirection() -> Vector2:
 	return Vector2(cos(angle), sin(angle))
 
 func readyForPreAttack() -> bool:
-	return (
-		not [PRE_ATTACK, ATTACKING, POST_ATTACK].has(state)
-	)
+	return not ATTACK_STATES.has(state)
 
 func handlePreAttack() -> void:
 	attack_started = true
-	state = PRE_ATTACK
+	state = ATTACK_WARMUP
+
+func basic_attack() -> void:
+	attack()
 
 func attack() -> void:
 	if weapon.attack_available:
-		state = ATTACKING
+		state = ATTACK_CONTACT
 		weapon.attack(getAttackDirection(), self)
 
 var outline_shader
@@ -209,7 +212,7 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	elif state == ATTACKING:
+	elif state == ATTACK_CONTACT:
 		pass
 	else:
 		velocity = InputHandler.getVelocity(move_speed)
@@ -222,7 +225,7 @@ func runDecisionTree() -> void:
 		pass
 	elif isPossessed():
 		possessedDecisionLogic()
-	elif [STUNNED, PRE_DEATH, WITH_AXE].has(state):
+	elif [STUNNED, PRE_DEATH, AXE_INTERACTION].has(state):
 		if knocked_back:
 			knockback_vector = move_and_slide(getKnockBackProcessVector())
 	elif knocked_back:
@@ -239,7 +242,7 @@ func runDecisionTree() -> void:
 			):
 				if readyForPreAttack():
 					handlePreAttack()
-				elif state == ATTACKING:
+				elif state == ATTACK_CONTACT:
 					attack()
 					attack_landed = true
 			else:
@@ -255,13 +258,13 @@ func handlePostAnimState() -> void:
 			$CollisionShape2D.disabled = false
 		KNOCKED_BACK:
 			state = IDLE
-		PRE_ATTACK:
-			state = ATTACKING
-		ATTACKING:
+		ATTACK_WARMUP:
+			state = ATTACK_CONTACT
+		ATTACK_CONTACT:
 			attack_started = false
 			attack_landed = false
-			state = POST_ATTACK
-		POST_ATTACK:
+			state = ATTACK_RECOVERY
+		ATTACK_RECOVERY:
 			state = IDLE
 		STUNNED:
 			if stun_duration_timer.is_stopped():
@@ -269,15 +272,7 @@ func handlePostAnimState() -> void:
 		PRE_DEATH:
 			queue_free()
 
-func kill() -> void:
-	state = PRE_DEATH
-
 func hitByAxe(damage) -> void:
 	damage(damage)
-	state = WITH_AXE
+	state = AXE_INTERACTION
 	animatedSprite.play('with_axe')
-
-func basic_attack() -> void:
-	if weapon.attack_available:
-		state = ATTACKING
-		attack()

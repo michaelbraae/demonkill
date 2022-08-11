@@ -11,5 +11,5 @@ func _physics_process(_delta) -> void:
 			if collider.find_node("EffectHandler"):
 				for effect in get_node("Effects").get_children():
 					damaged_characters.push_front(collider)
-					collider.get_node("EffectHandler").applyEffect(effect)
+					collider.get_node("EffectHandler").apply_effect(effect)
 			queue_free()

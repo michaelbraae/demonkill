@@ -4,7 +4,7 @@ class_name PlayerNavigation
 
 var velocity = Vector2()
 
-const SPEED = 100
+export var SPEED: int = 100 # 100
 var speed_actual
 
 var aim_vector = Vector2()
@@ -12,6 +12,9 @@ var aim_vector = Vector2()
 var facing_direction = 'down'
 
 var use_facing_vector = false
+
+export var dash_cooldown: float = 2.0
+export var dash_duration: float = 0.15
 
 var dash_timer
 var dash_cooldown_timer
@@ -49,12 +52,13 @@ func movement_ability() -> void:
 
 func initiateDash() -> void:
 	if dash_available:
+		FeedbackHandler.shakeCamera(0.2, 0.8)
 		set_collision_layer_bit(1, false)
 		set_collision_mask_bit(1, false)
 		dash_available = false
 		state = DASH
-		dash_cooldown_timer.start(0.4)
-		dash_timer.start(0.15)
+		dash_cooldown_timer.start(dash_cooldown)
+		dash_timer.start(dash_duration)
 		dash_vector = InputHandler.getMovementVector()
 
 func continueDash() -> void:

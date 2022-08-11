@@ -1,9 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/weapon/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://resources/sprites/weapons/poison_sword/poison-sword-icon.png" type="Texture" id=2]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
-rarity = 1
-archetype = 1
-affinity = 2
+weapon_icon = ExtResource( 2 )

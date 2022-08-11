@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
-shader_param/flash_color = Color( 0.27451, 0.0156863, 0.407843, 1 )
+shader_param/flash_color = Color( 0.760784, 0.211765, 0.27451, 1 )
 shader_param/flash_modifier = 0.4
 
 [node name="DashGhost" type="Sprite"]

@@ -72,7 +72,6 @@ func detectContact() -> void:
 				elif distance_timer.is_stopped():
 					pass
 				elif area_parent.health <= damage:
-					area_parent.kill()
 					collisionEffect(area_parent)
 				else:
 					area_parent.hitByAxe(damage)

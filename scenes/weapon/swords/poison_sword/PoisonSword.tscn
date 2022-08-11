@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/weapon/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/weapon/swords/poison_sword/weapon_ability/PoisonSwordAbility.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ability/abilities/poison_projectile/PoisonProjectile.tscn" type="PackedScene" id=3]
+
+[node name="PoisonSword" instance=ExtResource( 1 )]
+weapon_name = "Poison Sword"
+weapon_description = "Cut your meat carefully"
+rarity = "EXOTIC"
+archetype = "SWORD"
+affinity = "STRENGTH"
+combo_finish_index = 2
+attack_speed = 1.8
+attack_abilities = [ ExtResource( 2 ) ]
+combo_finisher_abilites = [ ExtResource( 2 ), ExtResource( 3 ) ]

@@ -2,42 +2,52 @@ extends Node2D
 
 class_name EffectHandler
 
-# Effect types
-enum {
-	DAMAGE,
-	HEAL,
-	POISON,
-	BURN,
-	FREEZE,
-	ON_DEATH,
-	KNOCKBACK,
-	MANA_REGEN
-}
+export var stun_immunity_duration: float = 0.0
 
-func applyEffect(effect: Effect) -> void:
-	match effect.effect_type:
-		DAMAGE:
-			damageEffect(effect)
-		HEAL:
-			healEffect(effect)
-		POISON:
-			poisonEffect(effect)
-		KNOCKBACK:
-			knockbackEffect(effect)
-		MANA_REGEN:
-			manaRegenEffect(effect)
 
-func damageEffect(effect: DamageEffect) -> void:
+func apply_effect(effect: Effect) -> void:
+	if effect is DamageEffect:
+		damage_effect(effect)
+	if effect is HealEffect:
+		heal_effect(effect)
+	if effect is PoisonEffect:
+		poison_effect(effect)
+	if effect is BurnEffect:
+		burn_effect(effect)
+	if effect is BleedEffect:
+		bleed_effect(effect)
+	if effect is FreezeEffect:
+		freeze_effect(effect)
+	if effect is KnockbackEffect:
+		knockback_effect(effect)
+	if effect is ManaRegenEffect:
+		mana_regen_effect(effect)
+	if effect is StunEffect:
+		stun_effect(effect)
+
+func damage_effect(effect: DamageEffect) -> void:
 	owner.damage(effect.damage)
 
-func healEffect(_effect: HealEffect) -> void:
+func heal_effect(_effect: HealEffect) -> void:
 	pass
 
-func poisonEffect(_effect: PoisonEffect) -> void:
-	pass
+func poison_effect(effect: PoisonEffect) -> void:
+	$PoisonHandler.begin_effect(effect)
 
-func knockbackEffect(effect: KnockbackEffect) -> void:
+func burn_effect(effect: BurnEffect) -> void:
+	$BurnHandler.begin_effect(effect)
+
+func bleed_effect(effect: BleedEffect) -> void:
+	$BleedHandler.begin_effect(effect)
+
+func freeze_effect(effect: FreezeEffect) -> void:
+	$FreezeHandler.begin_effect(effect)
+
+func knockback_effect(effect: KnockbackEffect) -> void:
 	owner.knockBack(effect.hit_direction, effect.speed, effect.decay)
 
-func manaRegenEffect(effect: ManaRegenEffect) -> void:
+func mana_regen_effect(effect: ManaRegenEffect) -> void:
 	PlayerState.addMana(effect.mana_regen_amount)
+
+func stun_effect(effect: StunEffect) -> void:
+	$StunHandler.begin_effect(effect)

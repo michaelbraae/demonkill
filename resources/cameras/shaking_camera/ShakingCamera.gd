@@ -15,9 +15,10 @@ func shake_timeout() -> void:
 	shake_enabled = false
 	shake_timer.stop()
 
-func shake() -> void:
+func shake(duration: float = 0.2, intensity: float = 2.0) -> void:
+	shake_amount = intensity
 	shake_enabled = true
-	shake_timer.start(0.2)
+	shake_timer.start(duration)
 
 func _process(_delta):
 	if shake_enabled:

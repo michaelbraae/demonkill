@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/effect/effect_handler/EffectHandler.gd" type="Script" id=1]
+[ext_resource path="res://scenes/effect/effect_handler/DOTEffectHandler.gd" type="Script" id=2]
+[ext_resource path="res://scenes/effect/effect_handler/StunHandler.gd" type="Script" id=3]
+[ext_resource path="res://scenes/effect/effect_handler/CCEffectHandler.gd" type="Script" id=4]
 
 [node name="EffectHandler" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="PoisonHandler" type="Node2D" parent="."]
+script = ExtResource( 2 )
+started_signal = "poison_started"
+finished_signal = "poison_finished"
+
+[node name="BurnHandler" type="Node2D" parent="."]
+script = ExtResource( 2 )
+started_signal = "burn_started"
+finished_signal = "burn_finished"
+
+[node name="BleedHandler" type="Node2D" parent="."]
+script = ExtResource( 2 )
+started_signal = "bleed_started"
+finished_signal = "bleed_finished"
+
+[node name="FreezeHandler" type="Node2D" parent="."]
+script = ExtResource( 4 )
+started_signal = "freeze_started"
+finished_signal = "freeze_finished"
+
+[node name="StunHandler" type="Node2D" parent="."]
+script = ExtResource( 3 )
+started_signal = "stun_started"
+finished_signal = "stun_finished"

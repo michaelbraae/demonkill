@@ -10,34 +10,56 @@ var next_spell : Dictionary
 
 var axe_recall_available = false
 
-
-export(PackedScene) var weapon_slot_1
-export(PackedScene) var weapon_slot_2
+export(PackedScene) var weapon_default
 
 var weapon_slot_1_instance
+var weapon_slot_2_instance
 
 var sprint_timer: Timer
 
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
-#	weapon_slot_1 = RUSTY_SWORD_SCENE.instance()
-	weapon_slot_1_instance = weapon_slot_1.instance()
-	add_child(weapon_slot_1_instance)
+	equip_weapons()
 	
 	sprint_timer = Timer.new()
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
 	restartSprintTimer()
 
+func equip_weapons() -> void:
+	if PlayerState.weapon_slot_1:
+		weapon_slot_1_instance = PlayerState.weapon_slot_1.instance()
+		add_child(weapon_slot_1_instance)
+	else:
+		weapon_slot_1_instance = weapon_default.instance()
+		add_child(weapon_slot_1_instance)
+	if PlayerState.weapon_slot_2:
+		weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
+		add_child(weapon_slot_2_instance)
+	else:
+		weapon_slot_2_instance = weapon_default.instance()
+		add_child(weapon_slot_2_instance)
+
+func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
+	if slot == 1:
+		weapon_slot_1_instance.queue_free()
+		PlayerState.weapon_slot_1 = weapon
+		weapon_slot_1_instance = weapon.instance()
+		add_child(weapon_slot_1_instance)
+	elif slot == 2:
+		weapon_slot_2_instance.queue_free()
+		PlayerState.weapon_slot_2 = weapon
+		weapon_slot_2_instance = weapon.instance()
+		add_child(weapon_slot_2_instance)
+
 func sprint_timeout() -> void:
 	sprint = true
 
 func basic_attack() -> void:
 	if weapon_slot_1_instance.attack_available:
-		if velocity:
-			# warning-ignore:narrowing_conversion
-			setFacingDirection(round(rad2deg(velocity.angle())))
+		# warning-ignore:narrowing_conversion
+		setFacingDirection(round(rad2deg(velocity.angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
 		weapon_slot_1_instance.attack(getAttackDirection(), self)
@@ -52,7 +74,7 @@ func throwAxe() -> void:
 	if PlayerState.mana >= 1:
 		has_axe = false
 		PlayerState.useMana(2)
-		state = ABILITY_CAST
+		state = AXE_INTERACTION
 		GameState.axe_instance = AXE_SCENE.instance()
 		get_parent().add_child(GameState.axe_instance)
 		axe_recall_available = false
@@ -62,7 +84,6 @@ func interruptAction() -> void:
 	state = IDLE
 
 func recallAxe() -> void:
-	state = AXE_RECALL
 	if GameState.axe_instance:
 		GameState.axe_instance.earlyCallback()
 	else:
@@ -87,8 +108,7 @@ func hasPlayerPerformedAction() -> bool:
 		Input.is_action_just_pressed("action_1") ||
 		Input.is_action_just_pressed("action_2") ||
 		Input.is_action_just_pressed("action_3") ||
-		Input.is_action_just_pressed("ui_accept") ||
-		Input.is_action_just_pressed("possess")
+		Input.is_action_just_pressed("ui_accept")
 	):
 		return true
 	return false
@@ -105,7 +125,7 @@ func handlePlayerAction() -> void:
 		continueDash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
-	elif state == ABILITY_CAST:
+	elif state == AXE_INTERACTION:
 		pass
 	else:
 		setVelocity()

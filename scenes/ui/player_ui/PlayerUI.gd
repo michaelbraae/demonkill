@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var label = $Label
 onready var healthBar = $HealthBar
@@ -13,17 +13,11 @@ func _physics_process(_delta) -> void:
 	else:
 		health_current = PlayerState.health
 		max_health = PlayerState.max_health
-#	label.set_text(str(health_current, '/', max_health))
 	healthBar.max_value = max_health
 	healthBar.value = health_current
 	
 	$ManaBar.max_value = PlayerState.max_mana
 	$ManaBar.value = PlayerState.mana
-
-func updateSpellUI(spells: Dictionary) -> void:
-	var slots = GameState.player_ui.get_node("SpellSlotsUI").get_children()
-	for i in range(len(slots)):
-		if spells[str(i)]:
-			slots[i].set_text(str(spells[str(i)]["name"], ": ", spells[str(i)]["count"]))
-		else:
-			slots[i].set_text('Slot' + str(i + 1))
+	
+	if is_instance_valid(GameState.player):
+		$DashCooldown.text = str(stepify(GameState.player.dash_cooldown_timer.get_time_left(), 0.1))

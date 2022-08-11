@@ -2,8 +2,6 @@ extends Node
 
 const PLAYER_SCENE = preload('res://scenes/character/player/Player.tscn')
 
-var bite_box
-
 var current_possession
 
 var possessedNPC
@@ -14,7 +12,16 @@ func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
 
-func onPossessionExit() -> void:	
+func is_controlling_player() -> bool:
+	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
+		return false
+	return true
+
+func is_player(character: KinematicBody2D) -> bool:
+	return GameState.player == character
+
+func onPossessionExit() -> void:
+	UIManager.get_node("Tsukuyomi").visible = false
 	# give the player back the axe if they possessed the enemy with axe
 	# could be moved to an "possessed" signal that emits when the player or an NPC is possessed
 	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
@@ -43,7 +50,6 @@ func handlePossessionDeath(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func exitPossession(spawn_position) -> void:
@@ -53,6 +59,7 @@ func exitPossession(spawn_position) -> void:
 	var player_instance = PLAYER_SCENE.instance()
 	GameState.player = player_instance
 	current_scene.add_child(player_instance)
+	PlayerState.health += 10
 	
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()
@@ -72,10 +79,10 @@ func exitPossession(spawn_position) -> void:
 	
 	# set the player's location
 	player_instance.position = spawn_position
-	bite_box = player_instance.possession_hitbox
 	player_instance.camera2D.make_current()
 
 func possessEntity(new_possession) -> void:
+	UIManager.get_node("Tsukuyomi").visible = true
 	connectToInputSignals(new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession
@@ -89,6 +96,7 @@ func possessEntity(new_possession) -> void:
 		GameState.player.has_axe = true
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
+	FeedbackHandler.shakeCamera()
 	GameState.player.queue_free()
 	new_possession.setPossessionCollisions()
 #	new_possessiaon.resetAbilityCooldown()

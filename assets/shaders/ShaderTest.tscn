@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/shaders/dot/poison/Poison.tres" type="Material" id=1]
+[ext_resource path="res://resources/sprites/hero/v2/sheets/idle-down.png" type="Texture" id=2]
+[ext_resource path="res://horror.png" type="Texture" id=3]
+[ext_resource path="res://assets/shaders/dot/burn/Burn.tres" type="Material" id=4]
+[ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=5]
+[ext_resource path="res://assets/shaders/Tsukuyomi.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/shaders/dot/bleed/bleed.tres" type="Material" id=7]
+[ext_resource path="res://resources/sprites/hero/hero-weapons.png" type="Texture" id=8]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 56.0
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 48.0
+
+[node name="Sprites" type="Sprite" parent="."]
+position = Vector2( 193.736, 129.896 )
+scale = Vector2( 0.138564, 0.143789 )
+texture = ExtResource( 3 )
+
+[node name="Horror" type="Sprite" parent="."]
+material = ExtResource( 1 )
+position = Vector2( 312, -8 )
+scale = Vector2( 0.106149, 0.10566 )
+texture = ExtResource( 3 )
+
+[node name="Idle-down" type="Sprite" parent="."]
+material = ExtResource( 1 )
+position = Vector2( 80, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Idle-down2" type="Sprite" parent="."]
+material = ExtResource( 4 )
+position = Vector2( 112, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Idle-down3" type="Sprite" parent="."]
+material = ExtResource( 5 )
+position = Vector2( 144, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Idle-down4" type="Sprite" parent="."]
+material = ExtResource( 7 )
+position = Vector2( 176, -72 )
+scale = Vector2( 2.1, 2.17241 )
+texture = ExtResource( 2 )
+
+[node name="Hero-weapons" type="Sprite" parent="."]
+position = Vector2( -528, 168 )
+scale = Vector2( 0.343678, 0.343678 )
+texture = ExtResource( 8 )
+
+[node name="Tsukuyomi" parent="." instance=ExtResource( 6 )]
+position = Vector2( 196, 120 )
+scale = Vector2( 5.58334, 1.66666 )
