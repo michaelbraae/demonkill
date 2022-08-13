@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/shaders/dot/poison/Poison.tres" type="Material" id=1]
-[ext_resource path="res://resources/sprites/hero/v2/sheets/idle-down.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/hero/v2/sheets/idle-down.png" type="Texture" id=2]
 [ext_resource path="res://horror.png" type="Texture" id=3]
 [ext_resource path="res://assets/shaders/dot/burn/Burn.tres" type="Material" id=4]
 [ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=5]
 [ext_resource path="res://assets/shaders/Tsukuyomi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/shaders/dot/bleed/bleed.tres" type="Material" id=7]
-[ext_resource path="res://resources/sprites/hero/hero-weapons.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/hero/hero-weapons.png" type="Texture" id=8]
 
 [node name="Node2D" type="Node2D"]
 

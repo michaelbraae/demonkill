@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/player_ui/PlayerUI.gd" type="Script" id=1]
-[ext_resource path="res://resources/sprites/ui/health_mana/mana.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/ui/health_mana/mana.png" type="Texture" id=3]
 [ext_resource path="res://scenes/ui/pause_menu/PauseMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/sprites/ui/health_mana/background.png" type="Texture" id=5]
-[ext_resource path="res://resources/sprites/ui/health_mana/health.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/ui/health_mana/background.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/ui/health_mana/health.png" type="Texture" id=6]
 [ext_resource path="res://scenes/ui/mini_map/MiniMap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/fonts/craft-pixel.ttf" type="DynamicFontData" id=8]
 

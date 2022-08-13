@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/vfx/VFX.gd" type="Script" id=1]
-[ext_resource path="res://resources/sprites/vfx/muzzle-flash.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/vfx/muzzle-flash.png" type="Texture" id=2]
 [ext_resource path="res://assets/shaders/dot/poison/Poison.tres" type="Material" id=3]
 
 [sub_resource type="AtlasTexture" id=1]

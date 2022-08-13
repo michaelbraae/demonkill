@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://resources/sprites/lights/light.png" type="Texture" id=1]
-[ext_resource path="res://resources/sprites/abilities/axe_throw/axe-throw.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/lights/light.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/abilities/axe_throw/axe-throw.png" type="Texture" id=2]
 [ext_resource path="res://scenes/ability/axe_throw/AxeThrow.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=7]

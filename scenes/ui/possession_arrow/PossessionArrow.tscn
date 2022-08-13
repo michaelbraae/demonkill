@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://resources/sprites/ui/possession_arrow/possession-arrow.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/ui/possession_arrow/possession-arrow.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ui/possession_arrow/PossessionArrow.gd" type="Script" id=2]
 
 [node name="PossessionArrow" type="Node2D"]

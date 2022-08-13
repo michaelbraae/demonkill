@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle5.png" type="Texture" id=1]
-[ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle2.png" type="Texture" id=2]
-[ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle3.png" type="Texture" id=3]
-[ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle1.png" type="Texture" id=4]
-[ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle4.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle5.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle3.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle4.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Stranger back in the Night.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/developer_tool/scripts/FireballImpButton.gd" type="Script" id=7]
 
