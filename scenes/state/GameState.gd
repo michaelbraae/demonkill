@@ -2,8 +2,6 @@ extends Node
 
 var state = MAIN_MENU
 
-onready var PlayerUI = load("res://scenes/ui_manager/UIManager.tscn").instance()
-
 var is_paused: bool = false
 
 var axe_instance
@@ -42,11 +40,6 @@ func getStateString() -> String:
 		CONTROLLING_NPC:
 			return 'CONTROLLING_NPC'
 	return 'NO_STATE'
-
-func prepareHealthGUI() -> void:
-	pass
-#	player_ui = PlayerUI
-#	get_tree().get_root().call_deferred('add_child', PlayerUI)
 
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("toggle_fullscreen"):

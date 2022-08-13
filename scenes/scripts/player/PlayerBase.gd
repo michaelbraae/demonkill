@@ -22,7 +22,6 @@ func _ready() -> void:
 	flashTimer.connect('timeout', self, 'flash_timeout')
 	
 	InputHandler.current_actor = self
-	GameState.prepareHealthGUI()
 	GameState.player = self
 	FeedbackHandler.current_camera = camera2D
 
