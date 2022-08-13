@@ -4,7 +4,7 @@ class_name CombatReadyAI
 
 # warning-ignore-all:return_value_discarded
 
-var AXE_SCENE = preload("res://resources/abilities/axe_throw/AxeThrow.tscn")
+var AXE_SCENE = preload("res://scenes/ability/axe_throw/AxeThrow.tscn")
 
 onready var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
 

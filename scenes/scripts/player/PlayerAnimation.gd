@@ -5,7 +5,7 @@ class_name PlayerAnimation
 var attack_order = false
 var has_axe = true
 
-const DASH_GHOST_SCENE = preload('res://resources/actors/player/dash_ghost/DashGhost.tscn')
+const DASH_GHOST_SCENE = preload('res://scenes/vfx/dash_ghost/DashGhost.tscn')
 var dash_ghost_cooldown_timer: Timer
 var sprint_ghost_cooldown_timer: Timer
 

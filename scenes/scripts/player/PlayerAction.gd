@@ -2,9 +2,7 @@ extends PlayerAnimation
 
 class_name PlayerAction
 
-var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
-var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
-
+var AXE_SCENE = preload('res://scenes/ability/axe_throw/AxeThrow.tscn')
 
 var next_spell : Dictionary
 

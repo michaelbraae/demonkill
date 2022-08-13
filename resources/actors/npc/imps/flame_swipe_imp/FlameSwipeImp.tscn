@@ -14,7 +14,7 @@
 [ext_resource path="res://resources/sprites/npcs/imp/melee/with_axe.png" type="Texture" id=12]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/attack/attack_2.png" type="Texture" id=13]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/idle/idle2.png" type="Texture" id=14]
-[ext_resource path="res://resources/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=15]
 [ext_resource path="res://resources/sprites/npcs/imp/melee/takehit/hit1.png" type="Texture" id=16]
 [ext_resource path="res://scenes/ui/enemy_ui/EnemyUI.tscn" type="PackedScene" id=19]
 

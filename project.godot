@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/ability/Ability.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "AbilityBase",
-"language": "GDScript",
-"path": "res://resources/abilities/base/AbilityBase.gd"
-}, {
 "base": "Ability",
 "class": "AbilityMelee",
 "language": "GDScript",
@@ -124,21 +119,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/scripts/npc/PathfindingAI.gd"
 }, {
-"base": "Node",
-"class": "PickupAbility",
-"language": "GDScript",
-"path": "res://resources/abilities/pickup_ability/PickupAbility.gd"
-}, {
-"base": "PickupAbility",
-"class": "PickupFireball",
-"language": "GDScript",
-"path": "res://resources/abilities/pickup_ability/fireball/pickup/PickupFireball.gd"
-}, {
-"base": "PickupAbility",
-"class": "PickupFlameSwipe",
-"language": "GDScript",
-"path": "res://resources/abilities/pickup_ability/flame_swipe/pickup/PickupFlameSwipe.gd"
-}, {
 "base": "PlayerPossession",
 "class": "Player",
 "language": "GDScript",
@@ -211,7 +191,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Ability": "",
-"AbilityBase": "",
 "AbilityMelee": "",
 "AbilityProjectile": "",
 "BaseAI": "",
@@ -233,9 +212,6 @@ _global_script_class_icons={
 "ManaRegenEffect": "",
 "NPCButton": "",
 "PathfindingAI": "",
-"PickupAbility": "",
-"PickupFireball": "",
-"PickupFlameSwipe": "",
 "Player": "",
 "PlayerAction": "",
 "PlayerAnimation": "",
@@ -261,14 +237,14 @@ config/icon="res://icon.png"
 [autoload]
 
 LevelManager="*res://scenes/level_manager/LevelManager.gd"
-PlayerState="*res://resources/state/PlayerState.gd"
-GameState="*res://resources/state/GameState.gd"
-PossessionState="*res://resources/state/PossessionState.gd"
-InputHandler="*res://resources/state/InputHandler.gd"
+PlayerState="*res://scenes/state/PlayerState.gd"
+GameState="*res://scenes/state/GameState.gd"
+PossessionState="*res://scenes/state/PossessionState.gd"
+InputHandler="*res://scenes/state/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
-InputEmitter="*res://resources/state/InputEmitter.gd"
+InputEmitter="*res://scenes/state/InputEmitter.gd"
 UIManager="*res://scenes/ui_manager/UIManager.tscn"
-ColorGlobal="*res://resources/state/ColorGlobal.tscn"
+ColorGlobal="*res://scenes/state/ColorGlobal.tscn"
 
 [display]
 

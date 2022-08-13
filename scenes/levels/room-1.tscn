@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://resources/tilesets/PurpleDungeon.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/tilesets/PurpleDungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/character/npc/fireball_imp/FireballImp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/levels/room-1.gd" type="Script" id=6]

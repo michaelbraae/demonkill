@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://resources/abilities/swipe/Swipe.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/ability/abilities/Swipe.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=4]

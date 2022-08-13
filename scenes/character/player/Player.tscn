@@ -1,6 +1,5 @@
-[gd_scene load_steps=223 format=2]
+[gd_scene load_steps=222 format=2]
 
-[ext_resource path="res://resources/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/sprites/hero/v2/sheets/with-axe/axe-run-down.png" type="Texture" id=3]
 [ext_resource path="res://resources/sprites/hero/v2/sheets/with-axe/axe-run-right.png" type="Texture" id=4]
@@ -1039,15 +1038,7 @@ visible = false
 position = Vector2( 0.0597687, 2.8207 )
 shape = SubResource( 375 )
 
-[node name="Camera2D" parent="." index="4" instance=ExtResource( 1 )]
-visible = false
-current = true
-drag_margin_left = 0.1
-drag_margin_top = 0.1
-drag_margin_right = 0.1
-drag_margin_bottom = 0.1
-
-[node name="HitBox" type="Area2D" parent="." index="5"]
+[node name="HitBox" type="Area2D" parent="." index="4"]
 visible = false
 collision_layer = 3
 collision_mask = 0
@@ -1056,21 +1047,21 @@ collision_mask = 0
 position = Vector2( 0.494781, -0.593735 )
 shape = SubResource( 376 )
 
-[node name="PossessionHitBox" type="Area2D" parent="." index="6"]
+[node name="PossessionHitBox" type="Area2D" parent="." index="5"]
 visible = false
 scale = Vector2( 0.314863, 0.311341 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionHitBox" index="0"]
 shape = SubResource( 377 )
 
-[node name="Light2D" type="Light2D" parent="." index="7"]
+[node name="Light2D" type="Light2D" parent="." index="6"]
 texture = ExtResource( 19 )
 texture_scale = 0.5
 color = Color( 1, 1, 1, 0.588235 )
 energy = 0.6
 shadow_enabled = true
 
-[node name="InteractionArea" type="Area2D" parent="." index="8"]
+[node name="InteractionArea" type="Area2D" parent="." index="7"]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" index="0"]

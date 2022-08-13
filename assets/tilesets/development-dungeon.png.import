@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/development-dungeon.png-cb3c6057c139177e1bda49745d26c248.stex"
+path="res://.import/development-dungeon.png-1488731deeac87a24d88831df96b5d85.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/tilesets/development-dungeon.png"
-dest_files=[ "res://.import/development-dungeon.png-cb3c6057c139177e1bda49745d26c248.stex" ]
+source_file="res://assets/tilesets/development-dungeon.png"
+dest_files=[ "res://.import/development-dungeon.png-1488731deeac87a24d88831df96b5d85.stex" ]
 
 [params]
 
