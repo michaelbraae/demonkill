@@ -28,6 +28,8 @@ var attack_available: bool = true
 
 #export(PackedScene) var weapon_pickup
 
+export(String, FILE) var weapon_pickup
+
 export(Array, PackedScene) var attack_abilities
 export(Array, PackedScene) var combo_finisher_abilites
 
@@ -92,10 +94,9 @@ func use_weapon_abilities(
 			ability_instance.animatedSprite.play()
 
 func drop_weapon() -> void:
-	pass
-#	if weapon_pickup and weapon_pickup.can_instance():
-#		var weapon_pickup_instance = weapon_pickup.instance()
-#		get_tree().get_current_scene().get_node("YSort").add_child(weapon_pickup_instance)
+	if weapon_pickup:
+		var weapon_pickup_instance = load(weapon_pickup).instance()
+		get_tree().get_current_scene().get_node("YSort").add_child(weapon_pickup_instance)
 
 # how can this be tied to the player's animation
 # USING THE WEAPON TYPE and the players facing direction

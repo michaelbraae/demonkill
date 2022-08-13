@@ -12,5 +12,6 @@ archetype = "SWORD"
 affinity = "STRENGTH"
 combo_finish_index = 2
 attack_speed = 1.8
+weapon_pickup = "res://scenes/weapon/swords/poison_sword/weapon_pickup/PoisonSwordPickup.tscn"
 attack_abilities = [ ExtResource( 2 ) ]
 combo_finisher_abilites = [ ExtResource( 2 ), ExtResource( 3 ) ]
