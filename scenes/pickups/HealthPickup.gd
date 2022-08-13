@@ -1,5 +1,7 @@
 extends Node2D
 
+# warning-ignore-all:return_value_discarded
+
 export var health_amount: int = 1
 
 func _ready() -> void:

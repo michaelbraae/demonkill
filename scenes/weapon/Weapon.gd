@@ -26,8 +26,6 @@ export var attack_speed: float = 0.5
 var attack_speed_timer: Timer
 var attack_available: bool = true
 
-#export(PackedScene) var weapon_pickup
-
 export(String, FILE) var weapon_pickup
 
 export(Array, PackedScene) var attack_abilities

@@ -58,7 +58,7 @@ func sprint_timeout() -> void:
 func basic_attack() -> void:
 	if weapon_slot_1_instance.attack_available:
 		# warning-ignore:narrowing_conversion
-		setFacingDirection(round(rad2deg(velocity.angle())))
+		setFacingDirection(round(rad2deg(getAttackDirection().angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
 		weapon_slot_1_instance.attack(getAttackDirection(), self)

@@ -237,14 +237,14 @@ config/icon="res://icon.png"
 [autoload]
 
 LevelManager="*res://scenes/level_manager/LevelManager.gd"
-PlayerState="*res://scenes/state/PlayerState.gd"
-GameState="*res://scenes/state/GameState.gd"
-PossessionState="*res://scenes/state/PossessionState.gd"
-InputHandler="*res://scenes/state/InputHandler.gd"
+PlayerState="*res://scenes/singletons/PlayerState.gd"
+GameState="*res://scenes/singletons/GameState.gd"
+PossessionState="*res://scenes/singletons/PossessionState.gd"
+InputHandler="*res://scenes/singletons/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
-InputEmitter="*res://scenes/state/InputEmitter.gd"
+InputEmitter="*res://scenes/singletons/InputEmitter.gd"
 UIManager="*res://scenes/ui_manager/UIManager.tscn"
-ColorGlobal="*res://scenes/state/ColorGlobal.tscn"
+ColorGlobal="*res://scenes/singletons/ColorGlobal.tscn"
 
 [display]
 
