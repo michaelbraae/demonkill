@@ -50,32 +50,32 @@ func collisionEffect(_target_actor) -> void:
 # cigarettes after sex
 
 func detectContact() -> void:
-		for area in area2D.get_overlapping_areas():
-			var area_parent = area.get_parent()
-			if area_parent != source_actor and area.get_name() == 'HitBox':
-				if area_parent == GameState.player:
-					if returning_to_player or distance_timer.is_stopped():
-						GameState.player.has_axe = true
-						if not returning_to_player:
-							PlayerState.addMana(1)
-						queue_free()
-				elif returning_to_player:
-					if not damaged_actors.has(area_parent):
-						damaged_actors.append(area_parent)
-						area_parent.damage(damage)
-						collisionEffect(area_parent)
-				elif distance_timer.is_stopped():
-					pass
-				elif area_parent.health <= damage:
-					collisionEffect(area_parent)
-				else:
-					area_parent.hitByAxe(damage)
-					collisionEffect(area_parent)
-					GameState.npc_with_axe = area_parent
-					GameState.player.axe_recall_available = true
-					GameState.axe_instance = null
+	for area in area2D.get_overlapping_areas():
+		var area_parent = area.get_parent()
+		if area_parent != source_actor and area.get_name() == 'HitBox':
+			if area_parent == GameState.player:
+				if returning_to_player or distance_timer.is_stopped():
+					GameState.player.has_axe = true
+					if not returning_to_player:
+						PlayerState.addMana(1)
 					queue_free()
-					break
+			elif returning_to_player:
+				if not damaged_actors.has(area_parent):
+					damaged_actors.append(area_parent)
+					area_parent.damage(damage)
+					collisionEffect(area_parent)
+			elif distance_timer.is_stopped():
+				pass
+			elif area_parent.health <= damage:
+				collisionEffect(area_parent)
+			else:
+				area_parent.hitByAxe(damage)
+				collisionEffect(area_parent)
+				GameState.npc_with_axe = area_parent
+				GameState.player.axe_recall_available = true
+				GameState.axe_instance = null
+				queue_free()
+				break
 
 func getVectorToPlayer() -> Vector2:
 	var angle_to_player = get_angle_to(GameState.player.get_global_position())
