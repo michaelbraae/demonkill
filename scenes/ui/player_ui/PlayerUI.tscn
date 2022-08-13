@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/player_ui/PlayerUI.gd" type="Script" id=1]
-[ext_resource path="res://resources/ui/SpellSlotsUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/sprites/ui/health_mana/mana.png" type="Texture" id=3]
 [ext_resource path="res://scenes/ui/pause_menu/PauseMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/sprites/ui/health_mana/background.png" type="Texture" id=5]
 [ext_resource path="res://resources/sprites/ui/health_mana/health.png" type="Texture" id=6]
-[ext_resource path="res://resources/ui/mini_map/MiniMap.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/mini_map/MiniMap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/fonts/craft-pixel.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
@@ -24,14 +23,6 @@ margin_top = 112.0
 margin_right = 130.0
 margin_bottom = 126.0
 text = "Press ESC for Help"
-
-[node name="SpellSlotsUI" parent="." instance=ExtResource( 2 )]
-visible = false
-margin_left = 353.0
-margin_top = 8.0
-margin_right = -171.0
-margin_bottom = -509.0
-rect_pivot_offset = Vector2( -258.799, -10.7261 )
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = 14.0

@@ -4,7 +4,6 @@ onready var animatedSprite = $AnimatedSprite
 onready var area2D = $Area2D
 
 var OUTLINE_SHADER = preload("res://assets/shaders/OutlineShader.tscn")
-var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 
 var source_actor
 
@@ -46,11 +45,7 @@ func earlyCallback() -> void:
 	returning_to_player = true
 	source_actor = null
 
-func collisionEffect(target_actor) -> void:
-	var impact_instance = WHITE_IMPACT.instance()
-	get_tree().get_root().add_child(impact_instance)
-	impact_instance.position = target_actor.get_global_position()
-	impact_instance.play()
+func collisionEffect(_target_actor) -> void:
 	FeedbackHandler.current_camera.shake()
 # cigarettes after sex
 

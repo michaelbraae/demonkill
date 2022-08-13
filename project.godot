@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "CharacterBase",
 "class": "BaseAI",
 "language": "GDScript",
-"path": "res://resources/scripts/npc/BaseAI.gd"
+"path": "res://scenes/scripts/npc/BaseAI.gd"
 }, {
 "base": "DotEffect",
 "class": "BleedEffect",
@@ -57,17 +57,17 @@ _global_script_classes=[ {
 "base": "CombatReadyAI",
 "class": "CasterAI",
 "language": "GDScript",
-"path": "res://resources/scripts/npc/CasterAI.gd"
+"path": "res://scenes/scripts/npc/CasterAI.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "CharacterBase",
 "language": "GDScript",
-"path": "res://resources/scripts/character/CharacterBase.gd"
+"path": "res://scenes/scripts/character/CharacterBase.gd"
 }, {
 "base": "PathfindingAI",
 "class": "CombatReadyAI",
 "language": "GDScript",
-"path": "res://resources/scripts/npc/CombatReadyAI.gd"
+"path": "res://scenes/scripts/npc/CombatReadyAI.gd"
 }, {
 "base": "Node2D",
 "class": "DOTEffectHandler",
@@ -104,11 +104,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/effect/heal_effect/HealEffect.gd"
 }, {
-"base": "Node2D",
-"class": "ImpactBase",
-"language": "GDScript",
-"path": "res://resources/effects/impacts/ImpactBase.gd"
-}, {
 "base": "Effect",
 "class": "KnockbackEffect",
 "language": "GDScript",
@@ -127,7 +122,7 @@ _global_script_classes=[ {
 "base": "BaseAI",
 "class": "PathfindingAI",
 "language": "GDScript",
-"path": "res://resources/scripts/npc/PathfindingAI.gd"
+"path": "res://scenes/scripts/npc/PathfindingAI.gd"
 }, {
 "base": "Node",
 "class": "PickupAbility",
@@ -152,32 +147,32 @@ _global_script_classes=[ {
 "base": "PlayerAnimation",
 "class": "PlayerAction",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerAction.gd"
+"path": "res://scenes/scripts/player/PlayerAction.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerAnimation",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerAnimation.gd"
+"path": "res://scenes/scripts/player/PlayerAnimation.gd"
 }, {
 "base": "CharacterBase",
 "class": "PlayerBase",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerBase.gd"
+"path": "res://scenes/scripts/player/PlayerBase.gd"
 }, {
 "base": "PlayerBase",
 "class": "PlayerNavigation",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerNavigation.gd"
+"path": "res://scenes/scripts/player/PlayerNavigation.gd"
 }, {
 "base": "PlayerAction",
 "class": "PlayerPossession",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerPossession.gd"
+"path": "res://scenes/scripts/player/PlayerPossession.gd"
 }, {
 "base": "PlayerNavigation",
 "class": "PlayerWeapon",
 "language": "GDScript",
-"path": "res://resources/scripts/player/PlayerWeapon.gd"
+"path": "res://scenes/scripts/player/PlayerWeapon.gd"
 }, {
 "base": "DotEffect",
 "class": "PoisonEffect",
@@ -187,17 +182,17 @@ _global_script_classes=[ {
 "base": "CombatReadyAI",
 "class": "PossessableAI",
 "language": "GDScript",
-"path": "res://resources/scripts/npc/PossessableAI.gd"
+"path": "res://scenes/scripts/npc/PossessableAI.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "ProjectileBase",
 "language": "GDScript",
-"path": "res://resources/scripts/ability/ProjectileBase.gd"
+"path": "res://scenes/scripts/ability/ProjectileBase.gd"
 }, {
 "base": "Node2D",
 "class": "RotatingWeapon",
 "language": "GDScript",
-"path": "res://resources/scripts/weapon/RotatingWeapon.gd"
+"path": "res://scenes/scripts/weapon/RotatingWeapon.gd"
 }, {
 "base": "CCEffect",
 "class": "StunEffect",
@@ -207,7 +202,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "TelegraphedAOE",
 "language": "GDScript",
-"path": "res://resources/scripts/ability/TelegraphedAOE.gd"
+"path": "res://scenes/scripts/ability/TelegraphedAOE.gd"
 }, {
 "base": "Node",
 "class": "Weapon",
@@ -234,7 +229,6 @@ _global_script_class_icons={
 "EffectHandler": "",
 "FreezeEffect": "",
 "HealEffect": "",
-"ImpactBase": "",
 "KnockbackEffect": "",
 "ManaRegenEffect": "",
 "NPCButton": "",
@@ -271,7 +265,7 @@ PlayerState="*res://resources/state/PlayerState.gd"
 GameState="*res://resources/state/GameState.gd"
 PossessionState="*res://resources/state/PossessionState.gd"
 InputHandler="*res://resources/state/InputHandler.gd"
-FeedbackHandler="*res://resources/scripts/helpers/FeedbackHandler.gd"
+FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://resources/state/InputEmitter.gd"
 UIManager="*res://scenes/ui_manager/UIManager.tscn"
 ColorGlobal="*res://resources/state/ColorGlobal.tscn"

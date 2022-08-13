@@ -1,9 +1,9 @@
 extends AnimatedSprite
 
-
+# warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
-	# warning-ignore:return_value_discarded
+	play()
 	connect("animation_finished", self, "animation_finished")
 
 func animation_finished() -> void:

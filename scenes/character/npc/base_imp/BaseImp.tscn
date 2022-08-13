@@ -3,7 +3,7 @@
 [ext_resource path="res://resources/cameras/shaking_camera/ShakingCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/character/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/character/npc/base_imp/BaseImpSpriteFrames.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://resources/ui/enemy_ui/EnemyUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/enemy_ui/EnemyUI.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=6]
 

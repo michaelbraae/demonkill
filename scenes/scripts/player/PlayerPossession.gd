@@ -2,7 +2,6 @@ extends PlayerAction
 
 class_name PlayerPossession
 
-var WHITE_IMPACT = preload('res://resources/effects/impacts/white_impact/WhiteImpact.tscn')
 var POSSESSION_VFX_SCENE = preload("res://scenes/vfx/possession_vfx/PossessionVFX.tscn")
 
 onready var POSSESSION_ARROW_SCENE = preload("res://scenes/ui/possession_arrow/PossessionArrow.tscn")
@@ -37,10 +36,6 @@ func _physics_process(_delta):
 		var overlapping_areas = $PossessionHitBox.get_overlapping_areas()
 		for area in overlapping_areas:
 			if area.get_name() == "EnemyPossessionHitBox" and not possession_targets_to_ignore.has(area.get_parent()):
-				var impact_instance = WHITE_IMPACT.instance()
-				get_tree().get_root().add_child(impact_instance)
-				impact_instance.position = area.get_parent().get_global_position()
-				impact_instance.play()
 				PossessionState.possessEntity(area.get_parent())
 				var possession_vfx = POSSESSION_VFX_SCENE.instance()
 				area.get_parent().add_child(possession_vfx)

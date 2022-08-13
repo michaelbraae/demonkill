@@ -4,7 +4,7 @@
 [ext_resource path="res://resources/sprites/ui/healthbar/background.png" type="Texture" id=2]
 [ext_resource path="res://resources/sprites/ui/ability_cooldown_bar/ability-cooldown-background.png" type="Texture" id=3]
 [ext_resource path="res://resources/sprites/ui/ability_cooldown_bar/ability-cooldown-value.png" type="Texture" id=4]
-[ext_resource path="res://resources/ui/enemy_ui/EnemyUI.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/enemy_ui/EnemyUI.gd" type="Script" id=5]
 
 [node name="EnemyUI" type="Control"]
 anchor_right = 1.0

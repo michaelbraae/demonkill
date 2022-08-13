@@ -80,7 +80,6 @@ func _process(_delta):
 func _input(event):
 	if event.is_action_pressed('dungeon_generate_structure'):
 		LevelManager.goto_scene("res://scenes/dungeon_generator/DungeonGenerator.tscn")
-#
 	if event.is_action_pressed('dungeon_make_map') and ready_for_tilemap:
 		ready_for_tilemap = false
 		make_map()

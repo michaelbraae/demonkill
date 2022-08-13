@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ability/abilities/slash_basic/SlashBasicFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/effect/dot_effects/bleed_effect/BleedEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/vfx/collision_effects/white_impact/WhiteImpact.tscn" type="PackedScene" id=7]
 
 [node name="SlashBasic" instance=ExtResource( 4 )]
 damage_frames = [ 0, 1 ]
+collision_effect = ExtResource( 7 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 rotation = 1.5708

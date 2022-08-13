@@ -12,6 +12,10 @@ enum {
 func _ready() -> void:
 	InputEmitter.connect("ui_cancel", self, "ui_cancel")
 
+func clear_ui() -> void:
+	for child in get_children():
+		child.visible = false
+
 func ui_cancel() -> void:
 	transitionBetweenUI(PAUSE_SCREEN)
 	if get_tree().paused:

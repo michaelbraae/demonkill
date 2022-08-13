@@ -23,11 +23,9 @@ export var speed: int = 10
 # how far away from the player will this ability spawn
 export var player_relative_spawn_position: int = 15
 
-export(Array, PackedScene) var on_hit_effects
-
 export(PackedScene) var on_create_effect
 
-export(PackedScene) var collision_effect
+export(PackedScene) var collision_vfx
 
 var damaged_characters: Array = []
 
@@ -63,8 +61,8 @@ func set_collide_with_player() -> void:
 	set_collision_mask_bit(1, true)
 
 func collisionEffect(collision_position) -> void:
-	if is_instance_valid(collision_effect):
-		var collision_effect_instance = collision_effect.instance()
+	if is_instance_valid(collision_vfx):
+		var collision_effect_instance = collision_vfx.instance()
 		get_tree().get_root().add_child(collision_effect_instance)
 		collision_effect_instance.position = collision_position
 		collision_effect_instance.play()

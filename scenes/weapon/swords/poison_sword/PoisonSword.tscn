@@ -7,7 +7,7 @@
 [node name="PoisonSword" instance=ExtResource( 1 )]
 weapon_name = "Poison Sword"
 weapon_description = "Cut your meat carefully"
-rarity = "EXOTIC"
+rarity = "RARE"
 archetype = "SWORD"
 affinity = "STRENGTH"
 combo_finish_index = 2

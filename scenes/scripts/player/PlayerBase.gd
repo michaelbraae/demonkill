@@ -42,4 +42,5 @@ func damage(damage : int) -> void:
 	flash()
 	if PlayerState.health <= 0:
 		animatedSprite.material.set_shader_param("flash_modifier", 0)
+		UIManager.clear_ui()
 		LevelManager.goto_scene('res://scenes/main/title_screen/TitleScreen.tscn')

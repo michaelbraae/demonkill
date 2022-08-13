@@ -66,5 +66,3 @@ margin_top = 196.0
 margin_right = 130.0
 margin_bottom = 234.0
 text = "Quit"
-
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_new_Game_button_pressed"]

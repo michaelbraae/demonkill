@@ -4,7 +4,7 @@ class_name PlayerAction
 
 var SWIPE_SCENE = preload('res://resources/abilities/swipe/Swipe.tscn')
 var AXE_SCENE = preload('res://resources/abilities/axe_throw/AxeThrow.tscn')
-onready var RUSTY_SWORD_SCENE = preload("res://scenes/weapon/swords/RustySword.tscn")
+
 
 var next_spell : Dictionary
 
@@ -43,6 +43,7 @@ func equip_weapons() -> void:
 
 func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 	if slot == 1:
+		weapon_slot_1_instance.drop_weapon()
 		weapon_slot_1_instance.queue_free()
 		PlayerState.weapon_slot_1 = weapon
 		weapon_slot_1_instance = weapon.instance()
