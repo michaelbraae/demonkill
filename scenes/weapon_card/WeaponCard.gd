@@ -80,7 +80,8 @@ func set_bonus_damage_label() -> void:
 			bonus_damage_multiplier = PlayerState.intelligence_affinity
 		"VITALITY":
 			bonus_damage_multiplier = PlayerState.vitality_affinity
-	get_node("%BonusDamageLabel").set_text("+" + str(bonus_damage_multiplier * 10) + "% Damage")
+	if bonus_damage_multiplier:
+		get_node("%BonusDamageLabel").set_text("+" + str(bonus_damage_multiplier * 10) + "% Damage")
 
 func set_poison_label() -> void:
 	var poison_effect_label = WEAPON_CARD_EFFECT.instance()

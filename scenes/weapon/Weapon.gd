@@ -97,6 +97,7 @@ func drop_weapon() -> void:
 	if weapon_pickup:
 		var weapon_pickup_instance = load(weapon_pickup).instance()
 		get_tree().get_current_scene().get_node("YSort").add_child(weapon_pickup_instance)
+		weapon_pickup_instance.position = get_parent().position
 
 # how can this be tied to the player's animation
 # USING THE WEAPON TYPE and the players facing direction
