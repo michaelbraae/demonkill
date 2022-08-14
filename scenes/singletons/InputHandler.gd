@@ -7,7 +7,6 @@ var using_mouse = true
 var mute_inputs = false
 
 var current_actor
-const SPEED = 180
 
 func _ready():
 	setDeadzones()

@@ -2,6 +2,8 @@ extends PlayerAnimation
 
 class_name PlayerAction
 
+# warning-ignore-all:return_value_discarded
+
 var AXE_SCENE = preload('res://scenes/ability/axe_throw/AxeThrow.tscn')
 
 var next_spell : Dictionary
@@ -15,29 +17,25 @@ var weapon_slot_2_instance
 
 var sprint_timer: Timer
 
-# warning-ignore-all:return_value_discarded
-
 func _ready() -> void:
 	equip_weapons()
 	
 	sprint_timer = Timer.new()
 	sprint_timer.connect("timeout", self, "sprint_timeout")
 	add_child(sprint_timer)
-	restartSprintTimer()
+	restart_sprint_timer()
 
 func equip_weapons() -> void:
 	if PlayerState.weapon_slot_1:
 		weapon_slot_1_instance = PlayerState.weapon_slot_1.instance()
-		add_child(weapon_slot_1_instance)
 	else:
 		weapon_slot_1_instance = weapon_default.instance()
-		add_child(weapon_slot_1_instance)
+	add_child(weapon_slot_1_instance)
 	if PlayerState.weapon_slot_2:
 		weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
-		add_child(weapon_slot_2_instance)
 	else:
 		weapon_slot_2_instance = weapon_default.instance()
-		add_child(weapon_slot_2_instance)
+	add_child(weapon_slot_2_instance)
 
 func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 	if slot == 1:
@@ -62,6 +60,13 @@ func basic_attack() -> void:
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
 		weapon_slot_1_instance.attack(getAttackDirection(), self)
+		attack_queued = false
+	elif !attack_queued:
+		queue_attack(1)
+
+func queue_attack(_slot: int) -> void:
+	if [ATTACK_CONTACT, ATTACK_RECOVERY].has(state):
+		attack_queued = true
 
 func use_ability() -> void:
 	if has_axe:
@@ -92,16 +97,6 @@ func recallAxe() -> void:
 		GameState.axe_instance.returnToPlayer(GameState.npc_with_axe)
 		GameState.npc_with_axe = null
 
-func basic_attack_available() -> bool:
-	if [
-		DASH,
-		DASH_RECOVERY,
-		ATTACK_WARMUP,
-		ATTACK_CONTACT,
-	].has(state):
-		return false
-	return true
-
 func hasPlayerPerformedAction() -> bool:
 	if (
 		Input.is_action_just_pressed("action_1") ||
@@ -112,7 +107,7 @@ func hasPlayerPerformedAction() -> bool:
 		return true
 	return false
 
-func restartSprintTimer() -> void:
+func restart_sprint_timer() -> void:
 	sprint = false
 	sprint_timer.start(3)
 
@@ -126,13 +121,15 @@ func handlePlayerAction() -> void:
 		velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:
 		pass
+	elif ATTACK_STATES.has(state):
+		pass
 	else:
 		setVelocity()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
-		restartSprintTimer()
+		restart_sprint_timer()
 	elif sprint:
 		velocity *= 1.5
 	if not velocity:
-		restartSprintTimer()
+		restart_sprint_timer()
 	velocity = move_and_slide(velocity)

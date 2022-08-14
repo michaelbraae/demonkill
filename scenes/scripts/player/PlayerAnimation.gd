@@ -11,6 +11,8 @@ var sprint_ghost_cooldown_timer: Timer
 
 var sprint: bool = false
 
+var attack_queued: bool = false
+
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
@@ -24,6 +26,7 @@ func _ready() -> void:
 	add_child(sprint_ghost_cooldown_timer)
 
 func _physics_process(_delta) -> void:
+#	print(animatedSprite.get_animation())
 	if sprint:
 		sprint_ghost()
 
@@ -125,7 +128,7 @@ func getAnimation() -> String:
 func _on_AnimatedSprite_animation_finished():
 	if state == POSSESSION_TARGETING:
 		pass
-	elif [DASH_RECOVERY, ATTACK_RECOVERY, AXE_INTERACTION].has(state):
+	elif [DASH_RECOVERY, AXE_INTERACTION].has(state):
 		state = IDLE
 		animatedSprite.play(str('idle_', facing_direction))
 	elif state == ATTACK_WARMUP:
@@ -134,3 +137,7 @@ func _on_AnimatedSprite_animation_finished():
 	elif state == ATTACK_CONTACT:
 		state = ATTACK_RECOVERY
 		animatedSprite.play(getAttackAnimation())
+	elif state == ATTACK_RECOVERY:
+		state = IDLE
+		if attack_queued:
+			basic_attack()

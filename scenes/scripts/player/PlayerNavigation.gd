@@ -76,9 +76,9 @@ func setVelocity() -> void:
 	if state == DASH and not knocked_back:
 		velocity = InputHandler.getVelocity(130)
 	elif ATTACK_STATES.has(state):
-		velocity = InputHandler.getAttackDirection()
 		if not velocity:
-			velocity = getVectorFromFacingDirection()
+			velocity = InputHandler.getAttackDirection()
+#			velocity = getVectorFromFacingDirection()
 		velocity = velocity * 10
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()

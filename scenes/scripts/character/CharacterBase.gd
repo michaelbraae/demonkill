@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 class_name CharacterBase
 
-onready var animatedSprite = $AnimatedSprite
+# warning-ignore-all:return_value_discarded
+
+onready var animatedSprite: AnimatedSprite = $AnimatedSprite
 
 var state: int
 
