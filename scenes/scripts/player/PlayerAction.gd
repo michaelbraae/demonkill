@@ -121,8 +121,8 @@ func handlePlayerAction() -> void:
 		velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:
 		pass
-	elif ATTACK_STATES.has(state):
-		pass
+#	elif ATTACK_STATES.has(state):
+#		pass
 	else:
 		setVelocity()
 	animatedSprite.play(getAnimation())

@@ -138,6 +138,8 @@ func _on_AnimatedSprite_animation_finished():
 		state = ATTACK_RECOVERY
 		animatedSprite.play(getAttackAnimation())
 	elif state == ATTACK_RECOVERY:
-		state = IDLE
 		if attack_queued:
 			basic_attack()
+		else:
+			state = IDLE
+			
