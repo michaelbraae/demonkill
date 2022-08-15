@@ -54,6 +54,7 @@ func sprint_timeout() -> void:
 	sprint = true
 
 func basic_attack() -> void:
+	attack_movement_vector = Vector2()
 	if weapon_slot_1_instance.attack_available:
 		# warning-ignore:narrowing_conversion
 		setFacingDirection(round(rad2deg(getAttackDirection().angle())))
@@ -121,8 +122,6 @@ func handlePlayerAction() -> void:
 		velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:
 		pass
-#	elif ATTACK_STATES.has(state):
-#		pass
 	else:
 		setVelocity()
 	animatedSprite.play(getAnimation())

@@ -5,6 +5,7 @@ func set_up() -> void:
 		var cells = GameState.tilemap.get_used_cells_by_id(0)
 		var floor_cells = GameState.tilemap.get_used_cells_by_id(1)
 		if cells.size() and floor_cells.size():
+			clear()
 			print("building minimap...")
 			buildMiniMap(cells, 1)
 			buildMiniMap(floor_cells, 0)

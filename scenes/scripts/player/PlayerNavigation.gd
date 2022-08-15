@@ -9,6 +9,8 @@ var speed_actual
 
 var aim_vector = Vector2()
 
+var attack_movement_vector: Vector2 = Vector2()
+
 var facing_direction = 'down'
 
 var use_facing_vector = false
@@ -76,10 +78,9 @@ func setVelocity() -> void:
 	if state == DASH and not knocked_back:
 		velocity = InputHandler.getVelocity(130)
 	elif ATTACK_STATES.has(state):
-		velocity = InputHandler.getAttackDirection()
-		if not velocity:
-			velocity = getVectorFromFacingDirection()
-		velocity = velocity * 10
+		if !attack_movement_vector:
+			attack_movement_vector = InputHandler.getAttackDirection()
+		velocity = attack_movement_vector * 10
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
 	else:
