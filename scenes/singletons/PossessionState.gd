@@ -66,7 +66,7 @@ func exitPossession(spawn_position) -> void:
 	
 	# handle the possession dash 
 	player_instance.possession_dash_vector = player_instance.getAttackDirection()
-	player_instance.initiateDash()
+	player_instance.initiate_dash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
 	
@@ -96,7 +96,7 @@ func possessEntity(new_possession) -> void:
 		GameState.player.has_axe = true
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
-	FeedbackHandler.shakeCamera()
+	FeedbackHandler.shake_camera()
 	GameState.player.queue_free()
 	new_possession.setPossessionCollisions()
 #	new_possessiaon.resetAbilityCooldown()

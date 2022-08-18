@@ -45,6 +45,7 @@ on_create_effect = ExtResource( 6 )
 material = ExtResource( 8 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
+frame = 3
 speed_scale = 2.5
 playing = true
 

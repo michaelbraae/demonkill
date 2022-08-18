@@ -39,6 +39,7 @@ func set_params() -> void:
 	set_colors(weapon.affinity)
 	get_node("%Icon").set_texture(weapon.weapon_icon)
 	set_effect_labels()
+	weapon.queue_free()
 
 func set_rarity(rarity: String) -> void:
 	get_node("%Rarity").set_text(rarity)

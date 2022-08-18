@@ -5,7 +5,7 @@ uniform sampler2D NOISE_PATTERN;
 void fragment() {
 	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
 	
-	vec2 uv = vec2(UV.x, UV.y - TIME * 2.5);
+	vec2 uv = vec2(UV.x, UV.y - TIME * 1.3);
 	
 	vec4 noise_color = texture(NOISE_PATTERN, uv);
 	

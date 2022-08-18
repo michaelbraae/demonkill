@@ -14,7 +14,7 @@ func _ready():
 	slowdown_timer.connect('timeout', self, 'slowdown_timeout')
 	add_child(slowdown_timer)
 
-func shakeCamera(duration: float = 0.2, intensity: float = 2.0) -> void:
+func shake_camera(duration: float = 0.2, intensity: float = 2.0) -> void:
 	current_camera.shake(duration, intensity)
 
 func vibrateController() -> void:

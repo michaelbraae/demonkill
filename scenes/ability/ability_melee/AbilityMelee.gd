@@ -19,6 +19,9 @@ func area_entered(area) -> void:
 		damaged_characters.push_front(area_parent)
 		for effect in get_node("Effects").get_children():
 			area_parent.get_node("EffectHandler").apply_effect(effect)
+		if !has_landed:
+			has_landed = true
+			emit_signal("ability_landed", ABILITY_TYPE.MELEE)
 
 func _physics_process(_delta) -> void:
 	if target_vector:

@@ -102,9 +102,10 @@ func knockBack(
 	knock_back_speed : int,
 	knock_back_decay : int
 ) -> void:
-	if not knocked_back:
+	if not knocked_back and state != DASH:
 		interruptAction()
 		knocked_back = true
 		speed = knock_back_speed
+		speed_current = knock_back_speed
 		decay = knock_back_decay
 		knockback_vector = Vector2(cos(hit_direction), sin(hit_direction))

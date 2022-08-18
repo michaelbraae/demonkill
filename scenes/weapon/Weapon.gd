@@ -66,30 +66,43 @@ func attack(
 		use_weapon_abilities(target_direction, source_actor, attack_abilities)
 	else:
 		if current_combo_attack == combo_finish_index:
-			# use the combo finisher abilities and reset the combo finish logic
+			# use the combo finisher abilities
 			use_weapon_abilities(target_direction, source_actor, combo_finisher_abilites)
-			current_combo_attack = 1
-			combo_finish_timer.stop()
 		else:
 			use_weapon_abilities(target_direction, source_actor, attack_abilities)
-			current_combo_attack += 1
-			if combo_finish_timer.is_stopped():
-				# start the combo finish timer
-				# same length as window between attacks + extra to capture combo
-				combo_finish_timer.start(1.0 / attack_speed + 0.5)
 
 func use_weapon_abilities(
 	target_direction: Vector2,
 	_source_actor: KinematicBody2D,
 	abilities
-) -> void:		
+) -> void:
 	for ability in abilities:
 		if ability:
 			var ability_instance = ability.instance()
+			ability_instance.connect("ability_landed", self, "ability_landed")
 			ability_instance.target_vector = target_direction
 			get_tree().get_root().add_child(ability_instance)
 			ability_instance.do_ability(target_direction, get_parent())
 			ability_instance.animatedSprite.play()
+
+func ability_landed(ability_type) -> void:
+	match ability_type:
+		Ability.ABILITY_TYPE.MELEE:
+			# only run the combo logic on successful melee hits
+			# if we havent yet reached the finisher index, increment it
+			if current_combo_attack < combo_finish_index:
+				current_combo_attack += 1
+				if combo_finish_timer.is_stopped():
+					# start the combo finish timer if stopped
+					# same length as window between attacks + extra to capture combo
+					combo_finish_timer.start(1.0 / attack_speed + 0.5)
+			else:
+				# here we have reached the combo finisher level, so reset the combo
+				combo_finish_timer.stop()
+				current_combo_attack = 1
+			print("melee ability")
+		Ability.ABILITY_TYPE.PROJECTILE:
+			print("projectile ability")
 
 func drop_weapon() -> void:
 	if weapon_pickup:

@@ -40,7 +40,5 @@ damage = 1
 damage = 7
 
 [node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
-speed = 150
-decay = 10
 
 [node name="ManaRegenEffect" parent="Effects" index="3" instance=ExtResource( 7 )]

@@ -2,6 +2,13 @@ extends KinematicBody2D
 
 class_name Ability
 
+enum ABILITY_TYPE {
+	MELEE,
+	PROJECTILE
+}
+
+var has_landed: bool = false
+
 # warning-ignore-all:return_value_discarded
 
 var source_actor: KinematicBody2D
@@ -28,6 +35,9 @@ export(PackedScene) var on_create_effect
 export(PackedScene) var collision_vfx
 
 var damaged_characters: Array = []
+
+# warning-ignore:unused_signal
+signal ability_landed(ability_type)
 
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")

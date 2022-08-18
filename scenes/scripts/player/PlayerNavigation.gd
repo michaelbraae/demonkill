@@ -50,11 +50,11 @@ func dash_cooldown_timeout() -> void:
 	dash_available = true
 
 func movement_ability() -> void:
-	initiateDash()
+	initiate_dash()
 
-func initiateDash() -> void:
+func initiate_dash() -> void:
 	if dash_available:
-		FeedbackHandler.shakeCamera(0.2, 0.8)
+		FeedbackHandler.shake_camera(0.2, 0.8)
 		set_collision_layer_bit(1, false)
 		set_collision_mask_bit(1, false)
 		dash_available = false

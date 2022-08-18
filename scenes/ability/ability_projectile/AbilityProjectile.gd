@@ -12,4 +12,7 @@ func _physics_process(_delta) -> void:
 				for effect in get_node("Effects").get_children():
 					damaged_characters.push_front(collider)
 					collider.get_node("EffectHandler").apply_effect(effect)
+			if !has_landed:
+				has_landed = true
+				emit_signal("ability_landed", ABILITY_TYPE.PROJECTILE)
 			queue_free()
