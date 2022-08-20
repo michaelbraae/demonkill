@@ -6,8 +6,9 @@
 [ext_resource path="res://assets/shaders/dot/burn/Burn.tres" type="Material" id=4]
 [ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=5]
 [ext_resource path="res://assets/shaders/Tsukuyomi.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/shaders/dot/bleed/bleed.tres" type="Material" id=7]
+[ext_resource path="res://assets/shaders/dot/bleed/Bleed.tres" type="Material" id=7]
 [ext_resource path="res://assets/sprites/hero/hero-weapons.png" type="Texture" id=8]
+
 
 [node name="Node2D" type="Node2D"]
 

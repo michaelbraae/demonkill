@@ -115,6 +115,9 @@ position = Vector2( 1072, -800 )
 [node name="FreezeImp2" parent="YSort/Encounter1" instance=ExtResource( 4 )]
 position = Vector2( 1008, -488 )
 
+[node name="FreezeImp3" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 603, -863 )
+
 [node name="HealthPickups" type="Node2D" parent="YSort"]
 
 [node name="HealthPickup" parent="YSort/HealthPickups" instance=ExtResource( 10 )]
