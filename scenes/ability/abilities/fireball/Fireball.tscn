@@ -43,9 +43,7 @@ on_create_effect = ExtResource( 6 )
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 3
 speed_scale = 2.5
-playing = true
 
 [node name="DamageEffect" parent="Effects" index="0" instance=ExtResource( 4 )]
 damage = 1
