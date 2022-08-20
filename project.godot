@@ -243,7 +243,7 @@ PossessionState="*res://scenes/singletons/PossessionState.gd"
 InputHandler="*res://scenes/singletons/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://scenes/singletons/InputEmitter.gd"
-UIManager="*res://scenes/ui_manager/UIManager.tscn"
+UIManager="*res://scenes/ui/ui_manager/UIManager.tscn"
 ColorGlobal="*res://scenes/singletons/ColorGlobal.tscn"
 
 [display]

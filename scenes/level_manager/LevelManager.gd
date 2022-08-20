@@ -17,6 +17,8 @@ func goto_scene(path):
 func _deferred_goto_scene(path : String) -> void:
 	# reset any slomo effects :D
 	Engine.time_scale = 1
+	UIManager.clear_ui()
+	# tween this
 	UIManager.get_node("LoadingScreen").visible = true
 	# It is now safe to remove the current scene
 	current_scene.free()

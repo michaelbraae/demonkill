@@ -1,6 +1,6 @@
 extends Control
 
-onready var label = $Label
+onready var label = $PressESCforHelp
 onready var healthBar = $HealthBar
 
 var health_current

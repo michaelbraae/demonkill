@@ -22,6 +22,6 @@ region = Rect2( 120, 0, 40, 30 )
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "anim",
+"name": "default",
 "speed": 5.0
 } ]

@@ -19,7 +19,6 @@ material = ExtResource( 6 )
 rotation = 1.5708
 scale = Vector2( 0.722811, 0.722811 )
 frames = ExtResource( 1 )
-animation = "anim"
 speed_scale = 2.5
 
 [node name="Area2D" parent="." index="1"]
@@ -37,7 +36,7 @@ tick_rate = 0.5
 damage = 1
 
 [node name="DamageEffect" parent="Effects" index="1" instance=ExtResource( 3 )]
-damage = 7
+damage = 8
 
 [node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
 

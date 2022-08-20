@@ -17,7 +17,7 @@ script = ExtResource( 1 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
 
-[node name="Label" type="Label" parent="."]
+[node name="PressESCforHelp" type="Label" parent="."]
 margin_left = 14.0
 margin_top = 112.0
 margin_right = 130.0
@@ -65,3 +65,7 @@ margin_bottom = 572.0
 rect_scale = Vector2( 1.25187, 1.25187 )
 custom_fonts/font = SubResource( 1 )
 text = "0.2"
+
+[node name="DungeonInstructions" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
