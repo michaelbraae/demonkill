@@ -158,10 +158,10 @@ position = Vector2( 0.660461, -355.978 )
 position = Vector2( -1, 0 )
 
 [node name="PoisonSwordPickup" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( -14, -96 )
+position = Vector2( -24, -105 )
 
 [node name="FrostAxePickup" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 41, -96 )
+position = Vector2( 46, -191 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( -1, 0 )
