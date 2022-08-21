@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ability/abilities/Swipe.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=3]
-[ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/effect/dot_effects/freeze_effect/FreezeEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=7]
 
@@ -29,5 +29,5 @@ damage = 8
 
 [node name="ManaRegenEffect" parent="Effects" index="1" instance=ExtResource( 7 )]
 
-[node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
-speed = 200
+[node name="FreezeEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
+effect_duration = 0.8

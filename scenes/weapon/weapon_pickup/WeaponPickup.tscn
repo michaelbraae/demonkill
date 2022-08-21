@@ -1,19 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/sprites/weapons/poison_sword/poison-sword-icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/weapon/weapon_pickup/WeaponPickup.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/lights/light.png" type="Texture" id=3]
 [ext_resource path="res://scenes/weapon/swords/poison_sword/PoisonSword.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/weapon_card/WeaponCard.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/PixelCraft.tres" type="DynamicFont" id=6]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 23.0217
@@ -22,10 +13,9 @@ radius = 23.0217
 script = ExtResource( 2 )
 weapon = ExtResource( 4 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+[node name="Sprite" type="Sprite" parent="."]
 
-[node name="Light2D" type="Light2D" parent="AnimatedSprite"]
+[node name="Light2D" type="Light2D" parent="Sprite"]
 show_behind_parent = true
 texture = ExtResource( 3 )
 texture_scale = 0.2
@@ -42,14 +32,14 @@ shape = SubResource( 2 )
 [node name="WeaponCard" parent="." instance=ExtResource( 5 )]
 visible = false
 margin_left = -37.0
-margin_top = -82.0
+margin_top = -86.0
 margin_right = 213.0
-margin_bottom = 118.0
+margin_bottom = 114.0
 
 [node name="Label" type="Label" parent="WeaponCard"]
-margin_left = 66.6667
-margin_top = 206.667
-margin_right = 191.667
-margin_bottom = 241.667
+margin_left = 63.3333
+margin_top = 213.333
+margin_right = 188.334
+margin_bottom = 248.333
 custom_fonts/font = ExtResource( 6 )
 text = "Press E to equip"

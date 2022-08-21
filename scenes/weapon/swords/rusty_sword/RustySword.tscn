@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/weapon/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ability/abilities/slash_basic/SlashBasic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/weapons/swords/rusty-sword.png" type="Texture" id=3]
 
 [node name="RustySword" instance=ExtResource( 1 )]
-weapon_name = "Rusty Axe"
+weapon_name = "Rusty Sword"
 weapon_description = "Nothing beats a trusty blade"
 rarity = "COMMON"
 archetype = "AXES"
@@ -14,3 +15,4 @@ attack_speed = 2.5
 weapon_pickup = "res://scenes/weapon/swords/rusty_sword/RustySwordPickup.tscn"
 attack_abilities = [ ExtResource( 2 ) ]
 combo_finisher_abilites = [ ExtResource( 2 ) ]
+weapon_icon = ExtResource( 3 )

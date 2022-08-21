@@ -36,9 +36,10 @@ var rarity_colors: Dictionary = {
 func set_params() -> void:
 	if weapon:
 		get_node("%Name").set_text(weapon.weapon_name)
+		get_node("%Icon").set_texture(weapon.weapon_icon)
+		get_node("%AttackSpeedLabel").set_text(str(weapon.attack_speed) + " attack speed")
 		set_rarity(weapon.rarity)
 		set_colors(weapon.affinity)
-		get_node("%Icon").set_texture(weapon.weapon_icon)
 		set_effect_labels()
 		weapon.queue_free()
 

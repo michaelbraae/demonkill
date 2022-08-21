@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/poison-sword-icon.png-56cf45b1edda30c29d6111473fd35168.stex"
+path="res://.import/frost-axe.png-98c0fc21cfb55d3d8cf034bae6b7f890.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/weapons/poison_sword/poison-sword-icon.png"
-dest_files=[ "res://.import/poison-sword-icon.png-56cf45b1edda30c29d6111473fd35168.stex" ]
+source_file="res://assets/sprites/weapons/axes/frost-axe.png"
+dest_files=[ "res://.import/frost-axe.png-98c0fc21cfb55d3d8cf034bae6b7f890.stex" ]
 
 [params]
 

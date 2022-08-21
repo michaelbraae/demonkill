@@ -4,7 +4,7 @@ var amplitude := 3.0
 
 var frequency := 5.0
 
-onready var icon = $AnimatedSprite
+onready var icon = $Sprite
 
 var time: float = 0.0
 
@@ -19,6 +19,7 @@ func _ready() -> void:
 	var weapon_instance = weapon.instance()
 	$WeaponCard.weapon = weapon_instance
 	$WeaponCard.set_params()
+	$Sprite.set_texture(weapon_instance.weapon_icon)
 	weapon_instance.queue_free()
 
 func interacted() -> void:
