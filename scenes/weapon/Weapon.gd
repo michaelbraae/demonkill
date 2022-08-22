@@ -92,10 +92,9 @@ func ability_landed(ability_type) -> void:
 			# if we havent yet reached the finisher index, increment it
 			if current_combo_attack < combo_finish_index:
 				current_combo_attack += 1
-				if combo_finish_timer.is_stopped():
-					# start the combo finish timer if stopped
-					# same length as window between attacks + extra to capture combo
-					combo_finish_timer.start(1.0 / attack_speed + 0.5)
+				# start the combo finish timer if stopped
+				# same length as window between attacks + extra to capture combo
+				combo_finish_timer.start(1.0 / attack_speed + 0.5)
 			else:
 				# here we have reached the combo finisher level, so reset the combo
 				combo_finish_timer.stop()
