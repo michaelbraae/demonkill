@@ -1,4 +1,4 @@
-extends PlayerNavigation
+extends PlayerBase
 
 class_name PlayerAnimation
 

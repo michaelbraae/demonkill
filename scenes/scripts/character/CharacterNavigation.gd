@@ -1,6 +1,6 @@
-extends PlayerBase
+extends CharacterBase
 
-class_name PlayerNavigation
+class_name CharacterNavigation
 
 var velocity = Vector2()
 

@@ -1,4 +1,4 @@
-extends CharacterBase
+extends CharacterNavigation
 
 class_name PlayerBase
 
