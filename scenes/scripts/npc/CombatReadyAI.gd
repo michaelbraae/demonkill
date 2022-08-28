@@ -117,8 +117,12 @@ func getAnimation() -> String:
 	if state == POSSESSION_RECOVERY:
 		return "stunned"
 	if isPossessed():
+		if state == ATTACK_WARMUP:
+			return 'pre_attack'
 		if state == ATTACK_CONTACT:
-			return 'attack_loop'
+			return 'attack'
+		if state == ATTACK_RECOVERY:
+			return 'post_attack'
 		return getNavigationAnimation()
 	if state == NAVIGATING:
 		return getNavigationAnimation()
@@ -180,7 +184,7 @@ func basic_attack() -> void:
 func attack() -> void:
 	if weapon.attack_available:
 		attack_movement_vector = Vector2()
-		state = ATTACK_CONTACT
+		state = ATTACK_WARMUP
 		weapon.attack(getAttackDirection(), self)
 
 var outline_shader
