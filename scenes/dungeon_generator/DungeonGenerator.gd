@@ -7,7 +7,6 @@ onready var Map: TileMap = $TileMap
 
 # npc scenes
 const SWIPE_IMP = preload("res://scenes/character/npc/swipe_imp/SwipeImp.tscn")
-const FREEZE_IMP_SCENE = preload("res://scenes/character/npc/freeze_imp/FreezeImp.tscn")
 const FIREBALL_IMP = preload("res://scenes/character/npc/fireball_imp/FireballImp.tscn")
 
 var tile_size = 16  # size of a tile in the TileMap
@@ -260,7 +259,6 @@ func find_end_room():
 
 func add_test_npc() -> void:
 	var npc = FIREBALL_IMP.instance()
-#	var npc = FREEZE_IMP_SCENE.instance()
 	npc.set_position(start_room.get_position())
 	add_child(npc)
 
@@ -280,9 +278,5 @@ func spawnNpcs(spawn_origin) -> void:
 			add_child(rand_npc)
 		elif random_npc < 0.66:
 			rand_npc = SWIPE_IMP.instance()
-			rand_npc.position = spawn_origin
-			add_child(rand_npc)
-		else:
-			rand_npc = FREEZE_IMP_SCENE.instance()
 			rand_npc.position = spawn_origin
 			add_child(rand_npc)
