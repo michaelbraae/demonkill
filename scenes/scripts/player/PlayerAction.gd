@@ -56,8 +56,6 @@ func sprint_timeout() -> void:
 func basic_attack() -> void:
 	if weapon_slot_1_instance.attack_available:
 		attack_movement_vector = Vector2()
-		# warning-ignore:narrowing_conversion
-		setFacingDirection(round(rad2deg(getAttackDirection().angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
 		weapon_slot_1_instance.attack(getAttackDirection(), self)
@@ -123,7 +121,7 @@ func handlePlayerAction() -> void:
 	elif state == AXE_INTERACTION:
 		pass
 	else:
-		setVelocity()
+		set_player_input_velocity()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
 		restart_sprint_timer()

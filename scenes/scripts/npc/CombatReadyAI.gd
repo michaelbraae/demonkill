@@ -179,6 +179,7 @@ func basic_attack() -> void:
 
 func attack() -> void:
 	if weapon.attack_available:
+		attack_movement_vector = Vector2()
 		state = ATTACK_CONTACT
 		weapon.attack(getAttackDirection(), self)
 
@@ -212,10 +213,11 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	elif state == ATTACK_CONTACT:
-		pass
+	# elif state == ATTACK_CONTACT:
+		# pass
 	else:
-		velocity = InputHandler.getVelocity(move_speed)
+		set_player_input_velocity()
+		# velocity = InputHandler.getVelocity(move_speed)
 		velocity = move_and_slide(velocity)
 
 var has_outline: bool = false

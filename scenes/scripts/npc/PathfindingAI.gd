@@ -8,8 +8,6 @@ class_name PathfindingAI
 onready var detectionArea = $DetectionArea
 onready var collisionRayCast = $RayCast2D
 
-#onready var navigation_mesh = get_parent()
-
 # used to stop the animatedSprite flipping when Y axis is aligned
 # Without this the sprite will flicker back and forth
 const TARGET_POSITION_OFFSET = 2
@@ -32,7 +30,6 @@ var interest = []
 var danger = []
 
 var chosen_direction = Vector2.ZERO
-var velocity = Vector2.ZERO
 
 # dodge logic
 var dodge_timer

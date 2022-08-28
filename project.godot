@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/ability/ability_projectile/AbilityProjectile.gd"
 }, {
-"base": "CharacterBase",
+"base": "CharacterNavigation",
 "class": "BaseAI",
 "language": "GDScript",
 "path": "res://scenes/scripts/npc/BaseAI.gd"
