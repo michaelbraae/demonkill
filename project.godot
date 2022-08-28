@@ -149,7 +149,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerPossession.gd"
 }, {
-"base": "PlayerNavigation",
+"base": "PlayerBase",
 "class": "PlayerWeapon",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerWeapon.gd"
