@@ -213,8 +213,6 @@ func possessedDecisionLogic() -> void:
 		pass
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
-	# elif state == ATTACK_CONTACT:
-		# pass
 	else:
 		set_player_input_velocity()
 		# velocity = InputHandler.getVelocity(move_speed)
