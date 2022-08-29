@@ -28,5 +28,3 @@ damage = 6
 mana_regen_amount = 2
 
 [node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 2 )]
-speed = 200
-decay = 15

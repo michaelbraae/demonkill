@@ -57,7 +57,8 @@ func getStateString() -> String:
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector
-var speed = 300
+
+export var speed: float = 100
 var speed_current = speed
 var decay
 
@@ -105,7 +106,6 @@ func knockBack(
 	if not knocked_back and state != DASH:
 		interruptAction()
 		knocked_back = true
-		speed = knock_back_speed
 		speed_current = knock_back_speed
 		decay = knock_back_decay
 		knockback_vector = Vector2(cos(hit_direction), sin(hit_direction))
