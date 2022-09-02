@@ -215,12 +215,13 @@ func possessedDecisionLogic() -> void:
 		outline_shader.scale = animatedSprite.scale
 	if state == POSSESSION_TARGETING:
 		pass
-	elif knocked_back:
+	elif knocked_back:		
+		state = KNOCKED_BACK
 		velocity = getKnockBackProcessVector()
 	else:
 		set_player_input_velocity()
 		# velocity = InputHandler.getVelocity(move_speed)
-		velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 var has_outline: bool = false
 

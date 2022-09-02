@@ -4,9 +4,6 @@ class_name CharacterNavigation
 
 var velocity = Vector2()
 
-export var SPEED: int = 100 # 100
-var speed_actual
-
 var aim_vector = Vector2()
 
 var attack_movement_vector: Vector2 = Vector2()
@@ -17,6 +14,9 @@ var use_facing_vector = false
 
 export var dash_cooldown: float = 2.0
 export var dash_duration: float = 0.15
+
+export(Curve) var speed_up_curve
+export(Curve) var slow_down_curve
 
 var dash_timer
 var dash_cooldown_timer
@@ -82,13 +82,11 @@ func set_player_input_velocity() -> void:
 			attack_movement_vector = InputHandler.getAttackDirection()
 			# warning-ignore:narrowing_conversion
 			set_facing_direction(round(rad2deg(InputHandler.getAttackDirection().angle())))
-		print("setting velocity to attack move vector")
 		velocity = attack_movement_vector * 10
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
 	else:
-		print("doing nothing special")
-		velocity = InputHandler.getVelocity(SPEED)
+		velocity = InputHandler.getVelocity(speed)
 		if velocity:
 			state = NAVIGATING
 		else:

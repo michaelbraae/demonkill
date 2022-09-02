@@ -40,9 +40,6 @@ var dodge_vector
 #dodge variable logic
 var dodge_cooldown = 2
 
-# default move_speed for all PathFindingAI
-export var move_speed: float = 120.0
-
 # The AI's current target
 var target_actor
 
@@ -176,8 +173,8 @@ func chooseDirection():
 
 func getMoveSpeed() -> float:
 	if in_dodge:
-		return move_speed * 2
-	return move_speed
+		return speed * 2
+	return speed
 
 func hasLineOfSight() -> bool:
 	if !is_instance_valid(target_actor):
