@@ -218,9 +218,10 @@ func possessedDecisionLogic() -> void:
 	elif knocked_back:		
 		state = KNOCKED_BACK
 		velocity = getKnockBackProcessVector()
+	elif state == DASH:
+		continueDash()
 	else:
 		set_player_input_velocity()
-		# velocity = InputHandler.getVelocity(move_speed)
 	velocity = move_and_slide(velocity)
 
 var has_outline: bool = false

@@ -15,9 +15,6 @@ var use_facing_vector = false
 export var dash_cooldown: float = 2.0
 export var dash_duration: float = 0.15
 
-export(Curve) var speed_up_curve
-export(Curve) var slow_down_curve
-
 var dash_timer
 var dash_cooldown_timer
 var dash_available = true
