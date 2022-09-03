@@ -1,4 +1,4 @@
-extends PlayerAnimation
+extends PlayerPossession
 
 class_name PlayerAction
 
@@ -114,8 +114,10 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if state == DASH or state == POSSESSION_DASH:
+	if state == DASH:
 		continueDash()
+	elif state == POSSESSION_DASH:
+		continue_possession_dash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:

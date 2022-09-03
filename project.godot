@@ -124,12 +124,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/scripts/npc/PathfindingAI.gd"
 }, {
-"base": "PlayerPossession",
+"base": "PlayerAction",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/character/player/Player.gd"
 }, {
-"base": "PlayerAnimation",
+"base": "PlayerPossession",
 "class": "PlayerAction",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerAction.gd"
@@ -144,7 +144,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerBase.gd"
 }, {
-"base": "PlayerAction",
+"base": "PlayerAnimation",
 "class": "PlayerPossession",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerPossession.gd"

@@ -1,3 +1,3 @@
-extends PlayerPossession
+extends PlayerAction
 
 class_name Player

@@ -11,4 +11,3 @@
 [node name="ShaderHandler" parent="." instance=ExtResource( 2 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
-current = true
