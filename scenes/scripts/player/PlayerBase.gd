@@ -30,11 +30,6 @@ func get_health() -> int:
 
 func flash() -> void:
 	pass
-#	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
-#	flashTimer.start(0.1)
-
-func stun(stun_duration: float) -> void:
-	.stun(stun_duration)
 
 func flash_timeout() -> void:
 	animatedSprite.material.set_shader_param("flash_modifier", 0)

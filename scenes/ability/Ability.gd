@@ -51,6 +51,8 @@ func has_lethal(hit_target: CharacterBase) -> bool:
 func apply_lethal_damage(hit_target: CharacterBase) -> void:
 	var damage_effect = get_node("Effects").find_node("DamageEffect")
 	if damage_effect:
+		hit_target.set_physics_process(true)
+		hit_target.state = hit_target.PRE_DEATH
 		hit_target.damage(damage_effect.damage)
 
 # a VFX can be instantiated when the ability fires, ie: muzzle flash
