@@ -17,8 +17,7 @@ func area_entered(area) -> void:
 	):
 		collisionEffect(area_parent.get_global_position())
 		damaged_characters.push_front(area_parent)
-		if has_lethal(area_parent):
-			apply_lethal_damage(area_parent)
+		if on_hit_prevent_continue(area_parent):
 			return
 		for effect in get_node("Effects").get_children():
 			area_parent.get_node("EffectHandler").apply_effect(effect)
