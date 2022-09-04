@@ -31,8 +31,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 4, 3 )
 
 [node name="Fireball" instance=ExtResource( 1 )]
 collision_layer = 0
@@ -41,7 +41,7 @@ speed = 3
 on_create_effect = ExtResource( 6 )
 
 [node name="AnimatedSprite" parent="." index="0"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 5 )
 speed_scale = 2.5
 
@@ -56,4 +56,6 @@ tick_rate = 0.3
 damage = 1
 
 [node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( -1, 0 )
+scale = Vector2( 0.876476, 0.83894 )
 shape = SubResource( 6 )

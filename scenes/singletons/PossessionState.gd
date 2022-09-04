@@ -63,8 +63,9 @@ func exitPossession(spawn_position) -> void:
 	current_possession.setEnemyCollision()
 	
 	# handle the possession dash
-	player_instance.possession_dash_vector = player_instance.getAttackDirection()
-	player_instance.initiate_dash()
+	# player_instance.possession_dash_vector = player_instance.getAttackDirection()
+	# player_instance.possession_dash_vector = InputHandler.getMovementVector()
+	player_instance.initiate_possession_dash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
 	
@@ -98,7 +99,6 @@ func possessEntity(new_possession) -> void:
 	var possession_duration = GameState.player.possession_duration
 	GameState.player.queue_free()
 	new_possession.setPossessionCollisions()
-#	new_possessiaon.resetAbilityCooldown()
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
 

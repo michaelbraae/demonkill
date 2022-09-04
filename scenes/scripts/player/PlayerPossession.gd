@@ -28,18 +28,19 @@ func _ready() -> void:
 	possession_dash_cooldown_timer.one_shot = true
 	# warning-ignore:return_value_discarded
 	$PossessionHitBox.connect("area_entered", self, "possession_hitbox_entered")
-	# possession_dash_cooldown_timer.connect('timeout', self, 'dash_cooldown_timeout')
 	add_child(possession_dash_cooldown_timer)
 
+var found_possession: bool = false
+
 func possession_hitbox_entered(area) -> void:
-	if state == POSSESSION_DASH and area.get_name() == "EnemyPossessionHitBox" and not possession_targets_to_ignore.has(area.get_parent()):
+	if !found_possession and state == POSSESSION_DASH and area.get_name() == "EnemyPossessionHitBox" and not possession_targets_to_ignore.has(area.get_parent()):
+		found_possession = true
 		PossessionState.possessEntity(area.get_parent())
 		var possession_vfx = POSSESSION_VFX_SCENE.instance()
 		area.get_parent().add_child(possession_vfx)
 		possession_vfx.play()
 		PlayerState.useMana(2)
 		PlayerState.addHealth(2)
-	
 
 func possession_dash_timeout() -> void:
 	set_collision_layer_bit(1, true)
@@ -59,7 +60,6 @@ func possession_cast_begun() -> void:
 
 func possession_cast_ended() -> void:
 	if possession_dash_cooldown_timer.is_stopped() and possession_targeting_started:
-#	if possession_targeting_started:
 		initiate_possession_dash()
 		possession_dash_vector = getAttackDirection()
 		state = POSSESSION_DASH
@@ -82,10 +82,10 @@ func initiate_possession_dash() -> void:
 		FeedbackHandler.shake_camera(0.2, 0.8)
 		set_collision_layer_bit(1, false)
 		set_collision_mask_bit(1, false)
-		state = DASH
+		state = POSSESSION_DASH
 		possession_dash_cooldown_timer.start(possession_dash_cooldown)
 		possession_dash_timer.start(dash_duration)
-		possession_dash_vector = InputHandler.getMovementVector()
+		possession_dash_vector = getAttackDirection()
 
 func continue_possession_dash() -> void:
 	on_dash_continuous()
