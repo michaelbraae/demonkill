@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ability/abilities/Swipe.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=3]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/vfx/collision_effects/white_impact/WhiteImpact.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=7]
 
 [node name="FrostAxeAbility" instance=ExtResource( 1 )]
@@ -26,10 +25,7 @@ position = Vector2( 0.0190758, -0.0304814 )
 rotation = 1.5708
 polygon = PoolVector2Array( 9.90373, -11.8971, 0, -15, -10.3586, -11.1558, -16.211, -5.85611, -19.1958, 0.815651, -19.7485, 14.8615, -10.1246, 0.913191, 0.0196419, -2.9234, 9.61111, 0.0353279, 19.9829, 14.7314, 18.9425, 0.620569, 16.0748, -7.22168 )
 
-[node name="DamageEffect" parent="Effects" index="0" instance=ExtResource( 6 )]
-damage = 8
+[node name="ManaRegenEffect" parent="Effects" index="0" instance=ExtResource( 7 )]
 
-[node name="ManaRegenEffect" parent="Effects" index="1" instance=ExtResource( 7 )]
-
-[node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
+[node name="KnockbackEffect" parent="Effects" index="1" instance=ExtResource( 4 )]
 speed = 200

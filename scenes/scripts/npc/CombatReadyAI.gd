@@ -31,6 +31,26 @@ var possession_duration_timer: Timer
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
+export(PackedScene) var weapon_selection
+var weapon: Weapon
+
+func _ready():
+	health = max_health
+	
+	weapon = weapon_selection.instance()
+	add_child(weapon)
+	
+	stun_duration_timer = Timer.new()
+	add_child(stun_duration_timer)
+	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
+	
+	possession_duration_timer = Timer.new()
+	add_child(possession_duration_timer)
+	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
+
+func get_health() -> int:
+	return health
+
 func addHealth(health_add: int) -> void:
 	if health_add + health > max_health:
 		health = max_health
@@ -50,23 +70,6 @@ func setHealth() -> void:
 			$EnemyUI/PossessionCooldownBar.visible = true
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
-
-export(PackedScene) var weapon_selection
-var weapon: Weapon
-
-func _ready():
-	health = max_health
-	
-	weapon = weapon_selection.instance()
-	add_child(weapon)
-	
-	stun_duration_timer = Timer.new()
-	add_child(stun_duration_timer)
-	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
-	
-	possession_duration_timer = Timer.new()
-	add_child(possession_duration_timer)
-	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
 
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()

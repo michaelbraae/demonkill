@@ -33,4 +33,5 @@ damage = 8
 [node name="ManaRegenEffect" parent="Effects" index="1" instance=ExtResource( 7 )]
 
 [node name="FreezeEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
-effect_duration = 0.8
+scale = Vector2( 1, 0.993081 )
+effect_duration = 2.5

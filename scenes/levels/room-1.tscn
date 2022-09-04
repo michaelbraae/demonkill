@@ -33,9 +33,6 @@ tile_data = PoolIntArray( -5570533, 1, 0, -5570532, 1, 0, -5570531, 1, 0, -55705
 
 [node name="Encounter1" type="Node2D" parent="YSort"]
 
-[node name="SwipeImp" parent="YSort/Encounter1" instance=ExtResource( 3 )]
-position = Vector2( 165, 2 )
-
 [node name="SwipeImp2" parent="YSort/Encounter1" instance=ExtResource( 3 )]
 position = Vector2( 235, 2 )
 

@@ -42,6 +42,17 @@ signal ability_landed(ability_type)
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")
 
+func has_lethal(hit_target: CharacterBase) -> bool:
+	var damage_effect = get_node("Effects").find_node("DamageEffect")
+	if damage_effect and damage_effect.damage >= hit_target.get_health():
+		return true
+	return false
+
+func apply_lethal_damage(hit_target: CharacterBase) -> void:
+	var damage_effect = get_node("Effects").find_node("DamageEffect")
+	if damage_effect:
+		hit_target.damage(damage_effect.damage)
+
 # a VFX can be instantiated when the ability fires, ie: muzzle flash
 func on_create_ability(attack_direction: Vector2) -> void:
 	if is_instance_valid(on_create_effect) and attack_direction:

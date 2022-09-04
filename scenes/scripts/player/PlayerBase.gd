@@ -25,6 +25,9 @@ func _ready() -> void:
 	GameState.player = self
 	FeedbackHandler.current_camera = camera2D
 
+func get_health() -> int:
+	return PlayerState.health
+
 func flash() -> void:
 	pass
 #	animatedSprite.material.set_shader_param("flash_modifier", 0.45)

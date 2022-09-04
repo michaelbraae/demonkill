@@ -4,7 +4,6 @@ class_name EffectHandler
 
 export var stun_immunity_duration: float = 0.0
 
-
 func apply_effect(effect: Effect) -> void:
 	if effect is DamageEffect:
 		damage_effect(effect)

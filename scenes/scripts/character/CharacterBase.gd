@@ -25,6 +25,9 @@ enum {
 	POSSESSION_RECOVERY,
 }
 
+func get_health() -> int:
+	return 0
+
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
 
 func getStateString() -> String:
