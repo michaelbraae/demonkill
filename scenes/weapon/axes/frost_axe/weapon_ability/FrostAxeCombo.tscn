@@ -34,4 +34,5 @@ damage = 8
 
 [node name="FreezeEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
 scale = Vector2( 1, 0.993081 )
+ignore_when_stunned = null
 effect_duration = 2.5

@@ -97,8 +97,10 @@ func interruptAction() -> void:
 func stun(stun_duration: float) -> void:
 	set_physics_process(false)
 	animatedSprite.stop()
+	state = STUNNED
 	yield(get_tree().create_timer(stun_duration), "timeout")
 	set_physics_process(true)
+	state = IDLE
 	animatedSprite.play()
 
 func knockBack(
@@ -106,7 +108,7 @@ func knockBack(
 	knock_back_speed : int,
 	knock_back_decay : int
 ) -> void:
-	if not knocked_back and state != DASH:
+	if not knocked_back and ![DASH, STUNNED].has(state):
 		interruptAction()
 		knocked_back = true
 		speed_current = knock_back_speed
