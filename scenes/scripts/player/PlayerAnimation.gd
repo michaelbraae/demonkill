@@ -56,7 +56,6 @@ func dash_ghost_timeout() -> void:
 	dash_ghost_cooldown_timer.stop()
 
 func on_dash_continuous() -> void:
-	.on_dash_continuous()
 	dash_ghost()
 
 func sprint_ghost() -> void:

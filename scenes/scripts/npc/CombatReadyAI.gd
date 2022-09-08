@@ -86,11 +86,14 @@ func dropAxe() -> void:
 	get_tree().get_root().add_child(GameState.axe_instance)
 	GameState.axe_instance.position = get_global_position()
 
+signal damaged(damage_amount)
+
 func damage(damage : int) -> void:
 	state = IDLE
 	attack_landed = false
 	attack_started = false
 	health -= damage
+	emit_signal("damaged", health)
 	if GameState.npc_with_axe == self and not isPossessed():
 		dropAxe()
 	if isPossessed() and health <= 0:

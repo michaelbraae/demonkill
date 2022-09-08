@@ -33,7 +33,13 @@ func _ready() -> void:
 var found_possession: bool = false
 
 func possession_hitbox_entered(area) -> void:
-	if !found_possession and state == POSSESSION_DASH and area.get_name() == "EnemyPossessionHitBox" and not possession_targets_to_ignore.has(area.get_parent()):
+	if (
+		!found_possession
+		and state == POSSESSION_DASH
+		and area.get_name() == "EnemyPossessionHitBox"
+		and not possession_targets_to_ignore.has(area.get_parent())
+		and !area.get_parent().get_node("PossessionGuard").visible
+	):
 		found_possession = true
 		PossessionState.possessEntity(area.get_parent())
 		var possession_vfx = POSSESSION_VFX_SCENE.instance()
