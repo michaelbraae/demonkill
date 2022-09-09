@@ -1,7 +1,5 @@
 extends RotatingWeapon
 
-# var ENERGY_BALL_SCENE = preload('res://resources/abilities/projectiles/energy_ball/energy_ball.tscn')
-
 const SPREAD = 0.2
 
 const MAGAZINE_SIZE = 5
@@ -20,11 +18,6 @@ func fire(attack_direction : Vector2) -> void:
 func instantiateProjectiles(attack_direction : Vector2) -> void:
 	for random_trajectory in getRandomTrajectories(attack_direction):
 		pass
-		# var bullet_instance = ENERGY_BALL_SCENE.instance()
-		# get_parent().add_child(bullet_instance)
-		# bullet_instance.target_id = 'IS_ENEMY'
-		# bullet_instance.set_position(muzzle.get_position())
-		# bullet_instance.target_direction = random_trajectory
 
 func getRandomTrajectories(attack_direction : Vector2) -> Array:
 	var trajectories = []
