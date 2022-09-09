@@ -24,8 +24,19 @@ func _ready() -> void:
 
 func interacted() -> void:
 	if $WeaponCard.visible:
-		GameState.player.change_weapon_in_slot(weapon, 1)
-		queue_free()
+		var slot_1_valid: bool = is_instance_valid(GameState.player.weapon_slot_1_instance)
+		var slot_2_valid: bool = is_instance_valid(GameState.player.weapon_slot_2_instance)
+		if slot_1_valid and slot_2_valid:
+			print("open that juicy weapon UI")
+			UIManager.get_node("WeaponPickupUI").cards_slot_new.weapon = weapon.instance()
+			UIManager.get_node("WeaponPickupUI").initialise_weapon_pickups()
+			UIManager.get_node("WeaponPickupUI").visible = true
+		else:
+			if slot_1_valid:
+				GameState.player.change_weapon_in_slot(weapon, 2)
+			elif slot_2_valid:
+				GameState.player.change_weapon_in_slot(weapon, 1)
+			queue_free()
 
 func _process(delta: float) -> void:
 	time += delta * frequency
@@ -33,4 +44,5 @@ func _process(delta: float) -> void:
 	if get_global_position().distance_to(GameState.player.position) < 30:
 		$WeaponCard.visible = true
 	else:
+		UIManager.get_node("WeaponPickupUI").visible = false
 		$WeaponCard.visible = false

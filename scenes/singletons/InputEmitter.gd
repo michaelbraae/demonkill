@@ -5,8 +5,8 @@ signal ui_cancel
 
 # docs say use past tense to name signals :hmmm:
 signal movement_ability
-signal basic_attack
-signal use_ability
+signal attack_slot_1
+signal attack_slot_2
 signal interacted
 signal possession_cast_begun
 signal possession_cast_ended
@@ -24,13 +24,13 @@ func action_1() -> void:
 	if GameState.is_paused:
 		pass
 	else:
-		emit_signal("basic_attack")
+		emit_signal("attack_slot_1")
 
 func action_2() -> void:
 	if GameState.is_paused:
 		pass
 	else:
-		emit_signal("use_ability")
+		emit_signal("attack_slot_2")
 
 func action_3_pressed() -> void:
 	if GameState.is_paused:

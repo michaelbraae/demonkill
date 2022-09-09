@@ -236,6 +236,7 @@ config/icon="res://assets/sprites/branding/icon.png"
 
 [autoload]
 
+ColorGlobal="*res://scenes/singletons/ColorGlobal.tscn"
 LevelManager="*res://scenes/level_manager/LevelManager.gd"
 PlayerState="*res://scenes/singletons/PlayerState.gd"
 GameState="*res://scenes/singletons/GameState.gd"
@@ -244,7 +245,6 @@ InputHandler="*res://scenes/singletons/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://scenes/singletons/InputEmitter.gd"
 UIManager="*res://scenes/ui/ui_manager/UIManager.tscn"
-ColorGlobal="*res://scenes/singletons/ColorGlobal.tscn"
 
 [display]
 

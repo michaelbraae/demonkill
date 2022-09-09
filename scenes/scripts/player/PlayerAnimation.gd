@@ -42,8 +42,8 @@ func getAttackOrder() -> String:
 
 func getAnimationWeaponModifier() -> String:
 	if is_instance_valid(active_weapon_archetype):
-		print("active_weapon_archetype.archetype: ", active_weapon_archetype.archetype)
-	# what is the active weapon, which weapon began this chain of events??
+		# print("active_weapon_archetype.archetype: ", active_weapon_archetype.archetype)
+		pass
 	if has_axe:
 		return '_axe'
 	return ''

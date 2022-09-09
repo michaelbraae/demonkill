@@ -102,15 +102,15 @@ func possessEntity(new_possession) -> void:
 
 # warning-ignore-all:return_value_discarded
 func connectToInputSignals(signal_target) -> void:
-	InputEmitter.connect("basic_attack", signal_target, "basic_attack")
+	InputEmitter.connect("attack_slot_1", signal_target, "basic_attack")
+	InputEmitter.connect("attack_slot_2", signal_target, "use_ability")
 	InputEmitter.connect("movement_ability", signal_target, "movement_ability")
-	InputEmitter.connect("use_ability", signal_target, "use_ability")
 	InputEmitter.connect("possession_cast_begun", signal_target, "possession_cast_begun")
 	InputEmitter.connect("possession_cast_ended", signal_target, "possession_cast_ended")
 
 func disconnectFromInputSignals(signal_target) -> void:
-	InputEmitter.disconnect("basic_attack", signal_target, "basic_attack")
+	InputEmitter.disconnect("attack_slot_1", signal_target, "basic_attack")
+	InputEmitter.disconnect("attack_slot_2", signal_target, "use_ability")
 	InputEmitter.disconnect("movement_ability", signal_target, "movement_ability")
-	InputEmitter.disconnect("use_ability", signal_target, "use_ability")
 	InputEmitter.disconnect("possession_cast_begun", signal_target, "possession_cast_begun")
 	InputEmitter.disconnect("possession_cast_ended", signal_target, "possession_cast_ended")

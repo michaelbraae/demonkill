@@ -29,24 +29,28 @@ func equip_weapons() -> void:
 	if PlayerState.weapon_slot_1:
 		weapon_slot_1_instance = PlayerState.weapon_slot_1.instance()
 	else:
+		PlayerState.weapon_slot_1 = weapon_default
 		weapon_slot_1_instance = weapon_default.instance()
 	add_child(weapon_slot_1_instance)
-	if PlayerState.weapon_slot_2:
-		weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
-	else:
-		weapon_slot_2_instance = weapon_default.instance()
-	add_child(weapon_slot_2_instance)
+	# if PlayerState.weapon_slot_2:
+	# 	weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
+	# else:
+	# 	weapon_slot_2_instance = weapon_default.instance()
+	# add_child(weapon_slot_2_instance)
 
 func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 	if slot == 1:
-		weapon_slot_1_instance.drop_weapon()
-		weapon_slot_1_instance.queue_free()
+		if is_instance_valid(weapon_slot_1_instance):
+			weapon_slot_1_instance.drop_weapon()
+			weapon_slot_1_instance.queue_free()
 		PlayerState.weapon_slot_1 = weapon
 		weapon_slot_1_instance = weapon.instance()
 		active_weapon_archetype = weapon_slot_1_instance
 		add_child(weapon_slot_1_instance)
 	elif slot == 2:
-		weapon_slot_2_instance.queue_free()
+		if is_instance_valid(weapon_slot_2_instance):
+			weapon_slot_2_instance.drop_weapon()
+			weapon_slot_2_instance.queue_free()
 		PlayerState.weapon_slot_2 = weapon
 		weapon_slot_2_instance = weapon.instance()
 		active_weapon_archetype = weapon_slot_2_instance
