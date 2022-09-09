@@ -13,7 +13,7 @@ dash_duration = 0.1
 attack_range = 25.0
 max_health = 40
 weapon_selection = ExtResource( 1 )
-possession_guard_threshold = 30.0
+possession_guard_threshold = 80.0
 
 [node name="HitBox" parent="." index="4"]
 visible = true
