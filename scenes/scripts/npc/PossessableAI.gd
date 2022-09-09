@@ -2,6 +2,8 @@ extends CombatReadyAI
 
 class_name PossessableAI
 
+# warning-ignore-all:return_value_discarded
+
 onready var POSSESSION_ARROW_SCENE = preload("res://scenes/ui/possession_arrow/PossessionArrow.tscn")
 
 # Once the health gets below this percentage, possession is possible

@@ -16,6 +16,7 @@ func _ready() -> void:
 func pickup_area_entered(body) -> void:
 	if body.owner == GameState.player and !GameState.player.possession_dash_cooldown_timer.is_stopped():
 		GameState.player.possession_dash_cooldown_timer.stop()
+		FeedbackHandler.shake_camera()
 		queue_free()
 
 func _process(delta: float) -> void:
