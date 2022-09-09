@@ -1,5 +1,7 @@
 extends Node2D
 
+# warning-ignore-all:return_value_discarded
+
 var amplitude := 3.0
 
 var frequency := 5.0

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/pickups/possession_reset_pickup.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/lights/light.png" type="Texture" id=2]
-[ext_resource path="res://scenes/pickups/possession_cooldown_reset/PossessionCooldownPickup.gd" type="Script" id=3]
+[ext_resource path="res://scenes/pickups/possession_cooldown_reset/PossessionCooldownResetPickup.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -19,7 +19,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 4.94975, 4.94975 )
 
-[node name="PossessionCooldownPickup" type="Node2D"]
+[node name="PossessionCooldownResetPickup" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -37,5 +37,4 @@ shadow_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
