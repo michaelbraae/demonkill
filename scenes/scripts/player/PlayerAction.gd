@@ -43,11 +43,13 @@ func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 		weapon_slot_1_instance.queue_free()
 		PlayerState.weapon_slot_1 = weapon
 		weapon_slot_1_instance = weapon.instance()
+		active_weapon_archetype = weapon_slot_1_instance
 		add_child(weapon_slot_1_instance)
 	elif slot == 2:
 		weapon_slot_2_instance.queue_free()
 		PlayerState.weapon_slot_2 = weapon
 		weapon_slot_2_instance = weapon.instance()
+		active_weapon_archetype = weapon_slot_2_instance
 		add_child(weapon_slot_2_instance)
 
 func sprint_timeout() -> void:
@@ -55,6 +57,7 @@ func sprint_timeout() -> void:
 
 func basic_attack() -> void:
 	if weapon_slot_1_instance.attack_available:
+		active_weapon_archetype = weapon_slot_1_instance
 		attack_movement_vector = Vector2()
 		attack_order = !attack_order
 		state = ATTACK_WARMUP

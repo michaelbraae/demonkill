@@ -15,6 +15,8 @@ var sprint: bool = false
 
 var attack_queued: bool = false
 
+var active_weapon_archetype: Weapon
+
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
@@ -39,6 +41,9 @@ func getAttackOrder() -> String:
 	return '2'
 
 func getAnimationWeaponModifier() -> String:
+	if is_instance_valid(active_weapon_archetype):
+		print("active_weapon_archetype.archetype: ", active_weapon_archetype.archetype)
+	# what is the active weapon, which weapon began this chain of events??
 	if has_axe:
 		return '_axe'
 	return ''

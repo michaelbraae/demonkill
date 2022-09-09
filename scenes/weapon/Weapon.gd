@@ -10,7 +10,7 @@ export var weapon_description: String
 
 export(String, "EXOTIC", "LEGENDARY", "RARE", "COMMON") var rarity
 
-export(String, "SWORD", "AXES", "SPEAR", "BOW", "PISTOL", "SHOTGUN", "WAND") var archetype
+export(String, "SWORD", "AXE", "SPEAR", "CROSSBOW", "PISTOL", "SHOTGUN", "WAND") var archetype
 
 export(String, "STRENGTH", "INTELLIGENCE", "VITALITY") var affinity
 
