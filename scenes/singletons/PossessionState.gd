@@ -63,8 +63,6 @@ func exitPossession(spawn_position) -> void:
 	current_possession.setEnemyCollision()
 	
 	# handle the possession dash
-	# player_instance.possession_dash_vector = player_instance.getAttackDirection()
-	# player_instance.possession_dash_vector = InputHandler.getMovementVector()
 	player_instance.initiate_possession_dash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
