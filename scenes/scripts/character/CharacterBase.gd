@@ -25,6 +25,9 @@ enum {
 	POSSESSION_RECOVERY,
 }
 
+func get_health() -> int:
+	return 0
+
 const ATTACK_STATES = [ATTACK_WARMUP, ATTACK_CONTACT, ATTACK_RECOVERY]
 
 func getStateString() -> String:
@@ -57,7 +60,8 @@ func getStateString() -> String:
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector
-var speed = 300
+
+export var speed: float = 100
 var speed_current = speed
 var decay
 
@@ -93,8 +97,10 @@ func interruptAction() -> void:
 func stun(stun_duration: float) -> void:
 	set_physics_process(false)
 	animatedSprite.stop()
+	state = STUNNED
 	yield(get_tree().create_timer(stun_duration), "timeout")
 	set_physics_process(true)
+	state = IDLE
 	animatedSprite.play()
 
 func knockBack(
@@ -102,10 +108,9 @@ func knockBack(
 	knock_back_speed : int,
 	knock_back_decay : int
 ) -> void:
-	if not knocked_back and state != DASH:
+	if not knocked_back and ![DASH, STUNNED].has(state):
 		interruptAction()
 		knocked_back = true
-		speed = knock_back_speed
 		speed_current = knock_back_speed
 		decay = knock_back_decay
 		knockback_vector = Vector2(cos(hit_direction), sin(hit_direction))

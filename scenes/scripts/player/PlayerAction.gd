@@ -1,4 +1,4 @@
-extends PlayerAnimation
+extends PlayerPossession
 
 class_name PlayerAction
 
@@ -56,8 +56,6 @@ func sprint_timeout() -> void:
 func basic_attack() -> void:
 	if weapon_slot_1_instance.attack_available:
 		attack_movement_vector = Vector2()
-		# warning-ignore:narrowing_conversion
-		setFacingDirection(round(rad2deg(getAttackDirection().angle())))
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
 		weapon_slot_1_instance.attack(getAttackDirection(), self)
@@ -116,14 +114,16 @@ func _physics_process(_delta : float) -> void:
 	handlePlayerAction()
 
 func handlePlayerAction() -> void:
-	if state == DASH or state == POSSESSION_DASH:
+	if state == DASH:
 		continueDash()
+	elif state == POSSESSION_DASH:
+		continue_possession_dash()
 	elif state == DASH_RECOVERY:
 		velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:
 		pass
 	else:
-		setVelocity()
+		set_player_input_velocity()
 	animatedSprite.play(getAnimation())
 	if hasPlayerPerformedAction():
 		restart_sprint_timer()

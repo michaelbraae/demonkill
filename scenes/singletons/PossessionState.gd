@@ -6,8 +6,6 @@ var current_possession
 
 var possessedNPC
 
-var possession_duration = 15.0
-
 func getCurrentPossession():
 	if GameState.state == GameState.CONTROLLING_NPC and current_possession:
 		return current_possession
@@ -64,9 +62,8 @@ func exitPossession(spawn_position) -> void:
 	current_possession.handlePossessionExit()
 	current_possession.setEnemyCollision()
 	
-	# handle the possession dash 
-	player_instance.possession_dash_vector = player_instance.getAttackDirection()
-	player_instance.initiate_dash()
+	# handle the possession dash
+	player_instance.initiate_possession_dash()
 	player_instance.state = player_instance.POSSESSION_DASH
 	player_instance.possession_targets_to_ignore = [current_possession]
 	
@@ -97,9 +94,9 @@ func possessEntity(new_possession) -> void:
 	InputHandler.current_actor = new_possession
 	FeedbackHandler.current_camera = new_possession.camera2D
 	FeedbackHandler.shake_camera()
+	var possession_duration = GameState.player.possession_duration
 	GameState.player.queue_free()
 	new_possession.setPossessionCollisions()
-#	new_possessiaon.resetAbilityCooldown()
 	new_possession.state = new_possession.STUNNED
 	new_possession.onPossess(possession_duration)
 

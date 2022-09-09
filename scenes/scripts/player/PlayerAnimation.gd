@@ -1,6 +1,8 @@
-extends PlayerNavigation
+extends PlayerBase
 
 class_name PlayerAnimation
+
+# warning-ignore-all:return_value_discarded
 
 var attack_order = false
 var has_axe = true
@@ -13,8 +15,6 @@ var sprint: bool = false
 
 var attack_queued: bool = false
 
-# warning-ignore-all:return_value_discarded
-
 func _ready() -> void:
 	dash_ghost_cooldown_timer = Timer.new()
 	dash_ghost_cooldown_timer.connect("timeout", self, "dash_ghost_timeout")
@@ -26,26 +26,11 @@ func _ready() -> void:
 	add_child(sprint_ghost_cooldown_timer)
 
 func _physics_process(_delta) -> void:
-#	print(animatedSprite.get_animation())
 	if sprint:
 		sprint_ghost()
 
-func setFacingDirection(angle_of_focus : int) -> void:
-	if angle_of_focus < -30 and angle_of_focus > -150:
-		animatedSprite.flip_h = false
-		facing_direction = 'up'
-	elif angle_of_focus >= -30 and angle_of_focus < 30:
-		animatedSprite.flip_h = false
-		facing_direction = 'right'
-	elif angle_of_focus >= 30 and angle_of_focus <= 150:
-		animatedSprite.flip_h = false
-		facing_direction = 'down'
-	elif angle_of_focus > 150 or angle_of_focus < -150:
-		animatedSprite.flip_h = true
-		facing_direction = 'right'
-
 func getAnimationFromAngleOfFocus(angle_of_focus : int) -> String:
-	setFacingDirection(angle_of_focus)
+	set_facing_direction(angle_of_focus)
 	return 'run_' + facing_direction + getAnimationWeaponModifier()
 
 func getAttackOrder() -> String:
@@ -71,7 +56,6 @@ func dash_ghost_timeout() -> void:
 	dash_ghost_cooldown_timer.stop()
 
 func on_dash_continuous() -> void:
-	.on_dash_continuous()
 	dash_ghost()
 
 func sprint_ghost() -> void:

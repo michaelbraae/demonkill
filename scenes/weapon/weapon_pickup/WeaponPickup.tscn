@@ -38,9 +38,9 @@ margin_right = 214.0
 margin_bottom = 117.0
 
 [node name="Label" type="Label" parent="WeaponCard"]
-margin_left = 60.0
+margin_left = 33.3333
 margin_top = 206.667
-margin_right = 185.0
+margin_right = 209.333
 margin_bottom = 241.667
 custom_fonts/font = ExtResource( 6 )
-text = "Press E to equip"
+text = "Press E or RB to equip"

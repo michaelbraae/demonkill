@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/ability/ability_projectile/AbilityProjectile.gd"
 }, {
-"base": "CharacterBase",
+"base": "CharacterNavigation",
 "class": "BaseAI",
 "language": "GDScript",
 "path": "res://scenes/scripts/npc/BaseAI.gd"
@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "CharacterBase",
 "language": "GDScript",
 "path": "res://scenes/scripts/character/CharacterBase.gd"
+}, {
+"base": "CharacterBase",
+"class": "CharacterNavigation",
+"language": "GDScript",
+"path": "res://scenes/scripts/character/CharacterNavigation.gd"
 }, {
 "base": "PathfindingAI",
 "class": "CombatReadyAI",
@@ -119,37 +124,32 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/scripts/npc/PathfindingAI.gd"
 }, {
-"base": "PlayerPossession",
+"base": "PlayerAction",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/character/player/Player.gd"
 }, {
-"base": "PlayerAnimation",
+"base": "PlayerPossession",
 "class": "PlayerAction",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerAction.gd"
 }, {
-"base": "PlayerNavigation",
+"base": "PlayerBase",
 "class": "PlayerAnimation",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerAnimation.gd"
 }, {
-"base": "CharacterBase",
+"base": "CharacterNavigation",
 "class": "PlayerBase",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerBase.gd"
 }, {
-"base": "PlayerBase",
-"class": "PlayerNavigation",
-"language": "GDScript",
-"path": "res://scenes/scripts/player/PlayerNavigation.gd"
-}, {
-"base": "PlayerAction",
+"base": "PlayerAnimation",
 "class": "PlayerPossession",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerPossession.gd"
 }, {
-"base": "PlayerNavigation",
+"base": "PlayerBase",
 "class": "PlayerWeapon",
 "language": "GDScript",
 "path": "res://scenes/scripts/player/PlayerWeapon.gd"
@@ -200,6 +200,7 @@ _global_script_class_icons={
 "CCEffectHandler": "",
 "CasterAI": "",
 "CharacterBase": "",
+"CharacterNavigation": "",
 "CombatReadyAI": "",
 "DOTEffectHandler": "",
 "DamageEffect": "",
@@ -216,7 +217,6 @@ _global_script_class_icons={
 "PlayerAction": "",
 "PlayerAnimation": "",
 "PlayerBase": "",
-"PlayerNavigation": "",
 "PlayerPossession": "",
 "PlayerWeapon": "",
 "PoisonEffect": "",
@@ -232,7 +232,7 @@ _global_script_class_icons={
 
 config/name="Demonkill"
 run/main_scene="res://scenes/main/title_screen/TitleScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/sprites/branding/icon.png"
 
 [autoload]
 
@@ -248,6 +248,7 @@ ColorGlobal="*res://scenes/singletons/ColorGlobal.tscn"
 
 [display]
 
+window/size/fullscreen=true
 window/vsync/use_vsync=false
 mouse_cursor/custom_image="res://assets/sprites/cursors/Cursor-1-Large.png"
 mouse_cursor/custom_image_hotspot=Vector2( 32, 32 )

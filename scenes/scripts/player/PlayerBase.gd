@@ -1,4 +1,4 @@
-extends CharacterBase
+extends CharacterNavigation
 
 class_name PlayerBase
 
@@ -25,13 +25,11 @@ func _ready() -> void:
 	GameState.player = self
 	FeedbackHandler.current_camera = camera2D
 
+func get_health() -> int:
+	return PlayerState.health
+
 func flash() -> void:
 	pass
-#	animatedSprite.material.set_shader_param("flash_modifier", 0.45)
-#	flashTimer.start(0.1)
-
-func stun(stun_duration: float) -> void:
-	.stun(stun_duration)
 
 func flash_timeout() -> void:
 	animatedSprite.material.set_shader_param("flash_modifier", 0)

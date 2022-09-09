@@ -20,4 +20,4 @@ func _physics_process(_delta) -> void:
 	$ManaBar.value = PlayerState.mana
 	
 	if is_instance_valid(GameState.player):
-		$DashCooldown.text = str(stepify(GameState.player.dash_cooldown_timer.get_time_left(), 0.1))
+		$DashCooldown.text = str(stepify(GameState.player.possession_dash_cooldown_timer.get_time_left(), 0.1))

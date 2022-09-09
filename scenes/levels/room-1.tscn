@@ -3,7 +3,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://assets/tilesets/PurpleDungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/character/npc/freeze_imp/FreezeImp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/pickups/possession_cooldown_reset/PossessionCooldownResetPickup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/character/npc/fireball_imp/FireballImp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/levels/room-1.gd" type="Script" id=6]
 [ext_resource path="res://scenes/pickups/HealthPickup.tscn" type="PackedScene" id=10]
@@ -33,9 +33,6 @@ tile_data = PoolIntArray( -5570533, 1, 0, -5570532, 1, 0, -5570531, 1, 0, -55705
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Encounter1" type="Node2D" parent="YSort"]
-
-[node name="SwipeImp" parent="YSort/Encounter1" instance=ExtResource( 3 )]
-position = Vector2( 165, 2 )
 
 [node name="SwipeImp2" parent="YSort/Encounter1" instance=ExtResource( 3 )]
 position = Vector2( 235, 2 )
@@ -109,14 +106,8 @@ position = Vector2( 1256, -742 )
 [node name="FireballImp2" parent="YSort/Encounter1" instance=ExtResource( 5 )]
 position = Vector2( 728, 14 )
 
-[node name="FreezeImp" parent="YSort/Encounter1" instance=ExtResource( 4 )]
-position = Vector2( 1072, -800 )
-
-[node name="FreezeImp2" parent="YSort/Encounter1" instance=ExtResource( 4 )]
-position = Vector2( 1008, -488 )
-
-[node name="FreezeImp3" parent="YSort/Encounter1" instance=ExtResource( 4 )]
-position = Vector2( 603, -863 )
+[node name="PossessionCooldownPickup" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 104, 5 )
 
 [node name="HealthPickups" type="Node2D" parent="YSort"]
 

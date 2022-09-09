@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ability/ability_melee/AbilityMelee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ability/abilities/Swipe.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/shaders/dot/freeze/Freeze.tres" type="Material" id=3]
 [ext_resource path="res://scenes/effect/dot_effects/freeze_effect/FreezeEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/vfx/collision_effects/white_impact/WhiteImpact.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=7]
 
 [node name="FrostAxeAbility" instance=ExtResource( 1 )]
 damage_frames = [ 0, 1 ]
+on_create_effect = ExtResource( 5 )
+collision_vfx = ExtResource( 5 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 material = ExtResource( 3 )
@@ -30,4 +33,6 @@ damage = 8
 [node name="ManaRegenEffect" parent="Effects" index="1" instance=ExtResource( 7 )]
 
 [node name="FreezeEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
-effect_duration = 0.8
+scale = Vector2( 1, 0.993081 )
+ignore_when_stunned = null
+effect_duration = 2.5

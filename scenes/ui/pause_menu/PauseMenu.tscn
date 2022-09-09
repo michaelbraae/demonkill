@@ -101,14 +101,14 @@ Possession Dash = Release Q
 Regain mana by attacking
 
 Press 0 to toggle fullscreen
-
-Press 9 to use Debug Tool
 ---------------------------------------------------
+
 Dungeon Generation Commands:
 
 Enter the dungon generator
 
-Once all green room boxes have stopped moving:
+Press Z to shuffle rooms
+
 press X to build the paths and walls
 
 Press C to enter the dungeon at the Start room"

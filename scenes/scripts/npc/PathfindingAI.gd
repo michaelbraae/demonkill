@@ -8,8 +8,6 @@ class_name PathfindingAI
 onready var detectionArea = $DetectionArea
 onready var collisionRayCast = $RayCast2D
 
-#onready var navigation_mesh = get_parent()
-
 # used to stop the animatedSprite flipping when Y axis is aligned
 # Without this the sprite will flicker back and forth
 const TARGET_POSITION_OFFSET = 2
@@ -32,7 +30,6 @@ var interest = []
 var danger = []
 
 var chosen_direction = Vector2.ZERO
-var velocity = Vector2.ZERO
 
 # dodge logic
 var dodge_timer
@@ -42,9 +39,6 @@ var dodge_vector
 
 #dodge variable logic
 var dodge_cooldown = 2
-
-# default move_speed for all PathFindingAI
-export var move_speed: float = 120.0
 
 # The AI's current target
 var target_actor
@@ -179,8 +173,8 @@ func chooseDirection():
 
 func getMoveSpeed() -> float:
 	if in_dodge:
-		return move_speed * 2
-	return move_speed
+		return speed * 2
+	return speed
 
 func hasLineOfSight() -> bool:
 	if !is_instance_valid(target_actor):

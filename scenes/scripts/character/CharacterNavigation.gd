@@ -1,11 +1,8 @@
-extends PlayerBase
+extends CharacterBase
 
-class_name PlayerNavigation
+class_name CharacterNavigation
 
 var velocity = Vector2()
-
-export var SPEED: int = 100 # 100
-var speed_actual
 
 var aim_vector = Vector2()
 
@@ -73,18 +70,20 @@ func continueDash() -> void:
 			dash_vector = getVectorFromFacingDirection()
 		velocity = dash_vector * 450
 
-func setVelocity() -> void:
+func set_player_input_velocity() -> void:
 	velocity = Vector2()
 	if state == DASH and not knocked_back:
 		velocity = InputHandler.getVelocity(130)
 	elif ATTACK_STATES.has(state):
 		if !attack_movement_vector:
 			attack_movement_vector = InputHandler.getAttackDirection()
+			# warning-ignore:narrowing_conversion
+			set_facing_direction(round(rad2deg(InputHandler.getAttackDirection().angle())))
 		velocity = attack_movement_vector * 10
 	elif knocked_back:
 		velocity = getKnockBackProcessVector()
 	else:
-		velocity = InputHandler.getVelocity(SPEED)
+		velocity = InputHandler.getVelocity(speed)
 		if velocity:
 			state = NAVIGATING
 		else:
@@ -114,3 +113,17 @@ func getAttackDirection() -> Vector2:
 	if velocity:
 		return velocity
 	return getVectorFromFacingDirection()
+
+func set_facing_direction(angle_of_focus : int) -> void:
+	if angle_of_focus < -30 and angle_of_focus > -150:
+		animatedSprite.flip_h = false
+		facing_direction = 'up'
+	elif angle_of_focus >= -30 and angle_of_focus < 30:
+		animatedSprite.flip_h = false
+		facing_direction = 'right'
+	elif angle_of_focus >= 30 and angle_of_focus <= 150:
+		animatedSprite.flip_h = false
+		facing_direction = 'down'
+	elif angle_of_focus > 150 or angle_of_focus < -150:
+		animatedSprite.flip_h = true
+		facing_direction = 'right'

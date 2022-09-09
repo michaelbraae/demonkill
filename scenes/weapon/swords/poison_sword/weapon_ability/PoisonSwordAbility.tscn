@@ -36,7 +36,7 @@ tick_rate = 0.5
 damage = 1
 
 [node name="DamageEffect" parent="Effects" index="1" instance=ExtResource( 3 )]
-damage = 8
+damage = 15
 
 [node name="KnockbackEffect" parent="Effects" index="2" instance=ExtResource( 4 )]
 

@@ -31,6 +31,26 @@ var possession_duration_timer: Timer
 # rng for deciding to drophealth
 var rng = RandomNumberGenerator.new()
 
+export(PackedScene) var weapon_selection
+var weapon: Weapon
+
+func _ready():
+	health = max_health
+	
+	weapon = weapon_selection.instance()
+	add_child(weapon)
+	
+	stun_duration_timer = Timer.new()
+	add_child(stun_duration_timer)
+	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
+	
+	possession_duration_timer = Timer.new()
+	add_child(possession_duration_timer)
+	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
+
+func get_health() -> int:
+	return health
+
 func addHealth(health_add: int) -> void:
 	if health_add + health > max_health:
 		health = max_health
@@ -51,23 +71,6 @@ func setHealth() -> void:
 			$EnemyUI/PossessionCooldownBar.max_value = possession_duration
 			$EnemyUI/PossessionCooldownBar.value = possession_duration_timer.get_time_left()
 
-export(PackedScene) var weapon_selection
-var weapon: Weapon
-
-func _ready():
-	health = max_health
-	
-	weapon = weapon_selection.instance()
-	add_child(weapon)
-	
-	stun_duration_timer = Timer.new()
-	add_child(stun_duration_timer)
-	stun_duration_timer.connect('timeout', self, 'stun_duration_timeout')
-	
-	possession_duration_timer = Timer.new()
-	add_child(possession_duration_timer)
-	possession_duration_timer.connect('timeout', self, 'possession_duration_timeout')
-
 func stun_duration_timeout() -> void:
 	stun_duration_timer.stop()
 
@@ -83,11 +86,14 @@ func dropAxe() -> void:
 	get_tree().get_root().add_child(GameState.axe_instance)
 	GameState.axe_instance.position = get_global_position()
 
+signal damaged(damage_amount)
+
 func damage(damage : int) -> void:
 	state = IDLE
 	attack_landed = false
 	attack_started = false
 	health -= damage
+	emit_signal("damaged", health)
 	if GameState.npc_with_axe == self and not isPossessed():
 		dropAxe()
 	if isPossessed() and health <= 0:
@@ -117,8 +123,12 @@ func getAnimation() -> String:
 	if state == POSSESSION_RECOVERY:
 		return "stunned"
 	if isPossessed():
+		if state == ATTACK_WARMUP:
+			return 'pre_attack'
 		if state == ATTACK_CONTACT:
-			return 'attack_loop'
+			return 'attack'
+		if state == ATTACK_RECOVERY:
+			return 'post_attack'
 		return getNavigationAnimation()
 	if state == NAVIGATING:
 		return getNavigationAnimation()
@@ -179,7 +189,8 @@ func basic_attack() -> void:
 
 func attack() -> void:
 	if weapon.attack_available:
-		state = ATTACK_CONTACT
+		attack_movement_vector = Vector2()
+		state = ATTACK_WARMUP
 		weapon.attack(getAttackDirection(), self)
 
 var outline_shader
@@ -210,13 +221,14 @@ func possessedDecisionLogic() -> void:
 		outline_shader.scale = animatedSprite.scale
 	if state == POSSESSION_TARGETING:
 		pass
-	elif knocked_back:
+	elif knocked_back:		
+		state = KNOCKED_BACK
 		velocity = getKnockBackProcessVector()
-	elif state == ATTACK_CONTACT:
-		pass
+	elif state == DASH:
+		continueDash()
 	else:
-		velocity = InputHandler.getVelocity(move_speed)
-		velocity = move_and_slide(velocity)
+		set_player_input_velocity()
+	velocity = move_and_slide(velocity)
 
 var has_outline: bool = false
 
