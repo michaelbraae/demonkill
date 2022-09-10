@@ -73,9 +73,7 @@ margin_bottom = 415.0
 
 [node name="WeaponCardNew" parent="CenterContainer/ColorRect/HBoxContainer/NewWeaponSection" instance=ExtResource( 1 )]
 unique_name_in_owner = true
-margin_left = -5.0
 margin_top = 108.0
-margin_right = 245.0
 margin_bottom = 308.0
 rect_min_size = Vector2( 250, 200 )
 rect_scale = Vector2( 1, 1 )
@@ -83,8 +81,12 @@ rect_pivot_offset = Vector2( 125, 100 )
 
 [node name="TopPosition" type="Position2D" parent="CenterContainer/ColorRect/HBoxContainer/NewWeaponSection"]
 unique_name_in_owner = true
-position = Vector2( -7, 0 )
+position = Vector2( 1, 0 )
+
+[node name="MiddlePosition" type="Position2D" parent="CenterContainer/ColorRect/HBoxContainer/NewWeaponSection"]
+unique_name_in_owner = true
+position = Vector2( 1, 108 )
 
 [node name="BottomPosition" type="Position2D" parent="CenterContainer/ColorRect/HBoxContainer/NewWeaponSection"]
 unique_name_in_owner = true
-position = Vector2( -5, 215 )
+position = Vector2( 1, 215 )
