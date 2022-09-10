@@ -7,13 +7,15 @@ onready var card_slot_new = get_node("%WeaponCardNew")
 # UI positions
 onready var top_row = get_node("%TopPosition")
 onready var bottom_row = get_node("%BottomPosition")
-# this interface only appears when the player attempts to pick up a weapon with all weapons slots already full
 
 var weapon_to_pickup: PackedScene
 
 var selected_slot: int = 0
 
 func initialise_weapon_pickups() -> void:
+	card_slot_new.clear_params()
+	card_slot_1.clear_params()
+	card_slot_2.clear_params()
 	card_slot_1.weapon = PlayerState.weapon_slot_1.instance()
 	card_slot_2.weapon = PlayerState.weapon_slot_2.instance()
 	card_slot_new.set_params()

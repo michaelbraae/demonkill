@@ -43,6 +43,13 @@ func set_params() -> void:
 		set_effect_labels()
 		# weapon.queue_free()
 
+func clear_params() -> void:
+	get_node("%Rarity").set_text("")
+	get_node("%DPSLabel").set_text("")
+	get_node("%Name").set_text("")
+	for child in effect_list.get_children():
+		child.queue_free()
+
 func set_rarity(rarity: String) -> void:
 	get_node("%Rarity").set_text(rarity)
 	get_node("%Rarity").set("custom_colors/font_color", rarity_colors[rarity])

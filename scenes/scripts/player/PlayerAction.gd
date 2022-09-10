@@ -32,11 +32,9 @@ func equip_weapons() -> void:
 		PlayerState.weapon_slot_1 = weapon_default
 		weapon_slot_1_instance = weapon_default.instance()
 	add_child(weapon_slot_1_instance)
-	# if PlayerState.weapon_slot_2:
-	# 	weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
-	# else:
-	# 	weapon_slot_2_instance = weapon_default.instance()
-	# add_child(weapon_slot_2_instance)
+	if PlayerState.weapon_slot_2:
+		weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
+		add_child(weapon_slot_2_instance)
 
 func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 	if slot == 1:
@@ -126,7 +124,8 @@ func handlePlayerAction() -> void:
 	elif state == POSSESSION_DASH:
 		continue_possession_dash()
 	elif state == DASH_RECOVERY:
-		velocity = dash_vector * 50
+		if dash_vector:
+			velocity = dash_vector * 50
 	elif state == AXE_INTERACTION:
 		pass
 	else:

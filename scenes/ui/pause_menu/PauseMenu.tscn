@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/ui/pause_menu/PauseMenu.gd" type="Script" id=1]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform float lod: hint_range(0.0, 5) = 0.0;
@@ -14,7 +14,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 3 )
 shader_param/lod = 1.0
 
 [node name="PauseMenu" type="Control"]
