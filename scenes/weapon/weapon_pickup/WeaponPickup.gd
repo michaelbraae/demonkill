@@ -57,5 +57,5 @@ func _process(delta: float) -> void:
 	if is_instance_valid(GameState.player) and get_global_position().distance_to(GameState.player.position) < 30:
 		$WeaponCard.visible = true
 	else:
-		weapon_pickup_ui.visible = false
+		# weapon_pickup_ui.visible = false
 		$WeaponCard.visible = false

@@ -109,6 +109,24 @@ position = Vector2( 728, 14 )
 [node name="PossessionCooldownPickup" parent="YSort/Encounter1" instance=ExtResource( 4 )]
 position = Vector2( 104, 5 )
 
+[node name="PossessionCooldownPickup3" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 636, 5 )
+
+[node name="PossessionCooldownPickup4" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 928, -480 )
+
+[node name="PossessionCooldownPickup5" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 1128, -616 )
+
+[node name="PossessionCooldownPickup6" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 1216, -744 )
+
+[node name="PossessionCooldownPickup7" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 1024, -744 )
+
+[node name="PossessionCooldownPickup8" parent="YSort/Encounter1" instance=ExtResource( 4 )]
+position = Vector2( 1126, -824 )
+
 [node name="HealthPickups" type="Node2D" parent="YSort"]
 
 [node name="HealthPickup" parent="YSort/HealthPickups" instance=ExtResource( 10 )]
