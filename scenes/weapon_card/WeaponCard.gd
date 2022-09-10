@@ -41,7 +41,7 @@ func set_params() -> void:
 		set_rarity(weapon.rarity)
 		set_colors(weapon.affinity)
 		set_effect_labels()
-		weapon.queue_free()
+		# weapon.queue_free()
 
 func set_rarity(rarity: String) -> void:
 	get_node("%Rarity").set_text(rarity)

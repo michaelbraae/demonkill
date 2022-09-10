@@ -12,6 +12,8 @@ onready var default_pos = icon.get_position()
 
 export(PackedScene) var weapon
 
+onready var weapon_pickup_ui = UIManager.get_node("WeaponPickupUI")
+
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
@@ -27,10 +29,14 @@ func interacted() -> void:
 		var slot_1_valid: bool = is_instance_valid(GameState.player.weapon_slot_1_instance)
 		var slot_2_valid: bool = is_instance_valid(GameState.player.weapon_slot_2_instance)
 		if slot_1_valid and slot_2_valid:
-			print("open that juicy weapon UI")
-			UIManager.get_node("WeaponPickupUI").cards_slot_new.weapon = weapon.instance()
-			UIManager.get_node("WeaponPickupUI").initialise_weapon_pickups()
-			UIManager.get_node("WeaponPickupUI").visible = true
+			if !weapon_pickup_ui.visible:
+				weapon_pickup_ui.card_slot_new.weapon = weapon.instance()
+				weapon_pickup_ui.weapon_to_pickup = weapon
+				weapon_pickup_ui.initialise_weapon_pickups()
+				weapon_pickup_ui.visible = true
+			else:
+				weapon_pickup_ui.swap_selected_weapon()
+				queue_free()
 		else:
 			if slot_1_valid:
 				GameState.player.change_weapon_in_slot(weapon, 2)
@@ -44,5 +50,5 @@ func _process(delta: float) -> void:
 	if get_global_position().distance_to(GameState.player.position) < 30:
 		$WeaponCard.visible = true
 	else:
-		UIManager.get_node("WeaponPickupUI").visible = false
+		weapon_pickup_ui.visible = false
 		$WeaponCard.visible = false
