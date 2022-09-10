@@ -58,19 +58,25 @@ func sprint_timeout() -> void:
 	sprint = true
 
 func basic_attack() -> void:
-	if weapon_slot_1_instance.attack_available:
-		active_weapon_archetype = weapon_slot_1_instance
+	use_weapon_in_slot(weapon_slot_1_instance, INPUT_QUEUE_OPTIONS.SLOT_1_ATTACK)
+
+func attack_slot_2() -> void:
+	use_weapon_in_slot(weapon_slot_2_instance, INPUT_QUEUE_OPTIONS.SLOT_2_ATTACK)
+
+func use_weapon_in_slot(weapon_instance, slot: int) -> void:
+	if is_instance_valid(weapon_instance) and weapon_instance.attack_available:
+		active_weapon_archetype = weapon_instance
 		attack_movement_vector = Vector2()
 		attack_order = !attack_order
 		state = ATTACK_WARMUP
-		weapon_slot_1_instance.attack(getAttackDirection(), self)
-		attack_queued = false
-	elif !attack_queued:
-		queue_attack(1)
+		weapon_instance.attack(getAttackDirection(), self)
+		input_queue = 0
+	elif input_queue == slot:
+		queue_attack(slot)
 
-func queue_attack(_slot: int) -> void:
+func queue_attack(slot: int) -> void:
 	if [ATTACK_CONTACT, ATTACK_RECOVERY].has(state):
-		attack_queued = true
+		input_queue = slot
 
 func use_ability() -> void:
 	if has_axe:

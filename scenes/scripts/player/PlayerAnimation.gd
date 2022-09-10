@@ -13,7 +13,7 @@ var sprint_ghost_cooldown_timer: Timer
 
 var sprint: bool = false
 
-var attack_queued: bool = false
+var input_queue: int = 0
 
 var active_weapon_archetype: Weapon
 
@@ -127,8 +127,9 @@ func _on_AnimatedSprite_animation_finished():
 		state = ATTACK_RECOVERY
 		animatedSprite.play(getAttackAnimation())
 	elif state == ATTACK_RECOVERY:
-		if attack_queued:
-			basic_attack()
+		if input_queue > 0:
+			input_queued(input_queue)
+			# basic_attack()
 		else:
 			state = IDLE
 			

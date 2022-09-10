@@ -57,6 +57,13 @@ func getStateString() -> String:
 			state_string = 'POSSESSION_RECOVERY'
 	return state_string
 
+
+enum INPUT_QUEUE_OPTIONS {
+	SLOT_1_ATTACK,
+	SLOT_2_ATTACK,
+	MOVEMENT_ABILITY
+}
+
 # --- KNOCKBACK LOGIC --- #
 var knocked_back = false
 var knockback_vector
@@ -68,8 +75,20 @@ var decay
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 
+func input_queued(slot: int) -> void:
+	match slot:
+		INPUT_QUEUE_OPTIONS.SLOT_1_ATTACK:
+			basic_attack()
+		INPUT_QUEUE_OPTIONS.SLOT_2_ATTACK:
+			attack_slot_2()
+		INPUT_QUEUE_OPTIONS.MOVEMENT_ABILITY:
+			movement_ability()
+
 # these functions are called by signals emitted by InputEmitter
 func basic_attack() -> void:
+	pass
+
+func attack_slot_2() -> void:
 	pass
 
 func movement_ability() -> void:
