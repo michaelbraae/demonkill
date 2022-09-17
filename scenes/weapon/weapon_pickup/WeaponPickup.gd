@@ -23,6 +23,17 @@ func _ready() -> void:
 	$WeaponCard.set_params()
 	$Sprite.set_texture(weapon_instance.weapon_icon)
 	weapon_instance.queue_free()
+	$Entered.connect("area_entered", self, "pickup_area_entered")
+	$Exited.connect("area_exited", self, "pickup_area_exited")
+
+func pickup_area_exited(area) -> void:
+	if area.get_parent() == GameState.player:
+		$WeaponCard.visible = false
+		UIManager.get_node("WeaponPickupUI").visible = false
+
+func pickup_area_entered(area) -> void:
+	if area.get_parent() == GameState.player:
+		$WeaponCard.visible = true
 
 func interacted() -> void:
 	if $WeaponCard.visible and !get_tree().paused:
@@ -54,8 +65,3 @@ func interacted() -> void:
 func _process(delta: float) -> void:
 	time += delta * frequency
 	icon.set_position(default_pos + Vector2(0, sin(time) * amplitude))
-	if is_instance_valid(GameState.player) and get_global_position().distance_to(GameState.player.position) < 30:
-		$WeaponCard.visible = true
-	else:
-		# weapon_pickup_ui.visible = false
-		$WeaponCard.visible = false
