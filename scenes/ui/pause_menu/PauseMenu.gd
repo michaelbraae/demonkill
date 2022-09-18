@@ -42,7 +42,6 @@ func add_weapon_icon_to_ui_slot(weapon_icon, slot: int) -> void:
 		2: get_node("%Slot2Icon").texture = weapon_icon
 
 func clear_icon_from_slot(slot: int) -> void:
-	print("PauseMenu: clear_icon_from_slot(): ", slot)
 	match slot:
 		1: get_node("%Slot1Icon").set_texture(null)
 		2: get_node("%Slot2Icon").set_texture(null)

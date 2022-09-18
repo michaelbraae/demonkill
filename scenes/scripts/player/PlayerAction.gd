@@ -18,7 +18,11 @@ var weapon_slot_2_instance
 var sprint_timer: Timer
 
 func _ready() -> void:
-	equip_weapons(true)
+	# for now, only equip the default weapon if slot 1 is empty
+	var equip_default = false
+	if !PlayerState.weapon_slot_1:
+		equip_default = true
+	equip_weapons(equip_default)
 	
 	sprint_timer = Timer.new()
 	sprint_timer.connect("timeout", self, "sprint_timeout")
