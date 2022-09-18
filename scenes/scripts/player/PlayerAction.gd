@@ -31,10 +31,12 @@ func equip_weapons() -> void:
 	else:
 		PlayerState.weapon_slot_1 = weapon_default
 		weapon_slot_1_instance = weapon_default.instance()
+	UIManager.get_node("PlayerUI").add_weapon_icon_to_ui_slot(weapon_slot_1_instance.weapon_icon, 1)
 	add_child(weapon_slot_1_instance)
 	if PlayerState.weapon_slot_2:
 		weapon_slot_2_instance = PlayerState.weapon_slot_2.instance()
 		add_child(weapon_slot_2_instance)
+		UIManager.get_node("PlayerUI").add_weapon_icon_to_ui_slot(weapon_slot_2_instance.weapon_icon, 2)
 
 func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 	if slot == 1:
