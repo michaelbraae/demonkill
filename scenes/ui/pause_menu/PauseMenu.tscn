@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ui/pause_menu/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/ui/weapon_bar/background.png" type="Texture" id=2]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -23,17 +24,11 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -112,6 +107,32 @@ Press Z to shuffle rooms
 press X to build the paths and walls
 
 Press C to enter the dungeon at the Start room"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="WeaponSwap" type="Control" parent="."]
+margin_left = 748.0
+margin_top = 232.0
+margin_right = 788.0
+margin_bottom = 272.0
+
+[node name="Slot1" type="Sprite" parent="WeaponSwap"]
+position = Vector2( -59, 18 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Slot1Icon" type="Sprite" parent="WeaponSwap/Slot1"]
+unique_name_in_owner = true
+
+[node name="Slot2" type="Sprite" parent="WeaponSwap"]
+position = Vector2( 153, 17 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Slot2Icon" type="Sprite" parent="WeaponSwap/Slot2"]
+unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="WeaponSwap"]
+margin_left = -3.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 24.0
+text = "Press E to Swap"

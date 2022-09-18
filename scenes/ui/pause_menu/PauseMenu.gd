@@ -11,6 +11,9 @@ func _ready() -> void:
 	MainMenuButton.connect("pressed", self, "on_main_menu_pressed")
 	QuitButton.connect("pressed", self, "on_quit_pressed")
 
+func on_interacted_pressed() -> void:
+	pass
+
 func pause() -> void:
 	self.is_paused = true
 
@@ -32,3 +35,24 @@ func on_main_menu_pressed() -> void:
 
 func on_quit_pressed() -> void:
 	get_tree().quit()
+
+func add_weapon_icon_to_ui_slot(weapon_icon, slot: int) -> void:
+	match slot:
+		1: get_node("%Slot1Icon").texture = weapon_icon
+		2: get_node("%Slot2Icon").texture = weapon_icon
+
+func clear_icon_from_slot(slot: int) -> void:
+	print("PauseMenu: clear_icon_from_slot(): ", slot)
+	match slot:
+		1: get_node("%Slot1Icon").set_texture(null)
+		2: get_node("%Slot2Icon").set_texture(null)
+
+func connect_to_signals() -> void:
+	InputEmitter.connect("interacted", self, "interacted")
+
+func disconnect_from_signals() -> void:
+	if InputEmitter.is_connected("interacted", self, "interacted"):
+		InputEmitter.disconnect("interacted", self, "interacted")
+
+func interacted() -> void:
+	GameState.player.swap_weapons_between_slots()

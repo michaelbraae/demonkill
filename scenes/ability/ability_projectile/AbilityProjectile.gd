@@ -2,6 +2,8 @@ extends Ability
 
 class_name AbilityProjectile
 
+# warning-ignore-all:return_value_discarded
+
 func _ready() -> void:
 	$Area2D.connect("area_entered", self, "projectile_area_entered")
 

@@ -50,7 +50,7 @@ func slowdown_timeout() -> void:
 
 # functions here should be invoked by other scripts causing game juicyness
 
-# frame freeze for a split second to emphasis hits
+# frame freeze for a split second to emphasis hits - hit-stop
 
 # canvas layers causing black and white filters
 
