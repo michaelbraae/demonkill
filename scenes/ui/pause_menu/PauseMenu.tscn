@@ -130,7 +130,7 @@ texture = ExtResource( 2 )
 [node name="Slot2Icon" type="Sprite" parent="WeaponSwap/Slot2"]
 unique_name_in_owner = true
 
-[node name="Label" type="Label" parent="WeaponSwap"]
+[node name="SwapLabel" type="Label" parent="WeaponSwap"]
 margin_left = -3.0
 margin_top = 10.0
 margin_right = 96.0

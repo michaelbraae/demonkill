@@ -84,6 +84,14 @@ texture = ExtResource( 2 )
 [node name="Slot1Icon" type="Sprite" parent="HBoxContainer/Slot1"]
 unique_name_in_owner = true
 
+[node name="Label" type="Label" parent="HBoxContainer/Slot1"]
+margin_left = -6.5
+margin_top = -24.0
+margin_right = 21.5
+margin_bottom = -10.0
+rect_scale = Vector2( 0.478363, 0.478363 )
+text = "LMB"
+
 [node name="Slot2" type="Sprite" parent="HBoxContainer"]
 position = Vector2( 153, 17 )
 scale = Vector2( 2, 2 )
@@ -91,3 +99,11 @@ texture = ExtResource( 2 )
 
 [node name="Slot2Icon" type="Sprite" parent="HBoxContainer/Slot2"]
 unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="HBoxContainer/Slot2"]
+margin_left = -7.0
+margin_top = -24.0
+margin_right = 22.0
+margin_bottom = -10.0
+rect_scale = Vector2( 0.478363, 0.478363 )
+text = "RMB"

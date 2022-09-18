@@ -1,5 +1,7 @@
 extends Control
 
+# warning-ignore-all:return_value_discarded
+
 onready var ResumeButton = $CenterContainer/VBoxContainer/ResumeButton
 onready var QuitButton = $CenterContainer/VBoxContainer/QuitButton
 onready var MainMenuButton = $CenterContainer/VBoxContainer/MainMenuButton
@@ -54,4 +56,5 @@ func disconnect_from_signals() -> void:
 		InputEmitter.disconnect("interacted", self, "interacted")
 
 func interacted() -> void:
-	GameState.player.swap_weapons_between_slots()
+	if is_instance_valid(GameState.player):
+		GameState.player.swap_weapons_between_slots()

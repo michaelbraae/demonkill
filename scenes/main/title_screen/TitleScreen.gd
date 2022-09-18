@@ -3,6 +3,8 @@ extends Control
 # warning-ignore-all:return_value_discarded
 
 func _ready() -> void:
+	PlayerState.weapon_slot_1 = null
+	PlayerState.weapon_slot_2 = null
 	$CenterContainer/VBoxContainer/PlayButton.connect("pressed", self, "play_button_pressed")
 	$CenterContainer/VBoxContainer/DungeonButton.connect("pressed", self, "on_dungeon_button_pressed")
 	$CenterContainer/VBoxContainer/QuitButton.connect("pressed", self, "on_quit_button_pressed")

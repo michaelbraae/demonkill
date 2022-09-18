@@ -19,6 +19,8 @@ func projectile_area_entered(area) -> void:
 		set_physics_process(false)
 		if area.get_parent().find_node("EffectHandler"):
 			if area.get_parent() is CharacterBase and on_hit_prevent_continue(area.get_parent()):
+				collisionEffect(get_global_position())
+				queue_free()
 				return
 			for effect in get_node("Effects").get_children():
 				damaged_characters.push_front(area.get_parent())
