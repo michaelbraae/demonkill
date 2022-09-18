@@ -43,6 +43,7 @@ func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 			weapon_slot_1_instance.queue_free()
 		PlayerState.weapon_slot_1 = weapon
 		weapon_slot_1_instance = weapon.instance()
+		UIManager.get_node("PlayerUI").add_weapon_icon_to_ui_slot(weapon_slot_1_instance.weapon_icon, 1)
 		active_weapon_archetype = weapon_slot_1_instance
 		add_child(weapon_slot_1_instance)
 	elif slot == 2:
@@ -51,6 +52,7 @@ func change_weapon_in_slot(weapon: PackedScene, slot: int) -> void:
 			weapon_slot_2_instance.queue_free()
 		PlayerState.weapon_slot_2 = weapon
 		weapon_slot_2_instance = weapon.instance()
+		UIManager.get_node("PlayerUI").add_weapon_icon_to_ui_slot(weapon_slot_2_instance.weapon_icon, 2)
 		active_weapon_archetype = weapon_slot_2_instance
 		add_child(weapon_slot_2_instance)
 

@@ -21,3 +21,10 @@ func _physics_process(_delta) -> void:
 	
 	if is_instance_valid(GameState.player):
 		$HBoxContainer/DashCooldown.text = str(stepify(GameState.player.possession_dash_cooldown_timer.get_time_left(), 0.1))
+
+func add_weapon_icon_to_ui_slot(weapon_icon, slot: int) -> void:
+	match slot:
+		1:
+			get_node("%Slot1Icon").texture = weapon_icon
+		2:
+			get_node("%Slot2Icon").texture = weapon_icon

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/ui/player_ui/PlayerUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/ui/weapon_bar/background.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/ui/health_mana/mana.png" type="Texture" id=3]
 [ext_resource path="res://scenes/ui/pause_menu/PauseMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/ui/health_mana/background.png" type="Texture" id=5]
@@ -74,3 +75,19 @@ margin_right = 42.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 1 )
 text = "0.2"
+
+[node name="Slot1" type="Sprite" parent="HBoxContainer"]
+position = Vector2( 80, 17 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Slot1Icon" type="Sprite" parent="HBoxContainer/Slot1"]
+unique_name_in_owner = true
+
+[node name="Slot2" type="Sprite" parent="HBoxContainer"]
+position = Vector2( 153, 17 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Slot2Icon" type="Sprite" parent="HBoxContainer/Slot2"]
+unique_name_in_owner = true
