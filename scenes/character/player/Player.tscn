@@ -1037,9 +1037,7 @@ texture = ExtResource( 1 )
 material = SubResource( 373 )
 frames = SubResource( 374 )
 animation = "run_down_axe"
-frame = 8
 speed_scale = 3.5
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 visible = false

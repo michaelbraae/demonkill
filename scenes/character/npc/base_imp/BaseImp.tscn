@@ -33,7 +33,7 @@ texture = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 light_mask = 2
-position = Vector2( -2.38419e-07, 0 )
+position = Vector2( 2.84217e-14, 2.22045e-16 )
 rotation = 0.00808018
 frames = ExtResource( 3 )
 animation = "idle"

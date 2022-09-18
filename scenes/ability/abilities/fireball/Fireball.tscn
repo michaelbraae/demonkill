@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/ability/ability_projectile/AbilityProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/vfx/collision_effects/white_impact/WhiteImpact.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/abilities/projectiles/fireball.png" type="Texture" id=3]
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=5]
@@ -31,6 +32,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 3.5, 3 )
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 4, 3 )
 
@@ -39,11 +43,16 @@ collision_layer = 0
 continuous = true
 speed = 3
 on_create_effect = ExtResource( 6 )
+collision_vfx = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 5 )
 speed_scale = 2.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 7 )
 
 [node name="DamageEffect" parent="Effects" index="0" instance=ExtResource( 4 )]
 damage = 1

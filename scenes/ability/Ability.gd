@@ -42,6 +42,8 @@ signal ability_landed(ability_type)
 func _ready() -> void:
 	animatedSprite.connect("animation_finished", self, "animation_finished")
 
+# check to continue processing by determining if the attack has lethal damage
+# dont continue with the other effects if has lethal
 func on_hit_prevent_continue(hit_target: CharacterBase) -> bool:
 	# only perform collision feedback if the entity is already in PRE_DEATH logic
 	if hit_target.state == hit_target.PRE_DEATH:
