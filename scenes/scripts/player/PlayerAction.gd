@@ -105,8 +105,18 @@ func basic_attack() -> void:
 func attack_slot_2() -> void:
 	use_weapon_in_slot(weapon_slot_2_instance, INPUT_QUEUE_OPTIONS.SLOT_2_ATTACK)
 
+func attack_availble() -> bool:
+	var attack_available = true
+	if is_instance_valid(weapon_slot_1_instance):
+		attack_available = weapon_slot_1_instance.attack_available
+	if is_instance_valid(weapon_slot_2_instance):
+		attack_available = weapon_slot_2_instance.attack_available
+	if is_instance_valid(weapon_slot_1_instance) and is_instance_valid(weapon_slot_2_instance):
+		attack_available = weapon_slot_2_instance.attack_available and weapon_slot_1_instance.attack_available
+	return attack_available
+
 func use_weapon_in_slot(weapon_instance, slot: int) -> void:
-	if is_instance_valid(weapon_instance) and weapon_instance.attack_available:
+	if is_instance_valid(weapon_instance) and attack_availble():
 		active_weapon_archetype = weapon_instance
 		attack_movement_vector = Vector2()
 		attack_order = !attack_order
