@@ -20,6 +20,7 @@ func is_player(character: KinematicBody2D) -> bool:
 
 func onPossessionExit() -> void:
 	UIManager.get_node("Tsukuyomi").visible = false
+	AudioManager.stop_audio(AudioManager.HEARTBEAT)
 	# give the player back the axe if they possessed the enemy with axe
 	# could be moved to an "possessed" signal that emits when the player or an NPC is possessed
 	GameState.player.has_axe = !is_instance_valid(GameState.npc_with_axe)
@@ -80,6 +81,7 @@ func exitPossession(spawn_position) -> void:
 
 func possessEntity(new_possession) -> void:
 	UIManager.get_node("Tsukuyomi").visible = true
+	AudioManager.play_audio(AudioManager.HEARTBEAT)
 	connectToInputSignals(new_possession)
 	current_possession = new_possession
 	possessedNPC = new_possession

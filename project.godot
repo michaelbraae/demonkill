@@ -245,6 +245,7 @@ InputHandler="*res://scenes/singletons/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://scenes/singletons/InputEmitter.gd"
 UIManager="*res://scenes/ui/ui_manager/UIManager.tscn"
+AudioManager="*res://scenes/singletons/audio/AudioManager.tscn"
 
 [display]
 

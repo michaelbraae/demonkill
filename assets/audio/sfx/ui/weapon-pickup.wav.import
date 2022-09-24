@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/weapon-pickup.wav-3d9ec173952c4d10159b56d9b163d7e4.sample"
+path="res://.import/weapon-pickup.wav-e9a64c1b1c6a02a90879285d644c49cb.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/weapon-pickup.wav"
-dest_files=[ "res://.import/weapon-pickup.wav-3d9ec173952c4d10159b56d9b163d7e4.sample" ]
+source_file="res://assets/audio/sfx/ui/weapon-pickup.wav"
+dest_files=[ "res://.import/weapon-pickup.wav-e9a64c1b1c6a02a90879285d644c49cb.sample" ]
 
 [params]
 

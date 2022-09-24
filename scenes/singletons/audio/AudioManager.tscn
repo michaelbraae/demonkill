@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/audio/UIAudio.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/audio/AtmosphereAudio.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/singletons/audio/AudioManager.gd" type="Script" id=3]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="UIAudio" parent="." instance=ExtResource( 1 )]
+
+[node name="AtmosphereAudio" parent="." instance=ExtResource( 2 )]
