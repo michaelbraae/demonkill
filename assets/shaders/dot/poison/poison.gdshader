@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform sampler2D NOISE_PATTERN;
 
 void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV); // Get current color of pixel
+	vec4 curr_color = texture(TEXTURE, UV); // Get current cwolor of pixel
 	
 	vec2 uv = vec2(UV.x, UV.y + TIME * 0.1);
 	

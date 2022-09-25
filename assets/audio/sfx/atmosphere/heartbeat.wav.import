@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/heartbeat.wav-a795660d75f4b9765ca5654b3585fcbf.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/atmosphere/heartbeat.wav"
+dest_files=[ "res://.import/heartbeat.wav-a795660d75f4b9765ca5654b3585fcbf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

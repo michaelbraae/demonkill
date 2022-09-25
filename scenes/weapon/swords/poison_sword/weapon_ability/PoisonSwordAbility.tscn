@@ -5,9 +5,9 @@
 [ext_resource path="res://scenes/effect/damage_effect/DamageEffect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/effect/knockback_effect/KnockbackEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effect/dot_effects/poison_effect/PoisonEffect.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/shaders/dot/poison/Poison.tres" type="Material" id=6]
 [ext_resource path="res://scenes/effect/mana_regen_effect/ManaRegenEffect.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/vfx/collision_effects/white_impact/WhiteImpact.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/shaders/dot/poison/poison.tres" type="Material" id=9]
 
 [node name="PoisonSwordAbility" instance=ExtResource( 2 )]
 damage_frames = [ 0, 1 ]
@@ -15,7 +15,7 @@ collision_vfx = ExtResource( 8 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 self_modulate = Color( 0.752941, 0.968627, 0.572549, 1 )
-material = ExtResource( 6 )
+material = ExtResource( 9 )
 rotation = 1.5708
 scale = Vector2( 0.722811, 0.722811 )
 frames = ExtResource( 1 )

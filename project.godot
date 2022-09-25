@@ -55,11 +55,11 @@ _global_script_classes=[ {
 "path": "res://scenes/scripts/npc/CasterAI.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "CharacterBase",
+"class": "Character",
 "language": "GDScript",
-"path": "res://scenes/scripts/character/CharacterBase.gd"
+"path": "res://scenes/scripts/character/Character.gd"
 }, {
-"base": "CharacterBase",
+"base": "Character",
 "class": "CharacterNavigation",
 "language": "GDScript",
 "path": "res://scenes/scripts/character/CharacterNavigation.gd"
@@ -93,6 +93,11 @@ _global_script_classes=[ {
 "class": "EffectHandler",
 "language": "GDScript",
 "path": "res://scenes/effect/effect_handler/EffectHandler.gd"
+}, {
+"base": "Node2D",
+"class": "EncounterStep",
+"language": "GDScript",
+"path": "res://scenes/encounter/encounter_step/EncounterStep.gd"
 }, {
 "base": "CCEffect",
 "class": "FreezeEffect",
@@ -199,7 +204,7 @@ _global_script_class_icons={
 "CCEffect": "",
 "CCEffectHandler": "",
 "CasterAI": "",
-"CharacterBase": "",
+"Character": "",
 "CharacterNavigation": "",
 "CombatReadyAI": "",
 "DOTEffectHandler": "",
@@ -207,6 +212,7 @@ _global_script_class_icons={
 "DotEffect": "",
 "Effect": "",
 "EffectHandler": "",
+"EncounterStep": "",
 "FreezeEffect": "",
 "HealEffect": "",
 "KnockbackEffect": "",
@@ -245,6 +251,7 @@ InputHandler="*res://scenes/singletons/InputHandler.gd"
 FeedbackHandler="*res://scenes/scripts/helpers/FeedbackHandler.gd"
 InputEmitter="*res://scenes/singletons/InputEmitter.gd"
 UIManager="*res://scenes/ui/ui_manager/UIManager.tscn"
+AudioManager="*res://scenes/singletons/audio/AudioManager.tscn"
 
 [display]
 

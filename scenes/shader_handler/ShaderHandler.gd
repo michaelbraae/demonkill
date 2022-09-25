@@ -2,10 +2,10 @@ extends Node2D
 
 # this script is responsible for switching between the various shaders that a game character might need
 
-const POISON_SHADER = preload("res://assets/shaders/dot/poison/Poison.tres")
-const BURN_SHADER = preload("res://assets/shaders/dot/burn/Burn.tres")
-const FREEZE_SHADER = preload("res://assets/shaders/dot/freeze/Freeze.tres")
-const BLEED_SHADER = preload("res://assets/shaders/dot/bleed/Bleed.tres")
+const POISON_SHADER = preload("res://assets/shaders/dot/poison/poison.tres")
+const BURN_SHADER = preload("res://assets/shaders/dot/burn/burn.tres")
+const FREEZE_SHADER = preload("res://assets/shaders/dot/freeze/freeze.tres")
+const BLEED_SHADER = preload("res://assets/shaders/dot/bleed/bleed.tres")
 
 const FLASH_SHADER = preload("res://assets/shaders/flash.gdshader")
 

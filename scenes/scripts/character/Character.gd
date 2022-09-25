@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-class_name CharacterBase
+class_name Character
 
 # warning-ignore-all:return_value_discarded
 

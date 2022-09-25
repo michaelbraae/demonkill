@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/audio/sfx/ui/weapon-pickup.wav" type="AudioStream" id=1]
+
+[node name="UIAudio" type="Node2D"]
+
+[node name="AcceptAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "UI"

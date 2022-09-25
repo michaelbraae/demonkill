@@ -5,6 +5,7 @@
 [ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.gd" type="Script" id=3]
 
 [node name="SwipeImp" instance=ExtResource( 2 )]
+scale = Vector2( 1.23243, 1.23243 )
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 3 )
@@ -15,5 +16,5 @@ max_health = 40
 weapon_selection = ExtResource( 1 )
 possession_guard_threshold = 80.0
 
-[node name="HitBox" parent="." index="4"]
+[node name="HitBox" parent="." index="5"]
 visible = true
