@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/environment/buildings/Building-Enterable.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://assets/sprites/environment/dungeon.png" type="Texture" id=4]
 [ext_resource path="res://scenes/weapon/axes/frost_axe/weapon_pickup/FrostAxePickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/pickups/possession_cooldown_reset/PossessionCooldownResetPickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/weapon/weapon_pickup/WeaponPickup.gd" type="Script" id=7]
+[ext_resource path="res://scenes/dynamic_enemy_spawn/enemy_spawns/SwipeImpSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/dynamic_enemy_spawn/DynamicEnemySpawn.gd" type="Script" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "dungeon.png 0"
@@ -161,14 +162,17 @@ position = Vector2( -1, 0 )
 
 [node name="PoisonSwordPickup" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -24, -105 )
-script = ExtResource( 7 )
 
 [node name="FrostAxePickup" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 46, -191 )
-script = ExtResource( 7 )
 
 [node name="PossessionCooldownResetPickup" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 3, -259 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( -1, 0 )
+
+[node name="SwipeImpSpawner" parent="." instance=ExtResource( 7 )]
+position = Vector2( 7, -88 )
+script = ExtResource( 8 )
+spawn_frame = 4

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/dynamic_enemy_spawn/DynamicEnemySpawn.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/npcs/imp/melee/idle/idle1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/character/npc/swipe_imp/SwipeImp.tscn" type="PackedScene" id=3]
+
+[node name="SwipeImpSpawner" instance=ExtResource( 1 )]
+enemy = ExtResource( 3 )
+spawn_frame = 10
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+animation = "default"
+speed_scale = 0.1
