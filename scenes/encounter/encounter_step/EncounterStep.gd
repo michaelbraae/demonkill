@@ -24,8 +24,3 @@ func enemy_died(character: Character) -> void:
 	active_enemies.remove(enemy)
 	if !active_enemies.size():
 		emit_signal("step_finished", self)
-		queue_free()
-
-# func encounter_step_enemy_died(character: Character) -> void:
-# 	print(character)
-# 	print("active_enemies.size()", active_enemies.size())

@@ -14,6 +14,8 @@ var step_index: int = 0
 var encounter_started: bool = false
 
 func _ready() -> void:
+	for child in $Steps.get_children():
+		child.visible = true
 	$Area2D.connect("area_entered", self, "area_entered")
 
 func area_entered(body) -> void:

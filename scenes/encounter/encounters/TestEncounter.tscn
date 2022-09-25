@@ -21,6 +21,7 @@ position = Vector2( 34, -9 )
 shape = SubResource( 1 )
 
 [node name="EncounterStep" parent="Steps" index="0" instance=ExtResource( 2 )]
+visible = false
 
 [node name="SwipeImpSpawner" parent="Steps/EncounterStep" index="0" instance=ExtResource( 4 )]
 position = Vector2( -155, 59 )
@@ -43,6 +44,7 @@ position = Vector2( 213, 57 )
 script = ExtResource( 5 )
 
 [node name="EncounterStep2" parent="Steps" index="1" instance=ExtResource( 2 )]
+visible = false
 
 [node name="SwipeImpSpawner" parent="Steps/EncounterStep2" index="0" instance=ExtResource( 4 )]
 position = Vector2( -96, -6 )
@@ -55,3 +57,11 @@ script = ExtResource( 5 )
 [node name="SwipeImpSpawner3" parent="Steps/EncounterStep2" index="2" instance=ExtResource( 4 )]
 position = Vector2( 5, -60 )
 script = ExtResource( 5 )
+
+[node name="EncounterStep3" parent="Steps" index="2" instance=ExtResource( 2 )]
+
+[node name="SwipeImpSpawner" parent="Steps/EncounterStep3" index="0" instance=ExtResource( 4 )]
+position = Vector2( -59, 28 )
+
+[node name="SwipeImpSpawner2" parent="Steps/EncounterStep3" index="1" instance=ExtResource( 4 )]
+position = Vector2( 67, -39 )
