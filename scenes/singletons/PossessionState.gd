@@ -18,6 +18,13 @@ func is_controlling_player() -> bool:
 func is_player(character: KinematicBody2D) -> bool:
 	return GameState.player == character
 
+func get_player_controlled_character() -> Character:
+	if GameState.state == GameState.CONTROLLING_PLAYER:
+		return GameState.player
+	if is_instance_valid(current_possession):
+		return current_possession
+	return GameState.player
+
 func onPossessionExit() -> void:
 	UIManager.get_node("Tsukuyomi").visible = false
 	AudioManager.stop_audio(AudioManager.HEARTBEAT)

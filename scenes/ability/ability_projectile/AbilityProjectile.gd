@@ -18,7 +18,7 @@ func projectile_area_entered(area) -> void:
 	if area.get_name() == "HitBox" and source_actor != area.get_parent():
 		set_physics_process(false)
 		if area.get_parent().find_node("EffectHandler"):
-			if area.get_parent() is CharacterBase and on_hit_prevent_continue(area.get_parent()):
+			if area.get_parent() is Character and on_hit_prevent_continue(area.get_parent()):
 				collisionEffect(get_global_position())
 				queue_free()
 				return

@@ -44,7 +44,7 @@ func _ready() -> void:
 
 # check to continue processing by determining if the attack has lethal damage
 # dont continue with the other effects if has lethal
-func on_hit_prevent_continue(hit_target: CharacterBase) -> bool:
+func on_hit_prevent_continue(hit_target: Character) -> bool:
 	# only perform collision feedback if the entity is already in PRE_DEATH logic
 	if hit_target.state == hit_target.PRE_DEATH:
 		return true
@@ -54,13 +54,13 @@ func on_hit_prevent_continue(hit_target: CharacterBase) -> bool:
 		return true
 	return false
 
-func has_lethal(hit_target: CharacterBase) -> bool:
+func has_lethal(hit_target: Character) -> bool:
 	var damage_effect = get_node("Effects").find_node("DamageEffect")
 	if damage_effect and damage_effect.damage >= hit_target.get_health():
 		return true
 	return false
 
-func apply_lethal_damage(hit_target: CharacterBase) -> void:
+func apply_lethal_damage(hit_target: Character) -> void:
 	var damage_effect = get_node("Effects").find_node("DamageEffect")
 	if damage_effect:
 		hit_target.set_physics_process(true)
