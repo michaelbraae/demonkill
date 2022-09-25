@@ -225,10 +225,10 @@ func navigateAlongPath(target_position) -> void:
 
 func runDecisionTree() -> void:
 	state = NAVIGATING
-	if not followTarget():
+	if not followTarget() and is_instance_valid(GameState.tilemap):
 		navigation_path = calculate_point_path(spawn_position)
 		navigateAlongPath(spawn_position)
-	elif is_instance_valid(target_actor) and GameState.tilemap and not hasLineOfSight():
+	elif is_instance_valid(target_actor) and is_instance_valid(GameState.tilemap) and not hasLineOfSight():
 		if navigation_reset_timer.is_stopped() or !navigation_path:
 			navigation_reset_timer.start(navigation_reset)
 			navigation_path = calculate_point_path(target_actor.get_position())

@@ -4,6 +4,8 @@ class_name Character
 
 # warning-ignore-all:return_value_discarded
 
+signal character_died(character)
+
 onready var animatedSprite: AnimatedSprite = $AnimatedSprite
 
 var state: int

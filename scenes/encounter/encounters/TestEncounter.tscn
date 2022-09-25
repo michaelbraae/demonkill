@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/encounter/Encounter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/encounter/encounter_step/EncounterStep.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tilesets/PurpleDungeon.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/dynamic_enemy_spawn/enemy_spawns/SwipeImpSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/dynamic_enemy_spawn/DynamicEnemySpawn.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 225, 125 )
@@ -22,27 +23,35 @@ shape = SubResource( 1 )
 [node name="EncounterStep" parent="Steps" index="0" instance=ExtResource( 2 )]
 
 [node name="SwipeImpSpawner" parent="Steps/EncounterStep" index="0" instance=ExtResource( 4 )]
-position = Vector2( -147, -87 )
+position = Vector2( -155, 59 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner2" parent="Steps/EncounterStep" index="1" instance=ExtResource( 4 )]
-position = Vector2( -30, -86 )
+position = Vector2( -38, 60 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner3" parent="Steps/EncounterStep" index="2" instance=ExtResource( 4 )]
-position = Vector2( 69, -86 )
+position = Vector2( 61, 60 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner4" parent="Steps/EncounterStep" index="3" instance=ExtResource( 4 )]
-position = Vector2( 154, -88 )
+position = Vector2( 146, 58 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner5" parent="Steps/EncounterStep" index="4" instance=ExtResource( 4 )]
-position = Vector2( 221, -89 )
+position = Vector2( 213, 57 )
+script = ExtResource( 5 )
 
 [node name="EncounterStep2" parent="Steps" index="1" instance=ExtResource( 2 )]
 
 [node name="SwipeImpSpawner" parent="Steps/EncounterStep2" index="0" instance=ExtResource( 4 )]
 position = Vector2( -96, -6 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner2" parent="Steps/EncounterStep2" index="1" instance=ExtResource( 4 )]
 position = Vector2( 116, -5 )
+script = ExtResource( 5 )
 
 [node name="SwipeImpSpawner3" parent="Steps/EncounterStep2" index="2" instance=ExtResource( 4 )]
 position = Vector2( 5, -60 )
+script = ExtResource( 5 )

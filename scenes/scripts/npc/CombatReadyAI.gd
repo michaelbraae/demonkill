@@ -282,6 +282,7 @@ func handlePostAnimState() -> void:
 			if stun_duration_timer.is_stopped():
 				state = IDLE
 		PRE_DEATH:
+			emit_signal("character_died", self)
 			queue_free()
 
 func hitByAxe(damage) -> void:
