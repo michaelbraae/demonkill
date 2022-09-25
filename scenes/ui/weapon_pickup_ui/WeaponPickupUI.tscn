@@ -90,3 +90,13 @@ position = Vector2( 1, 108 )
 [node name="BottomPosition" type="Position2D" parent="CenterContainer/ColorRect/HBoxContainer/NewWeaponSection"]
 unique_name_in_owner = true
 position = Vector2( 1, 215 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 385.0
+margin_top = 526.0
+margin_right = 563.0
+margin_bottom = 597.0
+rect_scale = Vector2( 1.57335, 1.57335 )
+text = "UP/DOWN Arrows to select
+E to confirm or walk away
+"
