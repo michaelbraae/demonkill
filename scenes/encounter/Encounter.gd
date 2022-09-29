@@ -26,6 +26,7 @@ func area_entered(body) -> void:
 
 func begin_encounter() -> void:
 	$DoorTileMap.visible = true
+	$DoorTileMap.set_collision_layer_bit(0, true)
 	begin_encounter_step(0)
 
 func begin_encounter_step(step: int) -> void:
@@ -42,10 +43,11 @@ func encounter_step_end(step: EncounterStep) -> void:
 	var step_in_array = active_encounter_steps.find(step)
 	active_encounter_steps.remove(step_in_array)
 	if active_encounter_steps.empty():
-		if step_index <= $Steps.get_children().size():
+		if step_index < $Steps.get_children().size():
 			begin_next_encounter_step()
 		else:
 			encounter_reward_step()
+			end_encounter()
 
 func begin_next_encounter_step():
 	begin_encounter_step(step_index)
@@ -59,4 +61,8 @@ func encounter_reward_step() -> void:
 		var reward_vfx_instance = encounter_reward_vfx.instance()
 		add_child(reward_vfx_instance)
 		reward_vfx_instance.position = reward_position
+	$DoorTileMap.visible = false
+
+func end_encounter() -> void:
+	$DoorTileMap.set_collision_layer_bit(0, false)
 	$DoorTileMap.visible = false

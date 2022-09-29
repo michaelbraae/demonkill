@@ -99,9 +99,8 @@ func ability_landed(ability_type) -> void:
 				# here we have reached the combo finisher level, so reset the combo
 				combo_finish_timer.stop()
 				current_combo_attack = 1
-			print("melee ability")
 		Ability.ABILITY_TYPE.PROJECTILE:
-			print("projectile ability")
+			pass
 
 func drop_weapon() -> void:
 	if weapon_pickup:
