@@ -33,33 +33,21 @@ position = Vector2( -82, 53 )
 [node name="SwipeImpSpawner2" parent="Steps/EncounterStep" index="1" instance=ExtResource( 4 )]
 position = Vector2( 14, 11 )
 
-[node name="SwipeImpSpawner3" parent="Steps/EncounterStep" index="2" instance=ExtResource( 4 )]
-position = Vector2( -64, -7 )
-
-[node name="SwipeImpSpawner4" parent="Steps/EncounterStep" index="3" instance=ExtResource( 4 )]
-position = Vector2( 81, -43 )
-
 [node name="EncounterStep2" parent="Steps" index="1" instance=ExtResource( 2 )]
 
-[node name="SwipeImpSpawner" parent="Steps/EncounterStep2" index="0" instance=ExtResource( 4 )]
-position = Vector2( -133, -70 )
+[node name="SwipeImpSpawner3" parent="Steps/EncounterStep2" index="0" instance=ExtResource( 4 )]
+position = Vector2( -29, -64 )
 
-[node name="SwipeImpSpawner2" parent="Steps/EncounterStep2" index="1" instance=ExtResource( 4 )]
-position = Vector2( 173, 42 )
+[node name="SwipeImpSpawner4" parent="Steps/EncounterStep2" index="1" instance=ExtResource( 4 )]
+position = Vector2( 1, -67 )
 
-[node name="SwipeImpSpawner3" parent="Steps/EncounterStep2" index="2" instance=ExtResource( 4 )]
-position = Vector2( -97, -73 )
-
-[node name="SwipeImpSpawner4" parent="Steps/EncounterStep2" index="3" instance=ExtResource( 4 )]
-position = Vector2( -67, -76 )
-
-[node name="SwipeImpSpawner5" parent="Steps/EncounterStep2" index="4" instance=ExtResource( 4 )]
-position = Vector2( -36, -80 )
+[node name="SwipeImpSpawner5" parent="Steps/EncounterStep2" index="2" instance=ExtResource( 4 )]
+position = Vector2( 32, -71 )
 
 [node name="EncounterStep3" parent="Steps" index="2" instance=ExtResource( 2 )]
 
 [node name="SwipeImpSpawner" parent="Steps/EncounterStep3" index="0" instance=ExtResource( 4 )]
-position = Vector2( -133, -70 )
+position = Vector2( 91, -18 )
 
 [node name="SwipeImpSpawner4" parent="Steps/EncounterStep3" index="1" instance=ExtResource( 4 )]
-position = Vector2( -67, -76 )
+position = Vector2( 141, 13 )
