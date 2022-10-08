@@ -164,13 +164,13 @@ rotation = -1.57079
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( -1, 0 )
 
-[node name="PoisonSwordPickup" parent="YSort" instance=ExtResource( 3 )]
+[node name="OGPoisonSwordPickup" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -24, -105 )
 
-[node name="FrostAxePickup" parent="YSort" instance=ExtResource( 5 )]
+[node name="OGFrostAxePickup" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 46, -191 )
 
-[node name="PossessionCooldownResetPickup" parent="YSort" instance=ExtResource( 6 )]
+[node name="OGPossessionCooldownResetPickup" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 3, -259 )
 
 [node name="SpawnPoint" type="Position2D" parent="."]

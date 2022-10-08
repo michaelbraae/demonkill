@@ -64,21 +64,23 @@ func save_weapon(weapon_json) -> void:
 		var save_result = ResourceSaver.save(str("res://test/weapons/", scene_name), scene)
 		if save_result == OK:
 			weapon_created_count += 1
-			save_weapon_pickup(new_weapon)
+			save_weapon_pickup(weapon_name, scene)
 		else:
 			push_error(str("An error has occured while attempting to save weapon to disk. Weapon Name: ", name))
 
-func save_weapon_pickup(weapon: Weapon) -> void:
-	if is_instance_valid(weapon) and weapon.weapon_name:
-		var pickup_scene = WEAPON_PICKUP_SCENE.instance()
-		pickup_scene.weapon = weapon
+func save_weapon_pickup(weapon_name: String, weapon: PackedScene) -> void:
+	var pickup_scene = WEAPON_PICKUP_SCENE.instance()
+	pickup_scene.weapon = weapon
+	
+	print("weapon_name: ", weapon_name)
+	print("weapon: ", weapon)
+
+	var scene = PackedScene.new()
+	var scene_name = str(weapon_name, "Pickup.tscn")
+	
+	var result = scene.pack(pickup_scene)
+	if result == OK:
+		var save_result = ResourceSaver.save(str("res://test/weapon_pickups/", scene_name), scene)
+		if save_result != OK:
+			push_error(str("An error has occured while attempting to save weapon to disk. Weapon Name: ", weapon.weapon_name))
 		
-		var scene = PackedScene.new()
-		var scene_name = str(weapon.weapon_name.replace(" ", ""), "Pickup.tscn")
-		
-		var result = scene.pack(pickup_scene)
-		if result == OK:
-			var save_result = ResourceSaver.save(str("res://test/weapon_pickups/", scene_name), scene)
-			if save_result != OK:
-				push_error(str("An error has occured while attempting to save weapon to disk. Weapon Name: ", weapon.weapon_name))
-			
