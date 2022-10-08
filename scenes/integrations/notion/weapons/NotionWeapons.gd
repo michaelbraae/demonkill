@@ -49,11 +49,10 @@ func save_weapon(weapon_json) -> void:
 	new_weapon.attack_speed = float(weapon_json.properties.attack_speed.number)
 	
 	var icon_url = get_icon_url(weapon_json)
-#	print("icon url: ", icon_url)
 
-#	if icon_url != "":
+	if icon_url != "":
 #		new_weapon.weapon_icon = download_texture(icon_url, str(name, ".png"))
-#		var icon_texture = download_texture(icon_url, str(name, ".png"))
+		var icon_texture = download_texture(icon_url, str(weapon_name, ".png"))
 #		yield(self, "image_download_finished")
 #		new_weapon.weapon_icon = icon_texture
 
