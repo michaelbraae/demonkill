@@ -4,6 +4,7 @@ class_name Character
 
 # warning-ignore-all:return_value_discarded
 
+# warning-ignore:unused_signal
 signal character_died(character)
 
 onready var animatedSprite: AnimatedSprite = $AnimatedSprite

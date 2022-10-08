@@ -59,6 +59,8 @@ func save_weapon(weapon_json) -> void:
 	var scene = PackedScene.new()
 	var scene_name = str(weapon_name, ".tscn")
 	
+	scene.set_name(str(weapon_name, "Pickup"))
+	
 	var result = scene.pack(new_weapon)
 	if result == OK:
 		var save_result = ResourceSaver.save(str("res://test/weapons/", scene_name), scene)
@@ -71,6 +73,9 @@ func save_weapon(weapon_json) -> void:
 func save_weapon_pickup(weapon_name: String, weapon: PackedScene) -> void:
 	var pickup_scene = WEAPON_PICKUP_SCENE.instance()
 	pickup_scene.weapon = weapon
+	pickup_scene.weapon_name = weapon_name
+	
+	pickup_scene.set_name(str(weapon_name, "Pickup"))
 	
 	print("weapon_name: ", weapon_name)
 	print("weapon: ", weapon)
