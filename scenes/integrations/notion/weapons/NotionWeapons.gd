@@ -23,14 +23,9 @@ func fetch_weapons(value):
 func _on_request_completed(_result, response_code, _headers, body) -> void:
 	if response_code == HTTPClient.RESPONSE_OK:
 		var json = JSON.parse(body.get_string_from_utf8())
-		for weapon in json.result.results:
-			if weapon.properties.name.title.size() > 0:
-				var name = weapon.properties.name.title[0]["text"].content
-				var archetype = weapon.properties.type.select.name
-				var rarity = weapon.properties.rarity.select.name
-				var affinity = weapon.properties.affinity.select.name
-				var icon_url = get_icon_url(weapon)
-				save_weapon(name, archetype, affinity, rarity, icon_url)
+		for weapon_json in json.result.results:
+			if weapon_json.properties.name.title.size() > 0:
+				save_weapon(weapon_json)
 		if weapon_created_count > 0:
 			print(str(weapon_created_count, " Weapons Successfully Created"))
 			weapon_created_count = 0
@@ -40,12 +35,21 @@ func get_icon_url(weapon_json) -> String:
 		return weapon_json.properties.icon.files[0].file.url
 	return ""
 
-func save_weapon(name: String, archetype: String, affinity: String, rarity: String, icon_url: String = "") -> void:
+func save_weapon(weapon_json) -> void:
 	var new_weapon = WEAPON_SCENE.instance()
-	new_weapon.weapon_name = name
-	new_weapon.archetype = archetype.to_upper()
-	new_weapon.rarity = rarity.to_upper()
-	new_weapon.affinity = affinity.to_upper()
+	
+	var weapon_name =  weapon_json.properties.name.title[0]["text"].content
+	new_weapon.weapon_name = weapon_name
+	weapon_name = weapon_name.replace(" ", "")
+	
+	new_weapon.archetype = weapon_json.properties.type.select.name.to_upper()
+	new_weapon.rarity = weapon_json.properties.rarity.select.name.to_upper()
+	new_weapon.affinity = weapon_json.properties.affinity.select.name.to_upper()
+	new_weapon.combo_finish_index = int(weapon_json.properties.combo_finish_index.number)
+	new_weapon.attack_speed = float(weapon_json.properties.attack_speed.number)
+	
+	var icon_url = get_icon_url(weapon_json)
+#	print("icon url: ", icon_url)
 
 #	if icon_url != "":
 #		new_weapon.weapon_icon = download_texture(icon_url, str(name, ".png"))
@@ -54,7 +58,7 @@ func save_weapon(name: String, archetype: String, affinity: String, rarity: Stri
 #		new_weapon.weapon_icon = icon_texture
 
 	var scene = PackedScene.new()
-	var scene_name = str(name.replace(" ", ""), ".tscn")
+	var scene_name = str(weapon_name, ".tscn")
 	
 	var result = scene.pack(new_weapon)
 	if result == OK:
