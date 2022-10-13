@@ -36,6 +36,8 @@ func get_icon_url(weapon_json) -> String:
 	return ""
 
 func save_weapon(weapon_json) -> void:
+	if !weapon_json.properties.import.checkbox:
+		return
 	var new_weapon = WEAPON_SCENE.instance()
 	
 	var weapon_name =  weapon_json.properties.name.title[0]["text"].content
@@ -73,7 +75,6 @@ func save_weapon(weapon_json) -> void:
 func save_weapon_pickup(weapon_name: String, weapon: PackedScene) -> void:
 	var pickup_scene = WEAPON_PICKUP_SCENE.instance()
 	pickup_scene.weapon = weapon
-	pickup_scene.weapon_name = weapon_name
 	
 	pickup_scene.set_name(str(weapon_name, "Pickup"))
 	
