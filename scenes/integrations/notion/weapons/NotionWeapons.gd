@@ -31,4 +31,3 @@ func _on_request_completed(_result, response_code, _headers, body) -> void:
 		if weapon_created_count > 0:
 			print(str(weapon_created_count, " Weapons Successfully Created"))
 			weapon_created_count = 0
-

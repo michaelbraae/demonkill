@@ -17,11 +17,12 @@ func get_icon_url(weapon_json) -> String:
 func save_weapon(weapon_json, integration: NotionIntegration) -> void:
 	if !weapon_json.properties.import.checkbox:
 		return
-	var new_weapon = WEAPON_SCENE.instance()
 	
+	var new_weapon = WEAPON_SCENE.instance()
 	var weapon_name =  weapon_json.properties.name.title[0]["text"].content
 	new_weapon.weapon_name = weapon_name
 	weapon_name = weapon_name.replace(" ", "")
+	new_weapon.set_name(weapon_name)
 	
 	new_weapon.archetype = weapon_json.properties.type.select.name.to_upper()
 	new_weapon.rarity = weapon_json.properties.rarity.select.name.to_upper()
@@ -32,7 +33,6 @@ func save_weapon(weapon_json, integration: NotionIntegration) -> void:
 	var icon_url = get_icon_url(weapon_json)
 
 	if icon_url != "":
-#		new_weapon.weapon_icon = download_texture(icon_url, str(name, ".png"))
 		download_texture(icon_url, str(weapon_name, ".png"))
 		yield(self, "image_download_finished")
 		print('image finished, setting params..')
@@ -40,8 +40,6 @@ func save_weapon(weapon_json, integration: NotionIntegration) -> void:
 
 	var scene = PackedScene.new()
 	var scene_name = str(weapon_name, ".tscn")
-	
-	scene.set_name(str(weapon_name, "Pickup"))
 	
 	var result = scene.pack(new_weapon)
 	if result == OK:
