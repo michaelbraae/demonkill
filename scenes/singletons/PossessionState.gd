@@ -55,8 +55,9 @@ func handlePossessionDeath(spawn_position) -> void:
 	onPossessionExit()
 	
 	# set the player's location
-	player_instance.position = spawn_position
-	player_instance.camera2D.make_current()
+	if is_instance_valid(player_instance):
+		player_instance.position = spawn_position
+		player_instance.camera2D.make_current()
 
 func exitPossession(spawn_position) -> void:
 	# intantiate the player scene and add to scene
