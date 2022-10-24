@@ -13,10 +13,9 @@ const NOTION_VERSION: String = "2022-02-22"
 var DATABASE_ID: String = "17e5b08741fb4d1d95d321bb53770619"
 var query: String = ""
 
-func _ready():
-	$HTTPRequest.connect("request_completed", self, "_on_request_completed")
-
 func make_request() -> void:
+	if !$HTTPRequest.is_connected("request_completed", self, "_on_request_completed"):
+		$HTTPRequest.connect("request_completed", self, "_on_request_completed")
 	var headers = [
 		str("Authorization: ", NOTION_API_KEY),
 		str("Notion-Version: ", NOTION_VERSION),

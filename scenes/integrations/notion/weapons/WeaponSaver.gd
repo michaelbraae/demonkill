@@ -31,17 +31,23 @@ func save_weapon(weapon_json, integration: NotionIntegration) -> void:
 	new_weapon.attack_speed = float(weapon_json.properties.attack_speed.number)
 	
 	var icon_url = get_icon_url(weapon_json)
-
+	
 	if icon_url != "":
 		download_texture(icon_url, str(weapon_name, ".png"))
 		yield(self, "image_download_finished")
 		print('image finished, setting params..')
 		new_weapon.weapon_icon = icon_texture
-
+	
 	var scene = PackedScene.new()
 	var scene_name = str(weapon_name, ".tscn")
 	
 	var result = scene.pack(new_weapon)
+
+	for ability_id in weapon_json.properties.ability.relation:
+		var ability_saver = AbilitySaver.new()
+		add_child(ability_saver)
+		ability_saver.fetch_page(ability_id)
+
 	if result == OK:
 		var save_result = ResourceSaver.save(str("res://test/weapons/", scene_name), scene)
 		if save_result == OK:
@@ -64,9 +70,6 @@ func save_weapon_pickup(weapon_name: String, weapon: PackedScene) -> void:
 		if save_result != OK:
 			push_error(str("An error has occured while attempting to save weapon to disk. Weapon Name: ", weapon.weapon_name))
 
-
-
-
 func download_texture(url : String, file_name : String) -> void:
 	file_name = file_name.replace(" ", "")
 	var http = HTTPRequest.new()
@@ -79,16 +82,10 @@ func download_texture(url : String, file_name : String) -> void:
 	print("downloading image..")
 	
 	yield(http, "request_completed")
-	
-#	var texture = Texture.new()
-#	var image = Image.new()
-	
+
 	icon_texture = ResourceLoader.load(icon_path)
 	print(icon_texture)
 	
 	print("download complete.. icon_path: ", icon_path)
 	
 	emit_signal("image_download_finished")
-#	image.load(icon_path)
-#	texture.create_from_image(image)
-#	return texture
