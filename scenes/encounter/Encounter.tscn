@@ -26,4 +26,4 @@ format = 1
 
 [node name="Steps" type="Node2D" parent="."]
 
-[node name="DoorLocations" type="Node2D" parent="."]
+[node name="Doors" type="Node2D" parent="."]

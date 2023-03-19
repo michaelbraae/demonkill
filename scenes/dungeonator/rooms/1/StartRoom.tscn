@@ -19,10 +19,10 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -262127, 1, 0, -196591, 1, 0, -131055, 1, 0, -65519, 1, 0, 17, 1, 0, 65553, 1, 0, 589821, 1, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0 )
 
-[node name="DoorPositions" type="Node2D" parent="."]
+[node name="Doors" type="Node2D" parent="."]
 
-[node name="Position2D" type="Position2D" parent="DoorPositions"]
+[node name="Position2D" type="Position2D" parent="Doors"]
 position = Vector2( 24, 128 )
 
-[node name="Position2D2" type="Position2D" parent="DoorPositions"]
+[node name="Position2D2" type="Position2D" parent="Doors"]
 position = Vector2( 272, -24 )
