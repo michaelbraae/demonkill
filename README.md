@@ -2,6 +2,8 @@
 
 Welcome to Demonkill, a pixel art roguelike make for Godot Engine.
 
+Play it here: https://snappingturtlegames.itch.io/demonkill
+
 ## Installation
 
 1. git LFS is required for this project
