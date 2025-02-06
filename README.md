@@ -1,6 +1,6 @@
-# Project Setup
+# Demonkill
 
-To work on this project there are a couple of things to set up:
+Welcome to Demonkill, a pixel art roguelike make for Godot Engine.
 
 1. Install git and git lfs
 
@@ -12,7 +12,6 @@ LFS stands for Large File Storage, basically it's an extension for git that is u
 3. Downlad and install godot: Open godot, and hit import project.
 https://godotengine.org/
 
-4. Navigate to the project file and select the project.godot file.
+Note: Godot 4.* is not currently supported by this project, please use 3.6 instead
 
-5. if all went well, then the project should run, hit F5 or the play button at the top right of the screen to start the game
-
+5. Open godot and hit import & edit, navigate to the project.godot file
